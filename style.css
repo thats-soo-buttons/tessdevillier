@@ -1,0 +1,226 @@
+/* --- OTF NETWORK: ARCHITECT STUDIO MASTER CORE --- */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap');
+
+:root {
+    --accent-blue: #0077cc;
+    --bronze: #a8794b;
+    --silver: #b5b5b5;
+    --gold: #d4af37;
+    --bg-white: #ffffff;
+    --text-main: #1d1d1f;
+    --text-muted: #86868b;
+    --border: #e5e5e5;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+
+body { 
+    background-color: var(--bg-white); 
+    color: var(--text-main); 
+    font-family: 'Inter', sans-serif; 
+    line-height: 1.6; 
+}
+
+.container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
+
+/* --- HEADERS --- */
+.section-header { text-align: center; margin-bottom: 70px; }
+.section-header h1 { 
+    font-family: 'Cinzel', serif; 
+    font-size: 3.2rem; 
+    letter-spacing: -1px; 
+    margin-bottom: 10px; 
+}
+.section-header p { color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
+
+/* --- GRID SYSTEM --- */
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; 
+}
+
+.card { 
+    background: #fff; 
+    padding: 45px; 
+    border-radius: 24px; 
+    display: flex; 
+    flex-direction: column; 
+    position: relative; 
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid var(--border);
+}
+
+.card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+
+/* --- METALLIC TIERS --- */
+.card-bronze { border: 2px solid var(--bronze); }
+.card-silver { border: 2px solid var(--silver); }
+.card-gold { border: 2px solid var(--gold); }
+
+/* --- THE $7,000 EXECUTIVE CARD (CENTERED & BALANCED) --- */
+.card-executive { 
+    grid-column: 1 / -1; 
+    background: #000; 
+    color: #fff; 
+    border: 2px solid var(--gold);
+    box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+    text-align: center; 
+    align-items: center; 
+    margin-top: 20px;
+}
+
+.card-executive h3 {
+    font-size: 2.2rem; 
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.card-executive .price {
+    font-size: 3rem; 
+    color: var(--gold); 
+    margin-bottom: 15px;
+}
+
+.card-executive p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 750px;
+    margin: 0 auto 30px auto;
+    color: #a1a1a6;
+}
+
+/* Internal grid for side-by-side lists inside executive card */
+.card-executive .grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* --- TYPOGRAPHY & ELEMENTS --- */
+h3 { font-family: 'Cinzel', serif; font-size: 1.5rem; margin-bottom: 10px; }
+.price { font-size: 2.5rem; font-weight: 600; margin-bottom: 20px; }
+.badge { position: absolute; top: 25px; right: 25px; padding: 6px 14px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+.badge-gold { background: var(--gold); color: #000; }
+
+ul { list-style: none; margin-top: 15px; flex-grow: 1; }
+ul li { margin-bottom: 10px; font-size: 0.95rem; color: var(--text-muted); }
+ul li strong { color: var(--text-main); }
+.card-executive ul li { color: #a1a1a6; }
+.card-executive ul li strong { color: #fff; }
+
+/* --- LOGISTICS & PROCESS SECTIONS --- */
+.logistics { margin: 80px auto 0 auto; background: #fbfbfd; border: 1px solid var(--border); padding: 50px; border-radius: 32px; }
+.logistics h2 { font-family: 'Cinzel', serif; text-align: center; margin-bottom: 40px; font-size: 2rem; }
+.logistics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
+.logistics-item h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; }
+.logistics-item p { font-size: 1.2rem; font-weight: 600; }
+
+.process-title { font-family: 'Cinzel', serif; text-align: center; margin-top: 100px; margin-bottom: 40px; font-size: 2.2rem; letter-spacing: 2px; }
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.process-step { background: #fbfbfd; border: 1px solid var(--border); padding: 30px; border-radius: 20px; text-align: center; }
+.process-step span { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--accent-blue); display: block; margin-bottom: 10px; }
+
+/* --- BUTTON & FOOTER --- */
+.cta-container { text-align: center; margin-top: 80px; padding-bottom: 100px; }
+.cta-btn { 
+    background: var(--accent-blue); 
+    color: #fff; 
+    padding: 18px 60px; 
+    text-decoration: none; 
+    font-weight: 600; 
+    border-radius: 40px; 
+    display: inline-block; 
+    transition: 0.3s;
+    font-size: 1.1rem;
+}
+.cta-btn:hover { background: #0055aa; transform: scale(1.05); box-shadow: 0 10px 20px rgba(0, 119, 204, 0.2); }
+
+/* --- RESPONSIVENESS --- */
+@media (max-width: 900px) { 
+    .grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .card-executive { grid-column: span 1; }
+}
+
+@media (max-width: 500px) {
+    .process-grid { grid-template-columns: 1fr; }
+    .section-header h1 { font-size: 2.2rem; }
+}
+/* Carousel General Logic */
+.carousel-pudding {
+    display: flex;
+    overflow-x: auto;
+    gap: 30px;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+}
+.carousel-pudding::-webkit-scrollbar { display: none; }
+
+/* Tier 1: White Frames */
+.white-frame-wrapper img {
+    height: 400px;
+    border: 15px solid #fff;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    scroll-snap-align: center;
+}
+
+/* Tier 2: Film Strip */
+.film-strip-container {
+    background: #000;
+    padding: 30px 0;
+    border-top: 12px dashed #222;
+    border-bottom: 12px dashed #222;
+}
+.strip-logic img {
+    height: 300px;
+    filter: sepia(0.1) contrast(1.2);
+}
+
+/* Tier 3: Blueprint */
+.blueprint-logic img {
+    height: 350px;
+    border: 1px solid var(--accent-blue);
+    background: rgba(0, 119, 204, 0.1);
+    padding: 10px;
+}
+
+/* Master Bible Showcase */
+.bible-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    background: #fbfbfd;
+    padding: 60px;
+    border-radius: 40px;
+    border: 1px solid #e5e5e5;
+}
+
+.staggered-side { position: relative; height: 500px; }
+.pin { 
+    position: absolute; 
+    width: 280px; 
+    border: 8px solid #fff; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+}
+.pin-left { top: 0; left: 0; transform: rotate(-6deg); }
+.pin-right { top: 40px; right: 20px; transform: rotate(4deg); }
+.pin-center { bottom: 20px; left: 60px; transform: rotate(-2deg); z-index: 5; }
+
+.typewriter-box {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.8;
+    color: #1d1d1f;
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: inset 4px 0 0 var(--gold);
+}
+
+@media (max-width: 900px) {
+    .bible-showcase { grid-template-columns: 1fr; }
+    .staggered-side { height: 400px; }
+}

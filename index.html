@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://open.spotify.com https://drive.google.com;">
+
+    <title>Tess Devillier | The Best of Both Worlds</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=VT323&display=swap');
+
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; color: #fff; overflow: hidden; font-family: 'Montserrat', sans-serif; }
+        
+        #music-unlock {
+            position: fixed; inset: 0; background: #000; z-index: 50000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; font-family: 'VT323'; color: #00ff41; text-align: center;
+        }
+
+        .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
+        h1 { font-size: 2.5rem; letter-spacing: 6px; margin-bottom: 5px; font-weight: 700; color: #fff; }
+        #vibe-text { color: #fff; font-size: 1.3rem; min-height: 1.6em; font-weight: 300; text-transform: uppercase; }
+
+        .split-container { display: flex; width: 100vw; height: 100vh; }
+        .choice { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden; }
+        .choice:hover { flex: 1.4; }
+
+        .vignette { width: 320px; height: 320px; border-radius: 12px; background-size: cover; background-position: center; border: 1px solid rgba(255,255,255,0.1); z-index: 2; }
+        .professional { background: #ffffff; }
+        .buttons { background: #0a0a0a; font-family: 'VT323', monospace; }
+        .otf { background: #000000; font-family: 'VT323', monospace; }
+        .other { background: #071610; font-family: 'VT323', monospace; }
+        
+        .label { margin-top: 35px; font-size: 1.4rem; font-weight: bold; text-transform: uppercase; color: #fff; mix-blend-mode: difference; z-index: 3; }
+        .professional .label { color: #000; mix-blend-mode: normal; }
+    </style>
+</head>
+<body onclick="unlockAudio()">
+
+<div id="music-unlock">
+    <h1>TESS DEVILLIER</h1>
+    <p>[ CLICK TO INITIALIZE SYSTEM ]</p>
+</div>
+
+<div class="header-container">
+    <h1>HIRE • WATCH • CONNECT</h1>
+    <div id="vibe-text"></div>
+</div>
+
+<div class="split-container">
+    <a href="services.html" class="choice professional" onmouseenter="setTrack('prof')" onmouseleave="setTrack('none')">
+        <div class="vignette" style="background-image: url('professionalindex.jpg');"></div>
+        <div class="label">Devillier Media<br><span style="font-size:0.9rem; font-weight:600;">Media Services</span></div>
+    </a>
+
+    <a href="https://thatssobuttons.com" class="choice buttons" onmouseenter="setTrack('buttons')" onmouseleave="setTrack('none')">
+        <div class="vignette" style="background-image: url('dm_assets/thatssobuttons-placeholder.svg');"></div>
+        <div class="label">Interactive Simulation</div>
+    </a>
+
+    <a href="https://ontheflynetwork.com" class="choice otf" onmouseenter="setTrack('otf')" onmouseleave="setTrack('none')">
+        <div class="vignette" style="background-image: url('simulationindex.jpg');"></div>
+        <div class="label">On The Fly Network</div>
+    </a>
+
+    <a href="https://tessdevillier.com/services" class="choice other" onmouseenter="setTrack('other')" onmouseleave="setTrack('none')">
+        <div class="vignette" style="background-image: url('dm_assets/other-services-placeholder.svg');"></div>
+        <div class="label">Other Services<br><span style="font-size:0.9rem; font-weight:600;">Pet + House Sitting</span></div>
+    </a>
+</div>
+
+<footer style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.85rem; opacity: 0.9; color: #fff; z-index: 50; background: rgba(0,0,0,0.65); padding: 8px 14px; border-radius: 8px;">
+    <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.8rem;">
+        <a href="https://devilliermedia.com" style="color: #fff; text-decoration: none;">Devillier Media</a>
+        <span>•</span>
+        <a href="https://thatssobuttons.com" style="color: #fff; text-decoration: none;">That's Soo Buttons</a>
+        <span>•</span>
+        <a href="https://ontheflynetwork.com" style="color: #fff; text-decoration: none;">OTF Network</a>
+        <span>•</span>
+        <a href="https://tessdevillier.com/services" style="color: #fff; text-decoration: none;">Other Services</a>
+    </div>
+    <div style="margin-top:6px; font-size:0.75rem; letter-spacing: 2px; color: #cfcfcf;">✈️ 🧳 FLY ME OUT</div>
+</footer>
+
+<!-- Use local fallback audio files from sibling `dm_audio` folder to avoid Drive/CORS issues -->
+<audio id="music-clean" src="dm_audio/track1.mp3" loop preload="auto"></audio>
+<audio id="music-8bit" src="dm_audio/track2.mp3" loop preload="auto"></audio>
+<audio id="music-buttons" src="dm_audio/lofi-buttons.mp3" loop preload="auto"></audio>
+<audio id="music-other" src="dm_audio/dreams-in-slow-motion-chill-lofi.mp3" loop preload="auto"></audio>
+
+<script>
+    var audioStarted = false;
+    var cleanTrack = document.getElementById('music-clean');
+    var bit8Track = document.getElementById('music-8bit');
+    var buttonsTrack = document.getElementById('music-buttons');
+    var otherTrack = document.getElementById('music-other');
+
+    async function unlockAudio() {
+        if (audioStarted) return;
+        audioStarted = true;
+        document.getElementById('music-unlock').style.display = 'none';
+
+        // Start muted to satisfy browser autoplay rules
+        cleanTrack.volume = 0;
+        bit8Track.volume = 0;
+        buttonsTrack.volume = 0;
+        otherTrack.volume = 0;
+
+        try {
+            await Promise.all([cleanTrack.play(), bit8Track.play(), buttonsTrack.play(), otherTrack.play()]);
+            
+            // Force Sync
+            bit8Track.currentTime = cleanTrack.currentTime;
+            buttonsTrack.currentTime = cleanTrack.currentTime;
+            otherTrack.currentTime = cleanTrack.currentTime;
+
+            // Fade in the default Clean track
+            fadeTrack(cleanTrack, 0.4); 
+            rotateVibe();
+        } catch (err) {
+            console.error("Audio Initialization Failure:", err);
+        }
+    }
+
+    function setTrack(side) {
+        if (!audioStarted) return;
+        
+        // Hard Sync on every hover to prevent drift
+        bit8Track.currentTime = cleanTrack.currentTime;
+        buttonsTrack.currentTime = cleanTrack.currentTime;
+        otherTrack.currentTime = cleanTrack.currentTime;
+
+        if (side === 'prof') {
+            fadeTrack(cleanTrack, 0.7);
+            fadeTrack(bit8Track, 0);
+            fadeTrack(buttonsTrack, 0);
+            fadeTrack(otherTrack, 0);
+        } else if (side === 'buttons') {
+            fadeTrack(cleanTrack, 0);
+            fadeTrack(bit8Track, 0);
+            fadeTrack(buttonsTrack, 0.7);
+            fadeTrack(otherTrack, 0);
+        } else if (side === 'otf') {
+            fadeTrack(cleanTrack, 0);
+            fadeTrack(bit8Track, 0.7);
+            fadeTrack(buttonsTrack, 0);
+            fadeTrack(otherTrack, 0);
+        } else if (side === 'other') {
+            fadeTrack(cleanTrack, 0);
+            fadeTrack(bit8Track, 0);
+            fadeTrack(buttonsTrack, 0);
+            fadeTrack(otherTrack, 0.7);
+        } else {
+            // Return to neutral state
+            fadeTrack(cleanTrack, 0.4);
+            fadeTrack(bit8Track, 0);
+            fadeTrack(buttonsTrack, 0);
+            fadeTrack(otherTrack, 0);
+        }
+    }
+
+    function fadeTrack(track, target) {
+        if (track.fadeInterval) clearInterval(track.fadeInterval);
+        
+        track.fadeInterval = setInterval(function() {
+            var step = 0.05; 
+            if (Math.abs(track.volume - target) < step) {
+                track.volume = target;
+                clearInterval(track.fadeInterval);
+            } else {
+                track.volume += (track.volume < target ? step : -step);
+            }
+        }, 30);
+    }
+
+    // Automatically switch tracks based on cursor X position (left = professional, right = whimsical)
+    (function() {
+        let lastSide = null;
+
+        function sideFromX(x) {
+            const quarter = window.innerWidth / 4;
+            if (x < quarter) return 'prof';
+            if (x < quarter * 2) return 'buttons';
+            if (x < quarter * 3) return 'otf';
+            return 'other';
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            if (!audioStarted) return;
+            // If hovering a .choice anchor, let its mouseenter/mouseleave handlers handle audio
+            try {
+                if (e.target.closest && e.target.closest('.choice')) return;
+            } catch (err) {}
+
+            const side = sideFromX(e.clientX);
+            if (side !== lastSide) { setTrack(side); lastSide = side; }
+        });
+
+        // Touch support for mobile devices
+        document.addEventListener('touchmove', (e) => {
+            if (!audioStarted || !e.touches || !e.touches[0]) return;
+            const t = e.touches[0];
+            const side = sideFromX(t.clientX);
+            if (side !== lastSide) { setTrack(side); lastSide = side; }
+        }, { passive: true });
+
+        // When leaving the window, reset to neutral
+        window.addEventListener('mouseout', (e) => {
+            if (!e.relatedTarget && audioStarted) { setTrack('none'); lastSide = null; }
+        });
+    })();
+
+    // TYPING LOGIC
+    var vibes = ["WHICH FITS YOU BETTER TODAY?", "PROFESSIONAL OR WHIMSICAL?", "THE GHOSTS ARE IN THE CODE."];
+    var vIdx = 0;
+
+    function typeWriter(text, i, fn) {
+        if (i < text.length) {
+            document.getElementById("vibe-text").innerHTML = text.substring(0, i+1) + '<span style="color:#00ff41">|</span>';
+            setTimeout(function() { typeWriter(text, i + 1, fn); }, 60);
+        } else { 
+            setTimeout(fn, 2500); 
+        }
+    }
+
+    function rotateVibe() {
+        typeWriter(vibes[vIdx], 0, function() {
+            vIdx = (vIdx + 1) % vibes.length;
+            rotateVibe();
+        });
+    }
+</script>
+</body>
+</html>
