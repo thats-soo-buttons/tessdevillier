@@ -10,22 +10,27 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=VT323&display=swap');
 
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; color: #fff; overflow: hidden; font-family: 'Montserrat', sans-serif; }
+        
         #music-unlock {
             position: fixed; inset: 0; background: #000; z-index: 50000;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             cursor: pointer; font-family: 'VT323'; color: #00ff41; text-align: center;
         }
+
         .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
         h1 { font-size: 2.5rem; letter-spacing: 6px; margin-bottom: 5px; font-weight: 700; color: #fff; }
         #vibe-text { color: #fff; font-size: 1.3rem; min-height: 1.6em; font-weight: 300; text-transform: uppercase; }
+
         .split-container { display: flex; width: 100vw; height: 100vh; }
         .choice { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden; }
         .choice:hover { flex: 1.4; }
+
         .vignette { width: 320px; height: 320px; border-radius: 12px; background-size: cover; background-position: center; border: 1px solid rgba(255,255,255,0.1); z-index: 2; }
         .professional { background: #ffffff; }
         .buttons { background: #0a0a0a; font-family: 'VT323', monospace; }
         .otf { background: #000000; font-family: 'VT323', monospace; }
         .other { background: #071610; font-family: 'VT323', monospace; }
+        
         .label { margin-top: 35px; font-size: 1.4rem; font-weight: bold; text-transform: uppercase; color: #fff; mix-blend-mode: difference; z-index: 3; }
         .professional .label { color: #000; mix-blend-mode: normal; }
     </style>
@@ -45,22 +50,22 @@
 <div class="split-container">
     <a href="https://devilliermedia.com" class="choice professional" onmouseenter="setTrack('prof')" onmouseleave="setTrack('none')">
         <div class="vignette" style="background-image: url('professionalindex.jpg');"></div>
-        <div class="label" style="text-align: center; width: 100%;">Devillier Media<br><span style="font-size:0.9rem; font-weight:600;">Media Services<br><span style="font-size:0.8rem; font-weight:700; color:#cfcfcf;"><b>photography, vhs to digital, worldbuilding and more</b></span></span></div>
+        <div class="label">Devillier Media<br><span style="font-size:0.9rem; font-weight:600;">Media Services</span></div>
     </a>
 
-    <a href="https://thatssoobuttons.com" class="choice buttons" onmouseenter="setTrack('buttons')" onmouseleave="setTrack('none')">
+    <a href="https://thatssobuttons.com" class="choice buttons" onmouseenter="setTrack('buttons')" onmouseleave="setTrack('none')">
         <div class="vignette" style="background-image: url('dm_assets/thatssobuttons-placeholder.svg');"></div>
-        <div class="label">COZY / SPOOKY<br>TWITCH STREAMER</div>
+        <div class="label">Interactive Simulation</div>
     </a>
 
     <a href="https://ontheflynetwork.com" class="choice otf" onmouseenter="setTrack('otf')" onmouseleave="setTrack('none')">
         <div class="vignette" style="background-image: url('simulationindex.jpg');"></div>
-        <div class="label">On The Fly Network<br><span style="font-size:0.9rem; font-weight:600; display:block; text-align:center;">Creative Community Network<br>with Non-Profit Dreams</span></div>
+        <div class="label">On The Fly Network</div>
     </a>
 
-    <a href="/services.html" class="choice other" onmouseenter="setTrack('other')" onmouseleave="setTrack('none')">
+    <a href="https://tessdevillier.com/services" class="choice other" onmouseenter="setTrack('other')" onmouseleave="setTrack('none')">
         <div class="vignette" style="background-image: url('dm_assets/other-services-placeholder.svg');"></div>
-        <div class="label">Other Services<br><span style="font-size:0.9rem; font-weight:600;">Pet + House Sitting<br>DIGITAL ORGANIZATION</span></div>
+        <div class="label">Other Services<br><span style="font-size:0.9rem; font-weight:600;">Pet + House Sitting</span></div>
     </a>
 </div>
 
@@ -68,11 +73,11 @@
     <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.8rem;">
         <a href="https://devilliermedia.com" style="color: #fff; text-decoration: none;">Devillier Media</a>
         <span>•</span>
-        <a href="https://thatssoobuttons.com" style="color: #fff; text-decoration: none;">That's Soo Buttons</a>
+        <a href="https://thatssobuttons.com" style="color: #fff; text-decoration: none;">That's Soo Buttons</a>
         <span>•</span>
         <a href="https://ontheflynetwork.com" style="color: #fff; text-decoration: none;">OTF Network</a>
         <span>•</span>
-        <a href="/services.html" style="color: #fff; text-decoration: none;">Other Services</a>
+        <a href="https://tessdevillier.com/services" style="color: #fff; text-decoration: none;">Other Services</a>
     </div>
     <div style="margin-top:6px; font-size:0.75rem; letter-spacing: 2px; color: #cfcfcf;">✈️ 🧳 FLY ME OUT</div>
 </footer>
@@ -96,81 +101,79 @@
         document.getElementById('music-unlock').style.display = 'none';
 
         // Start muted to satisfy browser autoplay rules
-        @media (max-width: 600px) {
-            .split-container {
-                display: flex !important;
-                flex-direction: column !important;
-                width: 100vw !important;
-                min-height: 100vh !important;
-                height: auto !important;
-                overflow-y: auto !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                gap: 0 !important;
-            }
-            .choice {
-                width: 100vw !important;
-                max-width: 100vw !important;
-                min-height: 220px !important;
-                height: 320px !important;
-                margin: 0 !important;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                flex: none !important;
-                align-items: center !important;
-                justify-content: center !important;
-                scroll-snap-align: start !important;
-            }
-            .vignette {
-                width: 90vw !important;
-                max-width: 90vw !important;
-                height: 180px !important;
-                max-height: 180px !important;
-                border-radius: 12px !important;
-                margin-top: 18px !important;
-                margin-bottom: 8px !important;
-                background-size: cover !important;
-                background-position: center !important;
-            }
-            .label {
-                margin-top: 12px !important;
-                font-size: 1.2rem !important;
-                text-align: center !important;
-                padding: 0 10px !important;
-                color: #fff !important;
-                font-family: 'Montserrat', sans-serif !important;
-            }
-            .professional .label {
-                color: #000 !important;
-            }
-            body, html {
-                overflow-x: hidden !important;
-                min-height: 100vh !important;
-            }
-            .header-container {
-                position: static !important;
-                padding-top: 24px !important;
-                text-align: center !important;
-                z-index: 10 !important;
-                background: none !important;
-                pointer-events: auto !important;
-                mix-blend-mode: normal !important;
-            }
-            footer {
-                position: static !important;
-                margin-top: 24px !important;
-                left: unset !important;
-                transform: none !important;
-                width: 100% !important;
-                border-radius: 0 !important;
-                font-size: 0.9rem !important;
-                padding: 10px 0 !important;
-                text-align: center !important;
-            }
+        cleanTrack.volume = 0;
+        bit8Track.volume = 0;
+        buttonsTrack.volume = 0;
+        otherTrack.volume = 0;
+
+        try {
+            await Promise.all([cleanTrack.play(), bit8Track.play(), buttonsTrack.play(), otherTrack.play()]);
+            
+            // Force Sync
+            bit8Track.currentTime = cleanTrack.currentTime;
+            buttonsTrack.currentTime = cleanTrack.currentTime;
+            otherTrack.currentTime = cleanTrack.currentTime;
+
+            // Fade in the default Clean track
+            fadeTrack(cleanTrack, 0.4); 
+            rotateVibe();
+        } catch (err) {
+            console.error("Audio Initialization Failure:", err);
         }
     }
 
-    // Desktop: switch tracks based on cursor X position (left = professional, right = whimsical)
+    function setTrack(side) {
+        if (!audioStarted) return;
+        
+        // Hard Sync on every hover to prevent drift
+        bit8Track.currentTime = cleanTrack.currentTime;
+        buttonsTrack.currentTime = cleanTrack.currentTime;
+        otherTrack.currentTime = cleanTrack.currentTime;
+
+        if (side === 'prof') {
+            fadeTrack(cleanTrack, 0.7);
+            fadeTrack(bit8Track, 0);
+            fadeTrack(buttonsTrack, 0);
+            fadeTrack(otherTrack, 0);
+        } else if (side === 'buttons') {
+            fadeTrack(cleanTrack, 0);
+            fadeTrack(bit8Track, 0);
+            fadeTrack(buttonsTrack, 0.7);
+            fadeTrack(otherTrack, 0);
+        } else if (side === 'otf') {
+            fadeTrack(cleanTrack, 0);
+            fadeTrack(bit8Track, 0.7);
+            fadeTrack(buttonsTrack, 0);
+            fadeTrack(otherTrack, 0);
+        } else if (side === 'other') {
+            fadeTrack(cleanTrack, 0);
+            fadeTrack(bit8Track, 0);
+            fadeTrack(buttonsTrack, 0);
+            fadeTrack(otherTrack, 0.7);
+        } else {
+            // Return to neutral state
+            fadeTrack(cleanTrack, 0.4);
+            fadeTrack(bit8Track, 0);
+            fadeTrack(buttonsTrack, 0);
+            fadeTrack(otherTrack, 0);
+        }
+    }
+
+    function fadeTrack(track, target) {
+        if (track.fadeInterval) clearInterval(track.fadeInterval);
+        
+        track.fadeInterval = setInterval(function() {
+            var step = 0.05; 
+            if (Math.abs(track.volume - target) < step) {
+                track.volume = target;
+                clearInterval(track.fadeInterval);
+            } else {
+                track.volume += (track.volume < target ? step : -step);
+            }
+        }, 30);
+    }
+
+    // Automatically switch tracks based on cursor X position (left = professional, right = whimsical)
     (function() {
         let lastSide = null;
 
@@ -182,45 +185,23 @@
             return 'other';
         }
 
-        function isMobile() {
-            return window.innerWidth <= 600;
-        }
-
-        // Desktop hover/cursor logic
         document.addEventListener('mousemove', (e) => {
-            if (!audioStarted || isMobile()) return;
+            if (!audioStarted) return;
+            // If hovering a .choice anchor, let its mouseenter/mouseleave handlers handle audio
             try {
                 if (e.target.closest && e.target.closest('.choice')) return;
             } catch (err) {}
+
             const side = sideFromX(e.clientX);
             if (side !== lastSide) { setTrack(side); lastSide = side; }
         });
 
-        // Mobile scroll logic
-        window.addEventListener('scroll', () => {
-            if (!audioStarted || !isMobile()) return;
-            const panels = document.querySelectorAll('.split-container .choice');
-            let found = false;
-            for (let i = 0; i < panels.length; i++) {
-                const rect = panels[i].getBoundingClientRect();
-                if (rect.top < window.innerHeight/2 && rect.bottom > window.innerHeight/2) {
-                    let side = 'prof';
-                    if (panels[i].classList.contains('professional')) side = 'prof';
-                    else if (panels[i].classList.contains('buttons')) side = 'buttons';
-                    else if (panels[i].classList.contains('otf')) side = 'otf';
-                    else if (panels[i].classList.contains('other')) side = 'other';
-                    if (side !== lastSide) { setTrack(side); lastSide = side; }
-                    found = true;
-                    break;
-                }
-            }
-            if (!found && lastSide !== 'none') { setTrack('none'); lastSide = 'none'; }
-        });
-
-        // Touch support for mobile devices (horizontal swipe)
+        // Touch support for mobile devices
         document.addEventListener('touchmove', (e) => {
-            if (!audioStarted || !e.touches || !e.touches[0] || !isMobile()) return;
-            // Let scroll logic handle music switching
+            if (!audioStarted || !e.touches || !e.touches[0]) return;
+            const t = e.touches[0];
+            const side = sideFromX(t.clientX);
+            if (side !== lastSide) { setTrack(side); lastSide = side; }
         }, { passive: true });
 
         // When leaving the window, reset to neutral
