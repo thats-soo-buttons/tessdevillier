@@ -8,81 +8,186 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .services-layout { display: flex; gap: 32px; max-width: 1200px; margin: 40px auto; }
-        .carousel-column { width: 260px; min-width: 180px; background: #101820; border-radius: 16px; padding: 18px 10px; box-shadow: 0 2px 12px #0002; display: flex; flex-direction: column; align-items: center; }
-        .carousel-image { width: 220px; height: 320px; object-fit: cover; border-radius: 10px; margin-bottom: 18px; background: #222; }
-        .carousel-controls { display: flex; flex-direction: column; gap: 8px; }
-        .main-content { flex: 1; }
-        .service-section { margin-bottom: 48px; }
-        .service-section h2 { font-family: 'Cinzel', serif; font-size: 2rem; margin-bottom: 8px; color: #d4af37; }
-        .service-section h3 { margin-top: 18px; color: #fff; }
-        .service-section ul { margin: 0 0 12px 20px; }
-        .price { color: #d4af37; font-weight: bold; margin-left: 8px; }
-        .cta-btn { display: inline-block; margin-top: 18px; background: #d4af37; color: #222; padding: 10px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; }
-        @media (max-width: 900px) { .services-layout { flex-direction: column; } .carousel-column { width: 100%; flex-direction: row; justify-content: center; } }
+        body { background: #101820; color: #f5f5f5; font-family: 'Inter', Arial, sans-serif; }
+        .services-layout { max-width: 1200px; margin: 48px auto 40px auto; padding: 0 16px; }
+        .main-content { width: 100%; }
+        .service-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            margin-bottom: 32px;
+            color: #d4af37;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            align-items: stretch;
+        }
+        .card {
+            background: linear-gradient(135deg, #181f2a 80%, #232b3a 100%);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #0004;
+            padding: 0;
+            color: #f5f5f5;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            border: 1.5px solid #232b3a;
+            min-height: 180px;
+            transition: box-shadow 0.18s, border-color 0.18s;
+        }
+        .card:hover {
+            box-shadow: 0 8px 32px #0006;
+            border-color: #d4af37;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            background: #232b3a;
+            border-radius: 18px 0 0 18px;
+            min-width: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 24px;
+        }
+        .card-content {
+            flex: 1;
+            padding: 28px 32px 24px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .card-header-row {
+            display: flex;
+            align-items: baseline;
+            gap: 18px;
+            margin-bottom: 8px;
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            color: #d4af37;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        .price {
+            color: #fff;
+            background: #d4af37;
+            border-radius: 6px;
+            padding: 3px 12px;
+            font-weight: 600;
+            font-size: 1.08em;
+            margin: 0;
+            display: inline-block;
+        }
+        .card ul {
+            margin: 10px 0 0 18px;
+            padding-left: 0;
+        }
+        .card ul li {
+            margin-bottom: 6px;
+            font-size: 1em;
+        }
+        .card p {
+            margin: 8px 0 0 0;
+            font-size: 1.04em;
+        }
+        @media (max-width: 900px) {
+            .card-list { gap: 24px; }
+            .card { flex-direction: column; min-height: unset; }
+            .card-icon { border-radius: 18px 18px 0 0; min-width: unset; padding: 18px 0; justify-content: flex-start; }
+            .card-content { padding: 18px 18px 18px 18px; }
+        }
     </style>
 </head>
 <body>
 <div class="services-layout">
     <div class="main-content" style="margin:auto;">
-        <h2 style="margin-bottom: 24px;">Professional Support Services</h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center;">
-                        <div class="card" style="background:#181f2a; border-radius:14px; box-shadow:0 2px 12px #0002; padding:28px 22px; width:340px; max-width:95%; color:#fff;">
-                            <h3>💻 Digital Organization</h3>
-                            <div class="price">$20/hour <span style='font-size:0.95em; color:#d4af37;'>&nbsp;|&nbsp;Senior (65+): $15/hour</span></div>
-                            <p>Messy desktop? Files scattered everywhere? Storage system that isn't working for you?</p>
-                            <p>I'll help you regain control of your digital life:</p>
-                            <ul>
-                                <li>Desktop cleanup and organization</li>
-                                <li>Folder structure setup that actually makes sense</li>
-                                <li>File sorting and renaming systems</li>
-                                <li>Backing up and migrating files to Google Drive</li>
-                                <li>Custom organization system tailored to how you work</li>
-                            </ul>
+        <h2>Professional Support Services</h2>
+        <div style="text-align:center; margin-bottom:32px; font-size:1.08em; color:#d4af37; letter-spacing:1px;">
+            Local to Baton Rouge &nbsp;|&nbsp; Available to Travel / Fly Out
+        </div>
+        <div class="card-list">
+                        <div class="card">
+                            <div class="card-icon">💻</div>
+                            <div class="card-content">
+                                <div class="card-header-row">
+                                    <h3>Digital Organization</h3>
+                                    <span class="price">$20/hour</span>
+                                    <span class="price" style="font-size:0.95em; color:#b88e1a; background:#232b3a;">Senior (65+): $15/hour</span>
+                                </div>
+                                <p>Messy desktop? Files scattered everywhere? Storage system that isn't working for you?</p>
+                                <p>I'll help you regain control of your digital life:</p>
+                                <ul>
+                                    <li>Desktop cleanup and organization</li>
+                                    <li>Folder structure setup that actually makes sense</li>
+                                    <li>File sorting and renaming systems</li>
+                                    <li>Backing up and migrating files to Google Drive</li>
+                                    <li>Custom organization system tailored to how you work</li>
+                                </ul>
+                            </div>
                         </div>
-            <div class="card" style="background:#181f2a; border-radius:14px; box-shadow:0 2px 12px #0002; padding:28px 22px; width:340px; max-width:95%; color:#fff;">
-                <h3>🐕 Pet Sitting (Drop-In)</h3>
-                <div class="price">$25/visit</div>
-                <div class="price" style="font-size:0.95em; color:#d4af37;">Additional pets: +$10/visit each</div>
-                <p>Quick check-ins for your fur babies while you're at work or out for the day.</p>
-                <ul>
-                    <li>Feeding, fresh water, treats</li>
-                    <li>Potty break or short walk</li>
-                    <li>Playtime and companionship</li>
-                    <li>Photo/text updates</li>
-                    <li>Free opt-in: Intuitive dog training</li>
-                </ul>
-            </div>
-            <div class="card" style="background:#181f2a; border-radius:14px; box-shadow:0 2px 12px #0002; padding:28px 22px; width:340px; max-width:95%; color:#fff;">
-                <h3>🐕 Pet Sitting (Full Day)</h3>
-                <div class="price">$60/day (daytime only, no overnight)</div>
-                <div class="price" style="font-size:0.95em; color:#d4af37;">Additional pets: +$20/day each</div>
-                <p>All-day care when you need extended coverage without overnight.</p>
-                <ul>
-                    <li>Multiple feedings, walks, and potty breaks throughout the day</li>
-                    <li>Extended playtime and companionship</li>
-                    <li>Medication administration if needed</li>
-                    <li>Photo/text updates</li>
-                    <li>Free opt-in: Intuitive dog training</li>
-                </ul>
-            </div>
-            <div class="card" style="background:#181f2a; border-radius:14px; box-shadow:0 2px 12px #0002; padding:28px 22px; width:340px; max-width:95%; color:#fff;">
-                <h3>🏠 House + Pet Sitting (Overnight)</h3>
-                <div class="price">$100/night (includes up to 1 pet)</div>
-                <div class="price" style="font-size:0.95em; color:#d4af37;">Additional pets: +$30/night each</div>
-                <p>Peace of mind for Baton Rouge homeowners while you're away.</p>
-                <ul>
-                    <li>Overnight in-home presence for property security</li>
-                    <li>Mail and package collection</li>
-                    <li>Plant care and watering</li>
-                    <li>Pet care: feeding, walks, playtime, medication if needed</li>
-                    <li>Daily updates and photos</li>
-                    <li>Free opt-in: Intuitive dog training</li>
-                </ul>
-                <p style="font-size:0.95em; color:#d4af37; margin-top:10px;"><strong>The Explorer's Window:</strong> I reserve up to 4 hours per day outside the house for errands or creative work.</p>
-                <p style="font-size:0.95em; color:#d4af37; margin-top:10px;"><strong>Fly Me Out:</strong> Travel-ready for extended sits outside Greater Baton Rouge. Client covers travel/lodging.</p>
-                <p style="font-size:0.95em; color:#fff; margin-top:10px;"><strong>Required:</strong> "Meet & Greet" for all new clients and pets.</p>
-            </div>
+                        <div class="card">
+                            <div class="card-icon">🐕</div>
+                            <div class="card-content">
+                                <div class="card-header-row">
+                                    <h3>Pet Sitting (Drop-In)</h3>
+                                    <span class="price">$25/visit</span>
+                                    <span class="price" style="font-size:0.95em; color:#b88e1a; background:#232b3a;">+ $10/visit each add'l pet</span>
+                                </div>
+                                <p>Quick check-ins for your fur babies while you're at work or out for the day.</p>
+                                <ul>
+                                    <li>Feeding, fresh water, treats</li>
+                                    <li>Potty break or short walk</li>
+                                    <li>Playtime and companionship</li>
+                                    <li>Photo/text updates</li>
+                                    <li>Free opt-in: Intuitive dog training</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">🐕</div>
+                            <div class="card-content">
+                                <div class="card-header-row">
+                                    <h3>Pet Sitting (Full Day)</h3>
+                                    <span class="price">$60/day</span>
+                                    <span class="price" style="font-size:0.95em; color:#b88e1a; background:#232b3a;">+ $20/day each add'l pet</span>
+                                </div>
+                                <p>All-day care when you need extended coverage without overnight.</p>
+                                <ul>
+                                    <li>Multiple feedings, walks, and potty breaks throughout the day</li>
+                                    <li>Extended playtime and companionship</li>
+                                    <li>Medication administration if needed</li>
+                                    <li>Photo/text updates</li>
+                                    <li>Free opt-in: Intuitive dog training</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon">🏠</div>
+                            <div class="card-content">
+                                <div class="card-header-row">
+                                    <h3>House + Pet Sitting (Overnight)</h3>
+                                    <span class="price">$100/night (1 pet incl.)</span>
+                                    <span class="price" style="font-size:0.95em; color:#b88e1a; background:#232b3a;">+ $30/night each add'l pet</span>
+                                </div>
+                                <p>Peace of mind for Baton Rouge homeowners while you're away.</p>
+                                <ul>
+                                    <li>Overnight in-home presence for property security</li>
+                                    <li>Mail and package collection</li>
+                                    <li>Plant care and watering</li>
+                                    <li>Pet care: feeding, walks, playtime, medication if needed</li>
+                                    <li>Daily updates and photos</li>
+                                    <li>Free opt-in: Intuitive dog training</li>
+                                </ul>
+                                <p style="font-size:0.95em; color:#d4af37; margin-top:10px;"><strong>The Explorer's Window:</strong> I reserve up to 4 hours per day outside the house for errands or creative work.</p>
+                                <p style="font-size:0.95em; color:#d4af37; margin-top:10px;"><strong>Fly Me Out:</strong> Travel-ready for extended sits outside Greater Baton Rouge. Client covers travel/lodging.</p>
+                                <p style="font-size:0.95em; color:#fff; margin-top:10px;"><strong>Required:</strong> "Meet & Greet" for all new clients and pets.</p>
+                            </div>
+                        </div>
         </div>
     </div>
 </div>
