@@ -96,76 +96,78 @@
         document.getElementById('music-unlock').style.display = 'none';
 
         // Start muted to satisfy browser autoplay rules
-        cleanTrack.volume = 0;
-        bit8Track.volume = 0;
-        buttonsTrack.volume = 0;
-        otherTrack.volume = 0;
-
-        try {
-            await Promise.all([cleanTrack.play(), bit8Track.play(), buttonsTrack.play(), otherTrack.play()]);
-            
-            // Force Sync
-            bit8Track.currentTime = cleanTrack.currentTime;
-            buttonsTrack.currentTime = cleanTrack.currentTime;
-            otherTrack.currentTime = cleanTrack.currentTime;
-
-            // Fade in the default Clean track
-            fadeTrack(cleanTrack, 0.4); 
-            rotateVibe();
-        } catch (err) {
-            console.error("Audio Initialization Failure:", err);
-        }
-    }
-
-    function setTrack(side) {
-        if (!audioStarted) return;
-        
-        // Hard Sync on every hover to prevent drift
-        bit8Track.currentTime = cleanTrack.currentTime;
-        buttonsTrack.currentTime = cleanTrack.currentTime;
-        otherTrack.currentTime = cleanTrack.currentTime;
-
-        if (side === 'prof') {
-            fadeTrack(cleanTrack, 0.7);
-            fadeTrack(bit8Track, 0);
-            fadeTrack(buttonsTrack, 0);
-            fadeTrack(otherTrack, 0);
-        } else if (side === 'buttons') {
-            fadeTrack(cleanTrack, 0);
-            fadeTrack(bit8Track, 0);
-            fadeTrack(buttonsTrack, 0.7);
-            fadeTrack(otherTrack, 0);
-        } else if (side === 'otf') {
-            fadeTrack(cleanTrack, 0);
-            fadeTrack(bit8Track, 0.7);
-            fadeTrack(buttonsTrack, 0);
-            fadeTrack(otherTrack, 0);
-        } else if (side === 'other') {
-            fadeTrack(cleanTrack, 0);
-            fadeTrack(bit8Track, 0);
-            fadeTrack(buttonsTrack, 0);
-            fadeTrack(otherTrack, 0.7);
-        } else {
-            // Return to neutral state
-            fadeTrack(cleanTrack, 0.4);
-            fadeTrack(bit8Track, 0);
-            fadeTrack(buttonsTrack, 0);
-            fadeTrack(otherTrack, 0);
-        }
-    }
-
-    function fadeTrack(track, target) {
-        if (track.fadeInterval) clearInterval(track.fadeInterval);
-        
-        track.fadeInterval = setInterval(function() {
-            var step = 0.05; 
-            if (Math.abs(track.volume - target) < step) {
-                track.volume = target;
-                clearInterval(track.fadeInterval);
-            } else {
-                track.volume += (track.volume < target ? step : -step);
+        @media (max-width: 600px) {
+            .split-container {
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100vw !important;
+                min-height: 100vh !important;
+                height: auto !important;
+                overflow-y: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                gap: 0 !important;
             }
-        }, 30);
+            .choice {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                min-height: 220px !important;
+                height: 320px !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                flex: none !important;
+                align-items: center !important;
+                justify-content: center !important;
+                scroll-snap-align: start !important;
+            }
+            .vignette {
+                width: 90vw !important;
+                max-width: 90vw !important;
+                height: 180px !important;
+                max-height: 180px !important;
+                border-radius: 12px !important;
+                margin-top: 18px !important;
+                margin-bottom: 8px !important;
+                background-size: cover !important;
+                background-position: center !important;
+            }
+            .label {
+                margin-top: 12px !important;
+                font-size: 1.2rem !important;
+                text-align: center !important;
+                padding: 0 10px !important;
+                color: #fff !important;
+                font-family: 'Montserrat', sans-serif !important;
+            }
+            .professional .label {
+                color: #000 !important;
+            }
+            body, html {
+                overflow-x: hidden !important;
+                min-height: 100vh !important;
+            }
+            .header-container {
+                position: static !important;
+                padding-top: 24px !important;
+                text-align: center !important;
+                z-index: 10 !important;
+                background: none !important;
+                pointer-events: auto !important;
+                mix-blend-mode: normal !important;
+            }
+            footer {
+                position: static !important;
+                margin-top: 24px !important;
+                left: unset !important;
+                transform: none !important;
+                width: 100% !important;
+                border-radius: 0 !important;
+                font-size: 0.9rem !important;
+                padding: 10px 0 !important;
+                text-align: center !important;
+            }
+        }
     }
 
     // Desktop: switch tracks based on cursor X position (left = professional, right = whimsical)
