@@ -89,12 +89,38 @@
                     .split-container {
                         display: flex !important;
                         flex-direction: column !important;
-                        gap: 24px !important;
+                        gap: 32px !important;
                         width: 100vw !important;
                         height: auto !important;
                         min-height: 100vh !important;
-                        padding: 16px !important;
+                        padding: 20px 0 20px 0 !important;
                         box-sizing: border-box !important;
+                    }
+                    .split-container > .choice {
+                        display: flex !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        width: 100vw !important;
+                        max-width: 420px !important;
+                        margin: 0 auto 18px auto !important;
+                        min-height: 260px !important;
+                        padding: 18px 0 !important;
+                        border-radius: 16px !important;
+                        box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
+                        background: rgba(10,10,10,0.95) !important;
+                        overflow: visible !important;
+                    }
+                    .split-container > .choice .vignette {
+                        width: 92vw !important;
+                        max-width: 380px !important;
+                        height: 200px !important;
+                        border-radius: 14px !important;
+                        margin-top: 10px !important;
+                        margin-bottom: 10px !important;
+                        background-size: cover !important;
+                        background-position: center !important;
+                    }
                     }
                     .choice {
                         display: flex !important;
