@@ -29,50 +29,88 @@
                 .label { margin-top: 35px; font-size: 1.4rem; font-weight: bold; text-transform: uppercase; color: #fff; mix-blend-mode: difference; z-index: 3; }
                 .professional .label { color: #000; mix-blend-mode: normal; }
 
-                /* Mobile 2x2 grid override */
+                /* Stronger mobile 2x2 grid override */
                 @media (max-width: 600px) {
+                    body, html {
+                        font-size: 1rem !important;
+                        overflow-x: hidden !important;
+                        padding: 0 !important;
+                        width: 100vw !important;
+                    }
+                    .header-container {
+                        padding-top: 30px !important;
+                        position: static !important;
+                        text-align: center !important;
+                    }
+                    h1 {
+                        font-size: 1.5rem !important;
+                        letter-spacing: 2px !important;
+                        margin-bottom: 2px !important;
+                    }
+                    #vibe-text {
+                        font-size: 1rem !important;
+                        min-height: 1.2em !important;
+                    }
                     .split-container {
                         display: grid !important;
-                        grid-template-columns: 1fr 1fr;
-                        grid-template-rows: 1fr 1fr;
-                        gap: 16px;
-                        width: 100vw;
-                        height: auto;
-                        min-height: 100vh;
-                        padding: 16px;
-                        box-sizing: border-box;
+                        grid-template-columns: 1fr 1fr !important;
+                        grid-template-rows: 1fr 1fr !important;
+                        gap: 16px !important;
+                        width: 100vw !important;
+                        height: auto !important;
+                        min-height: 100vh !important;
+                        padding: 16px !important;
+                        box-sizing: border-box !important;
                     }
                     .choice {
                         display: flex !important;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: center;
-                        width: 100%;
-                        aspect-ratio: 1 / 1;
-                        min-height: 140px;
-                        max-height: 220px;
-                        margin: 0;
-                        padding: 0;
-                        border-radius: 16px;
-                        box-shadow: 0 2px 12px rgba(0,0,0,0.18);
-                        background: rgba(10,10,10,0.95);
-                        overflow: hidden;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        width: 100% !important;
+                        aspect-ratio: 1 / 1 !important;
+                        min-height: 140px !important;
+                        max-height: 220px !important;
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        border-radius: 16px !important;
+                        box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
+                        background: rgba(10,10,10,0.95) !important;
+                        overflow: hidden !important;
                     }
                     .vignette {
-                        width: 80%;
-                        height: 60%;
-                        max-width: 120px;
-                        max-height: 120px;
-                        border-radius: 10px;
-                        margin-top: 10px;
-                        margin-bottom: 8px;
+                        width: 80% !important;
+                        height: 60% !important;
+                        max-width: 120px !important;
+                        max-height: 120px !important;
+                        border-radius: 10px !important;
+                        margin-top: 10px !important;
+                        margin-bottom: 8px !important;
+                        background-size: cover !important;
+                        background-position: center !important;
                     }
                     .label {
-                        margin-top: 8px;
-                        font-size: 1rem;
-                        word-break: break-word;
-                        padding: 0 6px;
-                        text-align: center;
+                        margin-top: 8px !important;
+                        font-size: 1rem !important;
+                        word-break: break-word !important;
+                        padding: 0 6px !important;
+                        text-align: center !important;
+                        line-height: 1.3 !important;
+                    }
+                    footer {
+                        position: static !important;
+                        margin-top: 24px !important;
+                        left: unset !important;
+                        transform: none !important;
+                        width: 100% !important;
+                        border-radius: 0 !important;
+                        font-size: 0.9rem !important;
+                        padding: 10px 0 !important;
+                    }
+                    footer div {
+                        flex-direction: column !important;
+                        gap: 8px !important;
+                        font-size: 0.9rem !important;
                     }
                 }
     </style>
