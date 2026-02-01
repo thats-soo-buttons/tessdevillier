@@ -20,6 +20,7 @@
                     body, html {
                         font-size: 1rem !important;
                         overflow-x: hidden !important;
+                        overflow-y: auto !important;
                         padding: 0 !important;
                         width: 100vw !important;
                         min-height: 100vh !important;
@@ -327,7 +328,7 @@
         }, 30);
     }
 
-    // Automatically switch tracks based on cursor X position (left = professional, right = whimsical)
+    // Automatically switch tracks based on cursor X position (desktop) or scroll position (mobile)
     (function() {
         let lastSide = null;
 
@@ -341,11 +342,9 @@
 
         document.addEventListener('mousemove', (e) => {
             if (!audioStarted) return;
-            // If hovering a .choice anchor, let its mouseenter/mouseleave handlers handle audio
             try {
                 if (e.target.closest && e.target.closest('.choice')) return;
             } catch (err) {}
-
             const side = sideFromX(e.clientX);
             if (side !== lastSide) { setTrack(side); lastSide = side; }
         });
@@ -357,6 +356,42 @@
             const side = sideFromX(t.clientX);
             if (side !== lastSide) { setTrack(side); lastSide = side; }
         }, { passive: true });
+
+        // Scroll-based music switching for mobile
+        function getPanelSide(panel) {
+            if (panel.classList.contains('professional')) return 'prof';
+            if (panel.classList.contains('buttons')) return 'buttons';
+            if (panel.classList.contains('otf')) return 'otf';
+            if (panel.classList.contains('other')) return 'other';
+            return 'none';
+        }
+
+        function checkCenteredPanel() {
+            if (!audioStarted) return;
+            const panels = Array.from(document.querySelectorAll('.split-container > .choice'));
+            let bestPanel = null;
+            let bestScore = -Infinity;
+            const viewportCenter = window.innerHeight / 2;
+            panels.forEach(panel => {
+                const rect = panel.getBoundingClientRect();
+                // Score by how close the panel's center is to viewport center
+                const panelCenter = rect.top + rect.height / 2;
+                const score = -Math.abs(panelCenter - viewportCenter);
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestPanel = panel;
+                }
+            });
+            if (bestPanel) {
+                const side = getPanelSide(bestPanel);
+                if (side !== lastSide) { setTrack(side); lastSide = side; }
+            }
+        }
+
+        window.addEventListener('scroll', checkCenteredPanel, { passive: true });
+        window.addEventListener('resize', checkCenteredPanel);
+        // Initial check on load
+        document.addEventListener('DOMContentLoaded', () => setTimeout(checkCenteredPanel, 300));
 
         // When leaving the window, reset to neutral
         window.addEventListener('mouseout', (e) => {
