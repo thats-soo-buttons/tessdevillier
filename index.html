@@ -9,188 +9,25 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=VT323&display=swap');
 
-                body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; color: #fff; overflow: hidden; font-family: 'Montserrat', sans-serif; }
-                #music-unlock {
-                        position: fixed; inset: 0; background: #000; z-index: 50000;
-                        display: flex; flex-direction: column; align-items: center; justify-content: center;
-                        cursor: pointer; font-family: 'VT323'; color: #00ff41; text-align: center;
-                }
-                .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
-                @media (max-width: 600px) {
-                    body, html {
-                        font-size: 1rem !important;
-                        overflow-x: hidden !important;
-                        overflow-y: auto !important;
-                        padding: 0 !important;
-                        width: 100vw !important;
-                        min-height: 100vh !important;
-                    }
-                    .header-container {
-                        position: static !important;
-                        width: 100% !important;
-                        z-index: 10 !important;
-                        padding-top: 0 !important;
-                        margin-bottom: 18px !important;
-                        display: block !important;
-                        background: none !important;
-                        pointer-events: auto !important;
-                        mix-blend-mode: normal !important;
-                        text-align: center !important;
-                    }
-                                footer {
-                                    position: static !important;
-                                    margin-top: 24px !important;
-                                    left: unset !important;
-                                    transform: none !important;
-                                    width: 100% !important;
-                                    border-radius: 0 !important;
-                                    font-size: 0.9rem !important;
-                                    padding: 10px 0 !important;
-                                    text-align: center !important;
-                                }
-                    .split-container {
-                        margin-top: 0 !important;
-                    }
-                }
-                h1 { font-size: 2.5rem; letter-spacing: 6px; margin-bottom: 5px; font-weight: 700; color: #fff; }
-                #vibe-text { color: #fff; font-size: 1.3rem; min-height: 1.6em; font-weight: 300; text-transform: uppercase; }
-                .split-container { display: flex; flex-direction: row; width: 100vw; height: 100vh; }
-                .choice { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden; min-height: unset; max-width: unset; margin: 0; padding: 0; }
-                .choice:hover { flex: 1.4; }
-                .vignette { width: 320px; height: 320px; border-radius: 12px; background-size: cover; background-position: center; border: 1px solid rgba(255,255,255,0.1); z-index: 2; }
-                .professional { background: #ffffff; }
-                .buttons { background: #0a0a0a; font-family: 'VT323', monospace; }
-                .otf { background: #000000; font-family: 'VT323', monospace; }
-                .other { background: #071610; font-family: 'VT323', monospace; }
-                .label { margin-top: 35px; font-size: 1.4rem; font-weight: bold; text-transform: uppercase; color: #fff; mix-blend-mode: difference; z-index: 3; }
-                .professional .label { color: #000; mix-blend-mode: normal; }
-
-                /* Stronger mobile 2x2 grid override */
-                @media (max-width: 600px) {
-                    body, html {
-                        font-size: 1rem !important;
-                        overflow-x: hidden !important;
-                        padding: 0 !important;
-                        width: 100vw !important;
-                    }
-                    .header-container {
-                        padding-top: 30px !important;
-                        position: static !important;
-                        text-align: center !important;
-                    }
-                    h1 {
-                        font-size: 1.5rem !important;
-                        letter-spacing: 2px !important;
-                        margin-bottom: 2px !important;
-                    }
-                    #vibe-text {
-                        font-size: 1rem !important;
-                        min-height: 1.2em !important;
-                    }
-                    .split-container {
-                        display: flex !important;
-                        flex-direction: column !important;
-                        gap: 32px !important;
-                        width: 100vw !important;
-                        height: auto !important;
-                        min-height: 100vh !important;
-                        padding: 20px 0 20px 0 !important;
-                        box-sizing: border-box !important;
-                    }
-                    .split-container > .choice {
-                        display: flex !important;
-                        flex-direction: column !important;
-                        align-items: center !important;
-                        justify-content: center !important;
-                        width: 100vw !important;
-                        max-width: 420px !important;
-                        margin: 0 auto 18px auto !important;
-                        min-height: 340px !important;
-                        padding: 18px 0 !important;
-                        border-radius: 16px !important;
-                        box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
-                        background: rgba(10,10,10,0.95) !important;
-                        overflow: visible !important;
-                    }
-                    .split-container > .choice:last-child {
-                        margin-bottom: 80px !important;
-                    }
-                    .split-container > .choice .vignette {
-                        width: 92vw !important;
-                        max-width: 380px !important;
-                        height: 200px !important;
-                        border-radius: 14px !important;
-                        margin-top: 10px !important;
-                        margin-bottom: 10px !important;
-                        background-size: cover !important;
-                        background-position: center !important;
-                    }
-                    }
-                    .choice {
-                        display: flex !important;
-                        flex-direction: column !important;
-                        align-items: center !important;
-                        justify-content: center !important;
-                        width: 100% !important;
-                        min-height: 220px !important;
-                        margin: 0 0 12px 0 !important;
-                        padding: 12px 0 !important;
-                        border-radius: 16px !important;
-                        box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
-                        background: rgba(10,10,10,0.95) !important;
-                        overflow: visible !important;
-                    }
-                    .vignette {
-                        width: 90vw !important;
-                        max-width: 340px !important;
-                        height: 180px !important;
-                        border-radius: 12px !important;
-                        margin-top: 10px !important;
-                        margin-bottom: 8px !important;
-                        background-size: cover !important;
-                        background-position: center !important;
-                    }
-                    .label, .label span {
-                        margin-top: 8px !important;
-                        font-size: 1.1rem !important;
-                        font-family: 'Montserrat', sans-serif !important;
-                        font-weight: bold !important;
-                        word-break: break-word !important;
-                        overflow-wrap: break-word !important;
-                        white-space: normal !important;
-                        padding: 0 6px !important;
-                        text-align: center !important;
-                        line-height: 1.3 !important;
-                        max-width: 95vw !important;
-                        color: #fff !important;
-                    }
-                    .professional .label, .professional .label span {
-                        color: #fff !important;
-                    }
-                    .label .media-desc {
-                        font-size: 1rem !important;
-                        font-family: 'VT323', monospace !important;
-                        font-weight: 400 !important;
-                        color: #00ff41 !important;
-                        display: block !important;
-                        margin-top: 2px !important;
-                    }
-                    footer {
-                        position: static !important;
-                        margin-top: 24px !important;
-                        left: unset !important;
-                        transform: none !important;
-                        width: 100% !important;
-                        border-radius: 0 !important;
-                        font-size: 0.9rem !important;
-                        padding: 10px 0 !important;
-                    }
-                    footer div {
-                        flex-direction: column !important;
-                        gap: 8px !important;
-                        font-size: 0.9rem !important;
-                    }
-                }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; color: #fff; overflow: hidden; font-family: 'Montserrat', sans-serif; }
+        #music-unlock {
+            position: fixed; inset: 0; background: #000; z-index: 50000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; font-family: 'VT323'; color: #00ff41; text-align: center;
+        }
+        .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
+        h1 { font-size: 2.5rem; letter-spacing: 6px; margin-bottom: 5px; font-weight: 700; color: #fff; }
+        #vibe-text { color: #fff; font-size: 1.3rem; min-height: 1.6em; font-weight: 300; text-transform: uppercase; }
+        .split-container { display: flex; width: 100vw; height: 100vh; }
+        .choice { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden; }
+        .choice:hover { flex: 1.4; }
+        .vignette { width: 320px; height: 320px; border-radius: 12px; background-size: cover; background-position: center; border: 1px solid rgba(255,255,255,0.1); z-index: 2; }
+        .professional { background: #ffffff; }
+        .buttons { background: #0a0a0a; font-family: 'VT323', monospace; }
+        .otf { background: #000000; font-family: 'VT323', monospace; }
+        .other { background: #071610; font-family: 'VT323', monospace; }
+        .label { margin-top: 35px; font-size: 1.4rem; font-weight: bold; text-transform: uppercase; color: #fff; mix-blend-mode: difference; z-index: 3; }
+        .professional .label { color: #000; mix-blend-mode: normal; }
     </style>
 </head>
 <body onclick="unlockAudio()">
@@ -208,7 +45,7 @@
 <div class="split-container">
     <a href="https://devilliermedia.com" class="choice professional" onmouseenter="setTrack('prof')" onmouseleave="setTrack('none')">
         <div class="vignette" style="background-image: url('professionalindex.jpg');"></div>
-        <div class="label">Devillier Media<br><span style="font-size:0.9rem; font-weight:600;">Media Services<br><span style="font-size:0.8rem; font-weight:700; color:#cfcfcf;"><b>photography, vhs to digital, worldbuilding and more</b></span></span></div>
+        <div class="label" style="text-align: center; width: 100%;">Devillier Media<br><span style="font-size:0.9rem; font-weight:600;">Media Services<br><span style="font-size:0.8rem; font-weight:700; color:#cfcfcf;"><b>photography, vhs to digital, worldbuilding and more</b></span></span></div>
     </a>
 
     <a href="https://thatssoobuttons.com" class="choice buttons" onmouseenter="setTrack('buttons')" onmouseleave="setTrack('none')">
@@ -331,7 +168,7 @@
         }, 30);
     }
 
-    // Automatically switch tracks based on cursor X position (desktop) or scroll position (mobile)
+    // Desktop: switch tracks based on cursor X position (left = professional, right = whimsical)
     (function() {
         let lastSide = null;
 
@@ -343,8 +180,13 @@
             return 'other';
         }
 
+        function isMobile() {
+            return window.innerWidth <= 600;
+        }
+
+        // Desktop hover/cursor logic
         document.addEventListener('mousemove', (e) => {
-            if (!audioStarted) return;
+            if (!audioStarted || isMobile()) return;
             try {
                 if (e.target.closest && e.target.closest('.choice')) return;
             } catch (err) {}
@@ -352,49 +194,32 @@
             if (side !== lastSide) { setTrack(side); lastSide = side; }
         });
 
-        // Touch support for mobile devices
-        document.addEventListener('touchmove', (e) => {
-            if (!audioStarted || !e.touches || !e.touches[0]) return;
-            const t = e.touches[0];
-            const side = sideFromX(t.clientX);
-            if (side !== lastSide) { setTrack(side); lastSide = side; }
-        }, { passive: true });
-
-        // Scroll-based music switching for mobile
-        function getPanelSide(panel) {
-            if (panel.classList.contains('professional')) return 'prof';
-            if (panel.classList.contains('buttons')) return 'buttons';
-            if (panel.classList.contains('otf')) return 'otf';
-            if (panel.classList.contains('other')) return 'other';
-            return 'none';
-        }
-
-        function checkCenteredPanel() {
-            if (!audioStarted) return;
-            const panels = Array.from(document.querySelectorAll('.split-container > .choice'));
-            let bestPanel = null;
-            let bestScore = -Infinity;
-            const viewportCenter = window.innerHeight / 2;
-            panels.forEach(panel => {
-                const rect = panel.getBoundingClientRect();
-                // Score by how close the panel's center is to viewport center
-                const panelCenter = rect.top + rect.height / 2;
-                const score = -Math.abs(panelCenter - viewportCenter);
-                if (score > bestScore) {
-                    bestScore = score;
-                    bestPanel = panel;
+        // Mobile scroll logic
+        window.addEventListener('scroll', () => {
+            if (!audioStarted || !isMobile()) return;
+            const panels = document.querySelectorAll('.split-container .choice');
+            let found = false;
+            for (let i = 0; i < panels.length; i++) {
+                const rect = panels[i].getBoundingClientRect();
+                if (rect.top < window.innerHeight/2 && rect.bottom > window.innerHeight/2) {
+                    let side = 'prof';
+                    if (panels[i].classList.contains('professional')) side = 'prof';
+                    else if (panels[i].classList.contains('buttons')) side = 'buttons';
+                    else if (panels[i].classList.contains('otf')) side = 'otf';
+                    else if (panels[i].classList.contains('other')) side = 'other';
+                    if (side !== lastSide) { setTrack(side); lastSide = side; }
+                    found = true;
+                    break;
                 }
-            });
-            if (bestPanel) {
-                const side = getPanelSide(bestPanel);
-                if (side !== lastSide) { setTrack(side); lastSide = side; }
             }
-        }
+            if (!found && lastSide !== 'none') { setTrack('none'); lastSide = 'none'; }
+        });
 
-        window.addEventListener('scroll', checkCenteredPanel, { passive: true });
-        window.addEventListener('resize', checkCenteredPanel);
-        // Initial check on load
-        document.addEventListener('DOMContentLoaded', () => setTimeout(checkCenteredPanel, 300));
+        // Touch support for mobile devices (horizontal swipe)
+        document.addEventListener('touchmove', (e) => {
+            if (!audioStarted || !e.touches || !e.touches[0] || !isMobile()) return;
+            // Let scroll logic handle music switching
+        }, { passive: true });
 
         // When leaving the window, reset to neutral
         window.addEventListener('mouseout', (e) => {
