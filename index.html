@@ -9,30 +9,72 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=VT323&display=swap');
 
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; color: #fff; overflow: hidden; font-family: 'Montserrat', sans-serif; }
-        
-        #music-unlock {
-            position: fixed; inset: 0; background: #000; z-index: 50000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            cursor: pointer; font-family: 'VT323'; color: #00ff41; text-align: center;
-        }
+                body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; color: #fff; overflow: hidden; font-family: 'Montserrat', sans-serif; }
+                #music-unlock {
+                        position: fixed; inset: 0; background: #000; z-index: 50000;
+                        display: flex; flex-direction: column; align-items: center; justify-content: center;
+                        cursor: pointer; font-family: 'VT323'; color: #00ff41; text-align: center;
+                }
+                .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
+                h1 { font-size: 2.5rem; letter-spacing: 6px; margin-bottom: 5px; font-weight: 700; color: #fff; }
+                #vibe-text { color: #fff; font-size: 1.3rem; min-height: 1.6em; font-weight: 300; text-transform: uppercase; }
+                .split-container { display: flex; width: 100vw; height: 100vh; }
+                .choice { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden; }
+                .choice:hover { flex: 1.4; }
+                .vignette { width: 320px; height: 320px; border-radius: 12px; background-size: cover; background-position: center; border: 1px solid rgba(255,255,255,0.1); z-index: 2; }
+                .professional { background: #ffffff; }
+                .buttons { background: #0a0a0a; font-family: 'VT323', monospace; }
+                .otf { background: #000000; font-family: 'VT323', monospace; }
+                .other { background: #071610; font-family: 'VT323', monospace; }
+                .label { margin-top: 35px; font-size: 1.4rem; font-weight: bold; text-transform: uppercase; color: #fff; mix-blend-mode: difference; z-index: 3; }
+                .professional .label { color: #000; mix-blend-mode: normal; }
 
-        .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
-        h1 { font-size: 2.5rem; letter-spacing: 6px; margin-bottom: 5px; font-weight: 700; color: #fff; }
-        #vibe-text { color: #fff; font-size: 1.3rem; min-height: 1.6em; font-weight: 300; text-transform: uppercase; }
-
-        .split-container { display: flex; width: 100vw; height: 100vh; }
-        .choice { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden; }
-        .choice:hover { flex: 1.4; }
-
-        .vignette { width: 320px; height: 320px; border-radius: 12px; background-size: cover; background-position: center; border: 1px solid rgba(255,255,255,0.1); z-index: 2; }
-        .professional { background: #ffffff; }
-        .buttons { background: #0a0a0a; font-family: 'VT323', monospace; }
-        .otf { background: #000000; font-family: 'VT323', monospace; }
-        .other { background: #071610; font-family: 'VT323', monospace; }
-        
-        .label { margin-top: 35px; font-size: 1.4rem; font-weight: bold; text-transform: uppercase; color: #fff; mix-blend-mode: difference; z-index: 3; }
-        .professional .label { color: #000; mix-blend-mode: normal; }
+                /* Mobile 2x2 grid override */
+                @media (max-width: 600px) {
+                    .split-container {
+                        display: grid !important;
+                        grid-template-columns: 1fr 1fr;
+                        grid-template-rows: 1fr 1fr;
+                        gap: 16px;
+                        width: 100vw;
+                        height: auto;
+                        min-height: 100vh;
+                        padding: 16px;
+                        box-sizing: border-box;
+                    }
+                    .choice {
+                        display: flex !important;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        aspect-ratio: 1 / 1;
+                        min-height: 140px;
+                        max-height: 220px;
+                        margin: 0;
+                        padding: 0;
+                        border-radius: 16px;
+                        box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+                        background: rgba(10,10,10,0.95);
+                        overflow: hidden;
+                    }
+                    .vignette {
+                        width: 80%;
+                        height: 60%;
+                        max-width: 120px;
+                        max-height: 120px;
+                        border-radius: 10px;
+                        margin-top: 10px;
+                        margin-bottom: 8px;
+                    }
+                    .label {
+                        margin-top: 8px;
+                        font-size: 1rem;
+                        word-break: break-word;
+                        padding: 0 6px;
+                        text-align: center;
+                    }
+                }
     </style>
 </head>
 <body onclick="unlockAudio()">
@@ -50,22 +92,22 @@
 <div class="split-container">
     <a href="https://devilliermedia.com" class="choice professional" onmouseenter="setTrack('prof')" onmouseleave="setTrack('none')">
         <div class="vignette" style="background-image: url('professionalindex.jpg');"></div>
-        <div class="label">Devillier Media<br><span style="font-size:0.9rem; font-weight:600;">Media Services</span></div>
+        <div class="label">Devillier Media<br><span style="font-size:0.9rem; font-weight:600;">Media Services<br><span style="font-size:0.8rem; font-weight:700; color:#cfcfcf;"><b>photography, vhs to digital, worldbuilding and more</b></span></span></div>
     </a>
 
     <a href="https://thatssoobuttons.com" class="choice buttons" onmouseenter="setTrack('buttons')" onmouseleave="setTrack('none')">
         <div class="vignette" style="background-image: url('dm_assets/thatssobuttons-placeholder.svg');"></div>
-        <div class="label">Interactive Simulation</div>
+        <div class="label">COZY / SPOOKY<br>TWITCH STREAMER</div>
     </a>
 
     <a href="https://ontheflynetwork.com" class="choice otf" onmouseenter="setTrack('otf')" onmouseleave="setTrack('none')">
         <div class="vignette" style="background-image: url('simulationindex.jpg');"></div>
-        <div class="label">On The Fly Network</div>
+        <div class="label">On The Fly Network<br><span style="font-size:0.9rem; font-weight:600; display:block; text-align:center;">Creative Community Network<br>with Non-Profit Dreams</span></div>
     </a>
 
     <a href="/services.html" class="choice other" onmouseenter="setTrack('other')" onmouseleave="setTrack('none')">
         <div class="vignette" style="background-image: url('dm_assets/other-services-placeholder.svg');"></div>
-        <div class="label">Other Services<br><span style="font-size:0.9rem; font-weight:600;">Pet + House Sitting</span></div>
+        <div class="label">Other Services<br><span style="font-size:0.9rem; font-weight:600;">Pet + House Sitting<br>DIGITAL ORGANIZATION</span></div>
     </a>
 </div>
 
