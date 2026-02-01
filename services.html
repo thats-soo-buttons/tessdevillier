@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,139 +7,83 @@
     <title>Services | Tess Devillier</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .services-layout { display: flex; gap: 32px; max-width: 1200px; margin: 40px auto; }
+        .carousel-column { width: 260px; min-width: 180px; background: #101820; border-radius: 16px; padding: 18px 10px; box-shadow: 0 2px 12px #0002; display: flex; flex-direction: column; align-items: center; }
+        .carousel-image { width: 220px; height: 320px; object-fit: cover; border-radius: 10px; margin-bottom: 18px; background: #222; }
+        .carousel-controls { display: flex; flex-direction: column; gap: 8px; }
+        .main-content { flex: 1; }
+        .service-section { margin-bottom: 48px; }
+        .service-section h2 { font-family: 'Cinzel', serif; font-size: 2rem; margin-bottom: 8px; color: #d4af37; }
+        .service-section h3 { margin-top: 18px; color: #fff; }
+        .service-section ul { margin: 0 0 12px 20px; }
+        .price { color: #d4af37; font-weight: bold; margin-left: 8px; }
+        .cta-btn { display: inline-block; margin-top: 18px; background: #d4af37; color: #222; padding: 10px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+        @media (max-width: 900px) { .services-layout { flex-direction: column; } .carousel-column { width: 100%; flex-direction: row; justify-content: center; } }
+    </style>
 </head>
 <body>
-<div class="container">
-    <div class="section-header">
-        <h1>Other Services</h1>
-        <p>Pet Sitting • House Sitting • Care & Calm</p>
-            <p><a href="pricing.html" style="font-weight:600; color:#d4af37; text-decoration:underline;">See full pricing details</a></p>
-    </div>
-
-    <div class="grid">
-        <div class="card card-bronze">
-            <h3>Pet Sitting</h3>
-                <div class="price">$30/hr &bull; $70/day</div>
-            <p>Comfort-first care for pets who need calm, structure, and consistency.</p>
-            <ul>
-                <li><strong>Feeding + fresh water</strong></li>
-                <li>Walks + playtime</li>
-                <li>Medication support (if needed)</li>
-                <li>Photo updates</li>
-            </ul>
-        </div>
-
-        <div class="card card-silver">
-            <div class="badge" style="background: #c0c0c0; color: #333;">Most Requested</div>
-            <h3>House Sitting</h3>
-                <div class="price">$80/day &bull; $100/overnight</div>
-                <p>Live-in house sitting only (no pet boarding). I stay at your home—no check-ins. Available to travel to your location. Intuitive training included for free with overnight house sitting (for homes with pets, up to 2 pets; add-on fees for more than 2 pets). </p>
-                <ul>
-                    <li><strong>Day or overnight stay</strong></li>
-                    <li>Mail + package collection</li>
-                    <li>Plant care</li>
-                    <li>Light + curtain routine</li>
-                    <li>Travel available (fly me out)</li>
-                </ul>
-        </div>
-
-        <div class="card card-gold">
-            <h3>Drop-In Visits</h3>
+<div class="services-layout">
+    <div class="main-content" style="margin:auto;">
+        <h2 style="margin-bottom: 24px;">Professional Support Services</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center;">
+                        <div class="card" style="background:#181f2a; border-radius:14px; box-shadow:0 2px 12px #0002; padding:28px 22px; width:340px; max-width:95%; color:#fff;">
+                            <h3>💻 Digital Organization</h3>
+                            <div class="price">$20/hour <span style='font-size:0.95em; color:#d4af37;'>&nbsp;|&nbsp;Senior (65+): $15/hour</span></div>
+                            <p>Messy desktop? Files scattered everywhere? Storage system that isn't working for you?</p>
+                            <p>I'll help you regain control of your digital life:</p>
+                            <ul>
+                                <li>Desktop cleanup and organization</li>
+                                <li>Folder structure setup that actually makes sense</li>
+                                <li>File sorting and renaming systems</li>
+                                <li>Backing up and migrating files to Google Drive</li>
+                                <li>Custom organization system tailored to how you work</li>
+                            </ul>
+                        </div>
+            <div class="card" style="background:#181f2a; border-radius:14px; box-shadow:0 2px 12px #0002; padding:28px 22px; width:340px; max-width:95%; color:#fff;">
+                <h3>🐕 Pet Sitting (Drop-In)</h3>
                 <div class="price">$25/visit</div>
-            <p>Perfect for busy schedules or short trips that just need a check-in.</p>
-            <ul>
-                <li><strong>15–30 min visits</strong></li>
-                <li>Potty breaks</li>
-                <li>Food + water top-up</li>
-                <li>Photo proof of care</li>
-            </ul>
-        </div>
-
-        <div class="card card-executive">
-            <div class="badge badge-gold">Fly Me Out</div>
-            <h3>Travel Sits</h3>
-                <div class="price">Contact for quote</div>
-            <p>Out-of-town or extended sits for clients who want trusted care anywhere.</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px;">
-                <ul style="margin:0;">
-                    <li><strong>Travel-ready</strong></li>
-                    <li>Extended stays</li>
-                    <li>Flexible schedules</li>
-                </ul>
-                <ul style="margin:0;">
-                    <li>Home + pet care</li>
-                    <li>Daily updates</li>
-                    <li>Priority booking</li>
-                </ul>
-            </div>
-            <p style="font-size: 0.75rem; color: #d4af37; margin-top: 20px; border-top: 1px solid #333; padding-top: 15px;">*Travel fees and lodging covered by client.</p>
-        </div>
-            <div class="card card-gold">
-                <h3>Digital Organization</h3>
-                    <div class="price">$40/hr &bull; $150/day</div>
-                <p>Professional help to organize your digital life for greater clarity and efficiency.</p>
+                <div class="price" style="font-size:0.95em; color:#d4af37;">Additional pets: +$10/visit each</div>
+                <p>Quick check-ins for your fur babies while you're at work or out for the day.</p>
                 <ul>
-                    <li>Email inbox decluttering</li>
-                    <li>File and folder organization</li>
-                    <li>Cloud storage setup</li>
-                    <li>Digital calendar management</li>
-                    <li>Personalized workflow solutions</li>
+                    <li>Feeding, fresh water, treats</li>
+                    <li>Potty break or short walk</li>
+                    <li>Playtime and companionship</li>
+                    <li>Photo/text updates</li>
+                    <li>Free opt-in: Intuitive dog training</li>
                 </ul>
             </div>
-    </div>
-
-    <div class="logistics">
-        <h2>Service Details</h2>
-        <div class="logistics-grid">
-            <div class="logistics-item">
-                <h4>Service Area</h4>
-                <p>Baton Rouge + nearby</p>
+            <div class="card" style="background:#181f2a; border-radius:14px; box-shadow:0 2px 12px #0002; padding:28px 22px; width:340px; max-width:95%; color:#fff;">
+                <h3>🐕 Pet Sitting (Full Day)</h3>
+                <div class="price">$60/day (daytime only, no overnight)</div>
+                <div class="price" style="font-size:0.95em; color:#d4af37;">Additional pets: +$20/day each</div>
+                <p>All-day care when you need extended coverage without overnight.</p>
+                <ul>
+                    <li>Multiple feedings, walks, and potty breaks throughout the day</li>
+                    <li>Extended playtime and companionship</li>
+                    <li>Medication administration if needed</li>
+                    <li>Photo/text updates</li>
+                    <li>Free opt-in: Intuitive dog training</li>
+                </ul>
             </div>
-            <div class="logistics-item">
-                <h4>Meet & Greet</h4>
-                <p>Required First Visit</p>
+            <div class="card" style="background:#181f2a; border-radius:14px; box-shadow:0 2px 12px #0002; padding:28px 22px; width:340px; max-width:95%; color:#fff;">
+                <h3>🏠 House + Pet Sitting (Overnight)</h3>
+                <div class="price">$100/night (includes up to 1 pet)</div>
+                <div class="price" style="font-size:0.95em; color:#d4af37;">Additional pets: +$30/night each</div>
+                <p>Peace of mind for Baton Rouge homeowners while you're away.</p>
+                <ul>
+                    <li>Overnight in-home presence for property security</li>
+                    <li>Mail and package collection</li>
+                    <li>Plant care and watering</li>
+                    <li>Pet care: feeding, walks, playtime, medication if needed</li>
+                    <li>Daily updates and photos</li>
+                    <li>Free opt-in: Intuitive dog training</li>
+                </ul>
+                <p style="font-size:0.95em; color:#d4af37; margin-top:10px;"><strong>The Explorer's Window:</strong> I reserve up to 4 hours per day outside the house for errands or creative work.</p>
+                <p style="font-size:0.95em; color:#d4af37; margin-top:10px;"><strong>Fly Me Out:</strong> Travel-ready for extended sits outside Greater Baton Rouge. Client covers travel/lodging.</p>
+                <p style="font-size:0.95em; color:#fff; margin-top:10px;"><strong>Required:</strong> "Meet & Greet" for all new clients and pets.</p>
             </div>
-            <div class="logistics-item">
-                <h4>Updates</h4>
-                <p>Daily photo check-ins</p>
-            </div>
-            <div class="logistics-item">
-                <h4>Custom Requests</h4>
-                <p>Available on ask</p>
-            </div>
         </div>
-        <div class="disclaimer-text" style="text-align: center; margin-top: 30px;">
-            <p>Every home is different. I tailor care plans to routines, sensitivities, and comfort levels.</p>
-        </div>
-    </div>
-
-    <h3 class="process-title">How Booking Works</h3>
-    <div class="process-grid">
-        <div class="process-step">
-            <span>01</span>
-            <p><strong>Request</strong><br>Share dates + needs</p>
-        </div>
-        <div class="process-step">
-            <span>02</span>
-            <p><strong>Meet</strong><br>In-person walk-through</p>
-        </div>
-        <div class="process-step">
-            <span>03</span>
-            <p><strong>Confirm</strong><br>Lock schedule</p>
-        </div>
-        <div class="process-step">
-            <span>04</span>
-            <p><strong>Care</strong><br>Updates daily</p>
-        </div>
-    </div>
-
-    <div class="cta-container">
-        <a href="https://calendar.app.google/R14SeVWuHsnTo6sU6" class="cta-btn" style="background: var(--text-main); color: #fff; border: 2px solid var(--gold);" target="_blank" rel="noopener noreferrer">
-            BOOK A 15‑MIN CALL
-        </a>
-        <p style="margin-top: 20px; font-size: 0.8rem; color: #86868b; letter-spacing: 1px;">
-            If we vibe, we’ll schedule a virtual or in‑person walk‑through. After that, I’ll send you the Ko‑fi booking link.
-        </p>
     </div>
 </div>
 </body>
