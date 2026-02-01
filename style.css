@@ -149,6 +149,53 @@ ul li strong { color: var(--text-main); }
     .process-grid { grid-template-columns: 1fr; }
     .section-header h1 { font-size: 2.2rem; }
 }
+@media (max-width: 600px) {
+    /* Tess Devillier homepage mobile squares layout */
+    .split-container {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 16px;
+        width: 100vw;
+        height: auto;
+        min-height: 100vh;
+        padding: 16px;
+        box-sizing: border-box;
+    }
+    .choice {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        min-height: 140px;
+        max-height: 220px;
+        margin: 0;
+        padding: 0;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+        background: rgba(10,10,10,0.95);
+        overflow: hidden;
+    }
+    .vignette {
+        width: 80%;
+        height: 60%;
+        max-width: 120px;
+        max-height: 120px;
+        border-radius: 10px;
+        margin-top: 10px;
+        margin-bottom: 8px;
+    }
+    .label {
+        margin-top: 8px;
+        font-size: 1rem;
+        word-break: break-word;
+        padding: 0 6px;
+        text-align: center;
+    }
+}
+}
 /* Carousel General Logic */
 .carousel-pudding {
     display: flex;
