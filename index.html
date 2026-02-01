@@ -17,6 +17,17 @@
                 }
                 .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
                 @media (max-width: 600px) {
+                    body, html {
+                        font-size: 1rem !important;
+                        overflow-x: hidden !important;
+                        padding: 0 !important;
+                        width: 100vw !important;
+                        min-height: 100vh !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                    }
                     .header-container {
                         position: static !important;
                         width: 100% !important;
