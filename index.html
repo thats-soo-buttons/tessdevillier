@@ -16,6 +16,25 @@
                         cursor: pointer; font-family: 'VT323'; color: #00ff41; text-align: center;
                 }
                 .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
+                @media (max-width: 600px) {
+                    .header-container {
+                        position: static !important;
+                        width: 100% !important;
+                        z-index: 10 !important;
+                        padding-top: 0 !important;
+                        margin-bottom: 18px !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        background: none !important;
+                        pointer-events: auto !important;
+                        mix-blend-mode: normal !important;
+                    }
+                    .split-container {
+                        margin-top: 0 !important;
+                    }
+                }
                 h1 { font-size: 2.5rem; letter-spacing: 6px; margin-bottom: 5px; font-weight: 700; color: #fff; }
                 #vibe-text { color: #fff; font-size: 1.3rem; min-height: 1.6em; font-weight: 300; text-transform: uppercase; }
                 .split-container { display: flex; width: 100vw; height: 100vh; }
