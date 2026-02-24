@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tess Devillier: One-Page Service Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f7fafc 0%, #e9f5f2 100%);
+            color: #1a2a2a;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 32px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 32px rgba(44, 62, 80, 0.10);
+            padding: 36px 32px 28px 32px;
+        }
+        h1 {
+            font-size: 2.1em;
+            margin-bottom: 0.2em;
+            letter-spacing: 0.01em;
+        }
+        .subtitle {
+            color: #4a6a6a;
+            font-size: 1.08em;
+            margin-bottom: 1.3em;
+        }
+        nav {
+            margin-bottom: 2em;
+        }
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #f3f7f6;
+            border-radius: 10px;
+            padding: 10px 0;
+            justify-content: center;
+            box-shadow: 0 1px 6px rgba(44, 62, 80, 0.04);
+        }
+        .nav-bar a {
+            text-decoration: none;
+            color: #217a63;
+            font-weight: 600;
+            padding: 9px 20px;
+            border-radius: 7px;
+            transition: background 0.18s, color 0.18s;
+        }
+        .nav-bar a:hover, .nav-bar a:focus {
+            background: #d6f5e7;
+            color: #174d3c;
+        }
+        .section {
+            margin-bottom: 2.7em;
+        }
+        .section-title {
+            font-size: 1.18em;
+            margin-bottom: 0.7em;
+            font-weight: bold;
+            color: #217a63;
+            letter-spacing: 0.01em;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 0.5em;
+            background: #f9fbfa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 8px rgba(44, 62, 80, 0.03);
+        }
+        th, td {
+            padding: 13px 8px;
+            border-bottom: 1px solid #e3eae7;
+            text-align: left;
+        }
+        th {
+            background: #eaf7f2;
+            font-weight: 600;
+            color: #217a63;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td {
+            background: #f1f8f5;
+            transition: background 0.18s;
+        }
+        .price {
+            font-weight: bold;
+            color: #217a63;
+            white-space: nowrap;
+        }
+        .note {
+            color: #6a8a8a;
+            font-size: 0.98em;
+            margin-top: 0.5em;
+        }
+        .contact {
+            margin-top: 2.5em;
+            padding-top: 1.5em;
+            border-top: 1px solid #e3eae7;
+        }
+        .contact strong {
+            display: block;
+            margin-bottom: 0.5em;
+            color: #217a63;
+        }
+        .contact a {
+            color: #217a63;
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            .container { padding: 18px 2vw; }
+        }
+        @media (max-width: 700px) {
+            .container { padding: 8px 1vw; }
+            h1 { font-size: 1.18em; }
+            .section-title { font-size: 1em; }
+            table, th, td { font-size: 0.97em; }
+            .nav-bar { gap: 5px; padding: 7px 0; }
+            .nav-bar a { padding: 7px 10px; font-size: 0.98em; }
+        }
+        @media (max-width: 500px) {
+            .container { padding: 2px 0.5vw; }
+            h1 { font-size: 1em; }
+            .section-title { font-size: 0.95em; }
+            table, th, td { font-size: 0.93em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tess Devillier: One-Page Service Menu</h1>
+        <div class="subtitle">Baton Rouge &amp; Beyond | Narrative. Support. Solutions.</div>
+        <div class="subtitle" style="font-size:0.98em; margin-bottom:2.2em;">Visit <a href="https://www.tessdevillier.com" target="_blank">www.tessdevillier.com</a> for the full experience</div>
+
+        <nav>
+            <div class="nav-bar">
+                <a href="#photography">Photography</a>
+                <a href="#archiving">Memory Archiving</a>
+                <a href="#petsitting">Pet &amp; House Sitting</a>
+                <a href="#digitalorg">Digital Organization</a>
+                <a href="#worldbuilding">World-Building &amp; Writing</a>
+                <a href="#contact">Booking</a>
+            </div>
+        </nav>
+
+        <div class="section" id="photography">
+            <div class="section-title">📸 Photography (The Lens)</div>
+            <table>
+                <tr><th>Service</th><th>Description</th><th>Price</th></tr>
+                <tr><td>Natural Light Session</td><td>Authentic, candid, and high-volume. (50+ color-graded images)</td><td class="price">$258</td></tr>
+                <tr><td>Cinematic Concept</td><td>High-art storytelling with props and deep-prep. (Boutique edited gallery)</td><td class="price">$412</td></tr>
+                <tr><td>Early Bird Portrait Special</td><td>1hr shoot + 1hr editing. (Book by April 13)</td><td class="price">$100</td></tr>
+            </table>
+            <div class="note">No "per-photo" paywalls. You get every photographer-approved shot.</div>
+        </div>
+
+        <div class="section" id="archiving">
+            <div class="section-title">🎞️ Memory Archiving</div>
+            <table>
+                <tr><th>Service</th><th>Description</th><th>Price</th></tr>
+                <tr><td>VHS to Digital Transfer</td><td>Per tape</td><td class="price">$6.00</td></tr>
+                <tr><td>Dead Space Removal</td><td>Optional add-on</td><td class="price">+$5.00</td></tr>
+                <tr><td>Physical USB/Hard Drive</td><td>Cloud delivery is free</td><td class="price">+$51.50</td></tr>
+            </table>
+        </div>
+
+        <div class="section" id="petsitting">
+            <div class="section-title">🐕 Pet &amp; House Sitting</div>
+            <table>
+                <tr><th>Service</th><th>Description</th><th>Price</th></tr>
+                <tr><td>Drop-In Visit</td><td>Feeding, walk, and play</td><td class="price">$25</td></tr>
+                <tr><td>Full Day Care</td><td>Extended daytime coverage</td><td class="price">$60</td></tr>
+                <tr><td>Overnight Stay</td><td>Includes home security, mail, and plants</td><td class="price">$100</td></tr>
+                <tr><td>Add'l pets</td><td>Per visit / per night</td><td class="price">+$10/visit or +$30/night</td></tr>
+            </table>
+            <div class="note">Includes free intuitive training and daily photo updates.</div>
+        </div>
+
+        <div class="section" id="digitalorg">
+            <div class="section-title">💻 Digital Organization</div>
+            <table>
+                <tr><th>Service</th><th>Description</th><th>Price</th></tr>
+                <tr><td>Standard Rate</td><td>Desktop cleanup, file sorting, custom Google Drive systems</td><td class="price">$20/hr</td></tr>
+                <tr><td>Senior Rate (65+)</td><td>All digital organization services</td><td class="price">$15/hr</td></tr>
+            </table>
+        </div>
+
+        <div class="section" id="worldbuilding">
+            <div class="section-title">🎲 World-Building &amp; Writing</div>
+            <table>
+                <tr><th>Service</th><th>Description</th><th>Price</th></tr>
+                <tr><td>Brainstorming / Lyric Spitballing</td><td>30 mins</td><td class="price">$30.50</td></tr>
+                <tr><td>TTRPG One-Shot / Lyric Deep-Dive</td><td>1 hr</td><td class="price">$61.50</td></tr>
+                <tr><td>Lore Pillar</td><td>Custom magic systems, religions, etc.</td><td class="price">$104.00</td></tr>
+            </table>
+        </div>
+
+        <div class="contact" id="contact">
+            <strong>💳 Ready to Book?</strong>
+            <div>Email: <a href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a></div>
+            <div>Venmo: <span class="price">@Thatssoobuttons</span></div>
+            <div>Cash App: <span class="price">$888buttons</span></div>
+            <div>Book &amp; pay online: <a href="https://calendly.com/tess-devillier" target="_blank">calendly.com/tess-devillier</a></div>
+            <div class="note">Stripe payments available via Calendly booking. Required: "Meet &amp; Greet" for all new pet/home clients.</div>
+        </div>
+
+        <div class="container" style="margin-top: 32px; background: #f7fafc; box-shadow: 0 2px 16px rgba(44,62,80,0.07);">
+            <button id="toggleTerms" class="btn" style="width:auto; margin-bottom: 0; background:#217a63; color:#fff;">Show Terms & Intake Form ▼</button>
+            <div id="termsIntake" style="display:none; margin-top: 18px;">
+                <h2 style="color:#217a63;">The Fine Print</h2>
+                <div class="policy-section">
+                    <div class="policy-item"><strong>1. Creative Ownership:</strong> All Lore, Lyrics, and World Bibles become 100% your IP upon final payment. Photography includes a Personal Use license.</div>
+                    <div class="policy-item"><strong>2. Cancellation:</strong> 100% refund (14+ days notice), 50% refund (8-13 days). Non-refundable within 7 days.</div>
+                    <div class="policy-item"><strong>3. Timing:</strong> Standard photo delivery is 14 business days. Cinematic shoots may take 21 days.</div>
+                    <div class="policy-item"><strong>4. Late Arrivals:</strong> Sessions start at the scheduled time. 30+ minutes late is considered a no-show.</div>
+                </div>
+                <hr style="border: 0; border-top: 1px solid #e3eae7;">
+                <h3 style="color:#217a63;">Client Intake Form</h3>
+                                <form method="POST" data-cloudflare="true">
+                                        <label>Full Name</label>
+                                        <input type="text" name="name" placeholder="Your Name" required>
+
+                                        <label>Service Requested</label>
+                                        <select name="service">
+                                                <option>Natural Light Session ($258)</option>
+                                                <option>Cinematic Concept Shoot ($412)</option>
+                                                <option>Early Bird Special ($100)</option>
+                                                <option>Pet / House Sitting</option>
+                                                <option>VHS Archive / TTRPG Writing</option>
+                                        </select>
+
+                                        <label>Project Details / Vibe</label>
+                                        <textarea name="details" rows="4" placeholder="Tell me about your vision or your pets..." required></textarea>
+
+                                        <label>Requested Date</label>
+                                        <input type="date" name="date">
+
+                                        <label>Portfolio Release</label>
+                                        <select name="release">
+                                                <option>Full Release (You can share shots!)</option>
+                                                <option>Selective (I'd like to review first)</option>
+                                                <option>Private (Please do not post publicly)</option>
+                                        </select>
+
+                                        <input type="hidden" name="emailTo" value="contact@tessdevillier.com">
+
+                                        <p class="note">By submitting, you agree to the Terms & Policies listed above.</p>
+                                        <button type="submit" class="btn" style="background:#bb86fc; color:#121212;">Send Request to Tess</button>
+                                        <div id="form-success" style="display:none; color:#217a63; margin-top:10px; font-weight:bold;">Thank you! Your request has been sent.</div>
+                                </form>
+                                <script>
+                                    // Optional: Show success message after submission
+                                    document.querySelector('form[action^="https://formspree.io/"]').addEventListener('submit', function(e) {
+                                        setTimeout(function() {
+                                            document.getElementById('form-success').style.display = 'block';
+                                        }, 500);
+                                    });
+                                </script>
+            </div>
+        </div>
+
+        <script>
+            const toggleBtn = document.getElementById('toggleTerms');
+            const termsIntake = document.getElementById('termsIntake');
+            let open = false;
+            toggleBtn.addEventListener('click', function() {
+                open = !open;
+                termsIntake.style.display = open ? 'block' : 'none';
+                toggleBtn.textContent = open ? 'Hide Terms & Intake Form ▲' : 'Show Terms & Intake Form ▼';
+            });
+        </script>
+    </div>
+</body>
+</html>
