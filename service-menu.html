@@ -1,9 +1,11 @@
+                        <li><b>Once service fulfilled:</b> Not refundable.</li>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tess Devillier: One-Page Service Menu</title>
+    <meta name="description" content="Tess Devillier's one-page service menu: photography, pet sitting, world-building, digital organization, and more. Baton Rouge & beyond. Clear pricing, easy booking.">
+    <title>Service Menu | Tess Devillier - Baton Rouge</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -134,17 +136,96 @@
             .section-title { font-size: 0.95em; }
             table, th, td { font-size: 0.93em; }
         }
+        /* Service Card Styles */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+            margin-bottom: 1.2em;
+        }
+        .service-card {
+            background: linear-gradient(120deg, #f7fafc 60%, #e9f5f2 100%);
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(44,62,80,0.10);
+            padding: 22px 18px 16px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border: 2px solid #eaf7f2;
+            transition: box-shadow 0.2s, border 0.2s;
+            position: relative;
+        }
+        .service-card:hover {
+            box-shadow: 0 6px 24px rgba(34, 122, 99, 0.13);
+            border: 2px solid #bb86fc;
+        }
+        .service-title {
+            font-size: 1.13em;
+            font-weight: 700;
+            color: #217a63;
+            margin-bottom: 0.4em;
+            letter-spacing: 0.01em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .service-desc {
+            font-size: 1em;
+            color: #232a3a;
+            margin-bottom: 0.2em;
+        }
+        .service-card .price {
+            background: #bb86fc;
+            color: #fff;
+            border-radius: 6px;
+            padding: 2px 10px;
+            font-size: 0.98em;
+            font-weight: 700;
+            margin-left: 8px;
+            letter-spacing: 0.01em;
+            box-shadow: 0 1px 4px rgba(187,134,252,0.08);
+        }
+        .service-card.coming-soon .service-title {
+            color: #bb86fc;
+        }
+        .service-card .coming {
+            background: #eaf7f2;
+            color: #bb86fc;
+            border-radius: 6px;
+            padding: 2px 10px;
+            font-size: 0.98em;
+            font-weight: 700;
+            margin-left: 8px;
+            letter-spacing: 0.01em;
+            box-shadow: 0 1px 4px rgba(187,134,252,0.08);
+        }
+        .service-card.special .service-title {
+            color: #217a63;
+            font-style: italic;
+        }
+        @media (max-width: 700px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .service-card {
+                padding: 16px 10px 12px 10px;
+            }
+            .service-title { font-size: 1em; }
+            .service-desc { font-size: 0.97em; }
+        }
+        /* End Service Card Styles */
     </style>
 </head>
 <body>
-    <div class="container">
+    <main class="container" role="main">
         <h1>Tess Devillier: One-Page Service Menu</h1>
         <div class="subtitle">Baton Rouge &amp; Beyond | Narrative. Support. Solutions.</div>
-        <div class="subtitle" style="font-size:0.98em; margin-bottom:2.2em;">Visit <a href="https://www.tessdevillier.com" target="_blank">www.tessdevillier.com</a> for the full experience</div>
+        <div class="subtitle" style="font-size:0.98em; margin-bottom:2.2em;">Visit <a href="https://www.tessdevillier.com" target="_blank">www.tessdevillier.com</a> for the full experience <span style="font-size:0.93em; color:#888; font-style:italic;">*Best on Desktop*</span></div>
 
-        <nav>
+        <nav aria-label="Quick Navigation">
         <!-- ===================== -->
-        <!-- QUICK NAV BAR -->
+        <!-- QUICK NAV BAR + QA/BOOK NOW BUTTONS -->
         <!-- ===================== -->
         <div style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:20px;">
             <a href="#aboutme" style="background:#217a63; color:#fff; padding:10px 16px; border-radius:6px; text-decoration:none; font-size:0.95em; font-weight:500;">👋 About Me</a>
@@ -153,11 +234,37 @@
             <a href="#petsitting" style="background:#217a63; color:#fff; padding:10px 16px; border-radius:6px; text-decoration:none; font-size:0.95em; font-weight:500;">🐾 Pet & House Sitting</a>
             <a href="#digital" style="background:#217a63; color:#fff; padding:10px 16px; border-radius:6px; text-decoration:none; font-size:0.95em; font-weight:500;">🖥️ Digital Organization</a>
             <a href="#worldbuilding" style="background:#217a63; color:#fff; padding:10px 16px; border-radius:6px; text-decoration:none; font-size:0.95em; font-weight:500;">🌍 World-Building</a>
+            <a href="#qafineprint" style="background:#217a63; color:#fff; padding:10px 22px; border-radius:7px; text-decoration:none; font-weight:600; font-size:1em;">QA / Fine Print</a>
+            <a href="#readytobook" style="background:#bb86fc; color:#fff; padding:10px 22px; border-radius:7px; text-decoration:none; font-weight:600; font-size:1em;">Book Now</a>
         </div>
         <!-- ===================== -->
+        <!-- QA / FINE PRINT DROPDOWN (OPEN BY DEFAULT) -->
+        <div id="qafineprint" style="margin-bottom:18px;" aria-label="QA and Fine Print Section">
+            <button class="dropdown-btn" onclick="toggleDropdown('qafineprint-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">QA / Fine Print ▲</button>
+            <div id="qafineprint-content" class="dropdown-content" style="display:block; padding:0 8px 12px 8px;">
+                <button class="dropdown-btn" onclick="toggleDropdown('fineprint-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">📜 Fine Print ▼</button>
+                <div id="fineprint-content" class="dropdown-content" style="display:none; padding:0 8px 12px 8px;">
+                    <ul style="margin:0; padding-left:18px;">
+                        <li><b>Turnaround times:</b> Portraits: 7 day turnaround. Early Bird: Same Day Turnaround. Estimated Cinematic turnaround: 21–46 weeks depending on project.</li>
+                        <li><b>Re-edit policy:</b> 1 round of minor edits included. Additional edits may incur a fee.</li>
+                        <li><b>Cancellation/refund terms:</b> 100% refund (14+ days notice), 50% refund (8-13 days). Non-refundable within 7 days.</li>
+                        <li><b>Licensing & usage rights:</b> All Lore, Lyrics, and World Bibles become 100% your IP upon final payment. Photography includes a Personal Use license.</li>
+                    </ul>
+                </div>
+                <button class="dropdown-btn" onclick="toggleDropdown('faq-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">❓ FAQ ▼</button>
+                <div id="faq-content" class="dropdown-content" style="display:none; padding:0 8px 12px 8px;">
+                    <ul style="margin:0; padding-left:18px;">
+                        <li><b>What should I wear?</b> Wear what makes you feel confident and comfortable! I’m happy to consult on outfit choices or themes.</li>
+                        <li><b>What if I need to reschedule?</b> Please contact me as soon as possible. I’ll do my best to accommodate changes within reason.</li>
+                        <li><b>Do you travel to me?</b> Yes! Travel within Baton Rouge is included. For locations outside the area, let’s discuss details and travel fees.</li>
+                        <li><b>How do I receive my photos?</b> You’ll receive a private online gallery link for downloads. Physical media available for an additional fee.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <!-- ABOUT ME -->
         <!-- ===================== -->
-        <div id="aboutme" style="margin-bottom:18px;">
+        <div id="aboutme" style="margin-bottom:18px;" aria-label="About Me Section">
             <button class="dropdown-btn" onclick="toggleDropdown('aboutme-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">👋 About Me ▼</button>
             <div id="aboutme-content" class="dropdown-content" style="display:none; padding:0 8px 12px 8px;">
                 <p style="margin:0 0 10px 0;"><b>Hey, I'm Tess.</b></p>
@@ -170,73 +277,113 @@
         <!-- ===================== -->
         <!-- PHOTOGRAPHY -->
         <!-- ===================== -->
-        <div id="photography" style="margin-bottom:18px;">
+        <div id="photography" style="margin-bottom:18px;" aria-label="Photography Services">
             <button class="dropdown-btn" onclick="toggleDropdown('photography-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">📸 Photography ▼</button>
             <div id="photography-content" class="dropdown-content" style="display:none; padding:0 8px 12px 8px;">
-                <table>
-                    <tr><th>Service</th><th>Description</th><th>Price</th></tr>
-                    <tr><td>Natural Light Session ($260)</td><td>1 hr shoot + editing included • ~7 day delivery</td><td class="price">$260</td></tr>
-                    <tr><td>✨ Cinematic Portraits (Coming Soon)</td><td>A full experience: thrift store styling + curated wardrobe + shoot + artistic post-production. DM to join the waitlist.</td><td class="price">—</td></tr>
-                    <tr><td>Early Bird Portrait Special</td><td>1hr shoot + 1hr editing. (Book by April 13)</td><td class="price">$100</td></tr>
-                </table>
+                <div class="card-grid">
+                    <div class="service-card">
+                        <div class="service-title">Natural Light Session <span class="price">$260</span></div>
+                        <div class="service-desc">1 hr shoot + editing included • Portraits: 7 day turnaround</div>
+                    </div>
+                    <div class="service-card coming-soon">
+                        <div class="service-title">✨ Cinematic Portraits <span class="coming">Coming Soon</span></div>
+                        <div class="service-desc">A full experience: thrift store styling + curated wardrobe + shoot + artistic post-production. DM to join the waitlist.</div>
+                    </div>
+                    <div class="service-card special">
+                        <div class="service-title">Early Bird Portrait Special <span class="price">$100</span></div>
+                        <div class="service-desc">1hr shoot + 1hr editing. (Book by April 4) • Same Day Turnaround</div>
+                    </div>
+                </div>
                 <div class="note">No "per-photo" paywalls. You get every photographer-approved shot.<br><span style="color:#bb86fc;">*Does not apply to Early Bird. For Early Bird, I will edit as many as I can within an hour to fulfill quick turnaround.*</span></div>
             </div>
         </div>
         <!-- ===================== -->
         <!-- MEMORY ARCHIVING -->
         <!-- ===================== -->
-        <div id="memory" style="margin-bottom:18px;">
+        <div id="memory" style="margin-bottom:18px;" aria-label="Memory Archiving Services">
             <button class="dropdown-btn" onclick="toggleDropdown('memory-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">🗃️ Memory Archiving ▼</button>
             <div id="memory-content" class="dropdown-content" style="display:none; padding:0 8px 12px 8px;">
-                <table>
-                    <tr><th>Service</th><th>Description</th><th>Price</th></tr>
-                    <tr><td>VHS to Digital Transfer</td><td>Per tape</td><td class="price">$6.00</td></tr>
-                    <tr><td>Dead Space Removal</td><td>Optional add-on</td><td class="price">+$5.00</td></tr>
-                    <tr><td>Physical USB/Hard Drive</td><td>Cloud delivery is free</td><td class="price">+$51.50</td></tr>
-                </table>
+                                <div class="card-grid">
+                                    <div class="service-card">
+                                        <div class="service-title">VHS to Digital Transfer <span class="price">$6.00</span></div>
+                                        <div class="service-desc">Per tape</div>
+                                    </div>
+                                    <div class="service-card">
+                                        <div class="service-title">Dead Space Removal <span class="price">+$5.00</span></div>
+                                        <div class="service-desc">Optional add-on</div>
+                                    </div>
+                                    <div class="service-card">
+                                        <div class="service-title">Physical USB/Hard Drive <span class="price">+$51.50</span></div>
+                                        <div class="service-desc">Cloud delivery is free</div>
+                                    </div>
+                                </div>
             </div>
         </div>
         <!-- ===================== -->
         <!-- PET & HOUSE SITTING -->
         <!-- ===================== -->
-        <div id="petsitting" style="margin-bottom:18px;">
+        <div id="petsitting" style="margin-bottom:18px;" aria-label="Pet and House Sitting Services">
             <button class="dropdown-btn" onclick="toggleDropdown('petsitting-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">🐾 Pet & House Sitting ▼</button>
             <div id="petsitting-content" class="dropdown-content" style="display:none; padding:0 8px 12px 8px;">
-                <table>
-                    <tr><th>Service</th><th>Description</th><th>Price</th></tr>
-                    <tr><td>Drop-In Visit</td><td>Feeding, walk, and play</td><td class="price">$25</td></tr>
-                    <tr><td>Full Day Care</td><td>Extended daytime coverage</td><td class="price">$60</td></tr>
-                    <tr><td>Overnight Stay</td><td>Includes home security, mail, and plants</td><td class="price">$100</td></tr>
-                    <tr><td>Add'l pets</td><td>Per visit / per night</td><td class="price">+$10/visit or +$30/night</td></tr>
-                </table>
+                                <div class="card-grid">
+                                    <div class="service-card">
+                                        <div class="service-title">Drop-In Visit <span class="price">$25</span></div>
+                                        <div class="service-desc">Feeding, walk, and play</div>
+                                    </div>
+                                    <div class="service-card">
+                                        <div class="service-title">Full Day Care <span class="price">$60</span></div>
+                                        <div class="service-desc">Extended daytime coverage</div>
+                                    </div>
+                                    <div class="service-card">
+                                        <div class="service-title">Overnight Stay <span class="price">$100</span></div>
+                                        <div class="service-desc">Includes home security, mail, and plants</div>
+                                    </div>
+                                    <div class="service-card">
+                                        <div class="service-title">Add'l pets <span class="price">+$10/visit or +$30/night</span></div>
+                                        <div class="service-desc">Per visit / per night</div>
+                                    </div>
+                                </div>
                 <div class="note">Includes free intuitive training and daily photo updates.</div>
             </div>
         </div>
         <!-- ===================== -->
         <!-- DIGITAL ORGANIZATION -->
         <!-- ===================== -->
-        <div id="digital" style="margin-bottom:18px;">
+        <div id="digital" style="margin-bottom:18px;" aria-label="Digital Organization Services">
             <button class="dropdown-btn" onclick="toggleDropdown('digital-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">🖥️ Digital Organization ▼</button>
             <div id="digital-content" class="dropdown-content" style="display:none; padding:0 8px 12px 8px;">
-                <table>
-                    <tr><th>Service</th><th>Description</th><th>Price</th></tr>
-                    <tr><td>Standard Rate</td><td>Desktop cleanup, file sorting, custom Google Drive systems</td><td class="price">$20/hr</td></tr>
-                    <tr><td>Senior Rate (65+)</td><td>All digital organization services</td><td class="price">$15/hr</td></tr>
-                </table>
+                                <div class="card-grid">
+                                    <div class="service-card">
+                                        <div class="service-title">Standard Rate <span class="price">$20/hr</span></div>
+                                        <div class="service-desc">Desktop cleanup, file sorting, custom Google Drive systems</div>
+                                    </div>
+                                    <div class="service-card">
+                                        <div class="service-title">Senior Rate (65+) <span class="price">$15/hr</span></div>
+                                        <div class="service-desc">All digital organization services</div>
+                                    </div>
+                                </div>
             </div>
         </div>
         <!-- ===================== -->
         <!-- WORLD-BUILDING -->
         <!-- ===================== -->
-        <div id="worldbuilding" style="margin-bottom:18px;">
+        <div id="worldbuilding" style="margin-bottom:18px;" aria-label="World-Building Services">
             <button class="dropdown-btn" onclick="toggleDropdown('worldbuilding-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">🌍 World-Building ▼</button>
             <div id="worldbuilding-content" class="dropdown-content" style="display:none; padding:0 8px 12px 8px;">
-                <table>
-                    <tr><th>Service</th><th>Description</th><th>Price</th></tr>
-                    <tr><td>Brainstorming / Lyric Spitballing</td><td>30 mins</td><td class="price">$30.50</td></tr>
-                    <tr><td>TTRPG One-Shot / Lyric Deep-Dive</td><td>1 hr</td><td class="price">$61.50</td></tr>
-                    <tr><td>Lore Pillar</td><td>Custom magic systems, religions, etc.</td><td class="price">$104.00</td></tr>
-                </table>
+                                <div class="card-grid">
+                                    <div class="service-card">
+                                        <div class="service-title">Brainstorming / Lyric Spitballing <span class="price">$30.50</span></div>
+                                        <div class="service-desc">30 mins</div>
+                                    </div>
+                                    <div class="service-card">
+                                        <div class="service-title">TTRPG One-Shot / Lyric Deep-Dive <span class="price">$61.50</span></div>
+                                        <div class="service-desc">1 hr</div>
+                                    </div>
+                                    <div class="service-card">
+                                        <div class="service-title">Lore Pillar <span class="price">$104.00</span></div>
+                                        <div class="service-desc">Custom magic systems, religions, etc.</div>
+                                    </div>
+                                </div>
             </div>
         </div>
 
@@ -262,118 +409,115 @@
         }
     </script>
 
-        <div class="contact" id="contact">
-            <strong>💳 Ready to Book?</strong>
-            <div>Email: <a href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a></div>
-            <div>Venmo: <span class="price">@Thatssoobuttons</span></div>
-            <div>Cash App: <span class="price">$888buttons</span></div>
-            <div>DM on <b>Instagram</b> or <b>TikTok</b>: <span class="price">@Thatssoobuttons</span></div>
-                        <div>DM on <b><a href="https://www.instagram.com/thatssoobuttons" target="_blank" style="color:#217a63; text-decoration:underline;">Instagram</a></b></div>
-            <div class="note">Required: "Meet &amp; Greet" for all new pet/home clients.</div>
-        </div>
-
-        <div class="container" style="margin-top: 32px; background: #f7fafc; box-shadow: 0 2px 16px rgba(44,62,80,0.07);">
-            <div id="devillier-booking-form" style="max-width: 500px; margin: 20px auto; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #232a3a; color: #e0e0e0; padding: 30px; border-radius: 15px; border: 3px solid #bb86fc; box-shadow: 0 10px 30px rgba(0,0,0,0.5); background-image: linear-gradient(135deg, #bb86fc33 0%, #232a3a 100%);">
-                <h2 style="color: #ffffff; border-bottom: 1px solid #bb86fc; padding-bottom: 10px; font-weight: 300; margin-top: 0;">Request a Session</h2>
-                <div style="background:#232323; border-radius:10px; padding:18px 16px 14px 16px; margin-bottom:22px; border:1px solid #333;">
-                    <div style="background:#ffb3b3; color:#121212; border-radius:8px; padding:12px 14px; margin-bottom:16px; border:2px solid #ff4d4d; font-weight:bold; font-size:1.05em; text-align:center;">
-                        🚫 <span style="font-size:1.08em;">Not Available:</span> March 7, 14, 21, 28 and August 3–8
+        <!-- ===================== -->
+        <!-- READY TO BOOK DROPDOWN -->
+        <!-- ===================== -->
+        <div id="readytobook" style="margin-bottom:18px;" aria-label="Ready to Book Section">
+            <button class="dropdown-btn" onclick="toggleDropdown('readytobook-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">💳 Ready to Book? ▼</button>
+            <div id="readytobook-content" class="dropdown-content" style="display:none; padding:0 8px 12px 8px;">
+                <div class="card-grid">
+                    <div class="service-card">
+                        <div class="service-title">Email</div>
+                        <div class="service-desc"><a href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a></div>
                     </div>
-                    <h3 style="color:#bb86fc; font-size:1.08em; margin-top:0; margin-bottom:10px;">Service Windows & Availability</h3>
-                    <ul style="font-size:0.98em; color:#e0e0e0; margin-bottom:10px; padding-left:18px;">
-                        <li><strong style="color:#bb86fc;">Photography:</strong> Each booking reserves a 4-hour block (Travel + Session + Private Culling). <br>Available start times: <b>10 am</b> or <b>1 pm</b> (unless booked by virtual consult). If a virtual consult is booked at 11 am, photography is available at 1 pm. If a virtual is booked at 12 pm, neither slot is available.</li>
-                        <li><strong style="color:#bb86fc;">Virtual Consulting:</strong> Booked in 1-hour blocks starting at 10 am. <b>Lunch break: 12–2 pm</b>. Last slot: 2–3 pm.</li>
-                        <li><strong style="color:#bb86fc;">Full Day & Travel:</strong> Contact me directly for custom scheduling for events or fly-to-you assignments.</li>
-                    </ul>
-                    <div style="font-size:0.97em; color:#bbb;">Please propose your preferred date and time(s) below. I’ll confirm or suggest alternatives based on availability.</div>
-                    <div style="font-size:0.97em; color:#bb86fc; margin-top:8px;"><b>Must book by April 13th and fulfil 2026 season shoot to lock into the Early Bird Portrait Rate.</b></div>
+                    <div class="service-card">
+                        <div class="service-title">Venmo</div>
+                        <div class="service-desc"><span class="price">@Thatssoobuttons</span></div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-title">Cash App</div>
+                        <div class="service-desc"><span class="price">$888buttons</span></div>
+                    </div>
                 </div>
-                <p style="font-size: 0.9em; color: #999; margin-bottom: 25px;">Narrative. Support. Solutions. Tell me your story below.</p>
-                <form action="https://formspree.io/f/xeelvgqo" method="POST">
-                    <label style="display: block; margin-top: 20px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">Your Name</label>
-                    <input type="text" name="name" required style="width: 100%; padding: 12px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box;">
-
-                    <label style="display: block; margin-top: 15px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">Email Address</label>
-                    <input type="email" name="_replyto" required style="width: 100%; padding: 12px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box;">
-                    
-                                        <label for="source" style="display: block; margin-top: 15px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">How did you find me?</label>
-                                        <select name="source" id="source" required style="width: 100%; padding: 12px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box;">
-                                            <option value="" disabled selected>Select one</option>
-                                            <option value="DevillierMedia.com">DevillierMedia.com</option>
-                                            <option value="TessDevillier.com">TessDevillier.com</option>
-                                            <option value="Instagram">Instagram</option>
-                                            <option value="Referral">Referral</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-
-                    <label style="display: block; margin-top: 15px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">Service Requested</label>
-                    <select name="service" style="width: 100%; padding: 12px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box;">
-                        <optgroup label="Photography" style="background: #1e1e1e;">
-                            <option value="Natural Light Session ($258)">Natural Light Session ($258)</option>
-                            <option value="Cinematic Concept ($412.50)">Cinematic Concept ($412.50)</option>
-                            <option value="Early Bird Special ($100)">Early Bird Special ($100)</option>
-                        </optgroup>
-                        <optgroup label="Creative Support" style="background: #1e1e1e;">
-                            <option value="Pet / House Sitting">Pet & House Sitting</option>
-                            <option value="VHS Archive Transfer">VHS to Digital Archive</option>
-                            <option value="TTRPG / Lyric Writing">World-Building & Writing</option>
-                            <option value="Digital Organization">Digital Organization</option>
-                        </optgroup>
-                    </select>
-
-                    <label style="display: block; margin-top: 15px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">The Narrative / Project Details</label>
-                    <textarea name="message" rows="4" placeholder="Describe the vibe, the pets, or the project goals..." style="width: 100%; padding: 12px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box; resize: vertical;"></textarea>
-
-                    <label style="display: block; margin-top: 15px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">Preferred Date (Optional)</label>
-                    <input type="date" name="date" style="width: 100%; padding: 12px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box;">
-
-                    <div style="margin-top: 25px; font-size: 0.85em; color: #bbb; display: flex; align-items: flex-start;">
-                        <input type="checkbox" required name="terms_agreed" style="margin-right: 12px; margin-top: 3px;">
-                        <span>I have reviewed and agree to the <strong>Fine Print & Terms</strong>.</span>
+                <div class="note">Required: "Meet &amp; Greet" for all new pet/home clients.</div>
+                <!-- Booking Form moved here -->
+                <div id="devillier-booking-form" style="max-width: 500px; margin: 32px auto 0 auto; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #232a3a; color: #e0e0e0; padding: 30px; border-radius: 15px; border: 3px solid #bb86fc; box-shadow: 0 10px 30px rgba(0,0,0,0.5); background-image: linear-gradient(135deg, #bb86fc33 0%, #232a3a 100%);">
+                    <h2 style="color: #ffffff; border-bottom: 1px solid #bb86fc; padding-bottom: 10px; font-weight: 300; margin-top: 0;">Request a Session</h2>
+                    <div style="background:#232323; border-radius:10px; padding:18px 16px 14px 16px; margin-bottom:22px; border:1px solid #333;">
+                        <div style="background:#ffb3b3; color:#121212; border-radius:8px; padding:12px 14px; margin-bottom:16px; border:2px solid #ff4d4d; font-weight:bold; font-size:1.05em; text-align:center;">
+                            🚫 <span style="font-size:1.08em;">Not Available:</span> March 7, 14, 21, 28 and August 3–8
+                        </div>
+                        <h3 style="color:#bb86fc; font-size:1.08em; margin-top:0; margin-bottom:10px;">Service Windows & Availability</h3>
+                        <ul style="font-size:0.98em; color:#e0e0e0; margin-bottom:10px; padding-left:18px;">
+                            <li><strong style="color:#bb86fc;">Photography:</strong> Each booking reserves a 4-hour block (Travel + Session + Private Culling). <br>Available start times: <b>10 am</b> or <b>1 pm</b> (unless booked by virtual consult). If a virtual consult is booked at 11 am, photography is available at 1 pm. If a virtual is booked at 12 pm, neither slot is available.</li>
+                            <li><strong style="color:#bb86fc;">Virtual Consulting:</strong> Booked in 1-hour blocks starting at 10 am. <b>Lunch break: 12–2 pm</b>. Last slot: 2–3 pm.</li>
+                            <li><strong style="color:#bb86fc;">Full Day & Travel:</strong> Contact me directly for custom scheduling for events or fly-to-you assignments.</li>
+                        </ul>
+                        <div style="font-size:0.97em; color:#bbb;">Please propose your preferred date and time(s) below. I’ll confirm or suggest alternatives based on availability.</div>
+                        <div style="font-size:0.97em; color:#bb86fc; margin-top:8px;"><b>Must book by April 4th and fulfil 2026 season shoot to lock into the Early Bird Portrait Rate.</b></div>
                     </div>
+                    <p style="font-size: 0.9em; color: #999; margin-bottom: 25px;">Narrative. Support. Solutions. Tell me your story below.</p>
+                    <form action="https://formspree.io/f/xeelvgqo" method="POST" aria-label="Booking Request Form" style="margin-bottom:0;">
+                        <fieldset style="border:none; padding:0; margin:0 0 18px 0;">
+                            <legend style="font-size:1.08em; color:#bb86fc; font-weight:bold; margin-bottom:8px;">Contact Info</legend>
+                            <label for="name" style="display: block; margin-top: 12px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">Your Name</label>
+                            <input id="name" type="text" name="name" required aria-required="true" autocomplete="name" style="width: 100%; padding: 14px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; font-size:1em;">
 
-                    <button type="submit" style="width: 100%; padding: 15px; margin-top: 30px; background-color: #bb86fc; color: #121212; border: none; border-radius: 5px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: background 0.3s ease;">
-                        Send Request to Tess
-                    </button>
-                </form>
+                            <label for="email" style="display: block; margin-top: 15px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">Email Address</label>
+                            <input id="email" type="email" name="_replyto" required aria-required="true" autocomplete="email" style="width: 100%; padding: 14px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; font-size:1em;">
+                        </fieldset>
+                        <fieldset style="border:none; padding:0; margin:0 0 18px 0;">
+                            <legend style="font-size:1.08em; color:#bb86fc; font-weight:bold; margin-bottom:8px;">Service Details</legend>
+                            <label for="source" style="display: block; margin-top: 8px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">How did you find me?</label>
+                            <select name="source" id="source" required aria-required="true" style="width: 100%; padding: 14px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; font-size:1em;">
+                                <option value="" disabled selected>Select one</option>
+                                <option value="DevillierMedia.com">DevillierMedia.com</option>
+                                <option value="TessDevillier.com">TessDevillier.com</option>
+                                <option value="Instagram">Instagram</option>
+                                <option value="Referral">Referral</option>
+                                <option value="Other">Other</option>
+                            </select>
+
+                            <label for="service" style="display: block; margin-top: 15px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">Service Requested</label>
+                            <select name="service" id="service" required aria-required="true" style="width: 100%; padding: 14px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; font-size:1em;">
+                                <optgroup label="Photography" style="background: #1e1e1e;">
+                                    <option value="Natural Light Session ($260)">Natural Light Session ($260)</option>
+                                    <option value="Cinematic Concept ($412.50)">Cinematic Concept ($412.50)</option>
+                                    <option value="Early Bird Special ($100)">Early Bird Special ($100)</option>
+                                </optgroup>
+                                <optgroup label="Creative Support" style="background: #1e1e1e;">
+                                    <option value="Pet / House Sitting">Pet & House Sitting</option>
+                                    <option value="VHS Archive Transfer">VHS to Digital Archive</option>
+                                    <option value="TTRPG / Lyric Writing">World-Building & Writing</option>
+                                    <option value="Digital Organization">Digital Organization</option>
+                                </optgroup>
+                            </select>
+
+                            <label for="message" style="display: block; margin-top: 15px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">Project Details</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Describe the vibe, the pets, or the project goals..." style="width: 100%; padding: 14px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; resize: vertical; font-size:1em;"></textarea>
+
+                            <label for="date" style="display: block; margin-top: 15px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: #bb86fc;">Preferred Date (Optional)</label>
+                            <input id="date" type="date" name="date" style="width: 100%; padding: 14px; margin-top: 5px; background: #1e1e1e; border: 1px solid #444; color: white; border-radius: 6px; box-sizing: border-box; font-size:1em;">
+                        </fieldset>
+                        <div style="margin-top: 25px; font-size: 0.95em; color: #bbb; display: flex; align-items: flex-start;">
+                            <input type="checkbox" required name="terms_agreed" id="terms_agreed" aria-required="true" style="margin-right: 12px; margin-top: 3px; min-width:20px; min-height:20px;">
+                            <span>I have reviewed and agree to the <a href="#qafineprint" style="color:#bb86fc; text-decoration:underline;" tabindex="0">Fine Print & Terms</a>.</span>
+                        </div>
+                        <button type="submit" style="width: 100%; padding: 18px; margin-top: 30px; background-color: #bb86fc; color: #121212; border: none; border-radius: 6px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: background 0.3s ease; font-size:1.08em;">
+                            Send Request to Tess
+                        </button>
+                        <div aria-live="polite" id="form-confirmation" style="display:none; margin-top:18px; color:#bb86fc; font-weight:bold; text-align:center;"></div>
+                    </form>
+                </div>
             </div>
-            <button id="toggleTerms" class="btn" style="width:auto; margin: 32px 0 0 0; background:#217a63; color:#fff;">Show Terms & Intake Form ▼</button>
-            <div id="termsIntake" style="display:none; margin-top: 18px;">
-                <h2 style="color:#217a63;">Fine Print &amp; FAQ</h2>
-                <div style="margin-bottom:18px;">
-                    <button class="dropdown-btn" onclick="toggleDropdown('fineprint-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">📜 Fine Print ▼</button>
-                    <div id="fineprint-content" class="dropdown-content" style="display:none; padding:0 8px 12px 8px;">
-                        <ul style="margin:0; padding-left:18px;">
-                            <li><b>Turnaround times:</b> Standard photo delivery is 14 business days. Cinematic shoots may take 21 days.</li>
-                            <li><b>Re-edit policy:</b> 1 round of minor edits included. Additional edits may incur a fee.</li>
-                            <li><b>Cancellation/refund terms:</b> 100% refund (14+ days notice), 50% refund (8-13 days). Non-refundable within 7 days.</li>
-                            <li><b>Licensing & usage rights:</b> All Lore, Lyrics, and World Bibles become 100% your IP upon final payment. Photography includes a Personal Use license.</li>
-                        </ul>
-                    </div>
-                    <button class="dropdown-btn" onclick="toggleDropdown('faq-content', this); return false;" style="width:100%; text-align:left; font-size:1.08em; font-weight:bold; color:#217a63; background:#eaf7f2; border:none; padding:13px 12px; border-radius:8px; margin-bottom:8px; cursor:pointer;">❓ FAQ ▼</button>
-                    <div id="faq-content" class="dropdown-content" style="display:none; padding:0 8px 12px 8px;">
-                        <ul style="margin:0; padding-left:18px;">
-                            <li><b>What should I wear?</b> Wear what makes you feel confident and comfortable! I’m happy to consult on outfit choices or themes.</li>
-                            <li><b>What if I need to reschedule?</b> Please contact me as soon as possible. I’ll do my best to accommodate changes within reason.</li>
-                            <li><b>Do you travel to me?</b> Yes! Travel within Baton Rouge is included. For locations outside the area, let’s discuss details and travel fees.</li>
-                            <li><b>How do I receive my photos?</b> You’ll receive a private online gallery link for downloads. Physical media available for an additional fee.</li>
-                        </ul>
-                    </div>
-                </div>
-                </div>
-        <h2 style="color:#217a63;">Fine Print &amp; FAQ</h2>
         </div>
 
-        <script>
-            const toggleBtn = document.getElementById('toggleTerms');
-            const termsIntake = document.getElementById('termsIntake');
-            let open = false;
-            toggleBtn.addEventListener('click', function() {
-                open = !open;
-                termsIntake.style.display = open ? 'block' : 'none';
-                toggleBtn.textContent = open ? 'Hide Terms & Intake Form ▲' : 'Show Terms & Intake Form ▼';
-            });
-        </script>
-    </div>
+        <!-- ===================== -->
+        <!-- FOOTER: Tess Devillier -->
+        <!-- ===================== -->
+        <footer style="position:relative; overflow:hidden; margin-top:48px; background: linear-gradient(90deg, #217a63 0%, #bb86fc 100%); color: #fff; border-radius: 0 0 18px 18px; box-shadow: 0 -2px 16px rgba(44,62,80,0.07); padding: 32px 18px 22px 18px; text-align: center; font-size: 1.08em;" role="contentinfo">
+            
+            <div style="position:relative; z-index:1;">
+                <div style="font-weight: bold; font-size: 1.18em; letter-spacing: 0.02em; margin-bottom: 8px;">Tess Devillier</div>
+                <div style="margin-bottom: 10px;">Storytelling. Support. Solutions. <span style="font-size:1.2em;">📷</span></div>
+                <div style="margin-bottom: 8px;">
+                    <a href="mailto:contact@tessdevillier.com" style="color:#fff; text-decoration:underline; margin:0 10px;">Email</a>
+                    <a href="https://www.instagram.com/tessdevillier" target="_blank" style="color:#fff; text-decoration:underline; margin:0 10px;">Instagram</a>
+                    <a href="https://www.tessdevillier.com" target="_blank" style="color:#fff; text-decoration:underline; margin:0 10px;">Website</a>
+                </div>
+                <div style="font-size:0.95em; color:rgba(255,255,255,0.85); margin-top:10px;">&copy; 2026 Tess Devillier. All rights reserved.</div>
+            </div>
+        </footer>
+    </main>
 </body>
 </html>
