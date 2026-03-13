@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://t.contentsquare.net/uxa/653cce40b94be.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://open.spotify.com https://drive.google.com;">
     <meta name="description" content="Tess Devillier: Professional media, photography, writing, and creative services. Choose your vibe: professional, whimsical, or both. Baton Rouge & beyond.">
@@ -122,7 +123,7 @@
   <div class="split-container" role="navigation" aria-label="Main Choices">
       <a href="https://devilliermedia.com" class="choice professional" onmouseenter="setTrack('prof')" onmouseleave="setTrack('none')" aria-label="Devillier Media: Media Services, Photography, Writing, and Consultations">
           <div class="vignette" style="background-image: url('professionalindex.jpg');" role="img" aria-label="Professional media and photography"></div>
-          <div class="label">Devillier Media<br><span style="font-size:0.9rem; font-weight:600;">Media Services<br><span style="font-size:0.8rem; font-weight:700; color:#cfcfcf;">Photography, Writing, and Consultations</span></span></div>
+          <div class="label">Devillier Media<br><span style="font-size:0.9rem; font-weight:600;">Portraits • Cinematic Photography<br><span style="font-size:0.8rem; font-weight:700; color:#cfcfcf;">World Building • Lyric Writing • VHS to Digital</span></span></div>
       </a>
 
       <a href="https://thatssoobuttons.com" class="choice buttons" onmouseenter="setTrack('buttons')" onmouseleave="setTrack('none')" target="_blank" rel="noopener noreferrer" aria-label="That's Soo Buttons: Twitch Streamer, Cozy/Spooky Games">
@@ -135,26 +136,26 @@
           <div class="label">On The Fly Network<br><span style="font-size:0.9rem; font-weight:600; color:#cfcfcf;">Entertainment + Non Profit Goals</span></div>
       </a>
 
-      <a href="service-menu.html" class="choice other" onmouseenter="setTrack('other')" onmouseleave="setTrack('none')" target="_blank" rel="noopener noreferrer" aria-label="Services: Pet and House Sitting, Digital Organization">
-          <div class="vignette" style="background-image: url('dm_assets/other-services-placeholder.svg');" role="img" aria-label="Services, pet and house sitting, digital organization"></div>
-          <div class="label">Services<br><span style="font-size:0.9rem; font-weight:600;">Pet + House Sitting<br><span style="font-size:0.9rem; font-weight:600; color:#cfcfcf;">Digital Organization</span></span></div>
+    <a href="xyzthians.html" class="choice other" onmouseenter="setTrack('other')" onmouseleave="setTrack('none')" aria-label="Current Project: XYZTHIANS">
+          <div class="vignette" style="background-image: url('seititnes.jpg');" role="img" aria-label="XYZTHIANS Project"></div>
+          <div class="label">Current Project:<br>XYZTHIANS<br><span style="font-size:0.9rem; font-weight:600; color:#ffd700;">Seeking funding/support</span></div>
       </a>
   </div>
 </main>
 
 <footer style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.85rem; opacity: 0.9; color: #fff; z-index: 50; background: rgba(0,0,0,0.65); padding: 8px 14px; border-radius: 8px;" role="contentinfo">
-    <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.8rem;">
-        <a href="https://devilliermedia.com" style="color: #fff; text-decoration: none;" aria-label="Devillier Media">Devillier Media</a>
-        <span aria-hidden="true">•</span>
-        <a href="https://thatssoobuttons.com" style="color: #fff; text-decoration: none;" aria-label="That's Soo Buttons">That's Soo Buttons</a>
-        <span aria-hidden="true">•</span>
-        <a href="https://ontheflynetwork.com" style="color: #fff; text-decoration: none;" aria-label="OTF Network">OTF Network</a>
-        <span aria-hidden="true">•</span>
-        <a href="service-menu.html" style="color: #fff; text-decoration: none;" aria-label="Services">Services</a>
-        <span aria-hidden="true">•</span>
+    <div id="audio-controls" style="margin-bottom:10px; display:flex; justify-content:center; align-items:center; gap:18px;">
+        <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Pause</button>
+        <label style="color:#ffd700;font-size:0.95em;">
+            Volume
+            <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.4" style="vertical-align:middle;">
+        </label>
+    </div>
+    <!-- Footer navigation links removed as requested -->
+    <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.9rem; margin-top: 8px;">
         <a href="service-menu.html#faq" style="color: #fff; text-decoration: none;" aria-label="FAQ and Fine Print">FAQ/Fine Print</a>
         <span aria-hidden="true">•</span>
-        <a href="service-menu.html#about" style="color: #fff; text-decoration: none;" aria-label="About">About</a>
+        <a href="about.html" style="color: #fff; text-decoration: none;" aria-label="About">About</a>
         <span aria-hidden="true">•</span>
         <a href="#" onclick="openContactModal();return false;" style="color: #fff; text-decoration: none;" aria-label="Book or Contact">Book/Contact</a>
     </div>
@@ -183,11 +184,122 @@
 <audio id="music-other" src="dm_audio/dreams-in-slow-motion-chill-lofi.mp3" loop preload="auto"></audio>
 
 <script>
+            // Audio Controls UI
+            function setAllVolumes(vol) {
+                cleanTrack.volume = vol;
+                bit8Track.volume = vol;
+                buttonsTrack.volume = vol;
+                otherTrack.volume = vol;
+            }
+
+
+    var playPauseBtn = document.getElementById('audio-playpause');
+    var volumeSlider = document.getElementById('audio-volume');
+    var isPaused = false;
+
+    function updatePlayPauseButton() {
+        // If any track is playing, show Pause, else Play
+        if (!cleanTrack.paused || !bit8Track.paused || !buttonsTrack.paused || !otherTrack.paused) {
+            playPauseBtn.textContent = 'Pause';
+            isPaused = false;
+        } else {
+            playPauseBtn.textContent = 'Play';
+            isPaused = true;
+        }
+    }
+
+    playPauseBtn.addEventListener('click', function() {
+        if (isPaused) {
+            cleanTrack.play();
+            bit8Track.play();
+            buttonsTrack.play();
+            otherTrack.play();
+        } else {
+            cleanTrack.pause();
+            bit8Track.pause();
+            buttonsTrack.pause();
+            otherTrack.pause();
+        }
+        setTimeout(updatePlayPauseButton, 100); // update after state change
+    });
+
+    volumeSlider.addEventListener('input', function() {
+        setAllVolumes(parseFloat(volumeSlider.value));
+    });
+
+            // Keep slider in sync with fadeTrack
+            function fadeTrack(track, target) {
+                if (track.fadeInterval) clearInterval(track.fadeInterval);
+                track.fadeInterval = setInterval(function() {
+                    var step = 0.05;
+                    if (Math.abs(track.volume - target) < step) {
+                        track.volume = target;
+                        clearInterval(track.fadeInterval);
+                        if (track === cleanTrack) volumeSlider.value = target;
+                    } else {
+                        track.volume += (track.volume < target ? step : -step);
+                        if (track === cleanTrack) volumeSlider.value = track.volume;
+                    }
+                }, 30);
+            }
+        // Audio Controls UI
+        function setAllVolumes(vol) {
+            cleanTrack.volume = vol;
+            bit8Track.volume = vol;
+            buttonsTrack.volume = vol;
+            otherTrack.volume = vol;
+        }
+
+        var playPauseBtn = document.getElementById('audio-playpause');
+        var volumeSlider = document.getElementById('audio-volume');
+        var isPaused = false;
+
+        playPauseBtn.addEventListener('click', function() {
+            if (isPaused) {
+                cleanTrack.play();
+                bit8Track.play();
+                buttonsTrack.play();
+                otherTrack.play();
+                playPauseBtn.textContent = 'Pause';
+                isPaused = false;
+            } else {
+                cleanTrack.pause();
+                bit8Track.pause();
+                buttonsTrack.pause();
+                otherTrack.pause();
+                playPauseBtn.textContent = 'Play';
+                isPaused = true;
+            }
+        });
+
+        volumeSlider.addEventListener('input', function() {
+            setAllVolumes(parseFloat(volumeSlider.value));
+        });
+
+        // Keep slider in sync with fadeTrack
+        function fadeTrack(track, target) {
+            if (track.fadeInterval) clearInterval(track.fadeInterval);
+            track.fadeInterval = setInterval(function() {
+                var step = 0.05;
+                if (Math.abs(track.volume - target) < step) {
+                    track.volume = target;
+                    clearInterval(track.fadeInterval);
+                    if (track === cleanTrack) volumeSlider.value = target;
+                } else {
+                    track.volume += (track.volume < target ? step : -step);
+                    if (track === cleanTrack) volumeSlider.value = track.volume;
+                }
+            }, 30);
+        }
     var audioStarted = false;
     var cleanTrack = document.getElementById('music-clean');
     var bit8Track = document.getElementById('music-8bit');
     var buttonsTrack = document.getElementById('music-buttons');
     var otherTrack = document.getElementById('music-other');
+
+    function isMobile() {
+        return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    }
 
     async function unlockAudio() {
         if (audioStarted) return;
@@ -201,15 +313,19 @@
         otherTrack.volume = 0;
 
         try {
-            await Promise.all([cleanTrack.play(), bit8Track.play(), buttonsTrack.play(), otherTrack.play()]);
-            
-            // Force Sync
-            bit8Track.currentTime = cleanTrack.currentTime;
-            buttonsTrack.currentTime = cleanTrack.currentTime;
-            otherTrack.currentTime = cleanTrack.currentTime;
-
-            // Fade in the default Clean track
-            fadeTrack(cleanTrack, 0.4); 
+            if (isMobile()) {
+                // Only play the default track on mobile
+                await cleanTrack.play();
+                fadeTrack(cleanTrack, 0.4);
+            } else {
+                await Promise.all([cleanTrack.play(), bit8Track.play(), buttonsTrack.play(), otherTrack.play()]);
+                // Force Sync
+                bit8Track.currentTime = cleanTrack.currentTime;
+                buttonsTrack.currentTime = cleanTrack.currentTime;
+                otherTrack.currentTime = cleanTrack.currentTime;
+                // Fade in the default Clean track
+                fadeTrack(cleanTrack, 0.4);
+            }
             rotateVibe();
         } catch (err) {
             console.error("Audio Initialization Failure:", err);
@@ -218,12 +334,11 @@
 
     function setTrack(side) {
         if (!audioStarted) return;
-        
+        if (isMobile()) return; // On mobile, do not switch tracks
         // Hard Sync on every hover to prevent drift
         bit8Track.currentTime = cleanTrack.currentTime;
         buttonsTrack.currentTime = cleanTrack.currentTime;
         otherTrack.currentTime = cleanTrack.currentTime;
-
         if (side === 'prof') {
             fadeTrack(cleanTrack, 0.7);
             fadeTrack(bit8Track, 0);
@@ -270,7 +385,6 @@
     // Automatically switch tracks based on cursor X position (left = professional, right = whimsical)
     (function() {
         let lastSide = null;
-
         function sideFromX(x) {
             const quarter = window.innerWidth / 4;
             if (x < quarter) return 'prof';
@@ -278,30 +392,38 @@
             if (x < quarter * 3) return 'otf';
             return 'other';
         }
+        if (!isMobile()) {
+            document.addEventListener('mousemove', (e) => {
+                if (!audioStarted) return;
+                try {
+                    if (e.target.closest && e.target.closest('.choice')) return;
+                } catch (err) {}
+                const side = sideFromX(e.clientX);
+                if (side !== lastSide) { setTrack(side); lastSide = side; }
+            });
+            // When leaving the window, reset to neutral
+            window.addEventListener('mouseout', (e) => {
+                if (!e.relatedTarget && audioStarted) { setTrack('none'); lastSide = null; }
+            });
+        }
+        // On mobile, do not switch tracks on touchmove
 
-        document.addEventListener('mousemove', (e) => {
-            if (!audioStarted) return;
-            // If hovering a .choice anchor, let its mouseenter/mouseleave handlers handle audio
-            try {
-                if (e.target.closest && e.target.closest('.choice')) return;
-            } catch (err) {}
-
-            const side = sideFromX(e.clientX);
-            if (side !== lastSide) { setTrack(side); lastSide = side; }
+        // Pause all audio when page loses focus (tab/window switch)
+        function pauseAllTracks() {
+            cleanTrack.pause();
+            bit8Track.pause();
+            buttonsTrack.pause();
+            otherTrack.pause();
+            isPaused = true;
+            playPauseBtn.textContent = 'Play';
+        }
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                pauseAllTracks();
+            }
         });
-
-        // Touch support for mobile devices
-        document.addEventListener('touchmove', (e) => {
-            if (!audioStarted || !e.touches || !e.touches[0]) return;
-            const t = e.touches[0];
-            const side = sideFromX(t.clientX);
-            if (side !== lastSide) { setTrack(side); lastSide = side; }
-        }, { passive: true });
-
-        // When leaving the window, reset to neutral
-        window.addEventListener('mouseout', (e) => {
-            if (!e.relatedTarget && audioStarted) { setTrack('none'); lastSide = null; }
-        });
+        window.addEventListener('beforeunload', pauseAllTracks);
+        window.addEventListener('unload', pauseAllTracks);
     })();
 
     // TYPING LOGIC
