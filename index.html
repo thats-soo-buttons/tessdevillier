@@ -1,9 +1,7 @@
-    <div class="funding">Have you been paying attention</div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://t.contentsquare.net/uxa/653cce40b94be.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://open.spotify.com https://drive.google.com;">
     <meta name="description" content="Tess Devillier: Professional media, photography, writing, and creative services. Choose your vibe: professional, whimsical, or both. Baton Rouge & beyond.">
@@ -111,17 +109,35 @@
 
 
 <main role="main">
-  <div id="music-unlock" aria-label="Unlock Audio Overlay">
-      <h1>TESS DEVILLIER</h1>
-      <p>[ CLICK TO INITIALIZE SYSTEM ]</p>
-  </div>
+    <div id="music-unlock" aria-label="Unlock Audio Overlay">
+            <h1>TESS DEVILLIER</h1>
+            <p>[ CLICK TO INITIALIZE SYSTEM ]</p>
+    </div>
 
-  <header class="header-container" role="banner">
-      <h1>HIRE • WATCH • CONNECT</h1>
-      <div id="vibe-text"></div>
-  </header>
+    <header class="header-container" role="banner">
+            <h1>HIRE • WATCH • CONNECT</h1>
+            <div id="vibe-text"></div>
+    </header>
 
-  <div class="split-container" role="navigation" aria-label="Main Choices">
+
+    <!-- Unified Current and Other Projects Section -->
+    <section style="width:100vw;display:flex;justify-content:center;margin:32px 0 0 0;z-index:20;position:relative;">
+        <div style="background:rgba(24,26,31,0.92);border-radius:18px;box-shadow:0 4px 24px rgba(30,30,40,0.18);padding:28px 36px 18px 36px;max-width:540px;width:90vw;">
+            <div style="text-align:center;">
+                <span style="display:block;color:#b6b6d6;font-size:1.25em;font-weight:700;margin-bottom:8px;letter-spacing:0.04em;">CURRENT PROJECT:</span>
+                <a href="xyzthians.html" style="color:#ffd700;text-decoration:none;font-weight:800;font-size:1.35em;">XYZTHIANS</a>
+                <div style="color:#b6b6d6;font-size:1.05em;margin:8px 0 18px 0;">Lore, mythology, and worldbuilding</div>
+                <span style="display:block;color:#b6b6d6;font-size:1.13em;font-weight:700;margin-bottom:8px;letter-spacing:0.03em;">OTHER PROJECTS:</span>
+                <div style="font-size:1.13em;">
+                    <a href="miracle.html" style="color:#ffd700;text-decoration:none;font-weight:700;">Project Miracle</a>
+                    <span style="color:#b6b6d6;">&nbsp;|&nbsp;</span>
+                    <a href="tigidb.html" style="color:#ffd700;text-decoration:none;font-weight:700;">TIGIDB</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="split-container" role="navigation" aria-label="Main Choices">
       <a href="https://devilliermedia.com" class="choice professional" onmouseenter="setTrack('prof')" onmouseleave="setTrack('none')" aria-label="Devillier Media: Media Services, Photography, Writing, and Consultations">
           <div class="vignette" style="background-image: url('professionalindex.jpg');" role="img" aria-label="Professional media and photography"></div>
           <div class="label">Devillier Media<br><span style="font-size:0.9rem; font-weight:600;">Portraits • Cinematic Photography<br><span style="font-size:0.8rem; font-weight:700; color:#cfcfcf;">World Building • Lyric Writing • VHS to Digital</span></span></div>
@@ -137,9 +153,9 @@
           <div class="label">On The Fly Network<br><span style="font-size:0.9rem; font-weight:600; color:#cfcfcf;">Entertainment + Non Profit Goals</span></div>
       </a>
 
-    <a href="xyzthians.html" class="choice other" onmouseenter="setTrack('other')" onmouseleave="setTrack('none')" aria-label="Current Project: XYZTHIANS">
-          <div class="vignette" style="background-image: url('seititnes.jpg');" role="img" aria-label="XYZTHIANS Project"></div>
-          <div class="label">Current Project:<br>XYZTHIANS<br><span style="font-size:0.9rem; font-weight:600; color:#ffd700;">Seeking funding/support</span></div>
+    <a href="service-menu.html" class="choice other" onmouseenter="setTrack('other')" onmouseleave="setTrack('none')" target="_blank" rel="noopener noreferrer" aria-label="Explore All Services: Photography, Creative Consulting, Housesitting, and More">
+          <div class="vignette" style="background-image: url('dm_assets/other-services-placeholder.svg');" role="img" aria-label="Explore All Services"></div>
+          <div class="label">Explore All Services<br><span style="font-size:0.9rem; font-weight:600;">Photography • Creative Consulting<br><span style="font-size:0.9rem; font-weight:600; color:#cfcfcf;">Housesitting & More</span></span></div>
       </a>
   </div>
 </main>
@@ -152,11 +168,20 @@
             <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.4" style="vertical-align:middle;">
         </label>
     </div>
-    <!-- Footer navigation links removed as requested -->
+    <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.8rem;">
+        <a href="https://devilliermedia.com" style="color: #fff; text-decoration: none;" aria-label="Devillier Media">Devillier Media</a>
+        <span aria-hidden="true">•</span>
+        <a href="https://thatssoobuttons.com" style="color: #fff; text-decoration: none;" aria-label="That's Soo Buttons">That's Soo Buttons</a>
+        <span aria-hidden="true">•</span>
+        <a href="https://ontheflynetwork.com" style="color: #fff; text-decoration: none;" aria-label="OTF Network">OTF Network</a>
+        <span aria-hidden="true">•</span>
+        <a href="service-menu.html" style="color: #fff; text-decoration: none;" aria-label="Explore All Services">Explore All Services</a>
+        <span aria-hidden="true">•</span>
+    </div>
     <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.9rem; margin-top: 8px;">
         <a href="service-menu.html#faq" style="color: #fff; text-decoration: none;" aria-label="FAQ and Fine Print">FAQ/Fine Print</a>
         <span aria-hidden="true">•</span>
-        <a href="about.html" style="color: #fff; text-decoration: none;" aria-label="About">About</a>
+        <a href="service-menu.html#about" style="color: #fff; text-decoration: none;" aria-label="About">About</a>
         <span aria-hidden="true">•</span>
         <a href="#" onclick="openContactModal();return false;" style="color: #fff; text-decoration: none;" aria-label="Book or Contact">Book/Contact</a>
     </div>
@@ -410,21 +435,18 @@
         // On mobile, do not switch tracks on touchmove
 
         // Pause all audio when page loses focus (tab/window switch)
-        function pauseAllTracks() {
-            cleanTrack.pause();
-            bit8Track.pause();
-            buttonsTrack.pause();
-            otherTrack.pause();
-            isPaused = true;
-            playPauseBtn.textContent = 'Play';
-        }
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
-                pauseAllTracks();
+                cleanTrack.pause();
+                bit8Track.pause();
+                buttonsTrack.pause();
+                otherTrack.pause();
+                isPaused = true;
+                playPauseBtn.textContent = 'Play';
+            } else if (audioStarted) {
+                // Optionally resume only the correct track, but for now, keep paused until user interacts again
             }
         });
-        window.addEventListener('beforeunload', pauseAllTracks);
-        window.addEventListener('unload', pauseAllTracks);
     })();
 
     // TYPING LOGIC
