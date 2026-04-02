@@ -110,8 +110,9 @@
 
 <main role="main">
     <div id="music-unlock" aria-label="Unlock Audio Overlay">
-            <h1>TESS DEVILLIER</h1>
-            <p>[ CLICK TO INITIALIZE SYSTEM ]</p>
+        <h1>TESS DEVILLIER</h1>
+        <p>[ CLICK TO INITIALIZE SYSTEM ]</p>
+        <span class="mobile-note" style="display:none;color:#ffd700;font-size:1.08em;margin-top:18px;">For Full Experience View on Desktop</span>
     </div>
 
     <header class="header-container" role="banner">
@@ -218,6 +219,12 @@
             color: #fffbe6;
             text-decoration: underline;
             border-bottom: 2px solid #ffd700;
+        }
+        @media (max-width: 700px) {
+            .mobile-note {
+                display: block !important;
+                text-align: center;
+            }
         }
         </style>
 </footer>
