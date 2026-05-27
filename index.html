@@ -151,7 +151,7 @@
 
       <a href="https://ontheflynetwork.com" class="choice otf" onmouseenter="setTrack('otf')" onmouseleave="setTrack('none')" target="_blank" rel="noopener noreferrer" aria-label="On The Fly Network: Entertainment and Non Profit Goals">
           <div class="vignette" style="background-image: url('simulationindex.jpg');" role="img" aria-label="On The Fly Network, creative community"></div>
-          <div class="label">On The Fly Network<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">Creative Community with Non Profit Dreams</span></div>
+          <div class="label">On The Fly Network<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">Creative Community</span></div>
       </a>
 
     <div class="choice other" style="background:#0d1a14;display:flex;flex-direction:column;align-items:center;justify-content:center;">
@@ -187,8 +187,78 @@
         <a href="https://everythingandthekitchensink.xyz" style="color: #ffd700; text-decoration: none; font-weight: 700;" aria-label="XYZ" target="_blank" rel="noopener">XYZ</a>
         <span aria-hidden="true">•</span>
     </div>
+    <div style="display: flex; gap: 15px; justify-content: center; font-size: 1em; margin-top: 6px;">
+        <a href="https://everythingandthekitchensink.xyz" style="color: #ffd700; text-decoration: none; font-weight: 700;" aria-label="XYZ" target="_blank" rel="noopener">XYZ</a>
+        <span aria-hidden="true">•</span>
+        <a href="https://projectmiracle.org" style="color: #ffd700; text-decoration: none; font-weight: 700;" aria-label="Project Miracle" target="_blank" rel="noopener">Project Miracle</a>
+        <span aria-hidden="true">•</span>
+        <a href="https://tigidb.com" style="color: #ffd700; text-decoration: none; font-weight: 700;" aria-label="TIGIDB" target="_blank" rel="noopener">TIGIDB</a>
+    </div>
     <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.9rem; margin-top: 8px;">
-        <a href="service-menu.html#faq" style="color: #fff; text-decoration: none;" aria-label="FAQ and Fine Print">FAQ/Fine Print</a>
+        <a href="#" id="faq-link" style="color: #fff; text-decoration: none; cursor:pointer;" aria-label="FAQ and Fine Print">FAQ/Fine Print</a>
+        <!-- FAQ Modal -->
+        <div id="faq-modal" style="display:none; position:fixed; z-index:10001; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); align-items:center; justify-content:center;">
+            <div style="background:#181818; color:#fff; max-width:480px; width:90vw; margin:auto; border-radius:14px; box-shadow:0 8px 32px #000a; padding:32px 24px 24px 24px; position:relative;">
+                <button id="faq-close" aria-label="Close FAQ" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.7em;color:#ffd700;cursor:pointer;">&times;</button>
+                <h2 style="margin-top:0; color:#ffd700; font-size:1.5em;">FAQ & Fine Print</h2>
+                <div style="font-size:1.08em; line-height:1.6;">
+                                    <strong>What is Devillier Media?</strong><br>
+                                    Devillier Media is my professional creative studio for photography, writing, and media projects. If you want portraits, creative content, or worldbuilding, this is the place.<br><br>
+
+                                    <strong>What is ThatsSooButtons?</strong><br>
+                                    ThatsSooButtons is my online persona for streaming, gaming, and sharing original lyrics and fiction. It’s a cozy, creative space for community and fun.<br><br>
+
+                                    <strong>What is OTF Network?</strong><br>
+                                    On The Fly Network is a creative community hub for collaborative projects and non-profit dreams. It’s about building together and supporting each other.<br>
+                                    You can join the community Discord here: <a href="https://discord.gg/dC34nguEEC" target="_blank" style="color:#ffd700;text-decoration:underline;">discord.gg/dC34nguEEC</a><br><br>
+
+                                    <strong>What is the Shop/Support section?</strong><br>
+                                    Shop/Support is where you can support my work directly—through Ko-fi, Patreon, Buy Me a Coffee, or Cash App. Every bit helps me keep creating and sharing.<br><br>
+
+                                    <strong>How do I book or contact you?</strong><br>
+                                    Use the Book/Contact link in the footer to reach out for commissions, collaborations, or just to say hi!<br><br>
+                                <strong>Do you offer subscription support? How does it work, what do we get from it?</strong><br>
+                                Ko-fi has a monthly support option, and I also have a Patreon. Currently, I’m in survival mode just trying to get the bills paid, but once that stress is off, I plan to give back to supporters with early access to anything I publish, plus private areas and roles in the community Discord.<br><br>
+                            <strong>Why does it matter? The world is overpopulated with stories and things.</strong><br>
+                            Every voice is unique, and every story adds something new to the world—even if it’s small. Somewhere out there are people who have felt like they were in my spot or have similar thoughts and ideas they were afraid to put out there for whatever reason. My work might be the comfort, inspiration, or spark someone needs at the right moment—or the nudge to share their own story. Supporting creativity keeps the world vibrant and helps us all feel a little less alone.<br><br>
+                        <strong>It's every creative's dream to get paid to exist, so they can create, so why should I donate to you?</strong><br>
+                        Supporting me means you’re helping someone who genuinely wants to make things that matter—stories, worlds, art, and experiences that wouldn’t exist otherwise. Your support lets me focus on creating instead of just surviving. If you like what I do or want to see more, your donation makes a real difference.<br><br>
+                    <strong>What services do you offer?</strong><br>
+                    Photography, creative writing, worldbuilding, lyric writing, digital media, and more. See the main sections above for details.<br><br>
+                    <strong>How do I book or contact you?</strong><br>
+                    Use the Book/Contact link in the footer or the contact page.<br><br>
+                    <strong>How can I support your work?</strong><br>
+                    Ko-fi, Patreon, Buy Me a Coffee, and Cash App links are available in the SHOP/SUPPORT section.<br><br>
+                    <strong>Refunds & Policies?</strong><br>
+                    All sales are final unless otherwise stated. Please contact for special circumstances.<br><br>
+                    <strong>Custom requests?</strong><br>
+                    Absolutely! Reach out and let's talk about your project.<br>
+                </div>
+            </div>
+        </div>
+        <script>
+        // FAQ Modal logic
+        document.addEventListener('DOMContentLoaded', function() {
+            var faqLink = document.getElementById('faq-link');
+            var faqModal = document.getElementById('faq-modal');
+            var faqClose = document.getElementById('faq-close');
+            if (faqLink && faqModal && faqClose) {
+                faqLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    faqModal.style.display = 'flex';
+                });
+                faqClose.addEventListener('click', function() {
+                    faqModal.style.display = 'none';
+                });
+                faqModal.addEventListener('click', function(e) {
+                    if (e.target === faqModal) faqModal.style.display = 'none';
+                });
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') faqModal.style.display = 'none';
+                });
+            }
+        });
+        </script>
         <span aria-hidden="true">•</span>
         <a href="service-menu.html#about" style="color: #fff; text-decoration: none;" aria-label="About">About</a>
         <span aria-hidden="true">•</span>
@@ -200,6 +270,9 @@
         </a>
         <a href="https://www.tiktok.com/@tessdevillier" target="_blank" aria-label="TikTok" style="color:#fff;transition:color 0.2s;">
             <svg width="22" height="22" viewBox="0 0 48 48" fill="currentColor" style="vertical-align:middle;"><path d="M41.5 15.5c-3.6 0-6.5-2.9-6.5-6.5h-5v24.1c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4c.7 0 1.4.2 2 .5v-5.2c-.7-.1-1.3-.2-2-.2-5 0-9 4-9 9s4 9 9 9 9-4 9-9V21.2c2 1.1 4.3 1.8 6.5 1.8v-7.5z"/></svg>
+        </a>
+        <a href="https://discord.gg/dC34nguEEC" target="_blank" aria-label="Discord" style="color:#fff;transition:color 0.2s;">
+            <svg width="24" height="24" viewBox="0 0 71 55" fill="currentColor" style="vertical-align:middle;"><path d="M60.104 4.552A58.669 58.669 0 0 0 46.852.64a.117.117 0 0 0-.124.06c-2.048 3.724-4.332 8.59-5.946 12.47-7.112-1.07-14.1-1.07-21.084 0-1.62-3.89-3.9-8.746-5.946-12.47a.115.115 0 0 0-.124-.06A58.58 58.58 0 0 0 .896 4.552a.105.105 0 0 0-.05.043C-3.06 10.675-6.24 16.61-8.822 22.724c-.01.022-.002.047.018.06 8.396 6.13 16.56 9.85 24.638 12.29a.12.12 0 0 0 .13-.03c1.89-2.6 3.58-5.34 5.06-8.21a.116.116 0 0 0-.065-.16c-2.7-.98-5.27-2.13-7.74-3.48a.117.117 0 0 1-.012-.2c.52-.39 1.04-.8 1.54-1.22a.115.115 0 0 1 .12-.01c15.6 7.13 32.5 7.13 48.06 0a.115.115 0 0 1 .12.01c.5.42 1.02.83 1.54 1.22a.117.117 0 0 1-.012.2c-2.47 1.35-5.04 2.5-7.74 3.48a.116.116 0 0 0-.065.16c1.48 2.87 3.17 5.61 5.06 8.21a.12.12 0 0 0 .13.03c8.08-2.44 16.24-6.16 24.64-12.29a.115.115 0 0 0 .018-.06c-2.58-6.114-5.76-12.05-9.048-18.13a.105.105 0 0 0-.05-.043zM23.725 37.33c-2.36 0-4.29-2.16-4.29-4.82 0-2.66 1.91-4.82 4.29-4.82 2.39 0 4.31 2.17 4.29 4.82 0 2.66-1.91 4.82-4.29 4.82zm23.55 0c-2.36 0-4.29-2.16-4.29-4.82 0-2.66 1.91-4.82 4.29-4.82 2.39 0 4.31 2.17 4.29 4.82 0 2.66-1.91 4.82-4.29 4.82z"/></svg>
         </a>
         <a href="https://ko-fi.com/thatssoobuttons/shop" target="_blank" aria-label="Shop on Ko-fi" style="background:#ffd700;color:#222;font-weight:bold;padding:6px 18px;border-radius:8px;margin-left:12px;text-decoration:none;transition:background 0.2s;">SHOP</a>
         <span style="font-size:0.85em; color:#cfcfcf; margin-left:10px;">✈️ 🧳 FLY ME OUT</span>
