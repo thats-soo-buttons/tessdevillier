@@ -7,6 +7,54 @@
     <meta name="description" content="Tess Devillier: Professional media, photography, writing, and creative services. Choose your vibe: professional, whimsical, or both. Baton Rouge & beyond.">
     <title>Tess Devillier | Professional & Whimsical Services in Baton Rouge</title>
     <style>
+        /* Glitch effect for whimsical transition */
+        .glitch {
+            animation: glitch 0.7s linear 1;
+        }
+        @keyframes glitch {
+            0% { filter: none; }
+            10% { filter: blur(2px) brightness(1.5) contrast(2); transform: translate(-2px,2px) skewX(2deg); }
+            20% { filter: blur(1px) brightness(0.8) contrast(1.5); transform: translate(2px,-2px) skewX(-2deg); }
+            30% { filter: none; }
+            40% { filter: blur(2px) brightness(1.2) contrast(2); transform: translate(-2px,2px) skewX(2deg); }
+            50% { filter: blur(1px) brightness(0.7) contrast(1.5); transform: translate(2px,-2px) skewX(-2deg); }
+            60% { filter: none; }
+            100% { filter: none; transform: none; }
+        }
+        .whimsy-desktop {
+            display: none;
+            width: 100vw;
+            min-height: 70vh;
+            background: #222 url('https://i.imgur.com/6QK6w1p.png') repeat;
+            color: #00ff41;
+            font-family: 'VT323', monospace;
+            font-size: 1.5em;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 48px 0 32px 0;
+            z-index: 10;
+        }
+        .whimsy-desktop .window {
+            background: #111;
+            border: 2px solid #00ff41;
+            border-radius: 8px;
+            box-shadow: 0 0 24px #00ff4166;
+            padding: 32px 40px;
+            margin: 0 auto;
+            max-width: 420px;
+            min-width: 220px;
+        }
+        .whimsy-desktop .window h2 {
+            color: #ffd700;
+            font-size: 1.3em;
+            margin-bottom: 18px;
+        }
+        .whimsy-desktop .window p {
+            color: #00ff41;
+            font-size: 1.1em;
+        }
                 @media (max-width: 600px) {
                     .split-container {
                         flex-direction: column !important;
@@ -103,13 +151,104 @@
         
         .label { margin-top: 35px; font-size: 1.4rem; font-weight: bold; text-transform: uppercase; color: #fff; mix-blend-mode: difference; z-index: 3; }
         .professional .label { color: #000; mix-blend-mode: normal; }
+        /* CRT Whimsical Section */
+        .crt-window {
+            background: #0a1a0a;
+            border: 2px solid #00ff41;
+            border-radius: 8px;
+            box-shadow: 0 0 32px #00ff4166, 0 0 120px #00ff4133 inset;
+            padding: 38px 40px 38px 40px;
+            margin: 0 auto;
+            max-width: 520px;
+            min-width: 220px;
+            color: #00ff41;
+            font-family: 'VT323', monospace;
+            font-size: 1.3em;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .crt-window h2, .crt-window p, .crt-window div, .crt-window a {
+            color: #00ff41 !important;
+            font-family: 'VT323', monospace !important;
+            text-shadow:
+                0 0 6px #00ff41,
+                0 0 12px #00ff41,
+                0 0 2px #fff;
+        }
+        .crt-window a {
+            color: #00ff41 !important;
+            background: none !important;
+            border: 1px solid #00ff41 !important;
+            box-shadow: 0 0 8px #00ff41cc !important;
+        }
+        .crt-window::before {
+                    /* CRT effect for whimsical note only */
+                    .crt-note {
+                        background: #0a1a0a;
+                        border: 2px solid #00ff41;
+                        border-radius: 8px;
+                        box-shadow: 0 0 32px #00ff4166, 0 0 120px #00ff4133 inset;
+                        padding: 38px 40px 38px 40px;
+                        margin: 0 auto;
+                        max-width: 520px;
+                        min-width: 220px;
+                        color: #00ff41;
+                        font-family: 'VT323', monospace;
+                        font-size: 1.3em;
+                        text-align: center;
+                        position: relative;
+                        overflow: hidden;
+                    }
+                    .crt-note h2, .crt-note p, .crt-note div, .crt-note a {
+                        color: #00ff41 !important;
+                        font-family: 'VT323', monospace !important;
+                        text-shadow:
+                            0 0 6px #00ff41,
+                            0 0 12px #00ff41,
+                            0 0 2px #fff;
+                    }
+                    .crt-note a {
+                        color: #00ff41 !important;
+                        background: none !important;
+                        border: 1px solid #00ff41 !important;
+                        box-shadow: 0 0 8px #00ff41cc !important;
+                        padding: 4px 14px;
+                        border-radius: 6px;
+                        font-size: 1.1em;
+                        margin-top: 8px;
+                        display: inline-block;
+                    }
+                    .crt-note::before {
+                        content: '';
+                        position: absolute;
+                        left: 0; right: 0; top: -100%; height: 100%;
+                        background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.10) 45%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.10) 55%, transparent 100%);
+                        pointer-events: none;
+                        animation: crt-scan 2.2s linear infinite;
+                    }
+                    @keyframes crt-scan {
+                        0% { top: -100%; }
+                        100% { top: 100%; }
+                    }
+            content: '';
+            position: absolute;
+            left: 0; right: 0; top: -100%; height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.10) 45%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.10) 55%, transparent 100%);
+            pointer-events: none;
+            animation: crt-scan 2.2s linear infinite;
+        }
+        @keyframes crt-scan {
+            0% { top: -100%; }
+            100% { top: 100%; }
+        }
     </style>
 </head>
-<body onclick="unlockAudio()">
+<body>
 
 
 <main role="main">
-    <div id="music-unlock" aria-label="Unlock Audio Overlay">
+    <div id="music-unlock" aria-label="Unlock Audio Overlay" style="cursor:default;">
         <h1>TESS DEVILLIER</h1>
         <p style="font-size:1.2em; margin: 18px 0 24px 0; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:700;">Explore What You're Supporting</p>
         <div style="max-width: 480px; margin: 0 auto; background: rgba(0,0,0,0.7); border-radius: 12px; padding: 22px 18px 18px 18px; color: #fff; font-size: 1.08em; font-family: 'Montserrat', sans-serif; text-align: left;">
@@ -125,9 +264,16 @@
                 <a href="https://buymeacoffee.com/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Buy Me a Coffee: buymeacoffee.com/tessdevillier</a><br>
                 <span style="color:#ffd700;">Cash App: $888buttons</span>
             </div>
+            <div style="margin-top: 2.2em; display: flex; flex-direction: column; align-items: center; gap: 18px;">
+                <span style="font-size:1.18em; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:700; margin-bottom: 6px;">Make a Choice:</span>
+                <div style="display: flex; gap: 22px;">
+                    <button id="choice-professional" style="background:#ffd700; color:#222; font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.13em; padding:12px 32px; border:none; border-radius:10px; cursor:pointer; box-shadow:0 2px 12px #0003; transition:background 0.2s;">Professional</button>
+                    <button id="choice-whimsical" style="background:#222; color:#ffd700; font-family:'VT323',monospace; font-weight:700; font-size:1.13em; padding:12px 32px; border:2px solid #ffd700; border-radius:10px; cursor:pointer; box-shadow:0 2px 12px #0003; transition:background 0.2s;">Whimsical</button>
+                </div>
+            </div>
         </div>
             <a href="#" id="aboutme-link" style="display:inline-block;margin-top:22px;margin-bottom:8px;font-size:1.13em;font-weight:700;color:#2e8bff;text-decoration:underline;letter-spacing:1px;">Learn more about me</a>
-        <p style="margin-top: 28px; font-size:1.15em; color:#00ff41; font-family:'VT323',monospace; cursor:pointer;">Click here to explore my brain.</p>
+
         <span class="mobile-note" style="display:none;color:#ffd700;font-size:1.08em;margin-top:18px;">For Full Experience View on Desktop</span>
     </div>
 <!-- About Me Modal -->
@@ -139,29 +285,141 @@
 </div>
 
 
+
         <header class="header-container" role="banner">
             <h1>HIRE • WATCH • CONNECT • SUPPORT</h1>
             <div id="vibe-text"></div>
+            <div id="mode-toggle" style="display:flex; gap:18px; justify-content:center; align-items:center; margin: 18px 0 0 0; pointer-events:auto;">
+                <button id="btn-professional" type="button" style="background:rgba(40,40,40,0.55); border:2px solid #ffd700; color:#ffd700; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Professional</button>
+                <button id="btn-whimsical" type="button" style="background:rgba(40,40,40,0.35); border:2px solid #fff; color:#fff; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Whimsical</button>
+            </div>
         </header>
+
+        <script>
+        // Dual toggle logic for Professional/Whimsical and overlay entry
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnProfessional = document.getElementById('btn-professional');
+            const btnWhimsical = document.getElementById('btn-whimsical');
+            const professionalContent = document.querySelector('.split-container');
+            const whimsyContent = document.getElementById('whimsy-desktop');
+            const overlay = document.getElementById('music-unlock');
+            const choicePro = document.getElementById('choice-professional');
+            const choiceWhim = document.getElementById('choice-whimsical');
+            function setToggleState(professionalActive) {
+                const audioControls = document.getElementById('audio-controls');
+                if (professionalActive) {
+                    btnProfessional.style.background = 'rgba(40,40,40,0.55)';
+                    btnProfessional.style.borderColor = '#ffd700';
+                    btnProfessional.style.color = '#ffd700';
+                    btnWhimsical.style.background = 'rgba(40,40,40,0.35)';
+                    btnWhimsical.style.borderColor = '#fff';
+                    btnWhimsical.style.color = '#fff';
+                    if (professionalContent) professionalContent.style.display = '';
+                    if (whimsyContent) whimsyContent.style.display = 'none';
+                    if (audioControls) audioControls.style.display = '';
+                    // Only start audio if overlay is hidden (site entered)
+                    if (overlay && overlay.style.display === 'none' && typeof unlockAudio === 'function') {
+                        unlockAudio();
+                    }
+                    // Reset lastSide and trigger setTrack for current mouse position
+                    if (typeof lastSide !== 'undefined') lastSide = null;
+                    if (typeof sideFromX === 'function' && window.innerWidth) {
+                        document.body.dispatchEvent(new MouseEvent('mousemove', {
+                            clientX: window.event && window.event.clientX ? window.event.clientX : (window.innerWidth / 2)
+                        }));
+                    }
+                } else {
+                    // Stop all music immediately when switching to whimsical
+                    if (typeof cleanTrack !== 'undefined') cleanTrack.pause();
+                    if (typeof bit8Track !== 'undefined') bit8Track.pause();
+                    if (typeof buttonsTrack !== 'undefined') buttonsTrack.pause();
+                    if (typeof otherTrack !== 'undefined') otherTrack.pause();
+                    btnProfessional.style.background = 'rgba(40,40,40,0.35)';
+                    btnProfessional.style.borderColor = '#fff';
+                    btnProfessional.style.color = '#fff';
+                    btnWhimsical.style.background = 'rgba(40,40,40,0.55)';
+                    btnWhimsical.style.borderColor = '#ffd700';
+                    btnWhimsical.style.color = '#ffd700';
+                    if (professionalContent) {
+                        professionalContent.classList.add('glitch');
+                        setTimeout(() => {
+                            professionalContent.style.display = 'none';
+                            professionalContent.classList.remove('glitch');
+                            if (whimsyContent) {
+                                whimsyContent.style.display = 'flex';
+                                whimsyContent.classList.add('glitch');
+                                setTimeout(() => whimsyContent.classList.remove('glitch'), 700);
+                            }
+                        }, 700);
+                    } else if (whimsyContent) {
+                        whimsyContent.style.display = 'flex';
+                    }
+                    if (audioControls) audioControls.style.display = 'none';
+                }
+            }
+            // Overlay entry buttons
+            if (choicePro) choicePro.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (overlay) overlay.style.display = 'none';
+                setToggleState(true);
+                if (typeof unlockAudio === 'function') unlockAudio();
+            });
+            if (choiceWhim) choiceWhim.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (overlay) overlay.style.display = 'none';
+                setToggleState(false);
+            });
+            // Top toggles
+            btnProfessional.addEventListener('click', function(e) {
+                e.stopPropagation();
+                setToggleState(true);
+                if (overlay && overlay.style.display !== 'none') {
+                    overlay.style.display = 'none';
+                    if (typeof unlockAudio === 'function') unlockAudio();
+                }
+            });
+            btnWhimsical.addEventListener('click', function(e) {
+                e.stopPropagation();
+                setToggleState(false);
+                if (overlay && overlay.style.display !== 'none') overlay.style.display = 'none';
+            });
+            setToggleState(true);
+        });
+        </script>
 
 
 
 
     <div class="split-container" role="navigation" aria-label="Main Choices">
-      <a href="https://devilliermedia.com" class="choice professional" onmouseenter="setTrack('prof')" onmouseleave="setTrack('none')" aria-label="Devillier Media: Media Services, Photography, Writing, and Consultations">
-          <div class="vignette" style="background-image: url('professionalindex.jpg');" role="img" aria-label="Professional media and photography"></div>
+        <!-- Whimsical Retro Desktop Section -->
+        <div id="whimsy-desktop" class="whimsy-desktop">
+            <div class="crt-note">
+                <h2>INTERACTIVE EXPERIENCE COMING SOON</h2>
+                <div style="margin:18px 0 10px 0; font-size:1.08em;">contact@tessdevillier.com</div>
+                <div style="margin-bottom:18px; font-size:1.08em;">Join the creative community:</div>
+                <a href="https://discord.gg/dC34nguEEC" target="_blank">Discord Community</a>
+            </div>
+        </div>
+    <div class="choice professional">
+          <a href="https://devilliermedia.com" aria-label="Devillier Media: Media Services, Photography, Writing, and Consultations" style="display:block;">
+              <div class="vignette" style="background-image: url('professionalindex.jpg');" role="img" aria-label="Professional media and photography"></div>
+          </a>
           <div class="label">Devillier Media<br><span style="font-size:1.05rem; font-weight:600;">Photography & Creative Projects</span></div>
-      </a>
+      </div>
 
-      <a href="https://thatssoobuttons.com" class="choice buttons" onmouseenter="setTrack('buttons')" onmouseleave="setTrack('none')" target="_blank" rel="noopener noreferrer" aria-label="That's Soo Buttons: Twitch Streamer, Cozy/Spooky Games">
-          <div class="vignette" style="background-image: url('dm_assets/couch.jpg');" role="img" aria-label="ThatsSooButtons"></div>
+    <div class="choice buttons">
+          <a href="https://thatssoobuttons.com" target="_blank" rel="noopener noreferrer" aria-label="That's Soo Buttons: Twitch Streamer, Cozy/Spooky Games" style="display:block;">
+              <div class="vignette" style="background-image: url('dm_assets/couch.jpg');" role="img" aria-label="ThatsSooButtons"></div>
+          </a>
           <div class="label">ThatsSooButtons<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">Lyrics. Gaming. Fiction.</span></div>
-      </a>
+      </div>
 
-      <a href="https://ontheflynetwork.com" class="choice otf" onmouseenter="setTrack('otf')" onmouseleave="setTrack('none')" target="_blank" rel="noopener noreferrer" aria-label="On The Fly Network: Entertainment and Non Profit Goals">
-          <div class="vignette" style="background-image: url('simulationindex.jpg');" role="img" aria-label="On The Fly Network, creative community"></div>
+    <div class="choice otf">
+          <a href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer" aria-label="On The Fly Network: Entertainment and Non Profit Goals" style="display:block;">
+              <div class="vignette" style="background-image: url('simulationindex.jpg');" role="img" aria-label="On The Fly Network, creative community"></div>
+          </a>
           <div class="label">On The Fly Network<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">Creative Community</span></div>
-      </a>
+      </div>
 
     <div class="choice other" style="background:#0d1a14;display:flex;flex-direction:column;align-items:center;justify-content:center;">
         <div class="vignette" style="background-image: url('helixotopeexample.jpg'); background-size: cover; background-position: center;"></div>
@@ -169,11 +427,11 @@
             SHOP/SUPPORT
         </div>
         <div style="margin-top:12px; color:#ffd700; font-size:1.08em; text-align:center; font-weight:700; display:flex; flex-direction:column; gap:8px;">
-              <a href="https://ko-fi.com/thatssoobuttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Ko-fi</a>
-              <a href="https://patreon.com/c/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Patreon</a>
-              <a href="https://buymeacoffee.com/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Buy Me a Coffee</a>
-              <a href="https://cash.app/$888buttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Cash App</a>
-              <a href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" style="color:#ffd700; text-decoration:underline;">Rover</a>
+            <a href="https://ko-fi.com/thatssoobuttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Ko-fi</a>
+            <a href="https://patreon.com/c/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Patreon</a>
+            <a href="https://buymeacoffee.com/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Buy Me a Coffee</a>
+            <a href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" style="color:#ffd700; text-decoration:underline;">House/Pet Sitting</a>
+            <a href="https://cash.app/$888buttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Cash App</a>
         </div>
     </div>
   </div>
@@ -457,6 +715,11 @@
                     clearInterval(track.fadeInterval);
                     if (track === cleanTrack) volumeSlider.value = target;
                 } else {
+                    // Stop all music immediately when switching to whimsical
+                    if (typeof cleanTrack !== 'undefined') cleanTrack.pause();
+                    if (typeof bit8Track !== 'undefined') bit8Track.pause();
+                    if (typeof buttonsTrack !== 'undefined') buttonsTrack.pause();
+                    if (typeof otherTrack !== 'undefined') otherTrack.pause();
                     track.volume += (track.volume < target ? step : -step);
                     if (track === cleanTrack) volumeSlider.value = track.volume;
                 }
@@ -487,15 +750,19 @@
             if (isMobile()) {
                 // Only play the default track on mobile
                 await cleanTrack.play();
-                fadeTrack(cleanTrack, 0.4);
+                cleanTrack.volume = 0.4;
             } else {
                 await Promise.all([cleanTrack.play(), bit8Track.play(), buttonsTrack.play(), otherTrack.play()]);
                 // Force Sync
                 bit8Track.currentTime = cleanTrack.currentTime;
                 buttonsTrack.currentTime = cleanTrack.currentTime;
                 otherTrack.currentTime = cleanTrack.currentTime;
-                // Fade in the default Clean track
-                fadeTrack(cleanTrack, 0.4);
+                cleanTrack.volume = 0.4;
+                // On unlock, set track based on current mouse position
+                if (typeof sideFromX === 'function') {
+                    let x = (window.event && window.event.clientX) ? window.event.clientX : (window.innerWidth / 2);
+                    setTrack(sideFromX(x));
+                }
             }
             rotateVibe();
         } catch (err) {
@@ -506,36 +773,33 @@
     function setTrack(side) {
         if (!audioStarted) return;
         if (isMobile()) return; // On mobile, do not switch tracks
-        // Hard Sync on every hover to prevent drift
-        bit8Track.currentTime = cleanTrack.currentTime;
-        buttonsTrack.currentTime = cleanTrack.currentTime;
-        otherTrack.currentTime = cleanTrack.currentTime;
+        // Sync all tracks to the same currentTime as cleanTrack
+        let syncTime = cleanTrack.currentTime;
+        bit8Track.currentTime = syncTime;
+        buttonsTrack.currentTime = syncTime;
+        otherTrack.currentTime = syncTime;
+        // Pause all tracks and set volume to 0
+        cleanTrack.pause();
+        bit8Track.pause();
+        buttonsTrack.pause();
+        otherTrack.pause();
+        cleanTrack.volume = 0;
+        bit8Track.volume = 0;
+        buttonsTrack.volume = 0;
+        otherTrack.volume = 0;
+        // Play and set volume for the selected track
         if (side === 'prof') {
-            fadeTrack(cleanTrack, 0.7);
-            fadeTrack(bit8Track, 0);
-            fadeTrack(buttonsTrack, 0);
-            fadeTrack(otherTrack, 0);
+            cleanTrack.volume = 0.7;
+            cleanTrack.play();
         } else if (side === 'buttons') {
-            fadeTrack(cleanTrack, 0);
-            fadeTrack(bit8Track, 0);
-            fadeTrack(buttonsTrack, 0.7);
-            fadeTrack(otherTrack, 0);
+            buttonsTrack.volume = 0.7;
+            buttonsTrack.play();
         } else if (side === 'otf') {
-            fadeTrack(cleanTrack, 0);
-            fadeTrack(bit8Track, 0.7);
-            fadeTrack(buttonsTrack, 0);
-            fadeTrack(otherTrack, 0);
+            bit8Track.volume = 0.7;
+            bit8Track.play();
         } else if (side === 'other') {
-            fadeTrack(cleanTrack, 0);
-            fadeTrack(bit8Track, 0);
-            fadeTrack(buttonsTrack, 0);
-            fadeTrack(otherTrack, 0.7);
-        } else {
-            // Return to neutral state
-            fadeTrack(cleanTrack, 0.4);
-            fadeTrack(bit8Track, 0);
-            fadeTrack(buttonsTrack, 0);
-            fadeTrack(otherTrack, 0);
+            otherTrack.volume = 0.7;
+            otherTrack.play();
         }
     }
 
@@ -566,11 +830,16 @@
         if (!isMobile()) {
             document.addEventListener('mousemove', (e) => {
                 if (!audioStarted) return;
-                try {
-                    if (e.target.closest && e.target.closest('.choice')) return;
-                } catch (err) {}
+                // Only run if professional section is visible
+                const professionalContent = document.querySelector('.split-container');
+                const whimsyContent = document.getElementById('whimsy-desktop');
+                if (!professionalContent || professionalContent.style.display === 'none') return;
+                if (whimsyContent && whimsyContent.style.display === 'flex') return;
+                // Only trigger if mouse is over a .choice column
+                if (!e.target.closest('.choice')) return;
                 const side = sideFromX(e.clientX);
-                if (side !== lastSide) { setTrack(side); lastSide = side; }
+                setTrack(side);
+                lastSide = side;
             });
             // When leaving the window, reset to neutral
             window.addEventListener('mouseout', (e) => {
