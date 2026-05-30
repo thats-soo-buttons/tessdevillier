@@ -22,10 +22,10 @@
             100% { filter: none; transform: none; }
         }
         .whimsy-desktop {
-            display: none;
+            display: flex;
             width: 100vw;
             min-height: 70vh;
-            background: #222 url('https://i.imgur.com/6QK6w1p.png') repeat;
+            background: #111 url('https://i.imgur.com/6QK6w1p.png') repeat;
             color: #00ff41;
             font-family: 'VT323', monospace;
             font-size: 1.5em;
@@ -34,7 +34,8 @@
             flex-direction: column;
             text-align: center;
             padding: 48px 0 32px 0;
-            z-index: 10;
+            z-index: 1002;
+            position: relative;
         }
         .whimsy-desktop .window {
             background: #111;
@@ -182,6 +183,39 @@
             border: 1px solid #00ff41 !important;
             box-shadow: 0 0 8px #00ff41cc !important;
         }
+        /* Whimsical sticky note style */
+        .sticky-note {
+            background: #fffbe6;
+            color: #222;
+            border: 2px solid #ffe066;
+            border-radius: 10px 18px 12px 8px;
+            box-shadow: 0 4px 24px #0002, 0 1.5px 0 #ffe066 inset, 0 8px 32px #0008;
+            padding: 32px 28px 24px 28px;
+            max-width: 340px;
+            margin: 0 auto;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.13em;
+            text-align: left;
+            position: relative;
+            z-index: 1003;
+        }
+        .sticky-note h2 {
+            color: #bfa100;
+            font-size: 1.18em;
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        .sticky-note a {
+            color: #bfa100;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+        .sticky-note .note-emoji {
+            font-size: 1.3em;
+            margin-right: 6px;
+        }
         .crt-window::before {
                     /* CRT effect for whimsical note only */
                     .crt-note {
@@ -253,9 +287,10 @@
         <p style="font-size:1.2em; margin: 18px 0 24px 0; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:700;">Explore What You're Supporting</p>
         <div style="max-width: 480px; margin: 0 auto; background: rgba(0,0,0,0.7); border-radius: 12px; padding: 22px 18px 18px 18px; color: #fff; font-size: 1.08em; font-family: 'Montserrat', sans-serif; text-align: left;">
             <p style="margin-bottom: 1.2em;">I'm just someone who wants to create what comes to me.</p>
-            <p style="margin-bottom: 1.2em;">I learned late in life I'm AuDHD. My whole life has been fitting in, finding the right words, masking to get by. I'm tired.</p>
-            <p style="margin-bottom: 1.2em;">I don't want a 9-to-5 that doesn't work for how my brain works. I just want to make things — stories, worlds, whatever comes out — without burning out trying to survive.</p>
-            <p style="margin-bottom: 1.2em;">That's it. That's the whole thing.</p>
+            <p style="margin-bottom: 1.2em;">I learned late in life that I'm AuDHD. My whole life has been about fitting in, finding the right words, and masking to get by. I'm tired of pretending.</p>
+            <p style="margin-bottom: 1.2em;">I don’t want a 9-to-5 that doesn’t fit how my brain works. I want to make things—stories, worlds, music, whatever comes out—without burning out just to survive.</p>
+            <p style="margin-bottom: 1.2em;">And I want to create a place that offers living wages to others to do the same—to make, to dream, to build something meaningful together.</p>
+            <p style="margin-bottom: 1.2em;">That’s it. That’s the whole thing. I’m here to share what I make, connect with others, and maybe build something better along the way.</p>
             <p style="margin-bottom: 1.2em; color:#00ff41; font-weight:600;">If you’re curious, poke around, support, or just say hi. I’m glad you’re here.</p>
             <div style="margin-top: 1.5em;">
                 <strong>Support Links:</strong><br>
@@ -278,9 +313,27 @@
     </div>
 <!-- About Me Modal -->
 <div id="aboutme-modal" style="display:none; position:fixed; z-index:10001; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); align-items:center; justify-content:center;">
-    <div style="background:#181818; color:#fff; max-width:520px; width:92vw; margin:auto; border-radius:14px; box-shadow:0 8px 32px #000a; padding:34px 28px 28px 28px; position:relative;">
+    <div style="background:#181818; color:#fff; max-width:520px; width:92vw; margin:auto; border-radius:14px; box-shadow:0 8px 32px #000a; padding:34px 28px 28px 28px; position:relative; max-height:80vh; overflow-y:auto;">
         <button id="aboutme-close" aria-label="Close About Me" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.7em;color:#2e8bff;cursor:pointer;">&times;</button>
-        <!-- About Me modal content removed as requested. -->
+        <h2 style="margin-top:0; color:#ffd700; font-size:1.4em;">About Me</h2>
+        <div style="font-size:1.08em; line-height:1.6;">
+            Hey there! I’m Tess, but you can call me Buttons. 🖤<br><br>
+            I’m a Louisiana native, indie creative, and professional house/pet sitter. I write dark fiction, make music, and capture stories through photography.<br><br>
+            <strong>What I Do:</strong>
+            <ul style="text-align:left; margin: 10px 0 10px 24px;">
+                <li>Speculative & dark fiction (adults only!)</li>
+                <li>Original music & lyrics</li>
+                <li>Photography sessions & event shoots</li>
+                <li>20+ years house/pet-sitting (available for travel!)</li>
+            </ul>
+            <strong>Let’s Connect:</strong><br>
+            <ul style="text-align:left; margin: 10px 0 10px 24px;">
+                <li>Watch live: <strong>Thats_soo_buttons</strong> on Twitch (Mon/Wed/Thu, 7–10 PM CT)</li>
+                <li>Join the community on Discord</li>
+                <li>Support: Ko-fi, Patreon, or Twitch Prime</li>
+            </ul>
+            Thanks for supporting indie art and weird ideas!
+        </div>
     </div>
 </div>
 
@@ -296,8 +349,51 @@
         </header>
 
         <script>
+                // FAQ modal popup logic
+                document.addEventListener('DOMContentLoaded', function() {
+                    const faqLink = document.getElementById('faq-link');
+                    const faqModal = document.getElementById('faq-modal');
+                    const faqClose = document.getElementById('faq-close');
+                    if (faqLink && faqModal) {
+                        faqLink.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            faqModal.style.display = 'flex';
+                            document.body.style.overflow = 'hidden';
+                        });
+                    }
+                    if (faqClose && faqModal) {
+                        faqClose.addEventListener('click', function() {
+                            faqModal.style.display = 'none';
+                            document.body.style.overflow = '';
+                        });
+                    }
+                    // Close modal when clicking outside the popup window
+                    if (faqModal) {
+                        faqModal.addEventListener('click', function(e) {
+                            if (e.target === faqModal) {
+                                faqModal.style.display = 'none';
+                                document.body.style.overflow = '';
+                            }
+                        });
+                    }
+                });
         // Dual toggle logic for Professional/Whimsical and overlay entry
         document.addEventListener('DOMContentLoaded', function() {
+                        // Show About Me modal when 'Learn more about me' is clicked
+                        const aboutMeLink = document.getElementById('aboutme-link');
+                        const aboutMeModal = document.getElementById('aboutme-modal');
+                        const aboutMeClose = document.getElementById('aboutme-close');
+                        if (aboutMeLink && aboutMeModal) {
+                            aboutMeLink.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                aboutMeModal.style.display = 'flex';
+                            });
+                        }
+                        if (aboutMeClose && aboutMeModal) {
+                            aboutMeClose.addEventListener('click', function() {
+                                aboutMeModal.style.display = 'none';
+                            });
+                        }
             const btnProfessional = document.getElementById('btn-professional');
             const btnWhimsical = document.getElementById('btn-whimsical');
             const professionalContent = document.querySelector('.split-container');
@@ -305,6 +401,8 @@
             const overlay = document.getElementById('music-unlock');
             const choicePro = document.getElementById('choice-professional');
             const choiceWhim = document.getElementById('choice-whimsical');
+            // Overlay will NOT auto-hide; user must pick a side
+
             function setToggleState(professionalActive) {
                 const audioControls = document.getElementById('audio-controls');
                 if (professionalActive) {
@@ -348,7 +446,10 @@
                             if (whimsyContent) {
                                 whimsyContent.style.display = 'flex';
                                 whimsyContent.classList.add('glitch');
-                                setTimeout(() => whimsyContent.classList.remove('glitch'), 700);
+                                setTimeout(() => {
+                                    whimsyContent.classList.remove('glitch');
+                                    whimsyContent.style.display = 'flex'; // Ensure it stays visible after glitch
+                                }, 700);
                             }
                         }, 700);
                     } else if (whimsyContent) {
@@ -363,11 +464,13 @@
                 if (overlay) overlay.style.display = 'none';
                 setToggleState(true);
                 if (typeof unlockAudio === 'function') unlockAudio();
+                clearTimeout(overlayTimeout);
             });
             if (choiceWhim) choiceWhim.addEventListener('click', function(e) {
                 e.stopPropagation();
                 if (overlay) overlay.style.display = 'none';
                 setToggleState(false);
+                clearTimeout(overlayTimeout);
             });
             // Top toggles
             btnProfessional.addEventListener('click', function(e) {
@@ -377,13 +480,15 @@
                     overlay.style.display = 'none';
                     if (typeof unlockAudio === 'function') unlockAudio();
                 }
+                clearTimeout(overlayTimeout);
             });
             btnWhimsical.addEventListener('click', function(e) {
                 e.stopPropagation();
                 setToggleState(false);
                 if (overlay && overlay.style.display !== 'none') overlay.style.display = 'none';
+                clearTimeout(overlayTimeout);
             });
-            setToggleState(true);
+            // Do not auto-switch to professional on load
         });
         </script>
 
@@ -393,11 +498,11 @@
     <div class="split-container" role="navigation" aria-label="Main Choices">
         <!-- Whimsical Retro Desktop Section -->
         <div id="whimsy-desktop" class="whimsy-desktop">
-            <div class="crt-note">
-                <h2>INTERACTIVE EXPERIENCE COMING SOON</h2>
-                <div style="margin:18px 0 10px 0; font-size:1.08em;">contact@tessdevillier.com</div>
-                <div style="margin-bottom:18px; font-size:1.08em;">Join the creative community:</div>
-                <a href="https://discord.gg/dC34nguEEC" target="_blank">Discord Community</a>
+            <div class="sticky-note">
+                <h2><span class="note-emoji">📝</span>Interactive Experience Coming Soon</h2>
+                <div style="margin-bottom:10px;">Want to help shape it? Join the creative community!</div>
+                <div style="margin-bottom:10px; font-size:0.98em;">Contact: <a href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a></div>
+                <a href="https://discord.gg/dC34nguEEC" target="_blank">Join the Discord</a>
             </div>
         </div>
     <div class="choice professional">
@@ -460,70 +565,8 @@
         <a href="https://tigidb.com" style="color: #ffd700; text-decoration: none; font-weight: 700;" aria-label="TIGIDB" target="_blank" rel="noopener">TIGIDB</a>
     </div>
     <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.9rem; margin-top: 8px;">
-        <a href="#" id="faq-link" style="color: #fff; text-decoration: none; cursor:pointer;" aria-label="FAQ and Fine Print">FAQ/Fine Print</a>
-        <!-- FAQ Modal -->
-        <div id="faq-modal" style="display:none; position:fixed; z-index:10001; left:0; top:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); align-items:center; justify-content:center;">
-            <div style="background:#181818; color:#fff; max-width:480px; width:90vw; margin:auto; border-radius:14px; box-shadow:0 8px 32px #000a; padding:32px 24px 24px 24px; position:relative;">
-                <button id="faq-close" aria-label="Close FAQ" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.7em;color:#ffd700;cursor:pointer;">&times;</button>
-                <h2 style="margin-top:0; color:#ffd700; font-size:1.5em;">FAQ & Fine Print</h2>
-                <div style="font-size:1.08em; line-height:1.6;">
-                                    <strong>What is Devillier Media?</strong><br>
-                                    Devillier Media is my professional creative studio for photography, writing, and media projects. If you want portraits, creative content, or worldbuilding, this is the place.<br><br>
-
-                                    <strong>What is ThatsSooButtons?</strong><br>
-                                    ThatsSooButtons is my online persona for streaming, gaming, and sharing original lyrics and fiction. It’s a cozy, creative space for community and fun.<br><br>
-
-                                    <strong>What is OTF Network?</strong><br>
-                                    On The Fly Network is a creative community hub for collaborative projects and non-profit dreams. It’s about building together and supporting each other.<br>
-                                    You can join the community Discord here: <a href="https://discord.gg/dC34nguEEC" target="_blank" style="color:#ffd700;text-decoration:underline;">discord.gg/dC34nguEEC</a><br><br>
-
-                                    <strong>What is the Shop/Support section?</strong><br>
-                                    Shop/Support is where you can support my work directly—through Ko-fi, Patreon, Buy Me a Coffee, or Cash App. Every bit helps me keep creating and sharing.<br><br>
-
-                                    <strong>How do I book or contact you?</strong><br>
-                                    Use the Book/Contact link in the footer to reach out for commissions, collaborations, or just to say hi!<br><br>
-                                <strong>Do you offer subscription support? How does it work, what do we get from it?</strong><br>
-                                Ko-fi has a monthly support option, and I also have a Patreon. Currently, I’m in survival mode just trying to get the bills paid, but once that stress is off, I plan to give back to supporters with early access to anything I publish, plus private areas and roles in the community Discord.<br><br>
-                            <strong>Why does it matter? The world is overpopulated with stories and things.</strong><br>
-                            Every voice is unique, and every story adds something new to the world—even if it’s small. Somewhere out there are people who have felt like they were in my spot or have similar thoughts and ideas they were afraid to put out there for whatever reason. My work might be the comfort, inspiration, or spark someone needs at the right moment—or the nudge to share their own story. Supporting creativity keeps the world vibrant and helps us all feel a little less alone.<br><br>
-                        <strong>It's every creative's dream to get paid to exist, so they can create, so why should I donate to you?</strong><br>
-                        Supporting me means you’re helping someone who genuinely wants to make things that matter—stories, worlds, art, and experiences that wouldn’t exist otherwise. Your support lets me focus on creating instead of just surviving. If you like what I do or want to see more, your donation makes a real difference.<br><br>
-                    <strong>What services do you offer?</strong><br>
-                    Photography, creative writing, worldbuilding, lyric writing, digital media, and more. See the main sections above for details.<br><br>
-                    <strong>How do I book or contact you?</strong><br>
-                    Use the Book/Contact link in the footer or the contact page.<br><br>
-                    <strong>How can I support your work?</strong><br>
-                    Ko-fi, Patreon, Buy Me a Coffee, and Cash App links are available in the SHOP/SUPPORT section.<br><br>
-                    <strong>Refunds & Policies?</strong><br>
-                    All sales are final unless otherwise stated. Please contact for special circumstances.<br><br>
-                    <strong>Custom requests?</strong><br>
-                    Absolutely! Reach out and let's talk about your project.<br>
-                </div>
-            </div>
-        </div>
-        <script>
-        // FAQ Modal logic
-        document.addEventListener('DOMContentLoaded', function() {
-            var faqLink = document.getElementById('faq-link');
-            var faqModal = document.getElementById('faq-modal');
-            var faqClose = document.getElementById('faq-close');
-            if (faqLink && faqModal && faqClose) {
-                faqLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    faqModal.style.display = 'flex';
-                });
-                faqClose.addEventListener('click', function() {
-                    faqModal.style.display = 'none';
-                });
-                faqModal.addEventListener('click', function(e) {
-                    if (e.target === faqModal) faqModal.style.display = 'none';
-                });
-                document.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') faqModal.style.display = 'none';
-                });
-            }
-        });
-        </script>
+        <!-- FAQ/Fine Print link removed as requested -->
+    </div>
         <span aria-hidden="true">•</span>
         <a href="#" id="aboutme-footer-link" style="color: #2e8bff; text-decoration: underline; cursor:pointer; font-weight:700;" aria-label="About">About</a>
         <script>
@@ -535,11 +578,20 @@
             var aboutMeClose = document.getElementById('aboutme-close');
             function showAboutMe(e) {
                 if (e) e.preventDefault();
+                // Always show main content so modal is visible
+                var splitContainer = document.querySelector('.split-container');
+                if (splitContainer) {
+                    splitContainer.style.display = '';
+                }
                 aboutMeModal.style.display = 'flex';
             }
             if (aboutMeLink && aboutMeModal && aboutMeClose) {
                 aboutMeLink.addEventListener('click', showAboutMe);
+            }
+            if (aboutMeFooterLink && aboutMeModal && aboutMeClose) {
                 aboutMeFooterLink.addEventListener('click', showAboutMe);
+            }
+            if (aboutMeModal && aboutMeClose) {
                 aboutMeClose.addEventListener('click', function() {
                     aboutMeModal.style.display = 'none';
                 });
@@ -553,7 +605,7 @@
         });
         </script>
         <span aria-hidden="true">•</span>
-        <a href="#" onclick="openContactModal();return false;" style="color: #fff; text-decoration: none;" aria-label="Book or Contact">Book/Contact</a>
+        <a href="#" id="bookContactLink" style="color: #fff; text-decoration: none;" aria-label="Book or Contact">Book/Contact</a>
     </div>
     <div style="margin-top:6px; font-size:1.1em; display:flex; justify-content:center; gap:18px; align-items:center;">
         <a href="https://www.instagram.com/tessdevillier" target="_blank" aria-label="Instagram" style="color:#fff;transition:color 0.2s;">
@@ -659,6 +711,7 @@
             // Keep slider in sync with fadeTrack
             function fadeTrack(track, target) {
                 if (track.fadeInterval) clearInterval(track.fadeInterval);
+                    // ...existing code...
                 track.fadeInterval = setInterval(function() {
                     var step = 0.05;
                     if (Math.abs(track.volume - target) < step) {
@@ -680,10 +733,12 @@
         }
 
         var playPauseBtn = document.getElementById('audio-playpause');
+                                // ...existing code...
         var volumeSlider = document.getElementById('audio-volume');
         var isPaused = false;
 
         playPauseBtn.addEventListener('click', function() {
+                        // ...existing code...
             if (isPaused) {
                 cleanTrack.play();
                 bit8Track.play();
@@ -891,27 +946,20 @@
     <div style="background:#fffbe6;padding:32px 24px 24px 24px;border-radius:16px;max-width:360px;width:90vw;box-shadow:0 4px 32px #0006;position:relative;">
         <button onclick="closeContactModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.6em;color:#222;cursor:pointer;">&times;</button>
         <h2 style="color:#222;font-family:'Montserrat',sans-serif;margin-bottom:18px;">Contact</h2>
-        <form action="https://formsubmit.co/contact@tessdevillier.com" method="POST" style="display:flex;flex-direction:column;gap:12px;">
-            <input type="hidden" name="_subject" value="New Contact Request - TessDevillier.com">
-            <input type="hidden" name="_captcha" value="false">
-            <label for="contact-name" style="font-weight:bold;color:#222;">Name *</label>
-            <input id="contact-name" name="name" type="text" required style="padding:8px;border-radius:4px;border:1px solid #ccc;">
-            <label for="contact-email" style="font-weight:bold;color:#222;">Email *</label>
-            <input id="contact-email" name="email" type="email" required style="padding:8px;border-radius:4px;border:1px solid #ccc;">
-            <label for="contact-message" style="font-weight:bold;color:#222;">Message *</label>
-            <textarea id="contact-message" name="message" required style="padding:8px;border-radius:4px;border:1px solid #ccc;min-height:80px;"></textarea>
-            <button type="submit" style="background:#ffd700;color:#222;padding:10px 0;border:none;border-radius:6px;font-weight:bold;font-size:1.1em;cursor:pointer;margin-top:8px;">Send</button>
-        </form>
+        <p style="font-size:1.08em; color:#222; margin-bottom:18px;">To contact me, just click the button below to send an email:</p>
+        <a href="mailto:contact@tessdevillier.com" style="display:inline-block;background:#ffd700;color:#222;padding:12px 24px;border-radius:8px;font-weight:bold;font-size:1.1em;text-decoration:none;">Email contact@tessdevillier.com</a>
     </div>
 </div>
 <script>
     // Modal logic
     const contactBtn = document.getElementById('contactBtn');
     const contactModal = document.getElementById('contactModal');
+    const bookContactLink = document.getElementById('bookContactLink');
     function openContactModal() { contactModal.style.display = 'flex'; }
     function closeContactModal() { contactModal.style.display = 'none'; }
-    contactBtn.addEventListener('click', openContactModal);
-    contactModal.addEventListener('click', function(e) { if (e.target === contactModal) closeContactModal(); });
+    if (contactBtn) contactBtn.addEventListener('click', openContactModal);
+    if (bookContactLink) bookContactLink.addEventListener('click', function(e) { e.preventDefault(); openContactModal(); });
+    if (contactModal) contactModal.addEventListener('click', function(e) { if (e.target === contactModal) closeContactModal(); });
 </script>
 </body>
 </html>
