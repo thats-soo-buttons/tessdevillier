@@ -275,9 +275,15 @@
             }
         }
         @media (max-width: 640px) {
-            .flyer { padding: 16px; }
+            .flyer {
+                padding: 16px;
+                overflow: visible;
+            }
             .flyer::before {
                 background: linear-gradient(180deg, rgba(244,178,168,0.78) 0 14%, transparent 14% 68%, rgba(95,155,214,0.94) 68% 100%);
+            }
+            .flyer::after {
+                inset: 10px;
             }
             .flyer-inner {
                 padding: 18px 12px 14px;
@@ -286,6 +292,7 @@
             .hero {
                 min-height: 0;
                 padding: 24px 12px 20px;
+                overflow: visible;
             }
             .hero-copy {
                 padding: 0;
@@ -303,7 +310,7 @@
             }
             h1 {
                 font-size: clamp(2.1rem, 14vw, 3.2rem);
-                line-height: 0.95;
+                line-height: 1.05;
                 margin-bottom: 8px;
             }
             .intro {
