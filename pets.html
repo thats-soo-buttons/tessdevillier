@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pet care services by Tess Devillier: drop-ins, full-day care, overnight house and pet sitting, and gentle intuitive dog training in Baton Rouge and beyond.">
+    <title>Pets & Pet Care | Tess Devillier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5efe4;
+            --paper: #fbf7ef;
+            --blue: #5f9bd6;
+            --blue-dark: #4f87bf;
+            --sand: #f7c46d;
+            --peach: #f4b2a8;
+            --ink: #5f5a55;
+            --soft: #8f8a84;
+        }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; }
+        body {
+            background:
+                radial-gradient(circle at top left, rgba(95,155,214,0.10), transparent 25%),
+                radial-gradient(circle at bottom right, rgba(247,196,109,0.16), transparent 30%),
+                #f2f2f4;
+            color: var(--ink);
+            font-family: 'Quicksand', Arial, sans-serif;
+            line-height: 1.55;
+        }
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+        .flyer {
+            position: relative;
+            overflow: hidden;
+            background: var(--paper);
+            border: 1px solid rgba(120,110,100,0.18);
+            box-shadow: 0 18px 40px rgba(92, 92, 110, 0.10);
+            border-radius: 10px;
+            padding: 38px 24px 26px;
+        }
+        .flyer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(244,178,168,0.82) 0 18%, transparent 18% 72%, rgba(95,155,214,0.96) 72% 100%);
+            opacity: 0.95;
+            pointer-events: none;
+        }
+        .flyer::after {
+            content: '';
+            position: absolute;
+            inset: 18px;
+            border: 1px solid rgba(140, 132, 125, 0.28);
+            pointer-events: none;
+        }
+        .flyer-inner {
+            position: relative;
+            z-index: 1;
+            border: 2px dashed rgba(245, 238, 230, 0.85);
+            border-radius: 8px;
+            min-height: 700px;
+            padding: 34px 22px 26px;
+        }
+        .badge {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d94f4a;
+            color: #fff;
+            font: 700 0.92rem/1 'Quicksand', sans-serif;
+            padding: 6px 12px;
+            border-radius: 999px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+        .hero {
+            position: relative;
+            min-height: 460px;
+            background: linear-gradient(180deg, rgba(251,247,239,0.98) 0 74%, rgba(251,247,239,0.98) 74% 100%);
+            border-radius: 8px;
+            border: 1px solid rgba(150, 140, 130, 0.26);
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 58px 18px 28px;
+            overflow: hidden;
+        }
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            color: var(--blue-dark);
+            margin-bottom: 10px;
+        }
+        h1, h2, h3 {
+            font-family: 'Patrick Hand', cursive;
+            margin-top: 0;
+        }
+        h1 {
+            font-size: clamp(3rem, 6vw, 5.1rem);
+            line-height: 0.9;
+            margin-bottom: 12px;
+            color: var(--blue);
+            letter-spacing: 1px;
+        }
+        .intro {
+            max-width: 760px;
+            font-size: 1.18rem;
+            color: var(--soft);
+            margin: 0 auto 22px;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+            justify-content: center;
+        }
+        .button {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background: var(--blue-dark);
+            padding: 12px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+        }
+        .button:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(79,135,191,0.24); }
+        .button.secondary {
+            background: #fff;
+            color: var(--blue-dark);
+            border-color: rgba(79,135,191,0.24);
+        }
+        .section {
+            margin-top: 28px;
+            background: rgba(255,255,255,0.78);
+            border: 1px solid rgba(130,120,112,0.16);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        .section h2 {
+            font-size: 2.4rem;
+            color: var(--blue-dark);
+            margin-bottom: 18px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .card {
+            background: #fffaf2;
+            border: 1px solid rgba(150,140,130,0.16);
+            border-radius: 16px;
+            padding: 24px;
+            min-height: 100%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+        }
+        .card h3 {
+            font-size: 1.8rem;
+            color: var(--blue-dark);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        .price {
+            display: inline-block;
+            margin-bottom: 14px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(244,178,168,0.28);
+            color: #bd5a4e;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .card p, .step {
+            font-family: 'Quicksand', sans-serif;
+            color: var(--ink);
+        }
+        .card ul {
+            margin: 14px 0 0 18px;
+            padding: 0;
+        }
+        .card li { margin-bottom: 8px; color: var(--soft); }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .step {
+            background: #fffdf8;
+            border: 1px solid rgba(150,140,130,0.14);
+            border-radius: 14px;
+            padding: 18px;
+        }
+        .step strong {
+            display: block;
+            color: #c27345;
+            margin-bottom: 8px;
+        }
+        .note {
+            margin-top: 18px;
+            color: var(--ink);
+            background: rgba(95,155,214,0.10);
+            border-left: 4px solid var(--blue-dark);
+            padding: 14px 16px;
+            border-radius: 10px;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+        .footer-links a {
+            color: var(--blue-dark);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(79,135,191,0.24);
+            font-weight: 700;
+        }
+        .doodle {
+            position: absolute;
+            color: rgba(247,196,109,0.88);
+            font-size: 2.2rem;
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+        }
+        .doodle.star-1 { top: 14px; left: 26%; transform: rotate(12deg); }
+        .doodle.star-2 { top: 92px; right: 30%; transform: rotate(-16deg); }
+        .doodle.star-3 { bottom: 34px; left: 20%; transform: rotate(10deg); }
+        .cat,
+        .dog {
+            position: absolute;
+            bottom: -12px;
+            font-size: 7rem;
+            line-height: 1;
+            filter: drop-shadow(0 8px 14px rgba(0,0,0,0.12));
+            user-select: none;
+            pointer-events: none;
+        }
+        .cat { left: -8px; transform: rotate(-4deg); }
+        .dog { right: -8px; transform: rotate(4deg); }
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+            padding: 0 20px 18px;
+        }
+        @media (max-width: 920px) {
+            .grid, .steps { grid-template-columns: 1fr; }
+            .hero, .section { padding: 22px; }
+            .flyer-inner { min-height: unset; }
+            .cat, .dog { font-size: 5rem; }
+            .hero { padding: 38px 14px 22px; }
+        }
+        @media (max-width: 640px) {
+            .flyer { padding: 16px; }
+            .flyer-inner { padding: 22px 14px 16px; }
+            h1 { font-size: clamp(2.5rem, 16vw, 4rem); }
+            .intro { font-size: 1.02rem; }
+            .cat, .dog { font-size: 4rem; }
+            .section { padding: 18px; }
+            .section h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page" role="main">
+        <section class="flyer" aria-label="Pet Care Flyer">
+            <div class="flyer-inner">
+                <div class="badge">Pet Sitting + Housesitting</div>
+                <div class="hero" aria-label="Pet Care Overview">
+                    <div class="doodle star-1">✳</div>
+                    <div class="doodle star-2">✳</div>
+                    <div class="doodle star-3">✳</div>
+                    <div class="cat">🐈</div>
+                    <div class="dog">🐕</div>
+                    <div class="hero-copy">
+                        <div class="eyebrow">Tess Devillier</div>
+                        <h1>TESS DOES<br>HOUSESITTING</h1>
+                        <p class="intro">
+                            Your pet’s favorite staycation. Cozy, dependable care while you’re away, at work,
+                            or just needing an extra hand.
+                        </p>
+                        <div class="actions">
+                            <a class="button" href="contact.html">Book or Ask a Question</a>
+                            <a class="button secondary" href="services.html">View Full Services</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-label="Pet care options">
+            <h2>What I Offer</h2>
+            <div class="grid">
+                <article class="card">
+                    <div class="price">$25 / 1 hr visit</div>
+                    <h3>Drop-In Visits</h3>
+                    <p>One-hour check-ins for feeding, potty breaks, playtime, and companionship.</p>
+                    <ul>
+                        <li>Fresh water and meals</li>
+                        <li>Potty break or short walk</li>
+                        <li>Photo and text updates</li>
+                        <li>Free opt-in intuitive dog training</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <div class="price">$15 / hr</div>
+                    <h3>One-Day Care</h3>
+                    <p>Extended daytime care for workdays or travel days. 4 hour minimum.</p>
+                    <ul>
+                        <li>Multiple walks and potty breaks</li>
+                        <li>Medication administration if needed</li>
+                        <li>Extended playtime and companionship</li>
+                        <li>Photo and text updates</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <div class="price">$50 / night</div>
+                    <h3>Overnight Stay</h3>
+                    <p>Peace of mind with overnight presence, security, and animal care. Add $20 per additional pet.</p>
+                    <ul>
+                        <li>Feeding, walks, and playtime</li>
+                        <li>Mail, package, and plant care</li>
+                        <li>Daily updates and photos</li>
+                        <li>Travel-ready outside Baton Rouge</li>
+                    </ul>
+                </article>
+                <article class="card full-width">
+                    <h3>Optional Add-On: Intuitive Dog Training</h3>
+                    <p>
+                        A calm, supportive approach for dogs who need extra guidance. This is included as a free opt-in with pet sitting and overnight care.
+                    </p>
+                    <div class="note">
+                        <strong>Meet & Greet required for new clients and pets.</strong> This helps me learn your pet’s routines, needs, and comfort level before the first booking.
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" aria-label="How it works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step"><strong>1. Reach out</strong>Tell me about your pet, dates, and what kind of care you need.</div>
+                <div class="step"><strong>2. Meet & Greet</strong>We set up a quick intro so your pet can get comfortable with me.</div>
+                <div class="step"><strong>3. Care Plan</strong>I confirm the schedule, routines, and any special instructions.</div>
+                <div class="step"><strong>4. Stay Updated</strong>You get photos and notes so you know how things are going.</div>
+            </div>
+        </section>
+
+        <section class="section" id="pets-faq" aria-label="Pet sitting FAQ">
+            <h2>Pets FAQ</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>Do you require a meet & greet?</h3>
+                    <p>Yes. I like to meet each pet and learn their routine before the first booking.</p>
+                </article>
+                <article class="card">
+                    <h3>What should I leave for my pet?</h3>
+                    <p>Food, leash, litter or waste supplies, medications, and anything that helps them stay comfortable.</p>
+                </article>
+                <article class="card">
+                    <h3>Will you send updates?</h3>
+                    <p>Yes. I can send photo and text updates so you know how your pet is doing.</p>
+                </article>
+                <article class="card">
+                    <h3>Do you give medications?</h3>
+                    <p>Yes, if your pet has a routine and clear instructions.</p>
+                </article>
+                <article class="card">
+                    <h3>Can you stay overnight?</h3>
+                    <p>Yes. Overnight house and pet sitting is my preferred sit, and I recommend it for pets that are more nervous.</p>
+                </article>
+                <article class="card">
+                    <h3>How do payments work?</h3>
+                    <p>Cash, Zelle, Cash App, or Rover. Rover pricing may be higher because of Rover’s fee.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" aria-label="Footer">
+            <h2>Footer Notes</h2>
+            <div class="grid" style="grid-template-columns: 1fr 1fr;">
+                <article class="card">
+                    <h3>Payment Options</h3>
+                    <p>Cash, Zelle, Cash App, or Rover.</p>
+                    <p>Rover has a fee they take out, so pricing may be higher.</p>
+                </article>
+                <article class="card">
+                    <h3>Have We Worked Together?</h3>
+                    <p>If I’ve taken care of your pets, please leave a review on Rover.</p>
+                    <p><a href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" rel="noopener noreferrer">Leave a Rover review</a></p>
+                </article>
+            </div>
+            <div class="footer-links" style="margin-top: 22px;">
+                <a href="index.html">Home</a>
+                <a href="contact.html">Contact</a>
+                <a href="#pets-faq">FAQ</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
