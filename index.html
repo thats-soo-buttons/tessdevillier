@@ -290,12 +290,9 @@
             <a href="https://ko-fi.com/thatssoobuttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Ko-fi: ko-fi.com/thatssoobuttons</a><br>
             <a href="https://patreon.com/c/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Patreon: patreon.com/c/tessdevillier</a><br>
             <a href="https://buymeacoffee.com/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Buy Me a Coffee: buymeacoffee.com/tessdevillier</a><br>
-            <span style="color:#ffd700;">Cash App: $888buttons</span>
+            <span style="color:#ffd700;">Cash App: $888buttons</span><br>
+            <a href="https://gofund.me/cd112571f" target="_blank" rel="noopener noreferrer" style="color:#ffd700; text-decoration:underline;">GoFUND ME</a>
         </div>
-        <div style="margin-top: 1.3em; width: min(96vw, 900px);">
-            <div class="gfm-embed" data-url="https://www.gofundme.com/f/help-me-build-otf-network-regain-stability/widget/large?attribution_id=sl%3Ad50becd2-861f-427b-99ef-f24c3de986b3"></div>
-        </div>
-        <script defer src="https://www.gofundme.com/static/js/embed.js"></script>
         <div style="margin-top: 2.2em; display: flex; flex-direction: column; align-items: center; gap: 18px;">
             <span style="font-size:1.18em; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:700; margin-bottom: 6px;">Make a Choice:</span>
             <div style="display: flex; gap: 22px;">
@@ -373,7 +370,14 @@
             const overlay = document.getElementById('music-unlock');
             const choicePro = document.getElementById('choice-professional');
             const choiceWhim = document.getElementById('choice-whimsical');
+            const choiceTiles = document.querySelectorAll('.split-container .choice');
             // Overlay will NOT auto-hide; user must pick a side
+
+            function setChoiceTilesVisible(visible) {
+                choiceTiles.forEach((tile) => {
+                    tile.style.display = visible ? '' : 'none';
+                });
+            }
 
             function setToggleState(professionalActive) {
                 const audioControls = document.getElementById('audio-controls');
@@ -385,6 +389,7 @@
                     btnWhimsical.style.borderColor = '#fff';
                     btnWhimsical.style.color = '#fff';
                     if (professionalContent) professionalContent.style.display = '';
+                    setChoiceTilesVisible(true);
                     if (whimsyContent) whimsyContent.style.display = 'none';
                     if (audioControls) audioControls.style.display = '';
                     // Only start audio if overlay is hidden (site entered)
@@ -413,8 +418,9 @@
                     if (professionalContent) {
                         professionalContent.classList.add('glitch');
                         setTimeout(() => {
-                            professionalContent.style.display = 'none';
                             professionalContent.classList.remove('glitch');
+                            professionalContent.style.display = '';
+                            setChoiceTilesVisible(false);
                             if (whimsyContent) {
                                 whimsyContent.style.display = 'flex';
                                 whimsyContent.classList.add('glitch');
