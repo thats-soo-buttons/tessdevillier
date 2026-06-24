@@ -1,0 +1,22 @@
+[
+  {
+    "id": "album-the-glade-crew",
+    "title": "The Glade Crew",
+    "description": "A mix of wonderful dogs and cats I've had the joy of watching. Every one of them a good soul.",
+    "location": "Baton Rouge, LA",
+    "tags": ["dogs", "cats", "house sitting"],
+    "photos": [],
+    "testimonial": "Add client testimonials here — even a short quote goes a long way!",
+    "date": "2026"
+  },
+  {
+    "id": "album-add-yours",
+    "title": "Add Your Album Here",
+    "description": "To add a pet sit album: edit pet-sits.json, add a new entry, and add photos to the dm_assets folder.",
+    "location": "",
+    "tags": [],
+    "photos": [],
+    "testimonial": "",
+    "date": ""
+  }
+]

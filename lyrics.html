@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyrics | Tess Devillier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #0a0a0a; color: #f5f5f5; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
+        .page-wrap { max-width: 800px; margin: 0 auto; padding: 48px 20px 80px; }
+        .back-link { color: #ffd700; text-decoration: none; font-size: .9em; letter-spacing: 1px; display: inline-block; margin-bottom: 32px; }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-family: 'Cinzel', serif; color: #ffd700; font-size: 2.4rem; letter-spacing: 4px; text-align: center; margin-bottom: 8px; }
+        .tagline { text-align: center; color: #888; margin-bottom: 48px; font-size: .95em; letter-spacing: 1px; }
+        .collab-note { background: #1a1200; border: 1px solid #ffd70044; border-radius: 12px; padding: 16px 20px; margin-bottom: 36px; color: #cfcfcf; font-size: .92em; line-height: 1.7; }
+        .collab-note strong { color: #ffd700; }
+        .lyric-card { background: #111; border: 1.5px solid #222; border-radius: 16px; margin-bottom: 20px; overflow: hidden; transition: border-color .2s; }
+        .lyric-card:hover { border-color: #ffd70066; }
+        .lyric-header { padding: 22px 26px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+        .lyric-header-left h2 { font-family: 'Cinzel', serif; color: #ffd700; font-size: 1.2rem; margin: 0 0 6px 0; }
+        .lyric-header-left .preview { color: #888; font-size: .9em; font-style: italic; }
+        .lyric-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .tag { background: #1a1a1a; border: 1px solid #333; color: #cfcfcf; font-size: .75em; padding: 3px 10px; border-radius: 20px; }
+        .tag.collab { border-color: #ffd70066; color: #ffd700; background: #1a1200; }
+        .expand-icon { color: #ffd700; font-size: 1.4em; flex-shrink: 0; transition: transform .3s; }
+        .lyric-body { display: none; padding: 0 26px 26px; border-top: 1px solid #1a1a1a; }
+        .lyric-body.open { display: block; }
+        .lyric-text { white-space: pre-wrap; color: #e0e0e0; line-height: 2; font-size: .97em; margin: 20px 0; font-family: 'Montserrat', sans-serif; }
+        .collab-box { background: #0d0d0d; border: 1px solid #ffd70033; border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
+        .collab-box p { color: #cfcfcf; font-size: .88em; margin: 0 0 8px 0; }
+        .collab-box strong { color: #ffd700; }
+        .collab-box a { color: #ffd700; }
+        .status-badge { display: inline-block; background: #ffd700; color: #111; font-size: .72em; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; }
+        .loading { text-align: center; color: #555; padding: 60px 0; }
+        @media (max-width: 600px) { h1 { font-size: 1.7rem; } .lyric-header { padding: 16px 18px; } }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <a href="index.html" class="back-link">← back</a>
+    <h1>LYRICS</h1>
+    <p class="tagline">Original songwriting · All demos seeking collaborators</p>
+    <div class="collab-note">
+        <strong>A note on the demos:</strong> The audio demos on this site were produced with AI tools (Suno) purely to demonstrate melody and concept. They are <strong>not final recordings</strong>. I'm actively seeking vocalists, producers, and musicians to collaborate on proper recorded versions. If anything catches your ear, reach out.
+    </div>
+    <div id="lyrics-container"><p class="loading">Loading lyrics...</p></div>
+</div>
+<script>
+async function loadLyrics() {
+    const container = document.getElementById('lyrics-container');
+    try {
+        const res = await fetch('data/lyrics.json');
+        const lyrics = await res.json();
+        container.innerHTML = lyrics.map((l, i) => `
+            <div class="lyric-card">
+                <div class="lyric-header" onclick="toggle(${i})" aria-expanded="false" id="header-${i}">
+                    <div class="lyric-header-left">
+                        <h2>${l.title}</h2>
+                        <div class="preview">${l.preview}</div>
+                        <div class="lyric-tags">
+                            ${l.tags.map(t => `<span class="tag ${t==='seeking collaborator'||t==='demo'?'collab':''}">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                    <span class="expand-icon" id="icon-${i}">▼</span>
+                </div>
+                <div class="lyric-body" id="body-${i}">
+                    <div class="lyric-text">${l.full.replace(/\n/g,'<br>')}</div>
+                    ${l.collab_note ? `<div class="collab-box">
+                        <p><strong>Seeking collaborator:</strong> ${l.collab_note}</p>
+                        <p>Status: <span class="status-badge">${l.status||'open'}</span></p>
+                        <p>Contact: <a href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a></p>
+                    </div>` : ''}
+                </div>
+            </div>`).join('');
+    } catch(e) { container.innerHTML = '<p style="color:#888;text-align:center;">Lyrics coming soon.</p>'; }
+}
+function toggle(i) {
+    const body = document.getElementById('body-'+i);
+    const icon = document.getElementById('icon-'+i);
+    const open = body.classList.toggle('open');
+    icon.style.transform = open ? 'rotate(180deg)' : '';
+}
+loadLyrics();
+</script>
+</body>
+</html>
