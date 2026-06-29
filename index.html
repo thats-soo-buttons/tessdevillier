@@ -89,15 +89,17 @@
                         justify-content: center !important;
                     }
                     .vignette {
-                        width: 90vw !important;
-                        max-width: 90vw !important;
-                        height: 180px !important;
-                        max-height: 180px !important;
+                        width: min(90vw, 320px) !important;
+                        max-width: min(90vw, 320px) !important;
+                        height: min(90vw, 320px) !important;
+                        max-height: min(90vw, 320px) !important;
+                        aspect-ratio: 1 / 1 !important;
                         border-radius: 12px !important;
                         margin-top: 18px !important;
                         margin-bottom: 8px !important;
-                        background-size: cover !important;
+                        background-size: contain !important;
                         background-position: center !important;
+                        background-repeat: no-repeat !important;
                     }
                     .label {
                         margin-top: 12px !important;
@@ -306,6 +308,54 @@
             pointer-events: none;
         }
 
+        .mode-tap-hint {
+            display: none;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            color: #fff7f0;
+            text-align: center;
+            pointer-events: auto;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.72);
+        }
+
+        .mode-mobile-picker-wrap {
+            display: none;
+            margin-top: 8px;
+            pointer-events: auto;
+            justify-content: center;
+        }
+
+        .mode-mobile-picker {
+            appearance: none;
+            -webkit-appearance: none;
+            border: 1px solid rgba(244, 230, 218, 0.55);
+            border-radius: 999px;
+            background: rgba(8, 10, 16, 0.45);
+            color: #fff7f0;
+            font-family: var(--font-body);
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            padding: 8px 36px 8px 14px;
+            min-width: 210px;
+            background-image:
+                linear-gradient(45deg, transparent 50%, #fff7f0 50%),
+                linear-gradient(135deg, #fff7f0 50%, transparent 50%);
+            background-position:
+                calc(100% - 18px) calc(50% + 1px),
+                calc(100% - 12px) calc(50% + 1px);
+            background-size: 6px 6px, 6px 6px;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+
+        @keyframes mobileTapNudge {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-1px); }
+        }
+
         #mode-toggle {
             position: fixed !important;
             right: 16px;
@@ -366,6 +416,7 @@
             border-radius: 12px;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             border: 1px solid rgba(255,255,255,0.1);
             z-index: 2;
             box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
@@ -753,6 +804,15 @@
                 <span class="separator" aria-hidden="true">•</span>
                 <button type="button" class="mode-tab" data-mode="support">SUPPORT</button>
             </h1>
+            <div class="mode-mobile-picker-wrap">
+                <select id="mode-mobile-picker" class="mode-mobile-picker" aria-label="Choose section">
+                    <option value="hire">HIRE</option>
+                    <option value="watch">WATCH</option>
+                    <option value="connect">CONNECT</option>
+                    <option value="support">SUPPORT</option>
+                </select>
+            </div>
+            <div class="mode-tap-hint" id="mode-tap-hint" aria-live="polite">Tap a section to open: HIRE • WATCH • CONNECT • SUPPORT</div>
             <div class="mode-blurb" id="mode-blurb" aria-live="polite">
                 <div class="mode-blurb-title" id="mode-blurb-title">Hire Tess</div>
                 <div class="mode-blurb-text" id="mode-blurb-text">Reliable, creative, and a little chaotic in the best way. Baton Rouge and remote.</div>
@@ -819,6 +879,7 @@
             const choicePro = document.getElementById('choice-professional');
             const choiceWhim = document.getElementById('choice-whimsical');
             const modeTabs = document.querySelectorAll('.mode-tab');
+            const modeMobilePicker = document.getElementById('mode-mobile-picker');
             const modeBlurbTitle = document.getElementById('mode-blurb-title');
             const modeBlurbText = document.getElementById('mode-blurb-text');
             const modeBlurbQuote = document.getElementById('mode-blurb-quote');
@@ -840,7 +901,6 @@
                             aria: 'House and pet sitting'
                         },
                         {
-                            image: 'dm_assets/PrimeTwitch.png',
                             image: 'professionalindex.jpg',
                             title: 'Photography',
                             subtitle: 'View packages',
@@ -999,9 +1059,12 @@
                 }
             };
 
+            let activeMode = 'hire';
+
             function applyMode(mode) {
                 const config = modeData[mode];
                 if (!config) return;
+                activeMode = mode;
 
                 if (modeBlurbTitle) modeBlurbTitle.textContent = config.title;
                 if (modeBlurbText) modeBlurbText.textContent = config.text;
@@ -1010,6 +1073,10 @@
                 modeTabs.forEach((tab) => {
                     tab.classList.toggle('active', tab.dataset.mode === mode);
                 });
+
+                if (modeMobilePicker && modeMobilePicker.value !== mode) {
+                    modeMobilePicker.value = mode;
+                }
 
                 config.panels.forEach((panel, index) => {
                     const panelIndex = index + 1;
@@ -1046,7 +1113,21 @@
                 });
             });
 
+            if (modeMobilePicker) {
+                modeMobilePicker.addEventListener('change', function () {
+                    applyMode(modeMobilePicker.value);
+                });
+            }
+
             applyMode('hire');
+
+            window.addEventListener('pageshow', function () {
+                applyMode(activeMode);
+            });
+
+            window.addEventListener('orientationchange', function () {
+                applyMode(activeMode);
+            });
 
             function setToggleState(professionalActive) {
                 const audioControls = document.getElementById('audio-controls');
@@ -1286,9 +1367,31 @@
                 text-align: center;
             }
 
+            .mode-mobile-picker-wrap {
+                display: flex;
+            }
+
             .mode-headline .mode-hint-inline {
-                font-size: 0.62em;
-                margin-right: 2px;
+                display: none;
+            }
+
+            .mode-tap-hint {
+                display: block;
+                animation: mobileTapNudge 1.6s ease-in-out infinite;
+            }
+
+            .mode-headline {
+                gap: 6px;
+                padding: 9px 10px;
+                border-radius: 14px;
+            }
+
+            .mode-headline .separator {
+                display: none;
+            }
+
+            .mode-headline .mode-tab {
+                display: none;
             }
         }
 
