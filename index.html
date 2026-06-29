@@ -1223,6 +1223,8 @@
 
             function enterProfessionalFromHash() {
                 if (window.location.hash !== '#professional') return;
+                const isMobileHome = window.matchMedia('(max-width: 900px)').matches || window.matchMedia('(pointer: coarse)').matches;
+                if (isMobileHome) return;
                 if (overlay) overlay.style.display = 'none';
                 setToggleState(true);
                 if (typeof unlockAudio === 'function') unlockAudio();
