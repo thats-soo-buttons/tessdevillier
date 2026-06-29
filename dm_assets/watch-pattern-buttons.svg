@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="Memphis style shirt buttons pattern">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#161616"/>
+      <stop offset="100%" stop-color="#070707"/>
+    </linearGradient>
+    <pattern id="memphis" width="220" height="220" patternUnits="userSpaceOnUse">
+      <rect width="220" height="220" fill="transparent"/>
+      <line x1="20" y1="20" x2="90" y2="60" stroke="#00d3ff" stroke-width="8"/>
+      <line x1="160" y1="12" x2="198" y2="78" stroke="#ff4fd8" stroke-width="7"/>
+      <circle cx="178" cy="152" r="12" fill="#ffe065"/>
+      <rect x="18" y="150" width="42" height="14" rx="7" fill="#70ff9b"/>
+      <path d="M94 138 q18 -28 36 0 q18 28 36 0" stroke="#ff7a45" stroke-width="6" fill="none"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect width="1200" height="1200" fill="url(#memphis)" opacity="0.85"/>
+
+  <g fill="#0f0f0f" stroke="#d9d9d9" stroke-width="5" opacity="0.98">
+    <circle cx="180" cy="170" r="52"/>
+    <circle cx="460" cy="250" r="52"/>
+    <circle cx="760" cy="180" r="52"/>
+    <circle cx="1040" cy="260" r="52"/>
+    <circle cx="280" cy="470" r="52"/>
+    <circle cx="580" cy="550" r="52"/>
+    <circle cx="880" cy="470" r="52"/>
+    <circle cx="160" cy="770" r="52"/>
+    <circle cx="470" cy="840" r="52"/>
+    <circle cx="760" cy="760" r="52"/>
+    <circle cx="1030" cy="860" r="52"/>
+    <circle cx="260" cy="1080" r="52"/>
+    <circle cx="610" cy="1040" r="52"/>
+    <circle cx="930" cy="1080" r="52"/>
+  </g>
+
+  <g fill="#8f8f8f">
+    <circle cx="165" cy="155" r="6"/><circle cx="195" cy="155" r="6"/><circle cx="165" cy="185" r="6"/><circle cx="195" cy="185" r="6"/>
+    <circle cx="445" cy="235" r="6"/><circle cx="475" cy="235" r="6"/><circle cx="445" cy="265" r="6"/><circle cx="475" cy="265" r="6"/>
+    <circle cx="745" cy="165" r="6"/><circle cx="775" cy="165" r="6"/><circle cx="745" cy="195" r="6"/><circle cx="775" cy="195" r="6"/>
+    <circle cx="1025" cy="245" r="6"/><circle cx="1055" cy="245" r="6"/><circle cx="1025" cy="275" r="6"/><circle cx="1055" cy="275" r="6"/>
+    <circle cx="265" cy="455" r="6"/><circle cx="295" cy="455" r="6"/><circle cx="265" cy="485" r="6"/><circle cx="295" cy="485" r="6"/>
+    <circle cx="565" cy="535" r="6"/><circle cx="595" cy="535" r="6"/><circle cx="565" cy="565" r="6"/><circle cx="595" cy="565" r="6"/>
+    <circle cx="865" cy="455" r="6"/><circle cx="895" cy="455" r="6"/><circle cx="865" cy="485" r="6"/><circle cx="895" cy="485" r="6"/>
+    <circle cx="145" cy="755" r="6"/><circle cx="175" cy="755" r="6"/><circle cx="145" cy="785" r="6"/><circle cx="175" cy="785" r="6"/>
+    <circle cx="455" cy="825" r="6"/><circle cx="485" cy="825" r="6"/><circle cx="455" cy="855" r="6"/><circle cx="485" cy="855" r="6"/>
+    <circle cx="745" cy="745" r="6"/><circle cx="775" cy="745" r="6"/><circle cx="745" cy="775" r="6"/><circle cx="775" cy="775" r="6"/>
+    <circle cx="1015" cy="845" r="6"/><circle cx="1045" cy="845" r="6"/><circle cx="1015" cy="875" r="6"/><circle cx="1045" cy="875" r="6"/>
+    <circle cx="245" cy="1065" r="6"/><circle cx="275" cy="1065" r="6"/><circle cx="245" cy="1095" r="6"/><circle cx="275" cy="1095" r="6"/>
+    <circle cx="595" cy="1025" r="6"/><circle cx="625" cy="1025" r="6"/><circle cx="595" cy="1055" r="6"/><circle cx="625" cy="1055" r="6"/>
+    <circle cx="915" cy="1065" r="6"/><circle cx="945" cy="1065" r="6"/><circle cx="915" cy="1095" r="6"/><circle cx="945" cy="1095" r="6"/>
+  </g>
+</svg>

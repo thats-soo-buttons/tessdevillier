@@ -94,8 +94,8 @@
       position: absolute;
       inset: 0;
       z-index: 140;
-      background: radial-gradient(circle at 20% 20%, rgba(47, 125, 255, 0.2), rgba(6, 9, 20, 0.95) 44%);
-      color: #b8ffe6;
+      background: #008080;
+      color: #111;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -103,16 +103,16 @@
     }
 
     .boot-overlay.haunt-1 {
-      background: radial-gradient(circle at 20% 20%, rgba(47, 125, 255, 0.18), rgba(10, 10, 25, 0.95) 44%);
+      background: #007a7a;
     }
 
     .boot-overlay.haunt-2 {
-      background: radial-gradient(circle at 20% 20%, rgba(66, 95, 255, 0.2), rgba(16, 10, 26, 0.96) 46%);
+      background: #007272;
     }
 
     .boot-overlay.haunt-3,
     .boot-overlay.haunt-4 {
-      background: radial-gradient(circle at 18% 22%, rgba(78, 118, 255, 0.22), rgba(23, 11, 28, 0.97) 48%);
+      background: #006a6a;
     }
 
     .boot-overlay.hidden {
@@ -121,22 +121,38 @@
 
     .boot-card {
       width: min(860px, 96vw);
-      border: 2px solid rgba(116, 184, 255, 0.6);
-      background: rgba(5, 8, 18, 0.95);
-      box-shadow: 0 0 30px rgba(71, 154, 255, 0.2);
-      padding: 16px;
+      border: 2px outset #dfdfdf;
+      background: #c0c0c0;
+      box-shadow: 2px 2px 0 #666;
+      padding: 8px;
+      font-family: Tahoma, "MS Sans Serif", sans-serif;
     }
 
     .boot-title {
-      margin: 0 0 10px;
-      color: #d3edff;
-      font-size: 18px;
-      letter-spacing: 0.06em;
+      margin: 0 0 8px;
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+      font-weight: 700;
+      background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+      padding: 3px 6px;
+      border: 1px solid #0a246a;
     }
 
     .boot-title.glitch {
       animation: bootFlicker 1.8s steps(2) infinite;
-      text-shadow: 1px 0 rgba(130, 197, 255, 0.35), -1px 0 rgba(227, 150, 255, 0.28);
+      text-shadow: none;
+    }
+
+    .boot-toolbar {
+      display: flex;
+      justify-content: flex-end;
+      margin: 0 0 8px;
+    }
+
+    .boot-toolbar .boot-btn {
+      padding: 1px 8px;
+      font-size: 11px;
     }
 
     @keyframes bootFlicker {
@@ -165,39 +181,62 @@
       margin: 0;
       height: 240px;
       overflow: auto;
-      border: 2px inset #2f3949;
-      background: #070c16;
-      color: #90ffda;
+      border: 2px inset #dfdfdf;
+      background: #000;
+      color: #c0c0c0;
       padding: 10px;
       font-size: 12px;
       line-height: 1.35;
       white-space: pre-wrap;
     }
 
+    .boot-log::after {
+      content: '▌';
+      display: inline-block;
+      margin-left: 1px;
+      color: #c0c0c0;
+      animation: bootCursor 1s steps(1) infinite;
+    }
+
+    @keyframes bootCursor {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
     .boot-progress {
       margin-top: 10px;
       height: 12px;
-      border: 2px inset #293447;
-      background: #03060d;
+      border: 2px inset #dfdfdf;
+      background: #fff;
     }
 
     .boot-progress-fill {
       height: 100%;
       width: 0;
-      background: linear-gradient(90deg, #4ef2ba, #74a4ff);
+      background: #000080;
       transition: width 0.2s linear;
     }
 
     .boot-status {
       margin: 8px 0 0;
-      color: #d3edff;
+      color: #111;
       font-size: 12px;
     }
 
+    .boot-handoff {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border: 2px inset #dfdfdf;
+      background: #fff;
+      color: #111;
+      font-size: 12px;
+      letter-spacing: 0.01em;
+    }
+
     .boot-poll {
-      border: 2px inset #2f3949;
-      background: #070c16;
-      color: #d3edff;
+      border: 2px inset #dfdfdf;
+      background: #c0c0c0;
+      color: #111;
       padding: 10px;
       font-size: 12px;
     }
@@ -215,7 +254,7 @@
     .boot-poll label {
       display: block;
       font-size: 11px;
-      color: #b7d5ef;
+      color: #111;
     }
 
     .boot-poll select,
@@ -223,8 +262,8 @@
     .boot-poll textarea {
       margin-top: 3px;
       width: 100%;
-      border: 2px inset #3d4a62;
-      background: #eef4ff;
+      border: 2px inset #dfdfdf;
+      background: #fff;
       color: #111;
       padding: 4px 6px;
       font: inherit;
@@ -238,22 +277,22 @@
     }
 
     .boot-choice-group {
-      border: 2px inset #3d4a62;
-      background: #0c1322;
+      border: 2px inset #dfdfdf;
+      background: #efefef;
       padding: 8px;
       margin: 0;
       min-height: 120px;
     }
 
     .boot-choice-group legend {
-      color: #d3edff;
+      color: #111;
       padding: 0 4px;
       font-size: 11px;
     }
 
     .boot-choice-option {
       display: block;
-      color: #c1d8ef;
+      color: #111;
       margin-bottom: 6px;
       font-size: 11px;
       cursor: pointer;
@@ -289,7 +328,7 @@
 
     .boot-note {
       font-size: 11px;
-      color: #8fb4d3;
+      color: #333;
       line-height: 1.3;
     }
 
@@ -328,34 +367,34 @@
       top: 10px;
       left: 12px;
       display: grid;
-      grid-template-columns: repeat(2, 90px);
-      gap: 12px 10px;
+      grid-template-columns: repeat(2, 116px);
+      gap: 14px 12px;
       z-index: 2;
     }
 
     .desktop-icon {
       cursor: pointer;
       text-align: center;
-      width: 82px;
+      width: 108px;
       user-select: none;
       color: #fff;
       background: transparent;
       appearance: none;
       -webkit-appearance: none;
       border: 1px solid transparent;
-      padding: 2px;
+      padding: 4px;
     }
 
     .desktop-icon .emoji {
-      font-size: 30px;
+      font-size: 40px;
       line-height: 1;
     }
 
     .icon-label {
-      margin-top: 3px;
-      font-size: 11px;
+      margin-top: 5px;
+      font-size: 13px;
       display: inline-block;
-      padding: 1px 4px;
+      padding: 2px 6px;
       color: #fff;
       text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
     }
@@ -702,6 +741,66 @@
       border: 2px inset #dfdfdf;
     }
 
+    .photo-album-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(72px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+      max-height: 260px;
+      overflow: auto;
+      border: 2px inset #dfdfdf;
+      padding: 8px;
+      background: #fff;
+    }
+
+    .photo-toolbar {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      align-items: center;
+    }
+
+    .photo-toolbar .menu-btn {
+      min-height: 22px;
+      font-size: 11px;
+      padding: 1px 6px;
+    }
+
+    .photo-toolbar .menu-btn.active {
+      border: 2px inset #dfdfdf;
+      background: #d7d7d7;
+    }
+
+    .photo-album-grid.small-icons {
+      grid-template-columns: repeat(4, minmax(60px, 1fr));
+    }
+
+    .photo-album-grid.small-icons img {
+      height: 64px;
+    }
+
+    .photo-album-grid.large-icons {
+      grid-template-columns: repeat(2, minmax(120px, 1fr));
+    }
+
+    .photo-album-grid.large-icons img {
+      height: 120px;
+    }
+
+    .photo-album-grid img {
+      width: 100%;
+      height: 84px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid #9b9b9b;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: auto;
+      cursor: default;
+      background: #ececec;
+    }
+
     @media (max-width: 900px) {
       .screen-bezel {
         min-height: 100vh;
@@ -712,7 +811,8 @@
       }
 
       .desktop-icons {
-        grid-template-columns: repeat(3, 88px);
+        grid-template-columns: repeat(3, 112px);
+        gap: 12px 10px;
       }
 
       .window {
@@ -742,6 +842,9 @@
           <div class="boot-overlay" id="bootOverlay" aria-live="polite">
             <div class="boot-card">
               <h1 class="boot-title" id="bootTitle">TESS OS // SYSTEM COMING ONLINE</h1>
+              <div class="boot-toolbar">
+                <button type="button" class="boot-btn" id="bootSkipBtn">Skip Boot</button>
+              </div>
 
               <section class="boot-section" id="bootBiosSection">
                 <pre class="boot-log" id="biosLog"></pre>
@@ -805,6 +908,8 @@
                   </form>
                 </div>
               </section>
+
+              <div class="boot-handoff" id="bootHandoff" hidden>Press any key to continue to the desktop.</div>
             </div>
           </div>
 
@@ -837,6 +942,14 @@
               <div class="emoji">☕</div>
               <div class="icon-label">Support</div>
             </button>
+            <button class="desktop-icon" data-open="photos" aria-label="Open Photos Album">
+              <div class="emoji">📷</div>
+              <div class="icon-label">Photos</div>
+            </button>
+            <button class="desktop-icon" data-open="tarot" aria-label="Open Buttons Tarot">
+              <div class="emoji">🃏</div>
+              <div class="icon-label">Tarot Deck</div>
+            </button>
           </div>
 
           <section class="window hidden win-border" id="win-notepad" style="top:28px;left:132px;width:336px;">
@@ -867,9 +980,9 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
                 <button type="button" class="menu-btn" id="browserSearch">Search</button>
               </div>
               <div class="browser-frame">
-                <iframe id="browserFrame" title="Browser view" src="https://duckduckgo.com"></iframe>
+                <iframe id="browserFrame" title="Browser view" src="https://duckduckgo.com" sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer"></iframe>
               </div>
-              <div class="browser-tip">Some websites block embedding in iframes. If that happens, use the quick links below to open them in a new tab.</div>
+              <div class="browser-tip" id="browserStatus">Ready. Some websites block embedding in iframes.</div>
               <div style="margin-top:6px;">
                 <a class="link-item" href="https://duckduckgo.com" target="_blank" rel="noopener noreferrer">Open DuckDuckGo in new tab</a>
                 <a class="link-item" href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener noreferrer">Discord Invite in new tab</a>
@@ -907,10 +1020,11 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
               <div class="title-actions"><button type="button" data-close="games" aria-label="Close">x</button></div>
             </div>
             <div class="window-body">
-              <p>Mini games that launch instantly:</p>
-              <a class="link-item" href="#" data-open="cat">Cat Hunt Grid</a>
-              <a class="link-item" href="#" data-open="match">Button Match</a>
-              <a class="link-item" href="#" data-open="shuffle">Disk Shuffle</a>
+              <p>Arcade lineup:</p>
+              <a class="link-item game-launch" href="#" data-open="cat">Cat Hunt Grid</a>
+              <a class="link-item game-launch" href="#" data-open="match">Button Match</a>
+              <a class="link-item game-launch" href="#" data-open="shuffle">Disk Shuffle</a>
+              <a class="link-item game-launch" href="#" data-open="tarot">Buttons Tarot Deck</a>
             </div>
           </section>
 
@@ -955,6 +1069,24 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
             </div>
           </section>
 
+          <section class="window hidden win-border" id="win-photos" style="top:96px;left:298px;width:430px;">
+            <div class="title-bar" data-drag-handle>
+              <span>C:\\Photos\\Album</span>
+              <div class="title-actions"><button type="button" data-close="photos" aria-label="Close">x</button></div>
+            </div>
+            <div class="window-body">
+              <p style="margin:0;">DM Asset photo album.</p>
+              <div class="photo-toolbar" aria-label="Photo album view controls">
+                <button type="button" class="menu-btn active" data-photo-view="small">Small Icons</button>
+                <button type="button" class="menu-btn" data-photo-view="large">Large Icons</button>
+                <button type="button" class="menu-btn active" data-photo-sort="date">By Date</button>
+                <button type="button" class="menu-btn" data-photo-sort="name">By Name</button>
+              </div>
+              <div id="photoAlbumStatus" style="font-size:11px;margin-top:6px;color:#333;">Loading photos...</div>
+              <div id="photoAlbumGrid" class="photo-album-grid" aria-label="Photo album thumbnails"></div>
+            </div>
+          </section>
+
           <section class="window hidden win-border" id="win-cat" style="top:120px;left:360px;width:320px;">
             <div class="title-bar" data-drag-handle>
               <span>Cat Hunt</span>
@@ -964,9 +1096,10 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
               </div>
             </div>
             <div class="window-body">
-              <p>Find 3 hidden cats.</p>
+              <p>Find all hidden cats before you run out of misses.</p>
               <div class="games-grid" id="catGrid"></div>
               <div id="catStatus" style="font-size:11px;color:#222;">Cats found: 0 / 3</div>
+              <div id="catMeta" style="font-size:11px;color:#222;margin-top:6px;">Round: 1 | Score: 0 | Misses left: 3</div>
             </div>
           </section>
 
@@ -979,7 +1112,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
               </div>
             </div>
             <div class="window-body">
-              <p>Watch sequence, then repeat.</p>
+              <p>Repeat the sequence. Reach round 6 to win.</p>
               <div id="matchInfo" style="font-size:11px;margin-bottom:8px;">Press S to start.</div>
               <div style="display:flex;gap:6px;flex-wrap:wrap;">
                 <button type="button" class="menu-btn match-pad" data-pad="0">Mint</button>
@@ -988,6 +1121,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
                 <button type="button" class="menu-btn match-pad" data-pad="3">Rose</button>
               </div>
               <div id="matchRound" style="font-size:11px;margin-top:8px;">Round: 0</div>
+              <div id="matchMeta" style="font-size:11px;margin-top:6px;">Lives: 3 | Best: 0</div>
             </div>
           </section>
 
@@ -1000,14 +1134,32 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
               </div>
             </div>
             <div class="window-body">
-              <p>Pick the lucky disk.</p>
+              <p>Press S to shuffle, then pick the lucky disk.</p>
               <div class="disk-row">
                 <button type="button" class="disk-btn" data-disk="0">Disk A</button>
                 <button type="button" class="disk-btn" data-disk="1">Disk B</button>
                 <button type="button" class="disk-btn" data-disk="2">Disk C</button>
               </div>
               <div id="shuffleStatus" style="font-size:11px;margin-top:8px;">A lucky disk is loaded.</div>
-              <div id="shuffleStreak" style="font-size:11px;margin-top:6px;">Streak: 0</div>
+              <div id="shuffleStreak" style="font-size:11px;margin-top:6px;">Round: 1 | Lives: 3 | Streak: 0</div>
+              <div id="shuffleMeta" style="font-size:11px;margin-top:6px;">Score: 0 | Best streak: 0</div>
+            </div>
+          </section>
+
+          <section class="window hidden win-border" id="win-tarot" style="top:164px;left:470px;width:330px;">
+            <div class="title-bar" data-drag-handle>
+              <span>Buttons Tarot Deck</span>
+              <div class="title-actions">
+                <button type="button" id="tarotReset" aria-label="New reading">R</button>
+                <button type="button" data-close="tarot" aria-label="Close">x</button>
+              </div>
+            </div>
+            <div class="window-body">
+              <p>Pick cards for Past, Present, Future.</p>
+              <div id="tarotStatus" style="font-size:11px;margin-bottom:8px;">Choose the Past card.</div>
+              <div id="tarotRow" style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;"></div>
+              <div id="tarotStory" style="font-size:11px;margin-top:8px;border:2px inset #dfdfdf;padding:6px;background:#fff;min-height:56px;line-height:1.35;">Your reading will appear here.</div>
+              <div id="tarotMeta" style="font-size:11px;margin-top:6px;">Fate score: 0 | Readings completed: 0</div>
             </div>
           </section>
 
@@ -1022,6 +1174,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
                 <div class="start-item" data-open="browser">Web Browser</div>
                 <div class="start-item" data-open="connect">Connect</div>
                 <div class="start-item" data-open="support">Support</div>
+                <div class="start-item" data-open="photos">Photos</div>
                 <div class="start-sep"></div>
                 <div class="start-item" id="openDiscord">Discord Chat</div>
                 <div class="start-item" id="openTwitch">Twitch</div>
@@ -1067,14 +1220,17 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var bootStatus = document.getElementById('bootStatus');
       var bootPollForm = document.getElementById('bootPollForm');
       var bootPollSkip = document.getElementById('bootPollSkip');
+      var bootSkipBtn = document.getElementById('bootSkipBtn');
       var pollStatus = document.getElementById('pollStatus');
       var bootPromptText = document.getElementById('bootPromptText');
+      var bootHandoff = document.getElementById('bootHandoff');
       var WEBHOOK_PROXY_URL = '';
       var POLL_PROMPT_VERSION = 'v1';
       var POLL_ANSWERED_VERSION_KEY = 'tessPollAnsweredVersion';
       var mobileGate = document.getElementById('mobileGate');
       var zCounter = 40;
       var ghostProfile = null;
+      var bootSkipRequested = false;
       var popoutMap = {
         notepad: 'index.html',
         connect: 'https://discord.gg/dC34nguEEC',
@@ -1154,7 +1310,34 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
 
       function expandWin(id) {
         var url = getPopoutUrl(id);
+        safeOpenExternal(url);
+      }
+
+      function safeOpenExternal(url) {
+        if (!url) return;
         window.open(url, '_blank', 'noopener,noreferrer');
+      }
+
+      function waitForBootContinue(timeoutMs) {
+        return new Promise(function (resolve) {
+          var done = false;
+          var delay = window.setTimeout(finish, typeof timeoutMs === 'number' ? timeoutMs : 1400);
+
+          function finish() {
+            if (done) return;
+            done = true;
+            window.clearTimeout(delay);
+            window.removeEventListener('keydown', onKey);
+            window.removeEventListener('click', onClick);
+            resolve();
+          }
+
+          function onKey() { finish(); }
+          function onClick() { finish(); }
+
+          window.addEventListener('keydown', onKey, { once: true });
+          window.addEventListener('click', onClick, { once: true });
+        });
       }
 
       function ensureWindowControls() {
@@ -1207,6 +1390,19 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       });
 
       desktop.addEventListener('click', function (event) {
+        var launcher = event.target.closest('a[data-open], button[data-open], [data-open].start-item');
+        if (launcher) {
+          var launchId = launcher.getAttribute('data-open');
+          if (launchId) {
+            if (launcher.tagName.toLowerCase() === 'a') event.preventDefault();
+            openWin(launchId);
+            if (startMenu && launcher.closest('#startMenu')) {
+              startMenu.classList.remove('active');
+            }
+            return;
+          }
+        }
+
         var closeBtn = event.target.closest('[data-close]');
         if (closeBtn) {
           closeWin(closeBtn.getAttribute('data-close'));
@@ -1271,13 +1467,13 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var openMainSite = document.getElementById('openMainSite');
       if (openDiscord) {
         openDiscord.addEventListener('click', function () {
-          window.open('https://discord.gg/dC34nguEEC', '_blank', 'noopener,noreferrer');
+          safeOpenExternal('https://discord.gg/dC34nguEEC');
           startMenu.classList.remove('active');
         });
       }
       if (openTwitch) {
         openTwitch.addEventListener('click', function () {
-          window.open('https://twitch.tv/thats_soo_buttons', '_blank', 'noopener,noreferrer');
+          safeOpenExternal('https://twitch.tv/thats_soo_buttons');
           startMenu.classList.remove('active');
         });
       }
@@ -1293,12 +1489,117 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var browserGo = document.getElementById('browserGo');
       var browserSearch = document.getElementById('browserSearch');
       var browserHome = document.getElementById('browserHome');
+      var browserStatus = document.getElementById('browserStatus');
       var browserHistory = ['https://duckduckgo.com'];
       var historyIndex = 0;
+      var photosWindow = document.getElementById('win-photos');
+      var photoAlbumGrid = document.getElementById('photoAlbumGrid');
+      var photoAlbumStatus = document.getElementById('photoAlbumStatus');
+      var photoViewButtons = Array.prototype.slice.call(document.querySelectorAll('[data-photo-view]'));
+      var photoSortButtons = Array.prototype.slice.call(document.querySelectorAll('[data-photo-sort]'));
+      var photoAlbumPaths = [];
+      var photoViewMode = 'small';
+      var photoSortMode = 'date';
+
+      function flattenPhotoManifest(data) {
+        var out = [];
+        if (!Array.isArray(data)) return out;
+        data.forEach(function (group) {
+          if (!group || !Array.isArray(group.albums)) return;
+          group.albums.forEach(function (album) {
+            if (!album || !Array.isArray(album.photos)) return;
+            album.photos.forEach(function (path) {
+              if (typeof path === 'string' && path.trim()) {
+                out.push(path.trim());
+              }
+            });
+          });
+        });
+        return out;
+      }
+
+      function sortPhotoPaths(paths) {
+        var list = (paths || []).slice();
+        if (photoSortMode === 'name') {
+          list.sort(function (a, b) { return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }); });
+        } else {
+          list.sort(function (a, b) { return b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }); });
+        }
+        return list;
+      }
+
+      function applyPhotoGridMode() {
+        if (!photoAlbumGrid) return;
+        photoAlbumGrid.classList.remove('small-icons', 'large-icons');
+        photoAlbumGrid.classList.add(photoViewMode === 'large' ? 'large-icons' : 'small-icons');
+      }
+
+      function renderPhotoAlbum(paths) {
+        if (!photoAlbumGrid) return;
+        applyPhotoGridMode();
+        photoAlbumGrid.innerHTML = '';
+        sortPhotoPaths(paths).forEach(function (path, index) {
+          var img = document.createElement('img');
+          img.src = path;
+          img.alt = 'Album photo ' + (index + 1);
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.referrerPolicy = 'no-referrer';
+          img.draggable = false;
+          img.addEventListener('contextmenu', function (event) { event.preventDefault(); });
+          img.addEventListener('dragstart', function (event) { event.preventDefault(); });
+          photoAlbumGrid.appendChild(img);
+        });
+      }
+
+      function loadPhotoAlbum() {
+        if (!photoAlbumGrid || !photoAlbumStatus) return;
+        fetch('data/photos.json', { cache: 'no-store' }).then(function (response) {
+          if (!response.ok) throw new Error('Unable to load photo manifest');
+          return response.json();
+        }).then(function (json) {
+          photoAlbumPaths = flattenPhotoManifest(json);
+          renderPhotoAlbum(photoAlbumPaths);
+          photoAlbumStatus.textContent = photoAlbumPaths.length ? ('Showing ' + photoAlbumPaths.length + ' photos from DM assets.') : 'No photos listed in data/photos.json yet.';
+        }).catch(function () {
+          photoAlbumGrid.innerHTML = '';
+          photoAlbumStatus.textContent = 'Could not load photo album.';
+        });
+      }
+
+      photoViewButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          photoViewMode = button.getAttribute('data-photo-view') === 'large' ? 'large' : 'small';
+          photoViewButtons.forEach(function (b) {
+            b.classList.toggle('active', b === button);
+          });
+          renderPhotoAlbum(photoAlbumPaths);
+        });
+      });
+
+      photoSortButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          photoSortMode = button.getAttribute('data-photo-sort') === 'name' ? 'name' : 'date';
+          photoSortButtons.forEach(function (b) {
+            b.classList.toggle('active', b === button);
+          });
+          renderPhotoAlbum(photoAlbumPaths);
+        });
+      });
+
+      if (photosWindow) {
+        photosWindow.addEventListener('contextmenu', function (event) {
+          event.preventDefault();
+        });
+      }
+      loadPhotoAlbum();
 
       function normalizeUrl(value) {
         var input = (value || '').trim();
         if (!input) return 'https://duckduckgo.com';
+        if (/^(javascript|data|file|vbscript):/i.test(input)) {
+          return 'https://duckduckgo.com/?q=' + encodeURIComponent(input);
+        }
         var hasProtocol = /^https?:\/\//i.test(input);
         var looksLikeHost = /\.[a-z]{2,}(\/|$)/i.test(input) || input.startsWith('localhost');
         if (hasProtocol) return input;
@@ -1309,12 +1610,30 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       function navigateBrowser(target, pushHistory) {
         var url = normalizeUrl(target);
         browserInput.value = target || url;
+        if (browserStatus) {
+          browserStatus.textContent = 'Loading: ' + url;
+        }
         browserFrame.src = url;
         if (pushHistory !== false) {
           browserHistory = browserHistory.slice(0, historyIndex + 1);
           browserHistory.push(url);
           historyIndex = browserHistory.length - 1;
         }
+
+        window.setTimeout(function () {
+          if (!browserStatus) return;
+          if (browserStatus.textContent.indexOf('Loading:') === 0) {
+            browserStatus.textContent = 'If this site does not render, it likely blocks iframe embedding. Use the new-tab links below.';
+          }
+        }, 2600);
+      }
+
+      if (browserFrame) {
+        browserFrame.addEventListener('load', function () {
+          if (browserStatus) {
+            browserStatus.textContent = 'Loaded in desktop browser.';
+          }
+        });
       }
 
       desktop.addEventListener('click', function (event) {
@@ -1433,18 +1752,48 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
 
       var catGrid = document.getElementById('catGrid');
       var catStatus = document.getElementById('catStatus');
+      var catMeta = document.getElementById('catMeta');
       var catReset = document.getElementById('catReset');
-      function buildCatGame() {
+      var catRound = 1;
+      var catScore = 0;
+      var catFound = 0;
+      var catTarget = 3;
+      var catMissesLeft = 3;
+      var catBoardLocked = false;
+
+      function updateCatMeta() {
+        if (!catMeta) return;
+        catMeta.textContent = 'Round: ' + catRound + ' | Score: ' + catScore + ' | Misses left: ' + catMissesLeft;
+      }
+
+      function lockCatBoard(lock) {
+        catBoardLocked = !!lock;
+        Array.prototype.slice.call(catGrid.querySelectorAll('.game-cell')).forEach(function (cell) {
+          cell.disabled = !!lock;
+        });
+      }
+
+      function buildCatGame(resetAll) {
+        if (resetAll) {
+          catRound = 1;
+          catScore = 0;
+        }
+
+        catFound = 0;
+        catTarget = Math.min(5, 2 + catRound);
+        catMissesLeft = Math.max(2, 4 - Math.floor((catRound - 1) / 2));
+        catBoardLocked = false;
+
         var hidden = new Array(9).fill(false);
-        var found = 0;
         var placed = 0;
-        while (placed < 3) {
+        while (placed < catTarget) {
           var idx = Math.floor(Math.random() * hidden.length);
           if (!hidden[idx]) {
             hidden[idx] = true;
             placed += 1;
           }
         }
+
         catGrid.innerHTML = '';
         hidden.forEach(function (isCat) {
           var cell = document.createElement('button');
@@ -1452,33 +1801,70 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           cell.className = 'game-cell';
           cell.textContent = '?';
           cell.addEventListener('click', function () {
-            if (cell.dataset.opened === '1') return;
+            if (catBoardLocked || cell.dataset.opened === '1') return;
             cell.dataset.opened = '1';
+
             if (isCat) {
               cell.textContent = 'CAT';
-              found += 1;
+              catFound += 1;
+              catScore += 20;
             } else {
               cell.textContent = '...';
+              catMissesLeft -= 1;
+              catScore = Math.max(0, catScore - 5);
             }
-            catStatus.textContent = found === 3 ? 'Cats found: 3 / 3. You win.' : 'Cats found: ' + found + ' / 3';
+
+            catStatus.textContent = 'Cats found: ' + catFound + ' / ' + catTarget;
+            updateCatMeta();
+
+            if (catFound >= catTarget) {
+              catScore += 30;
+              catStatus.textContent = 'Round clear. Next board loading...';
+              lockCatBoard(true);
+              updateCatMeta();
+              catRound += 1;
+              window.setTimeout(function () {
+                buildCatGame(false);
+              }, 700);
+              return;
+            }
+
+            if (catMissesLeft <= 0) {
+              catStatus.textContent = 'Out of misses. Press R to restart from Round 1.';
+              lockCatBoard(true);
+            }
           });
           catGrid.appendChild(cell);
         });
-        catStatus.textContent = 'Cats found: 0 / 3';
+
+        catStatus.textContent = 'Cats found: 0 / ' + catTarget;
+        updateCatMeta();
       }
       if (catReset) {
-        catReset.addEventListener('click', buildCatGame);
+        catReset.addEventListener('click', function () {
+          buildCatGame(true);
+        });
       }
-      buildCatGame();
+      buildCatGame(true);
 
       var matchInfo = document.getElementById('matchInfo');
       var matchRound = document.getElementById('matchRound');
+      var matchMeta = document.getElementById('matchMeta');
       var matchStart = document.getElementById('matchStart');
       var pads = Array.prototype.slice.call(document.querySelectorAll('.match-pad'));
       var sequence = [];
       var input = [];
       var round = 0;
+      var matchLives = 3;
+      var matchBest = 0;
+      var matchGoal = 6;
       var locked = true;
+
+      function updateMatchMeta() {
+        if (!matchMeta) return;
+        matchMeta.textContent = 'Lives: ' + matchLives + ' | Best: ' + matchBest;
+      }
+
       function flashPad(index) {
         var pad = pads[index];
         if (!pad) return;
@@ -1489,31 +1875,64 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           pad.style.color = '#000';
         }, 240);
       }
+
       function playSequence() {
         locked = true;
         matchInfo.textContent = 'Watch...';
         sequence.forEach(function (value, i) {
-          window.setTimeout(function () { flashPad(value); }, 360 * (i + 1));
+          window.setTimeout(function () { flashPad(value); }, 330 * (i + 1));
         });
         window.setTimeout(function () {
           locked = false;
           matchInfo.textContent = 'Repeat the sequence.';
-        }, 360 * (sequence.length + 1));
+        }, 330 * (sequence.length + 1));
       }
+
       function nextRound() {
         input = [];
         round += 1;
+        if (round > matchGoal) {
+          locked = true;
+          matchBest = Math.max(matchBest, matchGoal);
+          matchInfo.textContent = 'You cleared all rounds. Press S for a new run.';
+          matchRound.textContent = 'Round: WIN';
+          updateMatchMeta();
+          return;
+        }
         matchRound.textContent = 'Round: ' + round;
         sequence.push(Math.floor(Math.random() * pads.length));
         playSequence();
       }
+
+      function resetMatchGame() {
+        sequence = [];
+        input = [];
+        round = 0;
+        matchLives = 3;
+        locked = true;
+        matchRound.textContent = 'Round: 0';
+        matchInfo.textContent = 'Press S to start.';
+        updateMatchMeta();
+      }
+
       if (matchStart) {
         matchStart.addEventListener('click', function () {
-          sequence = [];
-          round = 0;
+          resetMatchGame();
+          locked = false;
           nextRound();
         });
       }
+
+      document.addEventListener('keydown', function (event) {
+        if (!matchStart) return;
+        if (event.key.toLowerCase() !== 's') return;
+        var matchWindow = document.getElementById('win-match');
+        if (!matchWindow || matchWindow.classList.contains('hidden')) return;
+        if (event.target && (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA')) return;
+        event.preventDefault();
+        matchStart.click();
+      });
+
       pads.forEach(function (pad) {
         pad.addEventListener('click', function () {
           if (locked || !sequence.length) return;
@@ -1521,61 +1940,267 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           flashPad(value);
           input.push(value);
           var idx = input.length - 1;
+
           if (input[idx] !== sequence[idx]) {
-            matchInfo.textContent = 'Wrong. Press S to restart.';
-            sequence = [];
+            matchLives -= 1;
+            if (matchLives <= 0) {
+              matchBest = Math.max(matchBest, round - 1);
+              matchInfo.textContent = 'Game over. Press S to restart.';
+              sequence = [];
+              input = [];
+              round = 0;
+              matchRound.textContent = 'Round: 0';
+              locked = true;
+              updateMatchMeta();
+              return;
+            }
+
+            matchInfo.textContent = 'Wrong. Try the same round again.';
             input = [];
-            round = 0;
-            matchRound.textContent = 'Round: 0';
             locked = true;
+            updateMatchMeta();
+            window.setTimeout(playSequence, 700);
             return;
           }
+
           if (input.length === sequence.length) {
+            matchBest = Math.max(matchBest, round);
+            updateMatchMeta();
             matchInfo.textContent = 'Correct. Next round...';
             locked = true;
             window.setTimeout(nextRound, 650);
           }
         });
       });
+      resetMatchGame();
 
       var diskButtons = Array.prototype.slice.call(document.querySelectorAll('[data-disk]'));
       var shuffleReset = document.getElementById('shuffleReset');
       var shuffleStatus = document.getElementById('shuffleStatus');
       var shuffleStreak = document.getElementById('shuffleStreak');
+      var shuffleMeta = document.getElementById('shuffleMeta');
       var winner = 0;
-      var streak = 0;
+      var shuffleStreakCount = 0;
+      var shuffleBest = 0;
+      var shuffleRound = 1;
+      var shuffleLives = 3;
+      var shuffleScore = 0;
       var done = false;
-      function seedShuffle() {
+
+      function updateShuffleMeta() {
+        if (shuffleStreak) {
+          shuffleStreak.textContent = 'Round: ' + shuffleRound + ' | Lives: ' + shuffleLives + ' | Streak: ' + shuffleStreakCount;
+        }
+        if (shuffleMeta) {
+          shuffleMeta.textContent = 'Score: ' + shuffleScore + ' | Best streak: ' + shuffleBest;
+        }
+      }
+
+      function setDiskButtonsEnabled(enabled) {
+        diskButtons.forEach(function (button) {
+          button.disabled = !enabled;
+        });
+      }
+
+      function seedShuffle(resetAll) {
+        if (resetAll) {
+          shuffleRound = 1;
+          shuffleLives = 3;
+          shuffleScore = 0;
+          shuffleStreakCount = 0;
+        }
+
         winner = Math.floor(Math.random() * diskButtons.length);
         done = false;
+        setDiskButtonsEnabled(false);
         diskButtons.forEach(function (button, i) {
-          button.disabled = false;
-          button.textContent = ['Disk A', 'Disk B', 'Disk C'][i];
+          button.textContent = ['A', 'B', 'C'][i];
         });
-        shuffleStatus.textContent = 'A lucky disk is loaded.';
-        shuffleStreak.textContent = 'Streak: ' + streak;
+
+        shuffleStatus.textContent = 'Shuffling disks...';
+        updateShuffleMeta();
+
+        var blinks = 0;
+        var blinkTimer = window.setInterval(function () {
+          blinks += 1;
+          diskButtons.forEach(function (button) {
+            var pick = Math.floor(Math.random() * 3);
+            button.textContent = ['A', 'B', 'C'][pick];
+          });
+          if (blinks >= 5) {
+            window.clearInterval(blinkTimer);
+            diskButtons.forEach(function (button, i) {
+              button.textContent = ['Disk A', 'Disk B', 'Disk C'][i];
+            });
+            setDiskButtonsEnabled(true);
+            shuffleStatus.textContent = 'Pick a disk now.';
+          }
+        }, 120);
       }
+
       diskButtons.forEach(function (button) {
         button.addEventListener('click', function () {
-          if (done) return;
+          if (done || button.disabled) return;
           done = true;
+
           var selected = Number(button.getAttribute('data-disk'));
           if (selected === winner) {
-            streak += 1;
+            shuffleStreakCount += 1;
+            shuffleBest = Math.max(shuffleBest, shuffleStreakCount);
+            shuffleScore += 15 + (shuffleRound * 2);
             button.textContent = 'STAR';
             shuffleStatus.textContent = 'Correct pick.';
+            shuffleRound += 1;
           } else {
-            streak = 0;
+            shuffleStreakCount = 0;
+            shuffleLives -= 1;
+            shuffleScore = Math.max(0, shuffleScore - 8);
             button.textContent = 'NOPE';
             if (diskButtons[winner]) diskButtons[winner].textContent = 'STAR';
             shuffleStatus.textContent = 'Wrong disk.';
           }
-          diskButtons.forEach(function (b) { b.disabled = true; });
-          shuffleStreak.textContent = 'Streak: ' + streak;
+
+          setDiskButtonsEnabled(false);
+          updateShuffleMeta();
+
+          if (shuffleLives <= 0) {
+            shuffleStatus.textContent = 'Out of lives. Press R to restart.';
+            return;
+          }
+
+          if (shuffleRound > 10) {
+            shuffleStatus.textContent = 'Arcade clear. Press R for a new run.';
+            return;
+          }
+
+          window.setTimeout(function () {
+            seedShuffle(false);
+          }, 650);
         });
       });
-      if (shuffleReset) shuffleReset.addEventListener('click', seedShuffle);
-      seedShuffle();
+
+      if (shuffleReset) {
+        shuffleReset.addEventListener('click', function () {
+          seedShuffle(true);
+        });
+      }
+      seedShuffle(true);
+
+      var tarotRow = document.getElementById('tarotRow');
+      var tarotStatus = document.getElementById('tarotStatus');
+      var tarotStory = document.getElementById('tarotStory');
+      var tarotMeta = document.getElementById('tarotMeta');
+      var tarotReset = document.getElementById('tarotReset');
+
+      var tarotSlots = ['Past', 'Present', 'Future'];
+      var tarotStep = 0;
+      var tarotFate = 0;
+      var tarotReadings = 0;
+      var tarotDrawPool = [];
+      var tarotPicked = [];
+
+      var tarotDeck = [
+        { name: 'The Button Witch', upright: 'crafting new rituals', reversed: 'stitching old patterns', score: 4 },
+        { name: 'The Neon Cat', upright: 'following instinct', reversed: 'avoiding the obvious clue', score: 3 },
+        { name: 'The Tape Loop', upright: 'finding the right rhythm', reversed: 'replaying static', score: 2 },
+        { name: 'The Arcade Door', upright: 'opening a new quest', reversed: 'hesitating at the threshold', score: 5 },
+        { name: 'The Soft Glitch', upright: 'embracing weird luck', reversed: 'debugging feelings', score: 1 },
+        { name: 'The House Key', upright: 'building trust and safety', reversed: 'double-checking boundaries', score: 4 },
+        { name: 'The Silver Thread', upright: 'connecting with community', reversed: 'untangling crossed wires', score: 2 },
+        { name: 'The Dream Disk', upright: 'saving a big idea', reversed: 'recovering from a crash', score: 3 }
+      ];
+
+      function updateTarotMeta() {
+        if (!tarotMeta) return;
+        tarotMeta.textContent = 'Fate score: ' + tarotFate + ' | Readings completed: ' + tarotReadings;
+      }
+
+      function nextTarotPrompt() {
+        if (!tarotStatus) return;
+        if (tarotStep < tarotSlots.length) {
+          tarotStatus.textContent = 'Choose the ' + tarotSlots[tarotStep] + ' card.';
+        } else {
+          tarotStatus.textContent = 'Reading complete. Press R for a new spread.';
+        }
+      }
+
+      function drawTarotCard() {
+        if (!tarotDrawPool.length) {
+          tarotDrawPool = tarotDeck.slice();
+        }
+        var idx = Math.floor(Math.random() * tarotDrawPool.length);
+        var card = tarotDrawPool.splice(idx, 1)[0];
+        var reversed = Math.random() < 0.45;
+        return {
+          slot: tarotSlots[tarotStep],
+          name: card.name,
+          text: reversed ? card.reversed : card.upright,
+          score: reversed ? -card.score : card.score,
+          reversed: reversed
+        };
+      }
+
+      function finishTarotReading() {
+        tarotReadings += 1;
+        var parts = tarotPicked.map(function (pick) {
+          var tone = pick.reversed ? 'reversed' : 'upright';
+          return pick.slot + ': ' + pick.name + ' (' + tone + ') means ' + pick.text;
+        });
+        tarotStory.textContent = parts.join(' | ');
+        nextTarotPrompt();
+        updateTarotMeta();
+      }
+
+      function buildTarotSpread() {
+        if (!tarotRow || !tarotStory) return;
+        tarotStep = 0;
+        tarotPicked = [];
+        tarotDrawPool = tarotDeck.slice();
+        tarotRow.innerHTML = '';
+
+        for (var i = 0; i < 6; i += 1) {
+          var cardBtn = document.createElement('button');
+          cardBtn.type = 'button';
+          cardBtn.className = 'disk-btn';
+          cardBtn.textContent = 'Card ' + (i + 1);
+          cardBtn.style.minHeight = '68px';
+          cardBtn.dataset.cardIndex = String(i);
+          cardBtn.addEventListener('click', function () {
+            if (tarotStep >= tarotSlots.length || this.dataset.revealed === '1') return;
+
+            var pick = drawTarotCard();
+            this.dataset.revealed = '1';
+            this.textContent = pick.name;
+
+            tarotPicked.push(pick);
+            tarotFate += pick.score;
+            tarotStep += 1;
+
+            if (tarotStep >= tarotSlots.length) {
+              Array.prototype.slice.call(tarotRow.querySelectorAll('button')).forEach(function (btn) {
+                btn.disabled = true;
+              });
+              finishTarotReading();
+              return;
+            }
+
+            nextTarotPrompt();
+            updateTarotMeta();
+          });
+          tarotRow.appendChild(cardBtn);
+        }
+
+        tarotStory.textContent = 'Your reading will appear here.';
+        nextTarotPrompt();
+        updateTarotMeta();
+      }
+
+      if (tarotReset) {
+        tarotReset.addEventListener('click', function () {
+          buildTarotSpread();
+        });
+      }
+      buildTarotSpread();
 
       function makeDraggable(win) {
         var handle = win.querySelector('[data-drag-handle]');
@@ -1629,8 +2254,34 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       }
 
       function appendBootLine(node, line) {
+        if (bootSkipRequested) return;
         node.textContent += line + '\n';
         node.scrollTop = node.scrollHeight;
+      }
+
+      async function typeBootLine(node, line, charDelay) {
+        if (bootSkipRequested) return;
+        var delay = typeof charDelay === 'number' ? charDelay : 24;
+        for (var i = 0; i < line.length; i += 1) {
+          if (bootSkipRequested) return;
+          node.textContent += line.charAt(i);
+          node.scrollTop = node.scrollHeight;
+          await sleep(delay + Math.round(Math.random() * 14));
+        }
+        if (bootSkipRequested) return;
+        node.textContent += '\n';
+        node.scrollTop = node.scrollHeight;
+      }
+
+      function requestBootSkip() {
+        bootSkipRequested = true;
+        if (biosStatus) biosStatus.textContent = 'Boot skipped by operator.';
+        if (bootStatus) bootStatus.textContent = 'Jumping to desktop...';
+        if (pollStatus) pollStatus.textContent = 'Boot skipped. Launching desktop...';
+      }
+
+      if (bootSkipBtn) {
+        bootSkipBtn.addEventListener('click', requestBootSkip);
       }
 
       function randomPick(items) {
@@ -1765,12 +2416,8 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           'CPU: Virtual Pentium 95 MHz ........ OK',
           'Memory Test: 65536K ........ OK',
           'Primary Master: QUANTUM FIREBALL 3.2AT ........ OK',
-          'Primary Slave: None',
-          'Secondary Master: ATAPI CD-ROM 24X ........ OK',
           'Floppy Drive A: 1.44M, 3.5in ........ OK',
           'PS/2 Keyboard ........ OK',
-          'PS/2 Mouse ........ OK',
-          'Press DEL to enter SETUP',
           'Verifying DMI Pool Data ........',
           'Boot signature accepted. Launching shell handoff...'
         ];
@@ -1781,12 +2428,14 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
 
         biosLog.textContent = '';
         for (var i = 0; i < biosLines.length; i += 1) {
-          appendBootLine(biosLog, biosLines[i]);
+          if (bootSkipRequested) return;
+          await typeBootLine(biosLog, biosLines[i], 6);
           biosStatus.textContent = 'POST stage ' + (i + 1) + ' / ' + biosLines.length;
-          await sleep(280 + Math.round(Math.random() * 120));
+          await sleep(130 + Math.round(Math.random() * 120));
         }
+        if (bootSkipRequested) return;
         biosStatus.textContent = 'POST complete. Handing off to TessOS shell...';
-        await sleep(950);
+        await sleep(420);
       }
 
       async function runModulePhase() {
@@ -1801,37 +2450,47 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           'Microsoft(R) Windows 95',
           '   (C)Copyright Microsoft Corp 1981-1996.',
           'C:\\>smartdrv.exe',
-          'C:\\>lh mouse.com',
-          'C:\\>call autoexec.bat',
           '[TESSDRV] shell extension loaded',
           '[TESSDRV] mounting A:\\HIRE',
           '[TESSDRV] mounting C:\\GAMES',
           '[TESSNET] modem handshake 56k ........ connected',
           '[PHOSPHORNET] browser frame initialized',
           '[AUDIO95] mixer online',
+          '[OPTICS] Buttons Eyes... acquired. No string, no hands.',
+          '[GHOST] *tiny laugh heard from COM2*',
           '[CHAT] discord launcher hook ready',
           '[GHOST] vibe check complete ........ mischievous',
           '[SYS] final checks complete',
           '[SYS] entering desktop...'
         ];
 
+        if (ghostProfile && ghostProfile.level >= 3) {
+          lines.splice(12, 0, '[GHOST] takeover attempt detected ... operator retained control');
+        }
+
         if (ghostProfile && Math.random() < ghostProfile.glitchChance) {
-          lines.splice(12, 0, randomPick(ghostProfile.whispers));
+          lines.splice(11, 0, randomPick(ghostProfile.whispers));
         }
 
         bootLog.textContent = '';
         bootFill.style.width = '0%';
 
         for (var i = 0; i < lines.length; i += 1) {
-          appendBootLine(bootLog, lines[i]);
+          if (bootSkipRequested) return;
+          await typeBootLine(bootLog, lines[i], 5);
           var pct = Math.round(((i + 1) / lines.length) * 100);
           bootFill.style.width = pct + '%';
           bootStatus.textContent = pct < 100 ? ('Loading DOS modules... ' + pct + '%') : 'Core modules online.';
-          await sleep(240 + Math.round(Math.random() * 120));
+          if (/^\[GHOST\]/.test(lines[i])) {
+            await sleep(420 + Math.round(Math.random() * 120));
+          } else {
+            await sleep(120 + Math.round(Math.random() * 120));
+          }
         }
       }
 
       async function runPollPhase() {
+        if (bootSkipRequested) return null;
         bootTitle.textContent = 'TESS OS // OPERATOR HANDSHAKE';
         bootBiosSection.classList.add('hidden');
         bootModuleSection.classList.add('hidden');
@@ -1840,9 +2499,9 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         if (localStorage.getItem(POLL_ANSWERED_VERSION_KEY) === POLL_PROMPT_VERSION) {
           bootPollSection.classList.add('hidden');
           bootModuleSection.classList.remove('hidden');
-          appendBootLine(bootLog, '[HANDSHAKE] Prompt ' + POLL_PROMPT_VERSION + ' already completed.');
+          await typeBootLine(bootLog, '[HANDSHAKE] Prompt ' + POLL_PROMPT_VERSION + ' already completed.', 20);
           bootStatus.textContent = 'Handshake cached. Continuing boot...';
-          await sleep(650);
+          await sleep(320);
           return null;
         }
 
@@ -1865,7 +2524,14 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
             return;
           }
 
+          var autoContinueTimer = window.setTimeout(function () {
+            pollStatus.textContent = 'No input detected. Continuing to desktop...';
+            cleanup();
+            resolve({ skipped: true, reason: 'timeout', pollVersion: POLL_PROMPT_VERSION });
+          }, 5200);
+
           function cleanup() {
+            window.clearTimeout(autoContinueTimer);
             bootPollForm.removeEventListener('submit', onSubmit);
             if (bootPollSkip) bootPollSkip.removeEventListener('click', onSkip);
           }
@@ -1909,7 +2575,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
               cleanup();
               window.setTimeout(function () {
                 resolve(payload);
-              }, 900);
+              }, 500);
             });
           }
 
@@ -1918,7 +2584,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
             cleanup();
             window.setTimeout(function () {
               resolve({ skipped: true, pollVersion: POLL_PROMPT_VERSION });
-            }, 450);
+            }, 350);
           }
 
           bootPollForm.addEventListener('submit', onSubmit);
@@ -1927,6 +2593,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       }
 
       async function startBootSequence(onReady) {
+        bootSkipRequested = false;
         ghostProfile = getGhostProfile();
         bootOverlay.classList.remove('haunt-1', 'haunt-2', 'haunt-3', 'haunt-4');
         if (ghostProfile.level > 0) {
@@ -1935,7 +2602,27 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         bootTitle.classList.toggle('glitch', ghostProfile.level >= 2);
 
         await runBiosPhase();
+        if (bootSkipRequested) {
+          desktop.classList.remove('booting');
+          bootOverlay.classList.add('hidden');
+          if (typeof onReady === 'function') onReady();
+          return;
+        }
         await runModulePhase();
+        if (bootSkipRequested) {
+          desktop.classList.remove('booting');
+          bootOverlay.classList.add('hidden');
+          if (typeof onReady === 'function') onReady();
+          return;
+        }
+        if (bootHandoff) bootHandoff.hidden = false;
+        await waitForBootContinue(700);
+        if (bootSkipRequested) {
+          desktop.classList.remove('booting');
+          bootOverlay.classList.add('hidden');
+          if (typeof onReady === 'function') onReady();
+          return;
+        }
         await runPollPhase();
         desktop.classList.remove('booting');
         bootOverlay.classList.add('hidden');

@@ -118,7 +118,8 @@
       var addressBar = document.getElementById('addressBar');
       document.title = title + ' | PhosphorNet Navigator';
       addressBar.textContent = 'phosphornet://local/' + page;
-      frame.src = page;
+      var sep = page.indexOf('?') === -1 ? '?' : '&';
+      frame.src = page + sep + '_v=' + Date.now();
     })();
   </script>
 </body>

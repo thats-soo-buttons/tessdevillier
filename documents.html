@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents | Tess Devillier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #0a0a0a; color: #f5f5f5; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
+        .page-wrap { max-width: 880px; margin: 0 auto; padding: 48px 20px 80px; }
+        .back-link { color: #ffd700; text-decoration: none; font-size: .9em; letter-spacing: 1px; display: inline-block; margin-bottom: 32px; }
+        .back-link:hover { text-decoration: underline; }
+        h1 { font-family: 'Cinzel', serif; color: #ffd700; font-size: 2.4rem; letter-spacing: 4px; text-align: center; margin-bottom: 8px; }
+        .tagline { text-align: center; color: #888; margin-bottom: 18px; font-size: .95em; letter-spacing: 1px; }
+        .hint { text-align: center; color: #a6a6a6; margin-bottom: 36px; font-size: .9em; line-height: 1.6; }
+        .doc-section { margin-bottom: 42px; }
+        .doc-card { background: #111; border: 1.5px solid #222; border-radius: 16px; padding: 18px 20px; margin-bottom: 12px; }
+        .doc-card h2 { font-family: 'Cinzel', serif; color: #ffd700; font-size: 1.1rem; margin: 0 0 4px 0; }
+        .doc-card p { color: #888; font-size: .9em; margin: 0 0 12px 0; line-height: 1.6; }
+        .doc-item { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid #222; }
+        .doc-item:first-of-type { border-top: 0; }
+        .doc-meta { min-width: 0; }
+        .doc-name { color: #f5f5f5; font-weight: 700; margin-bottom: 4px; word-break: break-word; }
+        .doc-note { color: #888; font-size: .85em; line-height: 1.45; }
+        .doc-path { color: #6e7c95; font-size: .78em; margin-top: 4px; word-break: break-all; }
+        .doc-link { color: #ffd700; text-decoration: none; font-weight: 700; white-space: nowrap; }
+        .doc-link:hover { text-decoration: underline; }
+        .update-box { margin-top: 14px; border: 1px solid #2f3d58; border-radius: 14px; padding: 16px 18px; background: #0d131e; color: #aab5c9; line-height: 1.65; }
+        .update-box code { color: #ffd700; }
+        .loading { text-align: center; color: #555; padding: 60px 0; }
+        @media (max-width: 640px) { h1 { font-size: 1.7rem; } .doc-item { flex-direction: column; align-items: flex-start; } .doc-link { white-space: normal; } }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <a href="index.html" class="back-link">← back</a>
+    <h1>DOCUMENTS</h1>
+    <p class="tagline">Files · Notes · PDFs · Downloads</p>
+    <p class="hint">This page is driven by <code>data/documents.json</code>. Add document files to the repo, then list their relative paths in the manifest.</p>
+    <div id="documents-container"><p class="loading">Loading documents...</p></div>
+    <div class="update-box">
+        <strong>Easiest update workflow:</strong><br>
+        1. Put your files in a repo folder like <code>docs/</code>.<br>
+        2. Add each file path to <code>data/documents.json</code>.<br>
+        3. Push the repo. This page renders the links automatically.
+    </div>
+</div>
+<script>
+async function loadDocuments() {
+    const container = document.getElementById('documents-container');
+    try {
+        const res = await fetch('data/documents.json');
+        const groups = await res.json();
+        container.innerHTML = groups.map(group => `
+            <div class="doc-section">
+                <div class="doc-card">
+                    <h2>${group.title}</h2>
+                    ${group.description ? `<p>${group.description}</p>` : ''}
+                    ${(group.items || []).map(item => `
+                        <div class="doc-item">
+                            <div class="doc-meta">
+                                <div class="doc-name">${item.name}</div>
+                                ${item.note ? `<div class="doc-note">${item.note}</div>` : ''}
+                                ${item.path ? `<div class="doc-path">${item.path}</div>` : ''}
+                            </div>
+                            ${item.path ? `<a class="doc-link" href="${item.path}" target="_blank" rel="noopener noreferrer">Open</a>` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `).join('');
+    } catch (e) {
+        container.innerHTML = '<p style="color:#888;text-align:center;">Documents coming soon.</p>';
+    }
+}
+loadDocuments();
+</script>
+</body>
+</html>

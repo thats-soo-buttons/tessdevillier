@@ -1,0 +1,4 @@
+asset_id,asset_name,asset_type,source_url,creator,license_type,commercial_use_allowed,modification_allowed,redistribution_allowed,attribution_required,attribution_text,proof_file_path,date_verified,notes
+A-001,Example Major Arcana Back,card-back,https://example.com/deck,Example Artist,CC BY 4.0,yes,yes,yes,yes,"Artwork by Example Artist, licensed CC BY 4.0",licenses/example-license.txt,2026-06-29,Replace with real data
+A-002,Example Minor Arcana Suit Icon,icon,https://example.com/icon-pack,Example Studio,Commercial License,yes,yes,yes,no,,licenses/example-receipt.pdf,2026-06-29,Replace with real data
+A-003,Example UI Button Click,sfx,https://example.com/sfx,Example Audio,CC0,yes,yes,yes,no,,licenses/example-proof-url.txt,2026-06-29,Replace with real data

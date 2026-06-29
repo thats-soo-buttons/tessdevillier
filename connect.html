@@ -7,23 +7,30 @@
     <title>Connect | Tess Devillier</title>
     <style>
         :root {
-            --bg: #12131a;
-            --card: #1b1e29;
-            --ink: #f3f5ff;
-            --muted: #b9c0d8;
-            --accent: #79e0d1;
-            --line: #2e374b;
+            --bg: #f4f0ea;
+            --card: #f9f6f1;
+            --ink: #2c2e2b;
+            --muted: #5f6f59;
+            --accent: #d17a5d;
+            --line: #d7cec6;
         }
         * { box-sizing: border-box; }
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #2c2e2b;
+            outline-offset: 2px;
+        }
         body {
             margin: 0;
             min-height: 100vh;
             color: var(--ink);
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle at 20% 5%, rgba(121, 224, 209, 0.15), transparent 30%), var(--bg);
+            font-family: 'Montserrat', Arial, sans-serif;
+            background:
+                radial-gradient(circle at 22% 5%, rgba(152, 166, 142, 0.18), transparent 30%),
+                radial-gradient(circle at 84% 8%, rgba(209, 122, 93, 0.16), transparent 30%),
+                var(--bg);
         }
         .wrap { max-width: 900px; margin: 0 auto; padding: 30px 16px 44px; }
-        .top a { color: var(--muted); text-decoration: none; font-weight: 600; }
+        .top a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
         h1 { margin: 20px 0 8px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
         .sub { margin: 0 0 20px; color: var(--muted); }
         .list { display: grid; gap: 12px; }
@@ -42,7 +49,7 @@
         .btn {
             text-decoration: none;
             background: var(--accent);
-            color: #15222a;
+            color: #2c2e2b;
             font-weight: 700;
             border-radius: 8px;
             padding: 9px 12px;
@@ -57,7 +64,8 @@
         }
         .footer-links a {
             color: var(--accent);
-            text-decoration: none;
+            text-decoration: underline;
+            text-underline-offset: 2px;
             font-weight: 700;
         }
         @media (max-width: 740px) {
@@ -122,7 +130,7 @@
         </section>
 
         <div class="footer-links" aria-label="Quick booking links">
-            <a href="hire.html">Hire/Book</a>
+            <a href="hire.html">Book or Inquire</a>
             <a href="contact.html">Contact</a>
             <a href="availability.html">Availability</a>
             <a href="professional.html">Services</a>

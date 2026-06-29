@@ -7,23 +7,30 @@
     <title>Support | Tess Devillier</title>
     <style>
         :root {
-            --bg: #15121a;
-            --card: #1f1a25;
-            --ink: #f8f2ff;
-            --muted: #c6b8d6;
-            --accent: #ffd166;
-            --line: #3d3350;
+            --bg: #f3fbf8;
+            --card: #d9f0e8;
+            --ink: #24556a;
+            --muted: #4d7f92;
+            --accent: #2fa9c6;
+            --line: #99d2c4;
         }
         * { box-sizing: border-box; }
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #24556a;
+            outline-offset: 2px;
+        }
         body {
             margin: 0;
             min-height: 100vh;
             color: var(--ink);
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle at 85% 5%, rgba(255, 209, 102, 0.16), transparent 30%), var(--bg);
+            font-family: 'Montserrat', Arial, sans-serif;
+            background:
+                radial-gradient(circle at 82% 8%, rgba(47, 169, 198, 0.2), transparent 34%),
+                radial-gradient(circle at 16% 10%, rgba(115, 210, 190, 0.2), transparent 34%),
+                var(--bg);
         }
         .wrap { max-width: 980px; margin: 0 auto; padding: 30px 16px 44px; }
-        .top a { color: var(--muted); text-decoration: none; font-weight: 600; }
+        .top a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
         h1 { margin: 20px 0 8px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
         .sub { margin: 0 0 20px; color: var(--muted); }
         .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
@@ -36,7 +43,7 @@
         .card h2 { margin: 0 0 8px; font-size: 1.08rem; }
         .card ul { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.5; }
         .card li + li { margin-top: 6px; }
-        .card a { color: var(--accent); text-decoration: none; font-weight: 700; }
+        .card a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
         .footer-links {
             margin-top: 20px;
             display: flex;
@@ -46,7 +53,8 @@
         }
         .footer-links a {
             color: var(--accent);
-            text-decoration: none;
+            text-decoration: underline;
+            text-underline-offset: 2px;
             font-weight: 700;
         }
         @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
@@ -97,9 +105,10 @@
             </article>
         </section>
 
-        <div class="footer-links" aria-label="Quick booking links">
+        <div class="footer-links" aria-label="Quick links">
             <a href="#">Back to top</a>
-            <a href="hire.html">Hire/Book</a>
+            <a href="index.html">Home</a>
+            <a href="hire.html">Book or Inquire</a>
             <a href="contact.html">Contact</a>
             <a href="availability.html">Availability</a>
             <a href="pets.html">Pet Services</a>

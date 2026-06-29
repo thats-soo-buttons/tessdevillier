@@ -20,6 +20,20 @@
     "files": []
   },
   {
+    "id": "photos",
+    "name": "Photos",
+    "icon": "📷",
+    "description": "Gallery folder for image albums. Update data/photos.json when you add or remove images.",
+    "files": []
+  },
+  {
+    "id": "documents",
+    "name": "Documents",
+    "icon": "📁",
+    "description": "Docs folder for PDFs, notes, and references. Update data/documents.json when you add or remove files.",
+    "files": []
+  },
+  {
     "id": "projects",
     "name": "Active Projects",
     "icon": "🪐",

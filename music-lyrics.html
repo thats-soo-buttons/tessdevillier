@@ -7,23 +7,23 @@
   <title>Music + Lyrics | Tess Devillier</title>
   <style>
     :root {
-      --bg: #12111a;
-      --card: #1d1a27;
-      --ink: #f6f2ff;
-      --muted: #c8bdd9;
-      --line: #3f3654;
-      --accent: #ffd166;
-      --accent-2: #9ad9ff;
+      --bg: #1b171b;
+      --card: #231d23;
+      --ink: #efe6d8;
+      --muted: #9a7a84;
+      --line: #3f333b;
+      --accent: #64735f;
+      --accent-2: #4e1a2a;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
       color: var(--ink);
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Montserrat', Arial, sans-serif;
       background:
-        radial-gradient(circle at 14% 7%, rgba(154,217,255,0.13), transparent 26%),
-        radial-gradient(circle at 86% 3%, rgba(255,209,102,0.16), transparent 28%),
+        radial-gradient(circle at 14% 7%, rgba(100,115,95,0.18), transparent 26%),
+        radial-gradient(circle at 86% 3%, rgba(78,26,42,0.22), transparent 30%),
         var(--bg);
     }
     .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 16px 46px; }
@@ -33,7 +33,7 @@
     .sub { margin: 8px 0 16px; color: var(--muted); max-width: 860px; }
     .section {
       margin-top: 14px;
-      background: linear-gradient(160deg, var(--card), #181522);
+      background: linear-gradient(160deg, var(--card), #2a212a);
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 18px;
@@ -42,7 +42,7 @@
     h2 { margin: 0 0 8px; font-size: 1.2rem; }
     .muted { color: var(--muted); }
     .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .card { background: #191622; border: 1px solid #463b5d; border-radius: 12px; padding: 14px; }
+    .card { background: #2b2330; border: 1px solid #5e4b62; border-radius: 12px; padding: 14px; }
     .card h3 { margin: 0 0 8px; font-size: 1.02rem; }
     .btn {
       display: inline-block;
@@ -52,13 +52,13 @@
       font-weight: 700;
       border: 1px solid transparent;
       background: var(--accent);
-      color: #2a2438;
+      color: #efe6d8;
       margin-top: 10px;
     }
     .btn.alt {
       background: transparent;
       color: var(--accent-2);
-      border-color: #45617f;
+      border-color: #5f4a55;
     }
     audio {
       width: 100%;
@@ -67,11 +67,11 @@
     }
     .embed-wrap {
       margin-top: 10px;
-      border: 1px solid #463b5d;
+      border: 1px solid #5e4b62;
       border-radius: 12px;
       overflow: hidden;
       min-height: 280px;
-      background: #15121f;
+      background: #241d28;
     }
     .embed-wrap iframe {
       width: 100%;
@@ -137,10 +137,11 @@
 
     <div class="footer-links" aria-label="Quick links">
       <a href="#">Back to top</a>
-      <a href="hire.html">Hire/Book</a>
-      <a href="watch.html">Watch</a>
+      <a href="index.html">Home</a>
+      <a href="hire.html">Book or Inquire</a>
       <a href="contact.html">Contact</a>
       <a href="availability.html">Availability</a>
+      <a href="watch.html">Watch</a>
     </div>
   </main>
 

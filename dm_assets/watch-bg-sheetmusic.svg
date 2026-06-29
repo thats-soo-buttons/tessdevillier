@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" role="img" aria-label="Sheet music pattern background">
+  <defs>
+    <pattern id="staff" width="320" height="260" patternUnits="userSpaceOnUse">
+      <rect width="320" height="260" fill="transparent"/>
+
+      <g transform="rotate(-8 160 130)">
+        <g stroke="#f6efff" stroke-opacity="0.2" stroke-width="2">
+          <line x1="-12" y1="56" x2="332" y2="56"/>
+          <line x1="-12" y1="68" x2="332" y2="68"/>
+          <line x1="-12" y1="80" x2="332" y2="80"/>
+          <line x1="-12" y1="92" x2="332" y2="92"/>
+          <line x1="-12" y1="104" x2="332" y2="104"/>
+        </g>
+
+        <g fill="#f6efff" fill-opacity="0.32">
+          <ellipse cx="52" cy="92" rx="10" ry="7" transform="rotate(-20 52 92)"/>
+          <rect x="60" y="48" width="3" height="44"/>
+
+          <ellipse cx="132" cy="80" rx="10" ry="7" transform="rotate(-20 132 80)"/>
+          <rect x="140" y="42" width="3" height="38"/>
+
+          <ellipse cx="210" cy="104" rx="10" ry="7" transform="rotate(-20 210 104)"/>
+          <rect x="218" y="52" width="3" height="52"/>
+
+          <ellipse cx="272" cy="86" rx="10" ry="7" transform="rotate(-20 272 86)"/>
+          <rect x="280" y="44" width="3" height="42"/>
+        </g>
+
+        <path d="M20 110 q20 -14 34 0 q14 14 34 0 q20 -14 34 0" fill="none" stroke="#f6efff" stroke-opacity="0.2" stroke-width="3"/>
+        <path d="M248 56 q16 -9 16 7 q0 21 -18 28" stroke="#f6efff" stroke-opacity="0.24" stroke-width="3" fill="none"/>
+        <circle cx="248" cy="104" r="7" fill="#f6efff" fill-opacity="0.28"/>
+      </g>
+    </pattern>
+  </defs>
+
+  <rect width="1000" height="1000" fill="url(#staff)"/>
+</svg>

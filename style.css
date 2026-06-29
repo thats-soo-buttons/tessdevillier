@@ -1,25 +1,28 @@
 /* --- OTF NETWORK: ARCHITECT STUDIO MASTER CORE --- */
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;600&family=Montserrat:wght@300;500;700&display=swap');
 
 :root {
-    --accent-blue: #0077cc;
-    --bronze: #a8794b;
-    --silver: #b5b5b5;
-    --gold: #d4af37;
-    --bg-white: #ffffff;
-    --text-main: #1d1d1f;
-    --text-muted: #86868b;
-    --border: #e5e5e5;
+    --accent-blue: #64735f;
+    --bronze: #4e1a2a;
+    --silver: #9a7a84;
+    --gold: #64735f;
+    --bg-white: #1b171b;
+    --text-main: #efe6d8;
+    --text-muted: #9a7a84;
+    --border: #3f333b;
+    --panel-soft: #231d23;
+    --font-display: 'Cinzel', serif;
+    --font-body: 'Montserrat', 'Inter', sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
 
-body { 
-    background-color: var(--bg-white); 
-    color: var(--text-main); 
-    font-family: 'Inter', sans-serif; 
-    line-height: 1.6; 
+body {
+    background-color: var(--bg-white);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
 }
 
 .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
@@ -41,8 +44,8 @@ body {
     gap: 30px; 
 }
 
-.card { 
-    background: #fff; 
+.card {
+    background: var(--panel-soft);
     padding: 45px; 
     border-radius: 24px; 
     display: flex; 
@@ -50,6 +53,11 @@ body {
     position: relative; 
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     border: 1px solid var(--border);
+}
+
+/* Coherence layer: helps mixed image sources feel unified when used in cards and galleries. */
+img {
+    filter: saturate(0.88) contrast(1.08) brightness(0.93);
 }
 
 .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
@@ -112,7 +120,7 @@ ul li strong { color: var(--text-main); }
 .card-executive ul li strong { color: #fff; }
 
 /* --- LOGISTICS & PROCESS SECTIONS --- */
-.logistics { margin: 80px auto 0 auto; background: #fbfbfd; border: 1px solid var(--border); padding: 50px; border-radius: 32px; }
+.logistics { margin: 80px auto 0 auto; background: var(--panel-soft); border: 1px solid var(--border); padding: 50px; border-radius: 32px; }
 .logistics h2 { font-family: 'Cinzel', serif; text-align: center; margin-bottom: 40px; font-size: 2rem; }
 .logistics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center; }
 .logistics-item h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; }
@@ -120,7 +128,7 @@ ul li strong { color: var(--text-main); }
 
 .process-title { font-family: 'Cinzel', serif; text-align: center; margin-top: 100px; margin-bottom: 40px; font-size: 2.2rem; letter-spacing: 2px; }
 .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.process-step { background: #fbfbfd; border: 1px solid var(--border); padding: 30px; border-radius: 20px; text-align: center; }
+.process-step { background: var(--panel-soft); border: 1px solid var(--border); padding: 30px; border-radius: 20px; text-align: center; }
 .process-step span { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--accent-blue); display: block; margin-bottom: 10px; }
 
 /* --- BUTTON & FOOTER --- */

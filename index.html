@@ -7,6 +7,16 @@
     <meta name="description" content="Tess Devillier: Tess Does Stuff professional services, photography, writing, and creative work. Choose your vibe: professional, whimsical, or both. Baton Rouge & beyond.">
     <title>Tess Devillier | Professional & Whimsical Services in Baton Rouge</title>
     <style>
+        :root {
+            --soft-peach: #f4e6da;
+            --soft-peach-hover: #fff1e8;
+            --outline-brown: #5a3d2a;
+            --mode-hire: #7f93aa;
+            --mode-watch: #8759d8;
+            --mode-connect: #5b84bb;
+            --mode-support: #4b8ba0;
+        }
+
         /* Glitch effect for whimsical transition */
         .glitch {
             animation: glitch 0.7s linear 1;
@@ -100,6 +110,14 @@
                     .professional .label {
                         color: #000 !important;
                     }
+                    .choice.mode-watch.panel-slot-1 .label {
+                        color: #2a2138 !important;
+                    }
+                    .choice.mode-watch.panel-slot-2 .label,
+                    .choice.mode-watch.panel-slot-3 .label,
+                    .choice.mode-watch.panel-slot-4 .label {
+                        color: #f6efff !important;
+                    }
                     body, html {
                         overflow-x: hidden !important;
                         min-height: 100vh !important;
@@ -121,23 +139,74 @@
                         transform: none !important;
                         width: 100% !important;
                         border-radius: 0 !important;
-                        font-size: 0.9rem !important;
+                        font-size: 0.95rem !important;
                         padding: 10px 0 !important;
                         text-align: center !important;
                     }
                 }
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=VT323&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;500;700&family=VT323&display=swap');
 
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; color: #fff; overflow: hidden; font-family: 'Montserrat', sans-serif; }
-        
-        #music-unlock {
-            position: fixed; inset: 0; background: #000; z-index: 50000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            cursor: pointer; font-family: 'VT323'; color: #00ff41; text-align: center;
+        :root {
+            --brand-ink: #f5efe2;
+            --brand-gold: #c49a5a;
+            --brand-merlot: #8e3f5a;
+            --brand-deep: #1a1513;
+            --brand-panel: #2a211d;
+            --font-display: 'Cinzel', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --font-whimsy: 'VT323', monospace;
         }
 
-        .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
-        h1 { font-size: 2.5rem; letter-spacing: 6px; margin-bottom: 5px; font-weight: 700; color: #fff; }
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 14% 6%, rgba(196, 154, 90, 0.18), transparent 28%),
+                radial-gradient(circle at 84% 4%, rgba(142, 63, 90, 0.24), transparent 30%),
+                var(--brand-deep);
+            color: var(--brand-ink);
+            overflow: hidden;
+            font-family: var(--font-body);
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+        
+        #music-unlock {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 12% 16%, rgba(127, 147, 170, 0.36), transparent 34%),
+                radial-gradient(circle at 36% 8%, rgba(135, 89, 216, 0.34), transparent 36%),
+                radial-gradient(circle at 64% 10%, rgba(91, 132, 187, 0.34), transparent 36%),
+                radial-gradient(circle at 88% 16%, rgba(75, 139, 160, 0.34), transparent 36%),
+                linear-gradient(160deg, #111622 0%, #0b0f17 100%);
+            z-index: 50000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer;
+            font-family: 'VT323';
+            color: #f4e6da;
+            text-align: center;
+        }
+
+        #music-unlock h1 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, var(--mode-hire) 0%, var(--mode-watch) 33%, var(--mode-connect) 66%, var(--mode-support) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+        }
+
+        .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: normal; }
+        h1 { font-size: 2.5rem; letter-spacing: 4px; margin-bottom: 5px; font-weight: 700; color: var(--brand-ink); font-family: var(--font-display); }
         #vibe-text { color: #fff; font-size: 1.3rem; min-height: 1.6em; font-weight: 300; text-transform: uppercase; }
         .mode-headline {
             display: flex;
@@ -150,74 +219,374 @@
             font-size: 2.5rem;
             letter-spacing: 6px;
             font-weight: 700;
-            color: #fff;
+            color: #f4e6da;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.78);
+            background: rgba(8, 10, 16, 0.42);
+            border: 1px solid rgba(244, 230, 218, 0.22);
+            border-radius: 12px;
+            padding: 8px 14px;
+            backdrop-filter: blur(4px);
         }
         .mode-headline .separator {
-            color: #fff;
-            opacity: 0.8;
+            color: #f4e6da;
+            opacity: 0.92;
         }
         .mode-headline .mode-tab {
             appearance: none;
             border: none;
             background: transparent;
             padding: 0;
+            padding-bottom: 2px;
             margin: 0;
-            color: #fff;
+            color: #f4e6da;
             font: inherit;
             letter-spacing: inherit;
             cursor: pointer;
             text-transform: uppercase;
-            transition: color 0.18s ease;
+            border-bottom: 2px solid transparent;
+            transition: color 0.18s ease, text-shadow 0.18s ease;
         }
         .mode-headline .mode-tab:hover,
         .mode-headline .mode-tab:focus {
-            color: #ffd700;
+            color: #fff1e8;
+            text-shadow: 0 0 10px rgba(244, 230, 218, 0.36);
+            border-bottom-color: rgba(244, 230, 218, 0.7);
             outline: none;
         }
         .mode-headline .mode-tab.active {
-            color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(244, 230, 218, 0.5);
+            border-bottom-color: #ffffff;
         }
         .mode-blurb {
             margin-top: 14px;
             pointer-events: auto;
             text-align: center;
             text-shadow: 0 2px 8px #000;
+            background: rgba(8, 10, 16, 0.4);
+            border: 1px solid rgba(244, 230, 218, 0.2);
+            border-radius: 12px;
+            padding: 8px 12px;
+            backdrop-filter: blur(4px);
+            max-width: min(930px, calc(100vw - 32px));
+            margin-left: auto;
+            margin-right: auto;
         }
         .mode-blurb-title {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #ffd700;
+            color: #f4e6da;
             margin-bottom: 4px;
             letter-spacing: 1px;
         }
         .mode-blurb-text {
             font-size: 0.95rem;
-            color: #fff;
+            color: #fff7f0;
             max-width: 820px;
             margin: 0 auto 4px auto;
             line-height: 1.35;
         }
         .mode-blurb-quote {
-            font-size: 0.92rem;
-            color: #e6e6e6;
+            font-size: 0.95rem;
+            color: #f0e3d7;
             font-style: italic;
             max-width: 840px;
             margin: 0 auto;
+        }
+
+        .mode-headline .mode-hint-inline {
+            font-size: 0.52em;
+            letter-spacing: 0.4px;
+            color: #f4e6da;
+            opacity: 0.95;
+            text-transform: none;
+            white-space: nowrap;
+            margin-right: 6px;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.72);
+            pointer-events: none;
+        }
+
+        #mode-toggle {
+            position: fixed !important;
+            right: 16px;
+            bottom: 92px;
+            z-index: 240;
+            background: rgba(8, 10, 16, 0.56);
+            border: 1px solid rgba(244, 230, 218, 0.22);
+            border-radius: 12px;
+            padding: 8px 10px;
+            backdrop-filter: blur(6px);
+        }
+
+        #music-unlock p,
+        #music-unlock a,
+        #music-unlock span,
+        #music-unlock .mobile-note,
+        #audio-controls label,
+        #audio-playpause,
+        footer div[aria-label="Quick Jump Menu"] a,
+        .project-link,
+        .xyz-link {
+            color: var(--soft-peach) !important;
+            text-shadow: -1px 0 var(--outline-brown), 0 1px var(--outline-brown), 1px 0 var(--outline-brown), 0 -1px var(--outline-brown);
+        }
+
+        #choice-whimsical,
+        #btn-professional {
+            color: var(--soft-peach) !important;
+            border-color: var(--soft-peach) !important;
+            text-shadow: -1px 0 var(--outline-brown), 0 1px var(--outline-brown), 1px 0 var(--outline-brown), 0 -1px var(--outline-brown);
         }
 
         .split-container { display: flex; width: 100vw; height: 100vh; }
         .choice { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden; }
         .choice:hover { flex: 1.4; }
 
-        .vignette { width: 320px; height: 320px; border-radius: 12px; background-size: cover; background-position: center; border: 1px solid rgba(255,255,255,0.1); z-index: 2; }
-        .professional { background: #ffffff; }
-        .buttons { background: #0a0a0a; font-family: 'VT323', monospace; }
-        .otf { background: #000000; font-family: 'VT323', monospace; }
-        .other { background: #071610; font-family: 'VT323', monospace; }
+        .choice::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(5, 8, 16, 0.08) 0%, rgba(5, 8, 16, 0.26) 100%);
+            z-index: 1;
+        }
+
+        .choice::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 30%, transparent 35%, rgba(0, 0, 0, 0.12) 100%);
+            z-index: 1;
+        }
+
+        .vignette {
+            width: 320px;
+            height: 320px;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            z-index: 2;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+            filter: saturate(0.9) contrast(1.06) brightness(0.96);
+            transition: filter 0.35s ease, transform 0.35s ease;
+        }
+
+        .choice:hover .vignette {
+            filter: saturate(0.98) contrast(1.08) brightness(1.03);
+            transform: translateY(-2px);
+        }
+
+        .professional {
+            background: #faf8f5;
+        }
+        .buttons {
+            background: #00a3e0;
+            font-family: var(--font-whimsy);
+        }
+        .otf {
+            background: #98a68e;
+            font-family: var(--font-whimsy);
+        }
+        .other {
+            background: #121214;
+            font-family: var(--font-whimsy);
+        }
+
+        .professional::before {
+            background: linear-gradient(180deg, rgba(61, 38, 32, 0.04) 0%, rgba(61, 38, 32, 0.16) 100%);
+        }
+
+        .buttons::before {
+            background: linear-gradient(180deg, rgba(16, 30, 49, 0.08) 0%, rgba(16, 30, 49, 0.22) 100%);
+        }
+
+        .otf::before {
+            background: linear-gradient(180deg, rgba(44, 46, 43, 0.08) 0%, rgba(44, 46, 43, 0.18) 100%);
+        }
+
+        .other::before {
+            background: linear-gradient(180deg, rgba(0, 255, 163, 0.1) 0%, rgba(18, 18, 20, 0.3) 100%);
+        }
+
+        .professional::after {
+            background: radial-gradient(circle at 50% 30%, transparent 35%, rgba(0, 0, 0, 0.08) 100%);
+        }
+
+        .buttons::after,
+        .otf::after,
+        .other::after {
+            background: radial-gradient(circle at 50% 30%, transparent 35%, rgba(0, 0, 0, 0.1) 100%);
+        }
+
+        .professional .vignette { filter: saturate(0.8) contrast(1.03) brightness(1.04); }
+        .buttons .vignette { filter: saturate(1.02) contrast(1.08) brightness(0.98) hue-rotate(12deg); }
+        .otf .vignette { filter: saturate(0.88) contrast(1.04) brightness(1) hue-rotate(-10deg); }
+        .other .vignette { filter: saturate(0.96) contrast(1.08) brightness(0.93) hue-rotate(-28deg); }
         
-        .label { margin-top: 35px; font-size: 1.4rem; font-weight: bold; text-transform: uppercase; color: #fff; mix-blend-mode: difference; z-index: 3; }
-        .professional .label { color: #000; mix-blend-mode: normal; }
+        .label {
+            margin-top: 35px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--brand-ink);
+            letter-spacing: 0.7px;
+            z-index: 3;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75);
+        }
+        .professional .label { color: #3d2620; text-shadow: 0 1px 4px rgba(250, 248, 245, 0.55); }
+        .buttons .label { color: #101e31; text-shadow: 0 1px 5px rgba(245, 247, 250, 0.45); }
+        .otf .label { color: #2c2e2b; text-shadow: 0 1px 4px rgba(244, 240, 234, 0.45); }
+        .other .label { color: #e4e6eb; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.9); }
+
+        /* Explicit per-mode, per-panel colors so each panel is unique in every mode. */
+        .choice.mode-hire.panel-slot-1 { background: linear-gradient(150deg, #f6f8fb 0%, #e4e9ef 100%); }
+        .choice.mode-hire.panel-slot-2 { background: linear-gradient(150deg, #d5dde7 0%, #bac6d5 100%); }
+        .choice.mode-hire.panel-slot-3 { background: linear-gradient(150deg, #9aaabd 0%, #7f93aa 100%); }
+        .choice.mode-hire.panel-slot-4 { background: linear-gradient(150deg, #3c495b 0%, #263242 100%); }
+
+        .choice.mode-watch.panel-slot-1 {
+            background:
+                radial-gradient(circle at 18% 16%, rgba(255, 255, 255, 0.28) 0%, transparent 36%),
+                linear-gradient(150deg, rgba(255, 245, 222, 0.28) 0%, rgba(255, 215, 201, 0.28) 100%),
+                url('dm_assets/watch-bg-buttons.svg') center/320px 320px repeat,
+                linear-gradient(150deg, #fff5de 0%, #ffd7c9 100%);
+        }
+        .choice.mode-watch.panel-slot-2 {
+            background:
+                radial-gradient(circle at 78% 18%, rgba(255, 171, 110, 0.24) 0%, transparent 42%),
+                linear-gradient(150deg, rgba(103, 82, 62, 0.3) 0%, rgba(53, 42, 34, 0.3) 100%),
+                url('dm_assets/watch-bg-speakers.svg') center/320px 320px repeat,
+                linear-gradient(150deg, #67523e 0%, #352a22 100%);
+        }
+        .choice.mode-watch.panel-slot-3 {
+            background:
+                linear-gradient(transparent 85%, rgba(255, 88, 199, 0.2) 85% 86%, transparent 86%),
+                linear-gradient(90deg, transparent 84%, rgba(0, 241, 255, 0.22) 84% 85%, transparent 85%),
+                linear-gradient(150deg, rgba(58, 43, 116, 0.28) 0%, rgba(30, 18, 69, 0.28) 100%),
+                url('dm_assets/watch-bg-sheetmusic.svg') center/360px 280px repeat,
+                linear-gradient(150deg, #3a2b74 0%, #1e1245 100%);
+        }
+        .choice.mode-watch.panel-slot-4 {
+            background:
+                radial-gradient(circle at 20% 20%, rgba(96, 228, 255, 0.16) 0%, transparent 36%),
+                radial-gradient(circle at 80% 72%, rgba(224, 129, 255, 0.16) 0%, transparent 40%),
+                linear-gradient(150deg, rgba(37, 31, 61, 0.3) 0%, rgba(12, 10, 24, 0.3) 100%),
+                url('dm_assets/watch-bg-cosmos.svg') center/420px 420px repeat,
+                linear-gradient(150deg, #251f3d 0%, #0c0a18 100%);
+        }
+
+        .choice.mode-connect.panel-slot-1 { background: linear-gradient(150deg, #e8eef5 0%, #d5deea 100%); }
+        .choice.mode-connect.panel-slot-2 { background: linear-gradient(150deg, #c0cbdb 0%, #a9b8cd 100%); }
+        .choice.mode-connect.panel-slot-3 { background: linear-gradient(150deg, #5b84bb 0%, #2f5f9b 100%); }
+        .choice.mode-connect.panel-slot-4 { background: linear-gradient(150deg, #30465f 0%, #1b2b3f 100%); }
+
+        .choice.mode-support.panel-slot-1 { background: url('dm_assets/support-bubbles.svg') center/320px 320px repeat, linear-gradient(150deg, #4b8ba0 0%, #24556a 100%); }
+        .choice.mode-support.panel-slot-2 { background: url('dm_assets/support-bubbles.svg') center/320px 320px repeat, linear-gradient(150deg, #3a6f81 0%, #1d4557 100%); }
+        .choice.mode-support.panel-slot-3 { background: url('dm_assets/support-bubbles.svg') center/320px 320px repeat, linear-gradient(150deg, #2a5061 0%, #152f3d 100%); }
+        .choice.mode-support.panel-slot-4 { background: url('dm_assets/support-bubbles.svg') center/320px 320px repeat, linear-gradient(150deg, #162631 0%, #000000 100%); }
+
+        .choice.mode-hire::before { background: linear-gradient(180deg, rgba(26, 38, 54, 0.04) 0%, rgba(26, 38, 54, 0.14) 100%); }
+        .choice.mode-watch::before { background: linear-gradient(180deg, rgba(156, 118, 233, 0.16) 0%, rgba(12, 10, 24, 0.34) 100%); }
+        .choice.mode-connect::before { background: linear-gradient(180deg, rgba(27, 43, 63, 0.05) 0%, rgba(27, 43, 63, 0.14) 100%); }
+        .choice.mode-support::before { background: linear-gradient(180deg, rgba(75, 139, 160, 0.12) 0%, rgba(0, 0, 0, 0.28) 100%); }
+
+        .choice.mode-watch::after {
+            background: radial-gradient(circle at 50% 30%, transparent 30%, rgba(255, 128, 196, 0.2) 100%);
+        }
+
+        .choice.mode-support::after {
+            background: radial-gradient(circle at 50% 30%, transparent 30%, rgba(75, 139, 160, 0.2) 100%);
+        }
+
+        .choice.mode-watch .vignette {
+            border-color: rgba(173, 133, 244, 0.7);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(173, 133, 244, 0.2);
+        }
+
+        .choice.mode-support .vignette {
+            border-color: rgba(75, 139, 160, 0.72);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(75, 139, 160, 0.2);
+        }
+
+        .choice.mode-hire .label { color: #1f2f43; text-shadow: 0 1px 4px rgba(246, 248, 251, 0.5); }
+        .choice.mode-hire.panel-slot-4 .label { color: #f5f7fa; text-shadow: 0 1px 6px rgba(26, 38, 54, 0.85); }
+        .choice.mode-watch .label {
+            color: #f3eaff;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75);
+            padding: 9px 12px;
+            border-radius: 10px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            max-width: min(88vw, 360px);
+            text-align: center;
+            line-height: 1.22;
+        }
+        .choice.mode-watch.panel-slot-1 .label {
+            background: rgba(255, 245, 222, 0.78);
+            border-color: rgba(90, 61, 42, 0.22);
+        }
+        .choice.mode-watch.panel-slot-2 .label,
+        .choice.mode-watch.panel-slot-3 .label,
+        .choice.mode-watch.panel-slot-4 .label {
+            background: rgba(12, 10, 24, 0.44);
+            border-color: rgba(246, 239, 255, 0.18);
+        }
+        .choice.mode-watch.panel-slot-1 .label { color: #2a2138; text-shadow: 0 1px 4px rgba(255, 245, 222, 0.65); }
+        .choice.mode-watch.panel-slot-2 .label { color: #f6efff; text-shadow: 0 1px 8px rgba(10, 6, 26, 0.85); }
+        .choice.mode-watch.panel-slot-3 .label { color: #f8f1e3; text-shadow: 0 1px 7px rgba(26, 18, 13, 0.85); }
+        .choice.mode-watch.panel-slot-4 .label { color: #eef5ff; text-shadow: 0 1px 8px rgba(5, 3, 12, 0.9); }
+        .choice.mode-connect .label { color: #eef5ff; text-shadow: 0 1px 5px rgba(27, 43, 63, 0.55); }
+        .choice.mode-support .label { color: #eaf4fa; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85); }
+
+        .panel-subtitle {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #cfcfcf;
+        }
+
+        /* Hire subtitle glow + outline chaining to the next panel color. */
+        .choice.mode-hire.panel-slot-1 .panel-subtitle {
+            color: #1f2f43;
+            text-shadow: 0 1px 2px rgba(246, 248, 251, 0.35);
+        }
+        .choice.mode-hire.panel-slot-2 .panel-subtitle {
+            color: #1f2f43;
+            text-shadow: 0 1px 2px rgba(246, 248, 251, 0.35);
+        }
+        .choice.mode-hire.panel-slot-3 .panel-subtitle {
+            color: #1f2f43;
+            text-shadow: 0 1px 2px rgba(246, 248, 251, 0.35);
+        }
+        .choice.mode-watch.panel-slot-1 .panel-subtitle {
+            color: #35254a;
+            text-shadow: 0 1px 2px rgba(255, 245, 222, 0.55);
+        }
+        .choice.mode-watch.panel-slot-2 .panel-subtitle {
+            color: #e8dcff;
+            text-shadow: 0 1px 3px rgba(10, 6, 26, 0.85);
+        }
+        .choice.mode-watch.panel-slot-3 .panel-subtitle {
+            color: #f0dfbf;
+            text-shadow: 0 1px 3px rgba(26, 18, 13, 0.8);
+        }
+        .choice.mode-watch.panel-slot-4 .panel-subtitle {
+            color: #d6e8ff;
+            text-shadow: 0 1px 3px rgba(5, 3, 12, 0.9);
+        }
+        .choice.mode-watch .panel-subtitle {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(12, 10, 24, 0.28);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+        }
+        .choice.mode-watch.panel-slot-1 .panel-subtitle {
+            background: rgba(255, 245, 222, 0.7);
+            border-color: rgba(90, 61, 42, 0.2);
+        }
         /* CRT Whimsical Section */
         .crt-window {
             background: #0a1a0a;
@@ -361,7 +730,7 @@
         <div style="margin-top: 2.2em; display: flex; flex-direction: column; align-items: center; gap: 18px;">
             <span style="font-size:1.18em; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:700; margin-bottom: 6px;">Make a Choice:</span>
             <div style="display: flex; gap: 22px;">
-                <button id="choice-professional" style="background:#ffd700; color:#222; font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.13em; padding:12px 32px; border:none; border-radius:10px; cursor:pointer; box-shadow:0 2px 12px #0003; transition:background 0.2s;">Professional</button>
+                <button id="choice-professional" style="background:#3c495b; color:#f5f7fa; font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.13em; padding:12px 32px; border:1px solid #7f93aa; border-radius:10px; cursor:pointer; box-shadow:0 2px 12px #0003; transition:background 0.2s;">Professional</button>
                 <button id="choice-whimsical" style="background:#222; color:#ffd700; font-family:'VT323',monospace; font-weight:700; font-size:1.13em; padding:12px 32px; border:2px solid #ffd700; border-radius:10px; cursor:pointer; box-shadow:0 2px 12px #0003; transition:background 0.2s;">Whimsical</button>
             </div>
         </div>
@@ -375,6 +744,7 @@
 
         <header class="header-container" role="banner">
             <h1 class="mode-headline" aria-label="Section mode selector">
+                <span class="mode-hint-inline" aria-hidden="true">Click around ⤳</span>
                 <button type="button" class="mode-tab active" data-mode="hire">HIRE</button>
                 <span class="separator" aria-hidden="true">•</span>
                 <button type="button" class="mode-tab" data-mode="watch">WATCH</button>
@@ -470,7 +840,7 @@
                             aria: 'House and pet sitting'
                         },
                         {
-                            theme: 'buttons',
+                            image: 'dm_assets/PrimeTwitch.png',
                             image: 'professionalindex.jpg',
                             title: 'Photography',
                             subtitle: 'View packages',
@@ -480,7 +850,7 @@
                         },
                         {
                             theme: 'otf',
-                            image: 'simulationindex.jpg',
+                            image: 'dm_assets/P1430264.jpg',
                             title: 'Worldbuilding / Narrative',
                             subtitle: 'Explore services',
                             href: 'worldbuilding.html',
@@ -489,7 +859,7 @@
                         },
                         {
                             theme: 'other',
-                            image: 'helixotopeexample.jpg',
+                            image: 'dm_assets/P1260645.jpg',
                             title: 'Creative Consulting',
                             subtitle: 'Explore consulting',
                             href: 'creative-consulting.html',
@@ -505,7 +875,7 @@
                     panels: [
                         {
                             theme: 'professional',
-                            image: 'dm_assets/couch.jpg',
+                            image: 'dm_assets/shirt-buttons.svg',
                             title: '🎮 ThatsSooButtons',
                             subtitle: 'Open on Twitch',
                             href: 'https://twitch.tv/thats_soo_buttons',
@@ -514,7 +884,7 @@
                         },
                         {
                             theme: 'buttons',
-                            image: 'dm_assets/music-lyrics-card.svg',
+                            image: 'dm_assets/P1250960-3.jpg',
                             title: '🎵 Music and Lyrics',
                             subtitle: 'Listen and explore',
                             href: 'music-lyrics.html',
@@ -523,7 +893,7 @@
                         },
                         {
                             theme: 'otf',
-                            image: 'dm_assets/podcasts-card.svg',
+                            image: 'dm_assets/P1420995-2.jpg',
                             title: '🎙️ Podcasts',
                             subtitle: 'Wayward Bound + future shows',
                             href: 'podcasts.html',
@@ -548,7 +918,7 @@
                     panels: [
                         {
                             theme: 'professional',
-                            image: 'dm_assets/instagram-card.svg',
+                            image: 'dm_assets/me.jpg',
                             title: '📸 Instagram',
                             subtitle: 'Follow and engage',
                             href: 'https://www.instagram.com/thatssoobuttons',
@@ -557,7 +927,7 @@
                         },
                         {
                             theme: 'buttons',
-                            image: 'dm_assets/tiktok-card.svg',
+                            image: 'dm_assets/P1390662.jpg',
                             title: '🎥 TikTok',
                             subtitle: 'Short-form posts',
                             href: 'https://www.tiktok.com/@thatssoobuttons',
@@ -566,7 +936,7 @@
                         },
                         {
                             theme: 'otf',
-                            image: 'dm_assets/discord-card.svg',
+                            image: 'dm_assets/P1430309.jpg',
                             title: '💬 Discord Community',
                             subtitle: 'Join the server',
                             href: 'https://discord.gg/dC34nguEEC',
@@ -575,7 +945,7 @@
                         },
                         {
                             theme: 'other',
-                            image: 'professionalindex.jpg',
+                            image: 'dm_assets/P1400226.jpg',
                             title: '✉️ Email',
                             subtitle: 'Hire / Buttons / OTFN',
                             href: 'contact.html',
@@ -591,7 +961,7 @@
                     panels: [
                         {
                             theme: 'professional',
-                            image: 'helixotopeexample.jpg',
+                            image: 'dm_assets/cashapp-card.svg',
                             title: '$ Cash App',
                             subtitle: '$888buttons',
                             href: 'https://cash.app/$888buttons',
@@ -609,7 +979,7 @@
                         },
                         {
                             theme: 'otf',
-                            image: 'professionalindex.jpg',
+                            image: 'dm_assets/PrimeTwitch.png',
                             title: '🆓 Free Support',
                             subtitle: 'Prime sub + shares',
                             href: 'freesupport.html',
@@ -648,7 +1018,7 @@
                     const imageEl = document.getElementById(`panel-image-${panelIndex}`);
                     const labelEl = document.getElementById(`panel-label-${panelIndex}`);
 
-                    if (panelEl) panelEl.className = `choice ${panel.theme}`;
+                    if (panelEl) panelEl.className = `choice ${panel.theme} mode-${mode} panel-slot-${panelIndex}`;
                     if (linkEl) {
                         linkEl.href = panel.href;
                         linkEl.setAttribute('aria-label', panel.aria);
@@ -665,7 +1035,7 @@
                         imageEl.setAttribute('aria-label', panel.aria);
                     }
                     if (labelEl) {
-                        labelEl.innerHTML = `${panel.title}<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">${panel.subtitle}</span>`;
+                        labelEl.innerHTML = `${panel.title}<br><span class="panel-subtitle">${panel.subtitle}</span>`;
                     }
                 });
             }
@@ -682,8 +1052,8 @@
                 const audioControls = document.getElementById('audio-controls');
                 if (professionalActive) {
                     btnProfessional.style.background = 'rgba(40,40,40,0.55)';
-                    btnProfessional.style.borderColor = '#ffd700';
-                    btnProfessional.style.color = '#ffd700';
+                    btnProfessional.style.borderColor = '#f4e6da';
+                    btnProfessional.style.color = '#f4e6da';
                     btnWhimsical.style.background = 'rgba(40,40,40,0.35)';
                     btnWhimsical.style.borderColor = '#fff';
                     btnWhimsical.style.color = '#fff';
@@ -711,8 +1081,8 @@
                     btnProfessional.style.borderColor = '#fff';
                     btnProfessional.style.color = '#fff';
                     btnWhimsical.style.background = 'rgba(40,40,40,0.55)';
-                    btnWhimsical.style.borderColor = '#ffd700';
-                    btnWhimsical.style.color = '#ffd700';
+                    btnWhimsical.style.borderColor = '#f4e6da';
+                    btnWhimsical.style.color = '#f4e6da';
                     if (professionalContent) {
                         professionalContent.classList.add('glitch');
                         setTimeout(() => {
@@ -794,7 +1164,7 @@
 
     <div id="panel-3" class="choice otf">
           <a id="panel-link-3" href="worldbuilding.html" aria-label="Worldbuilding and narrative design" style="display:block;">
-              <div id="panel-image-3" class="vignette" style="background-image: url('simulationindex.jpg');" role="img" aria-label="Worldbuilding and narrative design"></div>
+              <div id="panel-image-3" class="vignette" style="background-image: url('dm_assets/P1430264.jpg');" role="img" aria-label="Worldbuilding and narrative design"></div>
           </a>
           <div id="panel-label-3" class="label">Worldbuilding / Narrative<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">Explore services</span></div>
       </div>
@@ -808,7 +1178,7 @@
   </div>
 </main>
 
-<footer style="position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.85rem; opacity: 0.95; color: #fff; z-index: 50; background: rgba(8,10,16,0.42); backdrop-filter: blur(6px); padding: 8px 12px; border-radius: 12px; width: min(980px, calc(100vw - 24px));" role="contentinfo">
+<footer style="position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.95rem; opacity: 0.95; color: #fff; z-index: 50; background: rgba(8,10,16,0.42); backdrop-filter: blur(6px); padding: 8px 12px; border-radius: 12px; width: min(980px, calc(100vw - 24px));" role="contentinfo">
     <div id="audio-controls" style="margin-bottom:10px; display:flex; justify-content:center; align-items:center; gap:18px;">
         <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Pause</button>
         <label style="color:#ffd700;font-size:0.95em;">
@@ -816,7 +1186,7 @@
             <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.4" style="vertical-align:middle;">
         </label>
     </div>
-    <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.9rem; margin-top: 8px;">
+    <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.95rem; margin-top: 8px;">
         <!-- FAQ/Fine Print link removed as requested -->
     </div>
         <!-- About link removed from footer -->
@@ -867,12 +1237,12 @@
         <a href="https://discord.gg/dC34nguEEC" target="_blank" aria-label="Discord" style="color:#fff;transition:color 0.2s;">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.424 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.37-1.342-3.37-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.34-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.254-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 7.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.396.1 2.65.64.7 1.028 1.594 1.028 2.687 0 3.847-2.339 4.695-4.566 4.944.359.31.678.921.678 1.857 0 1.34-.012 2.421-.012 2.751 0 .268.18.579.688.481C19.138 20.183 22 16.442 22 12.021 22 6.484 17.523 2 12 2z"/></svg>
         </a>
-        <a href="https://ko-fi.com/thatssoobuttons/shop" target="_blank" aria-label="Shop on Ko-fi" style="background:#ffd700;color:#222;font-weight:bold;padding:6px 18px;border-radius:8px;margin-left:12px;text-decoration:none;transition:background 0.2s;">SHOP</a>
-        <span style="font-size:0.85em; color:#cfcfcf; margin-left:10px;">✈️ 🧳 FLY ME OUT</span>
-        <a href="#" id="bookContactLink" style="color: #fff; text-decoration: none; margin-left:14px;" aria-label="Book or Contact">Book/Contact</a>
+        <a href="https://ko-fi.com/thatssoobuttons/shop" target="_blank" aria-label="Shop on Ko-fi" style="background:#ffffff;color:#222;font-weight:bold;padding:6px 18px;border-radius:8px;margin-left:12px;text-decoration:none;transition:background 0.2s; border:1px solid #d6d9df;">SHOP</a>
+        <span style="font-size:0.95em; color:#cfcfcf; margin-left:10px;">✈️ 🧳 FLY ME OUT</span>
+        <a href="hire.html" id="bookContactLink" style="color: #fff; text-decoration: none; margin-left:14px;" aria-label="Book or Inquire">Book or Inquire</a>
     </div>
-    <div aria-label="Quick Jump Menu" style="margin-top:8px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap; font-size:0.8rem;">
-        <a href="hire.html" style="color:#ffd700;text-decoration:none;">Hire/Book</a>
+    <div aria-label="Quick Jump Menu" style="margin-top:8px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap; font-size:0.95rem;">
+        <a href="hire.html" style="color:#ffd700;text-decoration:none;">Book or Inquire</a>
         <a href="pets.html" style="color:#ffd700;text-decoration:none;">Pets</a>
         <a href="photography/index.html" style="color:#ffd700;text-decoration:none;">Photography</a>
         <a href="music-lyrics.html" style="color:#ffd700;text-decoration:none;">Music</a>
@@ -881,24 +1251,24 @@
         <a href="creative-consulting.html" style="color:#ffd700;text-decoration:none;">Consulting</a>
         <a href="availability.html" style="color:#ffd700;text-decoration:none;">Availability</a>
     </div>
-    <div style="margin-top:4px;font-size:0.8em;color:#cfcfcf;text-align:center;">&copy; 2026 Tess Devillier. All rights reserved.</div>
+    <div style="margin-top:4px;font-size:0.95em;color:#cfcfcf;text-align:center;">&copy; 2026 Tess Devillier. All rights reserved.</div>
     <style>
       footer a[aria-label]:hover, footer a[aria-label]:focus {
-        color: #ffd700 !important;
+        color: var(--soft-peach-hover) !important;
       }
         .project-link {
-            color: #ffd700;
+            color: var(--soft-peach);
             font-weight: 700;
             text-decoration: none;
             transition: color 0.2s;
         }
         .project-link:hover, .project-link:focus {
-            color: #fffbe6;
+            color: var(--soft-peach-hover);
             text-decoration: underline;
             font-weight: 800;
         }
         .xyz-link {
-            color: #ffd700;
+            color: var(--soft-peach);
             font-weight: 800;
             font-size: 1.25em;
             text-decoration: none;
@@ -906,14 +1276,29 @@
             transition: color 0.2s, border-bottom 0.2s;
         }
         .xyz-link:hover, .xyz-link:focus {
-            color: #fffbe6;
+            color: var(--soft-peach-hover);
             text-decoration: underline;
-            border-bottom: 2px solid #ffd700;
+            border-bottom: 2px solid var(--soft-peach);
         }
         @media (max-width: 700px) {
             .mobile-note {
                 display: block !important;
                 text-align: center;
+            }
+
+            .mode-headline .mode-hint-inline {
+                font-size: 0.62em;
+                margin-right: 2px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            #mode-toggle {
+                position: static !important;
+                right: auto;
+                bottom: auto;
+                margin: 14px auto 0 auto !important;
+                width: fit-content;
             }
         }
         </style>

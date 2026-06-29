@@ -7,24 +7,32 @@
     <title>Watch | Tess Devillier</title>
     <style>
         :root {
-            --bg: #0f121a;
-            --card: #171d2a;
-            --ink: #eef2ff;
-            --muted: #b3bdd5;
-            --accent: #ffd166;
-            --line: #2d3850;
+            --bg: #f3ecff;
+            --card: #ddd0ff;
+            --ink: #2c1a47;
+            --muted: #563a86;
+            --accent: #8759d8;
+            --line: #9f84d5;
         }
         * { box-sizing: border-box; }
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #2c1a47;
+            outline-offset: 2px;
+        }
         body {
             margin: 0;
             min-height: 100vh;
             color: var(--ink);
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle at 80% 5%, rgba(255, 209, 102, 0.14), transparent 30%), var(--bg);
+            font-family: 'Montserrat', Arial, sans-serif;
+            background:
+                radial-gradient(circle at 84% 6%, rgba(195, 164, 255, 0.34), transparent 34%),
+                radial-gradient(circle at 16% 10%, rgba(146, 112, 217, 0.24), transparent 34%),
+                radial-gradient(circle at 48% 2%, rgba(109, 79, 164, 0.18), transparent 40%),
+                var(--bg);
         }
         .wrap { max-width: 980px; margin: 0 auto; padding: 30px 16px 44px; }
         .top { margin-bottom: 20px; }
-        .top a { color: var(--muted); text-decoration: none; font-weight: 600; }
+        .top a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
         h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
         .sub { margin: 0 0 22px; color: var(--muted); }
         .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
@@ -33,7 +41,7 @@
             border: 1px solid var(--line);
             border-radius: 14px;
             padding: 18px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.26);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4);
         }
         .card h2 { margin: 0 0 8px; font-size: 1.2rem; }
         .card p { margin: 0 0 12px; color: var(--muted); line-height: 1.5; }
@@ -44,7 +52,8 @@
             border-radius: 8px;
             padding: 9px 12px;
             background: var(--accent);
-            color: #232942;
+            color: #fbf7ff;
+            border: 1px solid #6e42b9;
         }
         .footer-links {
             margin-top: 20px;
@@ -57,7 +66,8 @@
         }
         .footer-links a {
             color: var(--accent);
-            text-decoration: none;
+            text-decoration: underline;
+            text-underline-offset: 2px;
             font-weight: 700;
         }
         @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
@@ -99,9 +109,10 @@
             </article>
         </section>
 
-        <div class="footer-links" aria-label="Quick booking links">
+        <div class="footer-links" aria-label="Quick links">
             <a href="#">Back to top</a>
-            <a href="hire.html">Hire/Book</a>
+            <a href="index.html">Home</a>
+            <a href="hire.html">Book or Inquire</a>
             <a href="contact.html">Contact</a>
             <a href="availability.html">Availability</a>
             <a href="pets.html">Pet Services</a>
