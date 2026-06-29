@@ -79,35 +79,42 @@
                     .choice {
                         width: 100vw !important;
                         max-width: 100vw !important;
-                        min-height: 220px !important;
-                        height: 320px !important;
+                        min-height: 96px !important;
+                        height: auto !important;
                         margin: 0 !important;
                         border-radius: 0 !important;
                         box-shadow: none !important;
                         flex: none !important;
                         align-items: center !important;
                         justify-content: center !important;
+                        padding: 12px 10px !important;
+                        position: relative !important;
                     }
                     .vignette {
-                        width: min(90vw, 320px) !important;
-                        max-width: min(90vw, 320px) !important;
-                        height: min(90vw, 320px) !important;
-                        max-height: min(90vw, 320px) !important;
-                        aspect-ratio: 1 / 1 !important;
-                        border-radius: 12px !important;
-                        margin-top: 18px !important;
-                        margin-bottom: 8px !important;
-                        background-size: cover !important;
-                        background-position: center !important;
-                        background-repeat: no-repeat !important;
+                        display: none !important;
                     }
+
+                    .choice > a {
+                        position: absolute !important;
+                        inset: 0 !important;
+                        z-index: 4 !important;
+                        display: block !important;
+                    }
+
                     .label {
-                        margin-top: 12px !important;
-                        font-size: 1.2rem !important;
+                        margin-top: 0 !important;
+                        font-size: 1.05rem !important;
                         text-align: center !important;
-                        padding: 0 10px !important;
+                        padding: 8px 12px !important;
                         color: #fff !important;
                         font-family: 'Montserrat', sans-serif !important;
+                        background: rgba(8, 10, 16, 0.44) !important;
+                        border: 1px solid rgba(255, 255, 255, 0.18) !important;
+                        border-radius: 10px !important;
+                        width: min(92vw, 640px) !important;
+                        position: relative !important;
+                        z-index: 5 !important;
+                        pointer-events: none !important;
                     }
                     .professional .label {
                         color: #000 !important;
@@ -1065,6 +1072,7 @@
                 const config = modeData[mode];
                 if (!config) return;
                 activeMode = mode;
+                const openInNewPage = window.matchMedia('(max-width: 700px)').matches;
 
                 if (modeBlurbTitle) modeBlurbTitle.textContent = config.title;
                 if (modeBlurbText) modeBlurbText.textContent = config.text;
@@ -1089,7 +1097,7 @@
                     if (linkEl) {
                         linkEl.href = panel.href;
                         linkEl.setAttribute('aria-label', panel.aria);
-                        if (panel.external) {
+                        if (panel.external || openInNewPage) {
                             linkEl.target = '_blank';
                             linkEl.rel = 'noopener noreferrer';
                         } else {
