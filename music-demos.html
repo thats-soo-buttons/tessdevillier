@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Demos | Tess Devillier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #0a0a0a; color: #f5f5f5; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
+        .page-wrap { max-width: 800px; margin: 0 auto; padding: 48px 20px 80px; }
+        .back-link { color: #ffd700; text-decoration: none; font-size: .9em; letter-spacing: 1px; display: inline-block; margin-bottom: 32px; }
+        h1 { font-family: 'Cinzel', serif; color: #ffd700; font-size: 2.4rem; letter-spacing: 4px; text-align: center; margin-bottom: 8px; }
+        .tagline { text-align: center; color: #888; margin-bottom: 24px; font-size: .95em; letter-spacing: 1px; }
+        .disclaimer-banner { background: #1a0a00; border: 1px solid #ff6b0044; border-radius: 12px; padding: 16px 20px; margin-bottom: 40px; color: #cfcfcf; font-size: .9em; line-height: 1.7; }
+        .disclaimer-banner strong { color: #ff9944; }
+        .demo-card { background: #111; border: 1.5px solid #222; border-radius: 18px; padding: 28px 30px; margin-bottom: 22px; transition: border-color .2s; }
+        .demo-card:hover { border-color: #ffd70044; }
+        .demo-card h2 { font-family: 'Cinzel', serif; color: #ffd700; font-size: 1.25rem; margin: 0 0 10px 0; }
+        .demo-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+        .tag { background: #1a1a1a; border: 1px solid #333; color: #cfcfcf; font-size: .75em; padding: 3px 10px; border-radius: 20px; }
+        .disclaimer-text { color: #ff9944; font-size: .85em; font-style: italic; margin-bottom: 16px; line-height: 1.6; }
+        .seeking-section h3 { color: #ffd700; font-size: .9em; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px 0; }
+        .seeking-list { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+        .seeking-pill { background: #0d1a0d; border: 1px solid #00e67644; color: #00e676; font-size: .8em; padding: 4px 12px; border-radius: 20px; }
+        .contact-btn { display: inline-block; background: #ffd700; color: #111; font-weight: 700; padding: 10px 22px; border-radius: 10px; text-decoration: none; font-size: .9em; transition: background .2s; }
+        .contact-btn:hover { background: #ffe566; }
+        .lyrics-link { color: #ffd700; font-size: .85em; margin-left: 14px; text-decoration: none; }
+        .lyrics-link:hover { text-decoration: underline; }
+        .loading { text-align: center; color: #555; padding: 60px 0; }
+        @media (max-width: 600px) { h1 { font-size: 1.7rem; } .demo-card { padding: 20px 18px; } }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <a href="index.html" class="back-link">← back</a>
+    <h1>MUSIC DEMOS</h1>
+    <p class="tagline">Original songwriting · Seeking collaborators</p>
+    <div class="disclaimer-banner">
+        <strong>⚠️ Important:</strong> All demos on this page were produced using AI tools (Suno) as rough concept sketches. They are <strong>not final recordings</strong> and are shared purely to demonstrate song ideas and melodies. I am actively seeking real vocalists, producers, and musicians to collaborate on proper recorded versions. If a song speaks to you, please reach out.
+    </div>
+    <div id="demos-container"><p class="loading">Loading demos...</p></div>
+</div>
+<script>
+async function loadDemos() {
+    const container = document.getElementById('demos-container');
+    try {
+        const res = await fetch('data/music-demos.json');
+        const demos = await res.json();
+        container.innerHTML = demos.map(d => `
+            <div class="demo-card">
+                <h2>${d.title}
+                    ${d.linked_lyrics_id ? `<a href="lyrics.html" class="lyrics-link">📝 View Lyrics</a>` : ''}
+                </h2>
+                <div class="demo-tags">${d.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+                <p class="disclaimer-text">🎵 ${d.disclaimer}</p>
+                <div class="seeking-section">
+                    <h3>Seeking</h3>
+                    <div class="seeking-list">${d.seeking.map(s=>`<span class="seeking-pill">${s}</span>`).join('')}</div>
+                </div>
+                <a href="mailto:${d.collab_contact}?subject=Collaboration: ${encodeURIComponent(d.title)}" class="contact-btn">Get in Touch</a>
+            </div>`).join('');
+    } catch(e) { container.innerHTML = '<p style="color:#888;text-align:center;">Demos coming soon.</p>'; }
+}
+loadDemos();
+</script>
+</body>
+</html>

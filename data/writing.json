@@ -1,0 +1,32 @@
+[
+  {
+    "id": "the-last-signal",
+    "title": "The Last Signal",
+    "type": "snippet",
+    "tags": ["sci-fi", "XYZTHIANS", "world-building"],
+    "preview": "The transmission came through on a dead frequency. No one was supposed to be listening...",
+    "full": "The transmission came through on a dead frequency. No one was supposed to be listening — that was the point. Aeryn had built her scanner specifically to catch the gaps between channels, the silence that wasn't silence at all.\n\nShe almost missed it. The signal lasted 0.3 seconds and contained a single word in a language that had been classified as extinct for sixty years.\n\nThe word was: *run*.\n\nShe ran.",
+    "universe": "XYZTHIANS",
+    "date": "2026-06"
+  },
+  {
+    "id": "writing-prompt-001",
+    "title": "Writing Prompt #001",
+    "type": "prompt",
+    "tags": ["prompt", "open", "community"],
+    "preview": "You receive a voicemail from your future self. It's only three seconds long. Write what happens next.",
+    "full": "You receive a voicemail from your future self. It's only three seconds long. Write what happens next.\n\n— Submit your response in the Discord! Best responses get featured here.",
+    "universe": null,
+    "date": "2026-06"
+  },
+  {
+    "id": "tigidb-excerpt-01",
+    "title": "TIGIDB — Chapter Fragment",
+    "type": "snippet",
+    "tags": ["TIGIDB", "fiction", "narrative design"],
+    "preview": "There's an index at the end of the world. A database of everything that was supposed to matter...",
+    "full": "There's an index at the end of the world. A database of everything that was supposed to matter — every choice point, every fracture in the timeline. They call it TIGIDB. The Instances Got In Database.\n\nNobody remembers who named it. That's how you know it's been there a long time.",
+    "universe": "TIGIDB",
+    "date": "2026-06"
+  }
+]

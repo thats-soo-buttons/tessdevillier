@@ -1,0 +1,24 @@
+[
+  {
+    "id": "wallpaper-helix-01",
+    "title": "Helixtope Study #1",
+    "description": "Abstract resin art photography — dark background with iridescent swirls",
+    "tags": ["abstract", "resin", "photography", "dark"],
+    "preview_img": "helixotopeexample.jpg",
+    "download_url": null,
+    "resolutions": ["1920x1080", "2560x1440", "3840x2160", "mobile 1080x1920"],
+    "price": "free",
+    "note": "Coming soon — drop your preferred resolution in the Discord!"
+  },
+  {
+    "id": "wallpaper-tenebraeum-01",
+    "title": "Tenebraeum Calling",
+    "description": "Dark atmospheric art from the XYZTHIANS universe",
+    "tags": ["XYZTHIANS", "dark", "atmospheric", "world-building"],
+    "preview_img": "TenebraeumCalling.png",
+    "download_url": null,
+    "resolutions": ["1920x1080", "2560x1440", "mobile 1080x1920"],
+    "price": "free",
+    "note": "Part of the XYZTHIANS lore art series"
+  }
+]
