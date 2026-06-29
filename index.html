@@ -798,7 +798,7 @@
 
 <main role="main">
     <div id="music-unlock" aria-label="Unlock Audio Overlay" style="cursor:default;">
-        <h1 style="margin-bottom: 0.5em;">HIRE • WATCH • CONNECT • SUPPORT</h1>
+        <h1 class="overlay-title" style="margin-bottom: 0.5em;">HIRE • WATCH • CONNECT • SUPPORT</h1>
         <div class="mobile-overlay-links" aria-label="Mobile quick section links">
             <a href="hire.html">HIRE</a>
             <a href="watch.html">WATCH</a>
@@ -1413,6 +1413,10 @@
             .mobile-note {
                 display: block !important;
                 text-align: center;
+            }
+
+            #music-unlock .overlay-title {
+                display: none;
             }
 
             .mobile-overlay-links {
