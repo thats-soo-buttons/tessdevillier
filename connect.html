@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connect with Tess on social media and community channels.">
+    <title>Connect | Tess Devillier</title>
+    <style>
+        :root {
+            --bg: #12131a;
+            --card: #1b1e29;
+            --ink: #f3f5ff;
+            --muted: #b9c0d8;
+            --accent: #79e0d1;
+            --line: #2e374b;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--ink);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 20% 5%, rgba(121, 224, 209, 0.15), transparent 30%), var(--bg);
+        }
+        .wrap { max-width: 900px; margin: 0 auto; padding: 30px 16px 44px; }
+        .top a { color: var(--muted); text-decoration: none; font-weight: 600; }
+        h1 { margin: 20px 0 8px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
+        .sub { margin: 0 0 20px; color: var(--muted); }
+        .list { display: grid; gap: 12px; }
+        .item {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .item h2 { margin: 0 0 4px; font-size: 1.1rem; }
+        .item p { margin: 0; color: var(--muted); }
+        .btn {
+            text-decoration: none;
+            background: var(--accent);
+            color: #15222a;
+            font-weight: 700;
+            border-radius: 8px;
+            padding: 9px 12px;
+            white-space: nowrap;
+        }
+        .footer-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        @media (max-width: 740px) {
+            .item { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <main class="wrap" role="main">
+        <div class="top"><a href="index.html">Back To Home</a></div>
+        <h1>Connect</h1>
+        <p class="sub">Stay connected for community updates, social posts, and collaboration announcements.</p>
+
+        <section class="list" aria-label="Social And Community Links">
+            <article class="item">
+                <div>
+                    <h2>Instagram</h2>
+                    <p>Social updates, reels, and project highlights.</p>
+                </div>
+                <a class="btn" href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Open Instagram</a>
+            </article>
+
+            <article class="item">
+                <div>
+                    <h2>TikTok</h2>
+                    <p>Short-form clips, community moments, and behind-the-scenes content.</p>
+                </div>
+                <a class="btn" href="https://www.tiktok.com/@thatssoobuttons" target="_blank" rel="noopener noreferrer">Open TikTok</a>
+            </article>
+
+            <article class="item">
+                <div>
+                    <h2>Discord Community</h2>
+                    <p>Join conversations and get notified when new projects go live.</p>
+                </div>
+                <a class="btn" href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener noreferrer">Join Discord</a>
+            </article>
+
+            <article class="item">
+                <div>
+                    <h2>Hire Inquiries</h2>
+                    <p>Services, photography, and creative consulting inquiries.</p>
+                </div>
+                <a class="btn" href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a>
+            </article>
+
+            <article class="item">
+                <div>
+                    <h2>Twitch / Gaming Inquiries</h2>
+                    <p>ThatsSooButtons content, collabs, and gaming-related requests.</p>
+                </div>
+                <a class="btn" href="mailto:contact@thatssoobuttons.com">contact@thatssoobuttons.com</a>
+            </article>
+
+            <article class="item">
+                <div>
+                    <h2>OTFN Inquiries</h2>
+                    <p>Volunteer positions, fundraising help, and general OTFN information for the creative network founded by Tess.</p>
+                </div>
+                <a class="btn" href="mailto:contact@ontheflynetwork.com">contact@ontheflynetwork.com</a>
+            </article>
+        </section>
+
+        <div class="footer-links" aria-label="Quick booking links">
+            <a href="hire.html">Hire/Book</a>
+            <a href="contact.html">Contact</a>
+            <a href="availability.html">Availability</a>
+            <a href="professional.html">Services</a>
+        </div>
+    </main>
+</body>
+</html>

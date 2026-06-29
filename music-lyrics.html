@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Music and Lyrics by Tess Devillier: demo tracks, lyric updates, and Tumblr writing hub.">
+  <title>Music + Lyrics | Tess Devillier</title>
+  <style>
+    :root {
+      --bg: #12111a;
+      --card: #1d1a27;
+      --ink: #f6f2ff;
+      --muted: #c8bdd9;
+      --line: #3f3654;
+      --accent: #ffd166;
+      --accent-2: #9ad9ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at 14% 7%, rgba(154,217,255,0.13), transparent 26%),
+        radial-gradient(circle at 86% 3%, rgba(255,209,102,0.16), transparent 28%),
+        var(--bg);
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 16px 46px; }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .top a { color: var(--muted); text-decoration: none; font-weight: 700; }
+    h1 { margin: 0; font-size: clamp(1.9rem, 4.2vw, 3rem); letter-spacing: 0.03em; }
+    .sub { margin: 8px 0 16px; color: var(--muted); max-width: 860px; }
+    .section {
+      margin-top: 14px;
+      background: linear-gradient(160deg, var(--card), #181522);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+    }
+    h2 { margin: 0 0 8px; font-size: 1.2rem; }
+    .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card { background: #191622; border: 1px solid #463b5d; border-radius: 12px; padding: 14px; }
+    .card h3 { margin: 0 0 8px; font-size: 1.02rem; }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 9px 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      background: var(--accent);
+      color: #2a2438;
+      margin-top: 10px;
+    }
+    .btn.alt {
+      background: transparent;
+      color: var(--accent-2);
+      border-color: #45617f;
+    }
+    audio {
+      width: 100%;
+      margin-top: 8px;
+      border-radius: 8px;
+    }
+    .embed-wrap {
+      margin-top: 10px;
+      border: 1px solid #463b5d;
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 280px;
+      background: #15121f;
+    }
+    .embed-wrap iframe {
+      width: 100%;
+      min-height: 420px;
+      border: 0;
+    }
+    .footer-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .footer-links a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <div class="top">
+      <a href="index.html">Back To Home</a>
+      <span class="muted">Tess Does Stuff</span>
+    </div>
+
+    <h1>Music + Lyrics</h1>
+    <p class="sub">This is your dedicated music space. Demos stay on-site for control and reliability, while Tumblr can be your writing and update hub.</p>
+
+    <section class="section" aria-label="Music demos">
+      <h2>Demo Tracks</h2>
+      <p class="muted">These are on-site demos so they always work without relying on social platforms.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>Dreams In Slow Motion (Lofi)</h3>
+          <audio controls preload="none" src="dm_audio/dreams-in-slow-motion-chill-lofi.mp3"></audio>
+        </article>
+        <article class="card">
+          <h3>Lofi Buttons</h3>
+          <audio controls preload="none" src="dm_audio/lofi-buttons.mp3"></audio>
+        </article>
+        <article class="card">
+          <h3>Track 1</h3>
+          <audio controls preload="none" src="dm_audio/track1.mp3"></audio>
+        </article>
+        <article class="card">
+          <h3>Track 2</h3>
+          <audio controls preload="none" src="dm_audio/track2.mp3"></audio>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Lyrics and tumblr hub">
+      <h2>Lyrics + Writing Hub</h2>
+      <p class="muted">Use Tumblr for lyric drops, drafts, and community comments. Keep your core demos on this site.</p>
+      <a class="btn" id="tumblrLink" href="#" target="_blank" rel="noopener noreferrer">Open Lyrics Posts on Tumblr</a>
+      <a class="btn alt" href="mailto:contact@thatssoobuttons.com?subject=Music%20and%20Lyrics%20Inquiry">Music/Lyrics Inquiry</a>
+      <div class="embed-wrap" id="tumblrEmbedWrap" style="display:none;">
+        <iframe id="tumblrEmbed" title="Tumblr feed"></iframe>
+      </div>
+      <p class="muted" style="margin-top: 10px;"><small>This feed is targeted to posts tagged <strong>lyrics</strong>.</small></p>
+    </section>
+
+    <div class="footer-links" aria-label="Quick links">
+      <a href="#">Back to top</a>
+      <a href="hire.html">Hire/Book</a>
+      <a href="watch.html">Watch</a>
+      <a href="contact.html">Contact</a>
+      <a href="availability.html">Availability</a>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      // Tagged Tumblr feed target (lyrics only)
+      var tumblrUrl = 'https://www.tumblr.com/thatssoobuttons/tagged/lyrics';
+
+      var link = document.getElementById('tumblrLink');
+      var wrap = document.getElementById('tumblrEmbedWrap');
+      var embed = document.getElementById('tumblrEmbed');
+
+      if (!link || !wrap || !embed) return;
+
+      if (!tumblrUrl) {
+        link.textContent = 'Add Tumblr Link (Coming Soon)';
+        link.setAttribute('href', 'mailto:contact@tessdevillier.com?subject=Add%20Tumblr%20Link%20to%20Music%20Page');
+        link.removeAttribute('target');
+        link.removeAttribute('rel');
+        return;
+      }
+
+      link.setAttribute('href', tumblrUrl);
+      wrap.style.display = 'block';
+      embed.setAttribute('src', tumblrUrl);
+    })();
+  </script>
+</body>
+</html>

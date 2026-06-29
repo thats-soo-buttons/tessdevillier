@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Podcasts by Tess Devillier, featuring Wayward Bound and upcoming shows.">
+  <title>Podcasts | Tess Devillier</title>
+  <style>
+    :root {
+      --bg: #0f121a;
+      --card: #171d2a;
+      --ink: #eef2ff;
+      --muted: #b3bdd5;
+      --accent: #ffd166;
+      --line: #2d3850;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at 80% 5%, rgba(255, 209, 102, 0.14), transparent 30%), var(--bg);
+    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 30px 16px 44px; }
+    .top { margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .top a { color: var(--muted); text-decoration: none; font-weight: 700; }
+    h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
+    .sub { margin: 0 0 22px; color: var(--muted); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.26);
+    }
+    .card h2 { margin: 0 0 8px; font-size: 1.2rem; }
+    .card p { margin: 0 0 12px; color: var(--muted); line-height: 1.5; }
+    .card ul { margin: 0 0 12px 18px; color: var(--muted); }
+    .embed {
+      margin: 10px 0 12px;
+      border: 0;
+      width: 100%;
+      height: 352px;
+      border-radius: 12px;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: 9px 12px;
+      background: var(--accent);
+      color: #232942;
+      border: 1px solid transparent;
+    }
+    .btn.alt {
+      background: transparent;
+      color: #8ed9ff;
+      border-color: #3b5574;
+    }
+    .footer-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .footer-links a { color: var(--accent); text-decoration: none; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <div class="top">
+      <a href="watch.html">Back To Watch</a>
+      <span style="color: var(--muted);">Tess Does Stuff</span>
+    </div>
+
+    <h1>Podcasts</h1>
+    <p class="sub">Dedicated podcast home for Wayward Bound and upcoming audio projects.</p>
+
+    <section class="card" aria-label="Podcast content">
+      <h2>Wayward Bound</h2>
+      <p>Start with Episode 1 below, or open the full show on Spotify.</p>
+      <iframe
+        class="embed"
+        src="https://open.spotify.com/embed/episode/09Dkbxy9AQdrB3rRP0ML8n?utm_source=generator&si=91c14eea95cd480e"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        title="Wayward Bound Episode 1 Spotify Embed">
+      </iframe>
+      <ul>
+        <li>Wayward Bound (TTRPG podcast) - Spotify</li>
+        <li>More podcasts coming soon</li>
+      </ul>
+      <h3 style="margin: 6px 0 8px;">Top Episodes</h3>
+      <ul>
+        <li><a href="https://open.spotify.com/episode/09Dkbxy9AQdrB3rRP0ML8n?si=91c14eea95cd480e" target="_blank" rel="noopener noreferrer">Episode 1</a></li>
+        <li><a href="https://open.spotify.com/episode/2Fkm7pSebkUP4EIzaxSWzm?si=dc32f3ac5bd048e0" target="_blank" rel="noopener noreferrer">Episode 2</a></li>
+        <li><a href="https://open.spotify.com/episode/3WxYWPX1esWEA8AVDIAPFc?si=2baff76db9ef4153" target="_blank" rel="noopener noreferrer">Episode 3</a></li>
+        <li><a href="https://open.spotify.com/episode/086nyArWuNkuqNCOfxZldm?si=34c3741df4244079" target="_blank" rel="noopener noreferrer">Episode 4</a></li>
+      </ul>
+      <div class="actions">
+        <a class="btn" href="https://open.spotify.com/show/0mz0DiRh7S63kTxVLsDBAF" target="_blank" rel="noopener noreferrer">Open Wayward Bound on Spotify</a>
+        <a class="btn alt" href="mailto:contact@thatssoobuttons.com?subject=Podcast%20Inquiry">Podcast Inquiry</a>
+      </div>
+    </section>
+
+    <div class="footer-links" aria-label="Quick links">
+      <a href="#">Back to top</a>
+      <a href="hire.html">Hire/Book</a>
+      <a href="watch.html">Watch</a>
+      <a href="music-lyrics.html">Music + Lyrics</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </main>
+</body>
+</html>

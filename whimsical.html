@@ -1,0 +1,1964 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tess Desktop: a Win95-inspired retro desktop with working apps, links, browser search, games, and chat launchers.">
+  <title>Tess Desktop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --desktop: #008080;
+      --taskbar: #c0c0c0;
+      --panel: #c0c0c0;
+      --panel-dark: #808080;
+      --title-left: #000080;
+      --title-right: #1084d0;
+      --text-dark: #000;
+      --window-bg: #d4d0c8;
+      --link: #000080;
+      --link-hover: #b00000;
+      --ok: #0f0;
+      --monitor: #1f1f1f;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Space Mono', monospace;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #1a1a2e;
+      color: var(--text-dark);
+      overflow: hidden;
+    }
+
+    .scene {
+      min-height: 100vh;
+      width: 100%;
+      padding: 0;
+    }
+
+    .crt-frame {
+      width: 100%;
+      border-radius: 0;
+      background: var(--desktop);
+      padding: 0;
+      box-shadow: none;
+    }
+
+    .screen-bezel {
+      border: 0;
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+      background: var(--desktop);
+      min-height: 100vh;
+    }
+
+    .scanlines {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      z-index: 120;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.035) 0,
+        rgba(0, 0, 0, 0.035) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+    }
+
+    .desktop {
+      position: relative;
+      min-height: 100vh;
+      background: var(--desktop);
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    .desktop.booting > *:not(.boot-overlay):not(.mobile-gate) {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .desktop.mobile-locked > *:not(.mobile-gate) {
+      display: none !important;
+    }
+
+    .boot-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 140;
+      background: radial-gradient(circle at 20% 20%, rgba(47, 125, 255, 0.2), rgba(6, 9, 20, 0.95) 44%);
+      color: #b8ffe6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .boot-overlay.haunt-1 {
+      background: radial-gradient(circle at 20% 20%, rgba(47, 125, 255, 0.18), rgba(10, 10, 25, 0.95) 44%);
+    }
+
+    .boot-overlay.haunt-2 {
+      background: radial-gradient(circle at 20% 20%, rgba(66, 95, 255, 0.2), rgba(16, 10, 26, 0.96) 46%);
+    }
+
+    .boot-overlay.haunt-3,
+    .boot-overlay.haunt-4 {
+      background: radial-gradient(circle at 18% 22%, rgba(78, 118, 255, 0.22), rgba(23, 11, 28, 0.97) 48%);
+    }
+
+    .boot-overlay.hidden {
+      display: none;
+    }
+
+    .boot-card {
+      width: min(860px, 96vw);
+      border: 2px solid rgba(116, 184, 255, 0.6);
+      background: rgba(5, 8, 18, 0.95);
+      box-shadow: 0 0 30px rgba(71, 154, 255, 0.2);
+      padding: 16px;
+    }
+
+    .boot-title {
+      margin: 0 0 10px;
+      color: #d3edff;
+      font-size: 18px;
+      letter-spacing: 0.06em;
+    }
+
+    .boot-title.glitch {
+      animation: bootFlicker 1.8s steps(2) infinite;
+      text-shadow: 1px 0 rgba(130, 197, 255, 0.35), -1px 0 rgba(227, 150, 255, 0.28);
+    }
+
+    @keyframes bootFlicker {
+      0%,
+      82%,
+      100% {
+        opacity: 1;
+      }
+      83%,
+      85% {
+        opacity: 0.86;
+      }
+      86% {
+        opacity: 0.94;
+      }
+      87% {
+        opacity: 0.9;
+      }
+    }
+
+    .boot-section.hidden {
+      display: none;
+    }
+
+    .boot-log {
+      margin: 0;
+      height: 240px;
+      overflow: auto;
+      border: 2px inset #2f3949;
+      background: #070c16;
+      color: #90ffda;
+      padding: 10px;
+      font-size: 12px;
+      line-height: 1.35;
+      white-space: pre-wrap;
+    }
+
+    .boot-progress {
+      margin-top: 10px;
+      height: 12px;
+      border: 2px inset #293447;
+      background: #03060d;
+    }
+
+    .boot-progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #4ef2ba, #74a4ff);
+      transition: width 0.2s linear;
+    }
+
+    .boot-status {
+      margin: 8px 0 0;
+      color: #d3edff;
+      font-size: 12px;
+    }
+
+    .boot-poll {
+      border: 2px inset #2f3949;
+      background: #070c16;
+      color: #d3edff;
+      padding: 10px;
+      font-size: 12px;
+    }
+
+    .boot-poll p {
+      margin: 0 0 8px;
+    }
+
+    .boot-grid {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(2, minmax(200px, 1fr));
+    }
+
+    .boot-poll label {
+      display: block;
+      font-size: 11px;
+      color: #b7d5ef;
+    }
+
+    .boot-poll select,
+    .boot-poll input,
+    .boot-poll textarea {
+      margin-top: 3px;
+      width: 100%;
+      border: 2px inset #3d4a62;
+      background: #eef4ff;
+      color: #111;
+      padding: 4px 6px;
+      font: inherit;
+      font-size: 12px;
+    }
+
+    .boot-poll textarea {
+      min-height: 60px;
+      resize: vertical;
+      grid-column: 1 / -1;
+    }
+
+    .boot-choice-group {
+      border: 2px inset #3d4a62;
+      background: #0c1322;
+      padding: 8px;
+      margin: 0;
+      min-height: 120px;
+    }
+
+    .boot-choice-group legend {
+      color: #d3edff;
+      padding: 0 4px;
+      font-size: 11px;
+    }
+
+    .boot-choice-option {
+      display: block;
+      color: #c1d8ef;
+      margin-bottom: 6px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .boot-choice-option input {
+      width: auto;
+      margin: 0 6px 0 0;
+      vertical-align: middle;
+    }
+
+    .boot-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .boot-btn {
+      border: 2px outset #dfdfdf;
+      background: #c0c0c0;
+      cursor: pointer;
+      font: inherit;
+      font-size: 12px;
+      padding: 2px 10px;
+      color: #111;
+    }
+
+    .boot-btn:active {
+      border: 2px inset #dfdfdf;
+    }
+
+    .boot-note {
+      font-size: 11px;
+      color: #8fb4d3;
+      line-height: 1.3;
+    }
+
+    .mobile-gate {
+      position: absolute;
+      inset: 0;
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 30%, rgba(40, 61, 115, 0.45), rgba(8, 10, 26, 0.97));
+      color: #eef4ff;
+    }
+
+    .mobile-gate.hidden {
+      display: none;
+    }
+
+    .mobile-gate h1 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: 0.05em;
+    }
+
+    .mobile-gate p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #cfd9ef;
+    }
+
+    .desktop-icons {
+      position: absolute;
+      top: 10px;
+      left: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, 90px);
+      gap: 12px 10px;
+      z-index: 2;
+    }
+
+    .desktop-icon {
+      cursor: pointer;
+      text-align: center;
+      width: 82px;
+      user-select: none;
+      color: #fff;
+      background: transparent;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 1px solid transparent;
+      padding: 2px;
+    }
+
+    .desktop-icon .emoji {
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .icon-label {
+      margin-top: 3px;
+      font-size: 11px;
+      display: inline-block;
+      padding: 1px 4px;
+      color: #fff;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+    }
+
+    .desktop-icon:hover .icon-label,
+    .desktop-icon:focus .icon-label {
+      background: #000080;
+      color: #fff;
+    }
+
+    .desktop-icon:focus {
+      outline: 1px dotted #fff;
+    }
+
+    .win-border {
+      border: 2px outset #dfdfdf;
+      background: var(--window-bg);
+    }
+
+    .win-inset {
+      border: 2px inset #dfdfdf;
+      background: #fff;
+    }
+
+    .window {
+      position: absolute;
+      min-width: 260px;
+      min-height: 120px;
+      z-index: 30;
+      display: block;
+    }
+
+    .window.hidden {
+      display: none;
+    }
+
+    .title-bar {
+      background: linear-gradient(90deg, var(--title-left), var(--title-right));
+      color: #fff;
+      padding: 2px 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      cursor: move;
+      font-size: 12px;
+    }
+
+    .title-actions {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+
+    .title-bar button {
+      background: var(--panel);
+      border: 2px outset #dfdfdf;
+      width: 16px;
+      height: 14px;
+      font-size: 9px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .title-bar button:active,
+    .start-btn:active,
+    .menu-btn:active {
+      border: 2px inset #dfdfdf;
+    }
+
+    .window-body {
+      padding: 8px;
+      font-size: 11px;
+      color: #000;
+    }
+
+    .window-body p {
+      margin: 0 0 8px;
+      line-height: 1.35;
+    }
+
+    .link-item {
+      display: block;
+      color: var(--link);
+      text-decoration: underline;
+      font-size: 11px;
+      padding: 2px 0;
+      cursor: pointer;
+      word-break: break-word;
+    }
+
+    .link-item:hover,
+    .link-item:focus {
+      color: var(--link-hover);
+    }
+
+    .taskbar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 30px;
+      z-index: 95;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-top: 2px outset #dfdfdf;
+      background: var(--taskbar);
+      padding: 2px 4px;
+    }
+
+    .task-buttons {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0 6px;
+    }
+
+    .task-btn {
+      border: 2px outset #dfdfdf;
+      background: var(--panel);
+      font-size: 11px;
+      cursor: pointer;
+      padding: 1px 8px;
+      max-width: 180px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 0 0 auto;
+    }
+
+    .task-btn.active {
+      border: 2px inset #dfdfdf;
+    }
+
+    .start-btn,
+    .menu-btn {
+      border: 2px outset #dfdfdf;
+      background: var(--panel);
+      cursor: pointer;
+      font-weight: 700;
+      padding: 2px 8px;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tray {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .vol-slider {
+      width: 80px;
+      height: 14px;
+      cursor: pointer;
+    }
+
+    .clock {
+      border: 2px inset #dfdfdf;
+      padding: 2px 8px;
+      font-size: 11px;
+      min-width: 62px;
+      text-align: center;
+    }
+
+    .start-menu {
+      position: absolute;
+      left: 4px;
+      bottom: 31px;
+      width: 220px;
+      z-index: 100;
+      background: var(--panel);
+      border: 2px outset #dfdfdf;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+      display: none;
+    }
+
+    .start-menu.active {
+      display: block;
+    }
+
+    .start-layout {
+      display: flex;
+      min-height: 260px;
+    }
+
+    .start-rail {
+      width: 24px;
+      background: #808080;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 6px;
+    }
+
+    .start-rail span {
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transform: rotate(-90deg);
+      transform-origin: center;
+      white-space: nowrap;
+    }
+
+    .start-items {
+      flex: 1;
+      padding: 6px 0;
+    }
+
+    .start-item {
+      font-size: 12px;
+      padding: 4px 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .start-item:hover,
+    .start-item:focus {
+      background: #000080;
+      color: #fff;
+      outline: none;
+    }
+
+    .start-sep {
+      border-top: 1px solid #8d8d8d;
+      border-bottom: 1px solid #fff;
+      margin: 4px 6px;
+    }
+
+    .progress-track {
+      background: #000;
+      height: 8px;
+      border: 1px solid #4b4b4b;
+      margin: 6px 0;
+    }
+
+    .progress-fill {
+      background: var(--ok);
+      height: 100%;
+      width: 0%;
+      transition: width 0.2s;
+    }
+
+    .notepad-content {
+      background: #fff;
+      color: #000;
+      font-size: 11px;
+      line-height: 1.45;
+      padding: 8px;
+      min-height: 120px;
+      white-space: pre-wrap;
+      border: 2px inset #dfdfdf;
+    }
+
+    .browser-bar {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .browser-input {
+      flex: 1;
+      min-width: 150px;
+      border: 2px inset #dfdfdf;
+      padding: 2px 6px;
+      font-size: 11px;
+      height: 24px;
+    }
+
+    .browser-frame {
+      border: 2px inset #dfdfdf;
+      background: #fff;
+      height: 290px;
+      width: 100%;
+    }
+
+    .browser-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
+    .browser-tip {
+      font-size: 10px;
+      color: #333;
+      margin-top: 6px;
+      line-height: 1.3;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(68px, 1fr));
+      gap: 7px;
+      margin: 8px 0;
+    }
+
+    .game-cell {
+      border: 2px outset #dfdfdf;
+      background: #ececec;
+      min-height: 44px;
+      cursor: pointer;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .game-cell:active {
+      border: 2px inset #dfdfdf;
+    }
+
+    .disk-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .disk-btn {
+      border: 2px outset #dfdfdf;
+      background: #ececec;
+      min-width: 68px;
+      min-height: 56px;
+      cursor: pointer;
+      font-size: 11px;
+      padding: 2px 4px;
+    }
+
+    .disk-btn:active {
+      border: 2px inset #dfdfdf;
+    }
+
+    @media (max-width: 900px) {
+      .screen-bezel {
+        min-height: 100vh;
+      }
+
+      .desktop {
+        min-height: 100vh;
+      }
+
+      .desktop-icons {
+        grid-template-columns: repeat(3, 88px);
+      }
+
+      .window {
+        max-width: calc(100% - 22px);
+        left: 10px !important;
+      }
+
+      .browser-frame {
+        height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="crt-frame">
+      <div class="screen-bezel">
+        <div class="scanlines"></div>
+        <div class="desktop booting" id="desktop">
+          <div class="mobile-gate hidden" id="mobileGate">
+            <div>
+              <h1>Desktop Experience Required</h1>
+              <p>Please log in via desktop for the desktop experience.</p>
+            </div>
+          </div>
+
+          <div class="boot-overlay" id="bootOverlay" aria-live="polite">
+            <div class="boot-card">
+              <h1 class="boot-title" id="bootTitle">TESS OS // SYSTEM COMING ONLINE</h1>
+
+              <section class="boot-section" id="bootBiosSection">
+                <pre class="boot-log" id="biosLog"></pre>
+                <p class="boot-status" id="biosStatus">POST in progress...</p>
+              </section>
+
+              <section class="boot-section hidden" id="bootModuleSection">
+                <pre class="boot-log" id="bootLog"></pre>
+                <div class="boot-progress"><div class="boot-progress-fill" id="bootFill"></div></div>
+                <p class="boot-status" id="bootStatus">Initializing subsystems...</p>
+              </section>
+
+              <section class="boot-section hidden" id="bootPollSection">
+                <div class="boot-poll">
+                  <p id="bootPromptText"><strong>System prompt:</strong> Before desktop unlock, answer a few quick questions so we can tune the experience and share poll updates later.</p>
+                  <form id="bootPollForm">
+                    <div class="boot-grid">
+                      <fieldset class="boot-choice-group">
+                        <legend>Where did you find us? (pick one)</legend>
+                        <label class="boot-choice-option"><input type="radio" name="pollSource" value="twitch"> Twitch</label>
+                        <label class="boot-choice-option"><input type="radio" name="pollSource" value="discord"> Discord</label>
+                        <label class="boot-choice-option"><input type="radio" name="pollSource" value="instagram"> Instagram</label>
+                        <label class="boot-choice-option"><input type="radio" name="pollSource" value="tiktok"> TikTok</label>
+                        <label class="boot-choice-option"><input type="radio" name="pollSource" value="friend"> Friend / referral</label>
+                        <label class="boot-choice-option"><input type="radio" name="pollSource" value="search"> Search engine</label>
+                        <label class="boot-choice-option"><input type="radio" name="pollSource" value="other"> Other</label>
+                      </fieldset>
+
+                      <fieldset class="boot-choice-group">
+                        <legend>What are you most into here? (choose one or more)</legend>
+                        <label class="boot-choice-option"><input type="checkbox" name="pollInterest" value="pets"> Pet and house sitting</label>
+                        <label class="boot-choice-option"><input type="checkbox" name="pollInterest" value="creative"> Creative consulting</label>
+                        <label class="boot-choice-option"><input type="checkbox" name="pollInterest" value="music"> Music and lyrics</label>
+                        <label class="boot-choice-option"><input type="checkbox" name="pollInterest" value="streams"> Streams and podcasts</label>
+                        <label class="boot-choice-option"><input type="checkbox" name="pollInterest" value="worldbuilding"> Worldbuilding projects</label>
+                      </fieldset>
+
+                      <fieldset class="boot-choice-group">
+                        <legend>Want future poll updates? (yes/no)</legend>
+                        <label class="boot-choice-option"><input type="radio" name="pollUpdates" value="yes_discord"> Yes, via Discord</label>
+                        <label class="boot-choice-option"><input type="radio" name="pollUpdates" value="yes_site"> Yes, on site updates</label>
+                        <label class="boot-choice-option"><input type="radio" name="pollUpdates" value="no"> No thanks</label>
+                      </fieldset>
+
+                      <label>
+                        Discord handle (optional)
+                        <input id="pollDiscord" type="text" maxlength="120" placeholder="name#1234 or @username">
+                      </label>
+
+                      <label>
+                        Any quick suggestion?
+                        <textarea id="pollSuggestion" maxlength="400" placeholder="What should we improve next?"></textarea>
+                      </label>
+                    </div>
+
+                    <div class="boot-actions">
+                      <button type="submit" class="boot-btn">Submit + Enter Desktop</button>
+                      <button type="button" class="boot-btn" id="bootPollSkip">Skip for now</button>
+                      <span class="boot-note" id="pollStatus">Responses are logged for admin review. If webhook is unavailable, response is still saved locally.</span>
+                    </div>
+                  </form>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="desktop-icons">
+            <button class="desktop-icon" data-open="notepad" aria-label="Open Notepad">
+              <div class="emoji">📝</div>
+              <div class="icon-label">Notepad</div>
+            </button>
+            <button class="desktop-icon" data-open="browser" aria-label="Open Browser">
+              <div class="emoji">🌐</div>
+              <div class="icon-label">Web Browser</div>
+            </button>
+            <button class="desktop-icon" data-open="player" aria-label="Open Media Player">
+              <div class="emoji">🎵</div>
+              <div class="icon-label">Jukebox 95</div>
+            </button>
+            <button class="desktop-icon" data-open="games" aria-label="Open Games">
+              <div class="emoji">🎮</div>
+              <div class="icon-label">Games</div>
+            </button>
+            <button class="desktop-icon" data-open="floppy" aria-label="Open Hire Disk">
+              <div class="emoji">💾</div>
+              <div class="icon-label">Hire Disk (A:)</div>
+            </button>
+            <button class="desktop-icon" data-open="connect" aria-label="Open Connect">
+              <div class="emoji">💬</div>
+              <div class="icon-label">Connect</div>
+            </button>
+            <button class="desktop-icon" data-open="support" aria-label="Open Support">
+              <div class="emoji">☕</div>
+              <div class="icon-label">Support</div>
+            </button>
+          </div>
+
+          <section class="window hidden win-border" id="win-notepad" style="top:28px;left:132px;width:336px;">
+            <div class="title-bar" data-drag-handle>
+              <span>Notepad - aboutme.txt</span>
+              <div class="title-actions"><button type="button" data-close="notepad" aria-label="Close">x</button></div>
+            </div>
+            <div class="window-body">
+              <div class="notepad-content">Well hello there. I am Tess, aka Buttons.
+
+Pet and house sitter, writer, photographer, and creative community builder in Baton Rouge and beyond.
+
+Explore the folders, launch apps, and ping me if you want to collaborate.</div>
+            </div>
+          </section>
+
+          <section class="window hidden win-border" id="win-browser" style="top:36px;left:220px;width:560px;">
+            <div class="title-bar" data-drag-handle>
+              <span>PhosphorNet Explorer</span>
+              <div class="title-actions"><button type="button" data-close="browser" aria-label="Close">x</button></div>
+            </div>
+            <div class="window-body" style="background:#d4d0c8;">
+              <div class="browser-bar">
+                <button type="button" class="menu-btn" id="browserHome">Home</button>
+                <button type="button" class="menu-btn" id="browserBack">Back</button>
+                <input type="text" id="browserInput" class="browser-input" value="https://duckduckgo.com" aria-label="Browser URL or search query">
+                <button type="button" class="menu-btn" id="browserGo">Go</button>
+                <button type="button" class="menu-btn" id="browserSearch">Search</button>
+              </div>
+              <div class="browser-frame">
+                <iframe id="browserFrame" title="Browser view" src="https://duckduckgo.com"></iframe>
+              </div>
+              <div class="browser-tip">Some websites block embedding in iframes. If that happens, use the quick links below to open them in a new tab.</div>
+              <div style="margin-top:6px;">
+                <a class="link-item" href="https://duckduckgo.com" target="_blank" rel="noopener noreferrer">Open DuckDuckGo in new tab</a>
+                <a class="link-item" href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener noreferrer">Discord Invite in new tab</a>
+                <a class="link-item" href="https://twitch.tv/thats_soo_buttons" target="_blank" rel="noopener noreferrer">Twitch in new tab</a>
+              </div>
+            </div>
+          </section>
+
+          <section class="window hidden win-border" id="win-player" style="top:44px;left:752px;width:286px;">
+            <div class="title-bar" data-drag-handle>
+              <span>Jukebox 95</span>
+              <div class="title-actions"><button type="button" data-close="player" aria-label="Close">x</button></div>
+            </div>
+            <div class="window-body">
+              <div class="win-inset" style="padding:6px;background:#000;margin-bottom:8px;">
+                <div id="trackName" style="color:#00ff00;font-size:11px;">dreams_in_slow_motion.mp3</div>
+              </div>
+              <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+              <div style="display:flex;gap:4px;justify-content:center;margin-top:8px;">
+                <button type="button" class="menu-btn" id="btnPrev"><<</button>
+                <button type="button" class="menu-btn" id="btnPlay">Play</button>
+                <button type="button" class="menu-btn" id="btnPause">Pause</button>
+                <button type="button" class="menu-btn" id="btnStop">Stop</button>
+                <button type="button" class="menu-btn" id="btnNext">>></button>
+              </div>
+              <label style="display:block;margin-top:8px;font-size:11px;">Volume
+                <input type="range" id="playerVol" min="0" max="1" step="0.01" value="0.35" style="width:100%;">
+              </label>
+            </div>
+          </section>
+
+          <section class="window hidden win-border" id="win-games" style="top:74px;left:182px;width:304px;">
+            <div class="title-bar" data-drag-handle>
+              <span>C:\\Games\\Arcade</span>
+              <div class="title-actions"><button type="button" data-close="games" aria-label="Close">x</button></div>
+            </div>
+            <div class="window-body">
+              <p>Mini games that launch instantly:</p>
+              <a class="link-item" href="#" data-open="cat">Cat Hunt Grid</a>
+              <a class="link-item" href="#" data-open="match">Button Match</a>
+              <a class="link-item" href="#" data-open="shuffle">Disk Shuffle</a>
+            </div>
+          </section>
+
+          <section class="window hidden win-border" id="win-floppy" style="top:64px;left:236px;width:294px;">
+            <div class="title-bar" data-drag-handle>
+              <span>A:\\HIRE</span>
+              <div class="title-actions"><button type="button" data-close="floppy" aria-label="Close">x</button></div>
+            </div>
+            <div class="window-body win-inset">
+              <p>Reliable, creative, and collaborative services:</p>
+              <a href="phosphornet-pets.html" class="link-item">Pet + House Sitting</a>
+              <a href="phosphornet-photography.html" class="link-item">Photography</a>
+              <a href="phosphornet-worldbuilding.html" class="link-item">Worldbuilding</a>
+              <a href="phosphornet-consulting.html" class="link-item">Creative Consulting</a>
+              <a href="mailto:contact@tessdevillier.com" class="link-item">contact@tessdevillier.com</a>
+            </div>
+          </section>
+
+          <section class="window hidden win-border" id="win-connect" style="top:102px;left:154px;width:294px;">
+            <div class="title-bar" data-drag-handle>
+              <span>Connect.exe</span>
+              <div class="title-actions"><button type="button" data-close="connect" aria-label="Close">x</button></div>
+            </div>
+            <div class="window-body win-inset">
+              <a href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noopener noreferrer" class="link-item">Instagram</a>
+              <a href="https://www.tiktok.com/@thatssoobuttons" target="_blank" rel="noopener noreferrer" class="link-item">TikTok</a>
+              <a href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener noreferrer" class="link-item">Discord Community</a>
+              <a href="mailto:contact@tessdevillier.com" class="link-item">Email Tess</a>
+            </div>
+          </section>
+
+          <section class="window hidden win-border" id="win-support" style="top:90px;left:248px;width:300px;">
+            <div class="title-bar" data-drag-handle>
+              <span>Support.exe</span>
+              <div class="title-actions"><button type="button" data-close="support" aria-label="Close">x</button></div>
+            </div>
+            <div class="window-body win-inset">
+              <a href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer" class="link-item">Ko-fi</a>
+              <a href="https://cash.app/$888buttons" target="_blank" rel="noopener noreferrer" class="link-item">Cash App: $888buttons</a>
+              <a href="phosphornet-freesupport.html" class="link-item">Free support guide</a>
+              <a href="phosphornet-availability.html" class="link-item">Availability</a>
+            </div>
+          </section>
+
+          <section class="window hidden win-border" id="win-cat" style="top:120px;left:360px;width:320px;">
+            <div class="title-bar" data-drag-handle>
+              <span>Cat Hunt</span>
+              <div class="title-actions">
+                <button type="button" id="catReset" aria-label="New board">R</button>
+                <button type="button" data-close="cat" aria-label="Close">x</button>
+              </div>
+            </div>
+            <div class="window-body">
+              <p>Find 3 hidden cats.</p>
+              <div class="games-grid" id="catGrid"></div>
+              <div id="catStatus" style="font-size:11px;color:#222;">Cats found: 0 / 3</div>
+            </div>
+          </section>
+
+          <section class="window hidden win-border" id="win-match" style="top:134px;left:394px;width:300px;">
+            <div class="title-bar" data-drag-handle>
+              <span>Button Match</span>
+              <div class="title-actions">
+                <button type="button" id="matchStart" aria-label="Start">S</button>
+                <button type="button" data-close="match" aria-label="Close">x</button>
+              </div>
+            </div>
+            <div class="window-body">
+              <p>Watch sequence, then repeat.</p>
+              <div id="matchInfo" style="font-size:11px;margin-bottom:8px;">Press S to start.</div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                <button type="button" class="menu-btn match-pad" data-pad="0">Mint</button>
+                <button type="button" class="menu-btn match-pad" data-pad="1">Gold</button>
+                <button type="button" class="menu-btn match-pad" data-pad="2">Sky</button>
+                <button type="button" class="menu-btn match-pad" data-pad="3">Rose</button>
+              </div>
+              <div id="matchRound" style="font-size:11px;margin-top:8px;">Round: 0</div>
+            </div>
+          </section>
+
+          <section class="window hidden win-border" id="win-shuffle" style="top:148px;left:430px;width:300px;">
+            <div class="title-bar" data-drag-handle>
+              <span>Disk Shuffle</span>
+              <div class="title-actions">
+                <button type="button" id="shuffleReset" aria-label="Reshuffle">R</button>
+                <button type="button" data-close="shuffle" aria-label="Close">x</button>
+              </div>
+            </div>
+            <div class="window-body">
+              <p>Pick the lucky disk.</p>
+              <div class="disk-row">
+                <button type="button" class="disk-btn" data-disk="0">Disk A</button>
+                <button type="button" class="disk-btn" data-disk="1">Disk B</button>
+                <button type="button" class="disk-btn" data-disk="2">Disk C</button>
+              </div>
+              <div id="shuffleStatus" style="font-size:11px;margin-top:8px;">A lucky disk is loaded.</div>
+              <div id="shuffleStreak" style="font-size:11px;margin-top:6px;">Streak: 0</div>
+            </div>
+          </section>
+
+          <div class="start-menu" id="startMenu" aria-label="Start menu">
+            <div class="start-layout">
+              <div class="start-rail"><span>Tess95</span></div>
+              <div class="start-items">
+                <div class="start-item" data-open="notepad">About Me</div>
+                <div class="start-item" data-open="floppy">Hire</div>
+                <div class="start-item" data-open="player">Watch and Listen</div>
+                <div class="start-item" data-open="games">Games</div>
+                <div class="start-item" data-open="browser">Web Browser</div>
+                <div class="start-item" data-open="connect">Connect</div>
+                <div class="start-item" data-open="support">Support</div>
+                <div class="start-sep"></div>
+                <div class="start-item" id="openDiscord">Discord Chat</div>
+                <div class="start-item" id="openTwitch">Twitch</div>
+                <div class="start-item" id="openMainSite">Main Site</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="taskbar">
+            <button type="button" class="start-btn" id="startBtn"><span>🪟</span>Start</button>
+            <div class="task-buttons" id="taskButtons" aria-label="Open windows"></div>
+            <div class="tray">
+              <span style="font-size:12px;">🔊</span>
+              <input type="range" min="0" max="100" value="70" class="vol-slider" id="desktopVol" aria-label="Desktop volume">
+              <div class="clock" id="clock"></div>
+            </div>
+          </div>
+
+          <audio id="audioPlayer" preload="none"></audio>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var desktop = document.getElementById('desktop');
+      var windows = Array.prototype.slice.call(document.querySelectorAll('.window'));
+      var desktopIcons = Array.prototype.slice.call(document.querySelectorAll('.desktop-icon'));
+      var startItems = Array.prototype.slice.call(document.querySelectorAll('.start-item[data-open]'));
+      var startBtn = document.getElementById('startBtn');
+      var startMenu = document.getElementById('startMenu');
+      var taskButtons = document.getElementById('taskButtons');
+      var bootOverlay = document.getElementById('bootOverlay');
+      var bootTitle = document.getElementById('bootTitle');
+      var bootBiosSection = document.getElementById('bootBiosSection');
+      var bootModuleSection = document.getElementById('bootModuleSection');
+      var bootPollSection = document.getElementById('bootPollSection');
+      var biosLog = document.getElementById('biosLog');
+      var biosStatus = document.getElementById('biosStatus');
+      var bootLog = document.getElementById('bootLog');
+      var bootFill = document.getElementById('bootFill');
+      var bootStatus = document.getElementById('bootStatus');
+      var bootPollForm = document.getElementById('bootPollForm');
+      var bootPollSkip = document.getElementById('bootPollSkip');
+      var pollStatus = document.getElementById('pollStatus');
+      var bootPromptText = document.getElementById('bootPromptText');
+      var WEBHOOK_PROXY_URL = '';
+      var POLL_PROMPT_VERSION = 'v1';
+      var POLL_ANSWERED_VERSION_KEY = 'tessPollAnsweredVersion';
+      var mobileGate = document.getElementById('mobileGate');
+      var zCounter = 40;
+      var ghostProfile = null;
+      var popoutMap = {
+        notepad: 'index.html',
+        connect: 'https://discord.gg/dC34nguEEC',
+        player: 'https://twitch.tv/thats_soo_buttons',
+        browser: '__BROWSER__'
+      };
+
+      function bringToFront(win) {
+        zCounter += 1;
+        win.style.zIndex = String(zCounter);
+      }
+
+      function getWindowId(win) {
+        return (win && win.id ? win.id.replace('win-', '') : '');
+      }
+
+      function getWindowTitle(id) {
+        var win = document.getElementById('win-' + id);
+        if (!win) return id;
+        var title = win.querySelector('.title-bar span');
+        return title ? title.textContent.trim() : id;
+      }
+
+      function setTaskActive(id, active) {
+        if (!taskButtons) return;
+        var btn = taskButtons.querySelector('[data-task="' + id + '"]');
+        if (!btn) return;
+        btn.classList.toggle('active', !!active);
+      }
+
+      function ensureTaskButton(id) {
+        if (!taskButtons || taskButtons.querySelector('[data-task="' + id + '"]')) return;
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'task-btn';
+        btn.setAttribute('data-task', id);
+        btn.textContent = getWindowTitle(id);
+        taskButtons.appendChild(btn);
+      }
+
+      function removeTaskButton(id) {
+        if (!taskButtons) return;
+        var btn = taskButtons.querySelector('[data-task="' + id + '"]');
+        if (btn) btn.remove();
+      }
+
+      function minimizeWin(id) {
+        var win = document.getElementById('win-' + id);
+        if (!win) return;
+        win.classList.add('hidden');
+        setTaskActive(id, false);
+      }
+
+      function openWin(id) {
+        var win = document.getElementById('win-' + id);
+        if (!win) return;
+        win.classList.remove('hidden');
+        ensureTaskButton(id);
+        setTaskActive(id, true);
+        bringToFront(win);
+      }
+
+      function closeWin(id) {
+        var win = document.getElementById('win-' + id);
+        if (!win) return;
+        win.classList.add('hidden');
+        removeTaskButton(id);
+      }
+
+      function getPopoutUrl(id) {
+        if (id === 'browser') {
+          return normalizeUrl(browserInput ? browserInput.value : 'https://duckduckgo.com');
+        }
+        if (popoutMap[id]) return popoutMap[id];
+        return window.location.href;
+      }
+
+      function expandWin(id) {
+        var url = getPopoutUrl(id);
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+
+      function ensureWindowControls() {
+        windows.forEach(function (win) {
+          var id = getWindowId(win);
+          var actions = win.querySelector('.title-actions');
+          if (!id || !actions) return;
+
+          if (!actions.querySelector('[data-min="' + id + '"]')) {
+            var minBtn = document.createElement('button');
+            minBtn.type = 'button';
+            minBtn.setAttribute('data-min', id);
+            minBtn.setAttribute('aria-label', 'Minimize');
+            minBtn.textContent = '_';
+            actions.insertBefore(minBtn, actions.firstChild);
+          }
+
+          if (!actions.querySelector('[data-expand="' + id + '"]')) {
+            var expBtn = document.createElement('button');
+            expBtn.type = 'button';
+            expBtn.setAttribute('data-expand', id);
+            expBtn.setAttribute('aria-label', 'Expand to new tab');
+            expBtn.textContent = '[]';
+            actions.insertBefore(expBtn, actions.firstChild);
+          }
+        });
+      }
+
+      ensureWindowControls();
+
+      desktopIcons.forEach(function (icon) {
+        icon.addEventListener('dblclick', function () {
+          var id = icon.getAttribute('data-open');
+          openWin(id);
+        });
+        icon.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openWin(icon.getAttribute('data-open'));
+          }
+        });
+      });
+
+      startItems.forEach(function (item) {
+        item.addEventListener('click', function () {
+          var id = item.getAttribute('data-open');
+          openWin(id);
+          startMenu.classList.remove('active');
+        });
+      });
+
+      desktop.addEventListener('click', function (event) {
+        var closeBtn = event.target.closest('[data-close]');
+        if (closeBtn) {
+          closeWin(closeBtn.getAttribute('data-close'));
+          return;
+        }
+        var minBtn = event.target.closest('[data-min]');
+        if (minBtn) {
+          minimizeWin(minBtn.getAttribute('data-min'));
+          return;
+        }
+        var expBtn = event.target.closest('[data-expand]');
+        if (expBtn) {
+          expandWin(expBtn.getAttribute('data-expand'));
+          return;
+        }
+      });
+
+      windows.forEach(function (win) {
+        win.addEventListener('mousedown', function () {
+          bringToFront(win);
+          setTaskActive(getWindowId(win), true);
+        });
+      });
+
+      if (taskButtons) {
+        taskButtons.addEventListener('click', function (event) {
+          var btn = event.target.closest('[data-task]');
+          if (!btn) return;
+          var id = btn.getAttribute('data-task');
+          var win = document.getElementById('win-' + id);
+          if (!win) return;
+          if (win.classList.contains('hidden')) {
+            openWin(id);
+          } else {
+            minimizeWin(id);
+          }
+        });
+      }
+
+      if (startBtn) {
+        startBtn.addEventListener('click', function (event) {
+          event.stopPropagation();
+          startMenu.classList.toggle('active');
+        });
+      }
+
+      document.addEventListener('click', function (event) {
+        if (!event.target.closest('#startMenu') && !event.target.closest('#startBtn')) {
+          startMenu.classList.remove('active');
+        }
+      });
+
+      function updateClock() {
+        var now = new Date();
+        document.getElementById('clock').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }
+      updateClock();
+      window.setInterval(updateClock, 1000);
+
+      var openDiscord = document.getElementById('openDiscord');
+      var openTwitch = document.getElementById('openTwitch');
+      var openMainSite = document.getElementById('openMainSite');
+      if (openDiscord) {
+        openDiscord.addEventListener('click', function () {
+          window.open('https://discord.gg/dC34nguEEC', '_blank', 'noopener,noreferrer');
+          startMenu.classList.remove('active');
+        });
+      }
+      if (openTwitch) {
+        openTwitch.addEventListener('click', function () {
+          window.open('https://twitch.tv/thats_soo_buttons', '_blank', 'noopener,noreferrer');
+          startMenu.classList.remove('active');
+        });
+      }
+      if (openMainSite) {
+        openMainSite.addEventListener('click', function () {
+          window.location.href = 'index.html';
+        });
+      }
+
+      var browserInput = document.getElementById('browserInput');
+      var browserFrame = document.getElementById('browserFrame');
+      var browserBack = document.getElementById('browserBack');
+      var browserGo = document.getElementById('browserGo');
+      var browserSearch = document.getElementById('browserSearch');
+      var browserHome = document.getElementById('browserHome');
+      var browserHistory = ['https://duckduckgo.com'];
+      var historyIndex = 0;
+
+      function normalizeUrl(value) {
+        var input = (value || '').trim();
+        if (!input) return 'https://duckduckgo.com';
+        var hasProtocol = /^https?:\/\//i.test(input);
+        var looksLikeHost = /\.[a-z]{2,}(\/|$)/i.test(input) || input.startsWith('localhost');
+        if (hasProtocol) return input;
+        if (looksLikeHost) return 'https://' + input;
+        return 'https://duckduckgo.com/?q=' + encodeURIComponent(input);
+      }
+
+      function navigateBrowser(target, pushHistory) {
+        var url = normalizeUrl(target);
+        browserInput.value = target || url;
+        browserFrame.src = url;
+        if (pushHistory !== false) {
+          browserHistory = browserHistory.slice(0, historyIndex + 1);
+          browserHistory.push(url);
+          historyIndex = browserHistory.length - 1;
+        }
+      }
+
+      desktop.addEventListener('click', function (event) {
+        var link = event.target.closest('.window-body a[href]');
+        if (!link) return;
+
+        var href = link.getAttribute('href') || '';
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+          return;
+        }
+
+        if (event.ctrlKey || event.metaKey || event.shiftKey) {
+          return;
+        }
+
+        event.preventDefault();
+        openWin('browser');
+        navigateBrowser(href, true);
+      });
+
+      if (browserGo) {
+        browserGo.addEventListener('click', function () {
+          navigateBrowser(browserInput.value, true);
+        });
+      }
+      if (browserSearch) {
+        browserSearch.addEventListener('click', function () {
+          navigateBrowser('https://duckduckgo.com/?q=' + encodeURIComponent(browserInput.value || ''), true);
+        });
+      }
+      if (browserHome) {
+        browserHome.addEventListener('click', function () {
+          navigateBrowser('https://duckduckgo.com', true);
+        });
+      }
+      if (browserBack) {
+        browserBack.addEventListener('click', function () {
+          if (historyIndex <= 0) return;
+          historyIndex -= 1;
+          var url = browserHistory[historyIndex];
+          browserFrame.src = url;
+          browserInput.value = url;
+        });
+      }
+      if (browserInput) {
+        browserInput.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter') {
+            navigateBrowser(browserInput.value, true);
+          }
+        });
+      }
+
+      var tracks = [
+        { name: 'dreams_in_slow_motion.mp3', src: 'dm_audio/dreams-in-slow-motion-chill-lofi.mp3' },
+        { name: 'lofi_buttons.mp3', src: 'dm_audio/lofi-buttons.mp3' },
+        { name: 'track_1.mp3', src: 'dm_audio/track1.mp3' },
+        { name: 'track_2.mp3', src: 'dm_audio/track2.mp3' }
+      ];
+      var trackIndex = 0;
+      var audio = document.getElementById('audioPlayer');
+      var progressFill = document.getElementById('progressFill');
+      var trackName = document.getElementById('trackName');
+      var playerVol = document.getElementById('playerVol');
+      var desktopVol = document.getElementById('desktopVol');
+
+      function setTrack(index, autoplay) {
+        trackIndex = (index + tracks.length) % tracks.length;
+        var track = tracks[trackIndex];
+        audio.src = track.src;
+        trackName.textContent = '♫ ' + track.name;
+        progressFill.style.width = '0%';
+        if (autoplay) {
+          audio.play().catch(function () {});
+        }
+      }
+
+      document.getElementById('btnPrev').addEventListener('click', function () { setTrack(trackIndex - 1, true); });
+      document.getElementById('btnNext').addEventListener('click', function () { setTrack(trackIndex + 1, true); });
+      document.getElementById('btnPlay').addEventListener('click', function () {
+        if (!audio.src) setTrack(trackIndex, false);
+        audio.play().catch(function () {});
+      });
+      document.getElementById('btnPause').addEventListener('click', function () { audio.pause(); });
+      document.getElementById('btnStop').addEventListener('click', function () {
+        audio.pause();
+        audio.currentTime = 0;
+        progressFill.style.width = '0%';
+      });
+
+      if (playerVol) {
+        playerVol.addEventListener('input', function () {
+          var value = parseFloat(playerVol.value);
+          audio.volume = value;
+          if (desktopVol) desktopVol.value = String(Math.round(value * 100));
+        });
+      }
+      if (desktopVol) {
+        desktopVol.addEventListener('input', function () {
+          var value = Math.max(0, Math.min(100, Number(desktopVol.value || 70))) / 100;
+          audio.volume = value;
+          if (playerVol) playerVol.value = String(value);
+        });
+      }
+
+      audio.addEventListener('timeupdate', function () {
+        if (!audio.duration) {
+          progressFill.style.width = '0%';
+          return;
+        }
+        var pct = Math.min(100, Math.max(0, (audio.currentTime / audio.duration) * 100));
+        progressFill.style.width = pct.toFixed(1) + '%';
+      });
+      audio.addEventListener('ended', function () { setTrack(trackIndex + 1, true); });
+      audio.volume = 0.35;
+      setTrack(0, false);
+
+      var catGrid = document.getElementById('catGrid');
+      var catStatus = document.getElementById('catStatus');
+      var catReset = document.getElementById('catReset');
+      function buildCatGame() {
+        var hidden = new Array(9).fill(false);
+        var found = 0;
+        var placed = 0;
+        while (placed < 3) {
+          var idx = Math.floor(Math.random() * hidden.length);
+          if (!hidden[idx]) {
+            hidden[idx] = true;
+            placed += 1;
+          }
+        }
+        catGrid.innerHTML = '';
+        hidden.forEach(function (isCat) {
+          var cell = document.createElement('button');
+          cell.type = 'button';
+          cell.className = 'game-cell';
+          cell.textContent = '?';
+          cell.addEventListener('click', function () {
+            if (cell.dataset.opened === '1') return;
+            cell.dataset.opened = '1';
+            if (isCat) {
+              cell.textContent = 'CAT';
+              found += 1;
+            } else {
+              cell.textContent = '...';
+            }
+            catStatus.textContent = found === 3 ? 'Cats found: 3 / 3. You win.' : 'Cats found: ' + found + ' / 3';
+          });
+          catGrid.appendChild(cell);
+        });
+        catStatus.textContent = 'Cats found: 0 / 3';
+      }
+      if (catReset) {
+        catReset.addEventListener('click', buildCatGame);
+      }
+      buildCatGame();
+
+      var matchInfo = document.getElementById('matchInfo');
+      var matchRound = document.getElementById('matchRound');
+      var matchStart = document.getElementById('matchStart');
+      var pads = Array.prototype.slice.call(document.querySelectorAll('.match-pad'));
+      var sequence = [];
+      var input = [];
+      var round = 0;
+      var locked = true;
+      function flashPad(index) {
+        var pad = pads[index];
+        if (!pad) return;
+        pad.style.background = '#000080';
+        pad.style.color = '#fff';
+        window.setTimeout(function () {
+          pad.style.background = '#c0c0c0';
+          pad.style.color = '#000';
+        }, 240);
+      }
+      function playSequence() {
+        locked = true;
+        matchInfo.textContent = 'Watch...';
+        sequence.forEach(function (value, i) {
+          window.setTimeout(function () { flashPad(value); }, 360 * (i + 1));
+        });
+        window.setTimeout(function () {
+          locked = false;
+          matchInfo.textContent = 'Repeat the sequence.';
+        }, 360 * (sequence.length + 1));
+      }
+      function nextRound() {
+        input = [];
+        round += 1;
+        matchRound.textContent = 'Round: ' + round;
+        sequence.push(Math.floor(Math.random() * pads.length));
+        playSequence();
+      }
+      if (matchStart) {
+        matchStart.addEventListener('click', function () {
+          sequence = [];
+          round = 0;
+          nextRound();
+        });
+      }
+      pads.forEach(function (pad) {
+        pad.addEventListener('click', function () {
+          if (locked || !sequence.length) return;
+          var value = Number(pad.getAttribute('data-pad'));
+          flashPad(value);
+          input.push(value);
+          var idx = input.length - 1;
+          if (input[idx] !== sequence[idx]) {
+            matchInfo.textContent = 'Wrong. Press S to restart.';
+            sequence = [];
+            input = [];
+            round = 0;
+            matchRound.textContent = 'Round: 0';
+            locked = true;
+            return;
+          }
+          if (input.length === sequence.length) {
+            matchInfo.textContent = 'Correct. Next round...';
+            locked = true;
+            window.setTimeout(nextRound, 650);
+          }
+        });
+      });
+
+      var diskButtons = Array.prototype.slice.call(document.querySelectorAll('[data-disk]'));
+      var shuffleReset = document.getElementById('shuffleReset');
+      var shuffleStatus = document.getElementById('shuffleStatus');
+      var shuffleStreak = document.getElementById('shuffleStreak');
+      var winner = 0;
+      var streak = 0;
+      var done = false;
+      function seedShuffle() {
+        winner = Math.floor(Math.random() * diskButtons.length);
+        done = false;
+        diskButtons.forEach(function (button, i) {
+          button.disabled = false;
+          button.textContent = ['Disk A', 'Disk B', 'Disk C'][i];
+        });
+        shuffleStatus.textContent = 'A lucky disk is loaded.';
+        shuffleStreak.textContent = 'Streak: ' + streak;
+      }
+      diskButtons.forEach(function (button) {
+        button.addEventListener('click', function () {
+          if (done) return;
+          done = true;
+          var selected = Number(button.getAttribute('data-disk'));
+          if (selected === winner) {
+            streak += 1;
+            button.textContent = 'STAR';
+            shuffleStatus.textContent = 'Correct pick.';
+          } else {
+            streak = 0;
+            button.textContent = 'NOPE';
+            if (diskButtons[winner]) diskButtons[winner].textContent = 'STAR';
+            shuffleStatus.textContent = 'Wrong disk.';
+          }
+          diskButtons.forEach(function (b) { b.disabled = true; });
+          shuffleStreak.textContent = 'Streak: ' + streak;
+        });
+      });
+      if (shuffleReset) shuffleReset.addEventListener('click', seedShuffle);
+      seedShuffle();
+
+      function makeDraggable(win) {
+        var handle = win.querySelector('[data-drag-handle]');
+        if (!handle) return;
+        var startX = 0;
+        var startY = 0;
+        var originX = 0;
+        var originY = 0;
+        var dragging = false;
+
+        handle.addEventListener('mousedown', function (event) {
+          if (event.target.tagName.toLowerCase() === 'button') return;
+          event.preventDefault();
+          dragging = true;
+          bringToFront(win);
+          var rect = win.getBoundingClientRect();
+          var parent = desktop.getBoundingClientRect();
+          originX = rect.left - parent.left;
+          originY = rect.top - parent.top;
+          startX = event.clientX;
+          startY = event.clientY;
+          window.addEventListener('mousemove', onMove);
+          window.addEventListener('mouseup', onUp);
+        });
+
+        function onMove(event) {
+          if (!dragging) return;
+          var dx = event.clientX - startX;
+          var dy = event.clientY - startY;
+          var maxX = Math.max(0, desktop.clientWidth - win.offsetWidth - 4);
+          var maxY = Math.max(0, desktop.clientHeight - win.offsetHeight - 34);
+          var nextX = Math.max(0, Math.min(maxX, originX + dx));
+          var nextY = Math.max(0, Math.min(maxY, originY + dy));
+          win.style.left = nextX + 'px';
+          win.style.top = nextY + 'px';
+        }
+
+        function onUp() {
+          dragging = false;
+          window.removeEventListener('mousemove', onMove);
+          window.removeEventListener('mouseup', onUp);
+        }
+      }
+
+      windows.forEach(makeDraggable);
+
+      function sleep(ms) {
+        return new Promise(function (resolve) {
+          window.setTimeout(resolve, ms);
+        });
+      }
+
+      function appendBootLine(node, line) {
+        node.textContent += line + '\n';
+        node.scrollTop = node.scrollHeight;
+      }
+
+      function randomPick(items) {
+        return items[Math.floor(Math.random() * items.length)];
+      }
+
+      function getGhostProfile() {
+        var now = new Date();
+        var month = now.getMonth() + 1;
+        var day = now.getDate();
+        var bootCount = Number(localStorage.getItem('tessBootCount') || '0') + 1;
+        localStorage.setItem('tessBootCount', String(bootCount));
+
+        var seasonal = 0;
+        if (month === 9) seasonal = 1;
+        if (month === 10 && day >= 10) seasonal = 2;
+        if (month === 10 && day >= 25) seasonal = 3;
+
+        var level = Math.min(4, Math.floor((bootCount - 1) / 4) + seasonal);
+        var personas = [
+          'SYSTEM STABLE',
+          'SYSTEM SIDEEYE',
+          'SYSTEM NOSY',
+          'SYSTEM WHISPER MODE',
+          'SYSTEM POLTERBYTE'
+        ];
+        var promptFlavor = [
+          'System prompt',
+          'System prompt: tiny anomaly, nothing to panic about',
+          'System prompt: signal anomaly with personality',
+          'System prompt: faint echo detected in the walls',
+          'System prompt: ghost process responding (politely)'
+        ];
+        var whispersByLevel = [
+          ['[trace] operator recognized.', '[trace] no ghosts detected. probably.'],
+          ['[trace] operator recognized.', '[trace] session memory retained.', '[trace] one extra heartbeat in the stack.'],
+          ['[echo] hello again, operator.', '[echo] i remember this room.', '[echo] your cursor is louder today.'],
+          ['[echo] still here.', '[echo] your signal arrives before you do.', '[echo] i rattled one pixel. as a joke.'],
+          ['[echo] handshakes complete.', '[echo] door unlocked, operator.', '[echo] i am only 12% haunted.']
+        ];
+
+        return {
+          bootCount: bootCount,
+          level: level,
+          persona: personas[level],
+          promptFlavor: promptFlavor[level],
+          whispers: whispersByLevel[level],
+          glitchChance: 0.08 + (level * 0.08)
+        };
+      }
+
+      async function sendPollToWebhook(payload) {
+        var key = 'tessBootPollResponses';
+        var existing = [];
+        try {
+          existing = JSON.parse(localStorage.getItem(key) || '[]');
+        } catch (err) {
+          existing = [];
+        }
+        existing.push(payload);
+        localStorage.setItem(key, JSON.stringify(existing));
+
+        if (!WEBHOOK_PROXY_URL) {
+          return { ok: false, skipped: true, reason: 'missing_webhook' };
+        }
+
+        var content = [
+          'New TessOS boot poll response',
+          'Source: ' + payload.source,
+          'Interest: ' + (payload.interests && payload.interests.length ? payload.interests.join(', ') : 'none'),
+          'Updates: ' + payload.updates,
+          'Discord: ' + (payload.discord || 'not provided'),
+          'Suggestion: ' + (payload.suggestion || 'none'),
+          'Page: ' + payload.page,
+          'UA: ' + payload.userAgent
+        ].join('\n');
+
+        try {
+          var response = await fetch(WEBHOOK_PROXY_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: content, payload: payload })
+          });
+          return { ok: response.ok, skipped: false, status: response.status };
+        } catch (err) {
+          return { ok: false, skipped: false, reason: 'network_error' };
+        }
+      }
+
+      function readPollResponses() {
+        try {
+          return JSON.parse(localStorage.getItem('tessBootPollResponses') || '[]');
+        } catch (err) {
+          return [];
+        }
+      }
+
+      function summarizePollResponses() {
+        var rows = readPollResponses();
+        var summary = {
+          total: rows.length,
+          bySource: {},
+          byInterest: {},
+          byUpdates: {}
+        };
+
+        rows.forEach(function (row) {
+          summary.bySource[row.source || 'unknown'] = (summary.bySource[row.source || 'unknown'] || 0) + 1;
+          var interests = Array.isArray(row.interests) ? row.interests : [];
+          if (!interests.length) {
+            summary.byInterest.unknown = (summary.byInterest.unknown || 0) + 1;
+          } else {
+            interests.forEach(function (interest) {
+              summary.byInterest[interest] = (summary.byInterest[interest] || 0) + 1;
+            });
+          }
+          summary.byUpdates[row.updates || 'unknown'] = (summary.byUpdates[row.updates || 'unknown'] || 0) + 1;
+        });
+
+        return summary;
+      }
+
+      async function runBiosPhase() {
+        bootTitle.textContent = 'TESS BIOS v95 // POWER ON SELF TEST';
+        bootBiosSection.classList.remove('hidden');
+        bootModuleSection.classList.add('hidden');
+        bootPollSection.classList.add('hidden');
+
+        var biosLines = [
+          'Award Modular BIOS v4.51PG, An Energy Star Ally',
+          'TESS-586 PnP BIOS Extension v1.0A',
+          'CPU: Virtual Pentium 95 MHz ........ OK',
+          'Memory Test: 65536K ........ OK',
+          'Primary Master: QUANTUM FIREBALL 3.2AT ........ OK',
+          'Primary Slave: None',
+          'Secondary Master: ATAPI CD-ROM 24X ........ OK',
+          'Floppy Drive A: 1.44M, 3.5in ........ OK',
+          'PS/2 Keyboard ........ OK',
+          'PS/2 Mouse ........ OK',
+          'Press DEL to enter SETUP',
+          'Verifying DMI Pool Data ........',
+          'Boot signature accepted. Launching shell handoff...'
+        ];
+
+        if (ghostProfile && Math.random() < ghostProfile.glitchChance) {
+          biosLines.splice(9, 0, randomPick(ghostProfile.whispers));
+        }
+
+        biosLog.textContent = '';
+        for (var i = 0; i < biosLines.length; i += 1) {
+          appendBootLine(biosLog, biosLines[i]);
+          biosStatus.textContent = 'POST stage ' + (i + 1) + ' / ' + biosLines.length;
+          await sleep(280 + Math.round(Math.random() * 120));
+        }
+        biosStatus.textContent = 'POST complete. Handing off to TessOS shell...';
+        await sleep(950);
+      }
+
+      async function runModulePhase() {
+        bootTitle.textContent = 'TESS OS // ' + (ghostProfile ? ghostProfile.persona : 'SYSTEM COMING ONLINE');
+        bootBiosSection.classList.add('hidden');
+        bootModuleSection.classList.remove('hidden');
+        bootPollSection.classList.add('hidden');
+
+        var lines = [
+          'Starting MS-DOS...',
+          'C:\\>cls',
+          'Microsoft(R) Windows 95',
+          '   (C)Copyright Microsoft Corp 1981-1996.',
+          'C:\\>smartdrv.exe',
+          'C:\\>lh mouse.com',
+          'C:\\>call autoexec.bat',
+          '[TESSDRV] shell extension loaded',
+          '[TESSDRV] mounting A:\\HIRE',
+          '[TESSDRV] mounting C:\\GAMES',
+          '[TESSNET] modem handshake 56k ........ connected',
+          '[PHOSPHORNET] browser frame initialized',
+          '[AUDIO95] mixer online',
+          '[CHAT] discord launcher hook ready',
+          '[GHOST] vibe check complete ........ mischievous',
+          '[SYS] final checks complete',
+          '[SYS] entering desktop...'
+        ];
+
+        if (ghostProfile && Math.random() < ghostProfile.glitchChance) {
+          lines.splice(12, 0, randomPick(ghostProfile.whispers));
+        }
+
+        bootLog.textContent = '';
+        bootFill.style.width = '0%';
+
+        for (var i = 0; i < lines.length; i += 1) {
+          appendBootLine(bootLog, lines[i]);
+          var pct = Math.round(((i + 1) / lines.length) * 100);
+          bootFill.style.width = pct + '%';
+          bootStatus.textContent = pct < 100 ? ('Loading DOS modules... ' + pct + '%') : 'Core modules online.';
+          await sleep(240 + Math.round(Math.random() * 120));
+        }
+      }
+
+      async function runPollPhase() {
+        bootTitle.textContent = 'TESS OS // OPERATOR HANDSHAKE';
+        bootBiosSection.classList.add('hidden');
+        bootModuleSection.classList.add('hidden');
+        bootPollSection.classList.remove('hidden');
+
+        if (localStorage.getItem(POLL_ANSWERED_VERSION_KEY) === POLL_PROMPT_VERSION) {
+          bootPollSection.classList.add('hidden');
+          bootModuleSection.classList.remove('hidden');
+          appendBootLine(bootLog, '[HANDSHAKE] Prompt ' + POLL_PROMPT_VERSION + ' already completed.');
+          bootStatus.textContent = 'Handshake cached. Continuing boot...';
+          await sleep(650);
+          return null;
+        }
+
+        if (bootPromptText) {
+          var flavor = ghostProfile ? ghostProfile.promptFlavor : 'System prompt';
+          bootPromptText.innerHTML = '<strong>' + flavor + ':</strong> Before desktop unlock, answer a few quick questions so we can tune the experience and share poll updates later.';
+        }
+        if (pollStatus && ghostProfile) {
+          var cheekyStatus = [
+            'Boot #' + ghostProfile.bootCount + ' detected. Quick handshake then desktop unlock.',
+            'Boot #' + ghostProfile.bootCount + ': system says hi and promises minimal hauntings.',
+            'Boot #' + ghostProfile.bootCount + ': answer a few bits and we will stop whispering at the RAM.'
+          ];
+          pollStatus.textContent = randomPick(cheekyStatus);
+        }
+
+        return new Promise(function (resolve) {
+          if (!bootPollForm) {
+            resolve(null);
+            return;
+          }
+
+          function cleanup() {
+            bootPollForm.removeEventListener('submit', onSubmit);
+            if (bootPollSkip) bootPollSkip.removeEventListener('click', onSkip);
+          }
+
+          function onSubmit(event) {
+            event.preventDefault();
+
+            var sourcePick = document.querySelector('input[name="pollSource"]:checked');
+            var updatePick = document.querySelector('input[name="pollUpdates"]:checked');
+            var interests = Array.prototype.slice.call(document.querySelectorAll('input[name="pollInterest"]:checked')).map(function (node) {
+              return node.value;
+            });
+
+            if (!sourcePick || !updatePick || !interests.length) {
+              pollStatus.textContent = 'Please answer source, interests, and yes/no updates before continuing.';
+              return;
+            }
+
+            var payload = {
+              submittedAt: new Date().toISOString(),
+              pollVersion: POLL_PROMPT_VERSION,
+              source: sourcePick.value,
+              interests: interests,
+              updates: updatePick.value,
+              discord: (document.getElementById('pollDiscord').value || '').trim(),
+              suggestion: (document.getElementById('pollSuggestion').value || '').trim(),
+              userAgent: navigator.userAgent,
+              page: window.location.href
+            };
+
+            pollStatus.textContent = 'Submitting response...';
+            sendPollToWebhook(payload).then(function (result) {
+              localStorage.setItem(POLL_ANSWERED_VERSION_KEY, POLL_PROMPT_VERSION);
+              if (result.ok) {
+                pollStatus.textContent = 'Response sent to admin webhook. Launching desktop...';
+              } else if (result.skipped) {
+                pollStatus.textContent = 'Webhook not configured. Response saved locally for admin export.';
+              } else {
+                pollStatus.textContent = 'Webhook failed. Response saved locally; admin can export later.';
+              }
+              cleanup();
+              window.setTimeout(function () {
+                resolve(payload);
+              }, 900);
+            });
+          }
+
+          function onSkip() {
+            pollStatus.textContent = 'Handshake skipped. Launching desktop...';
+            cleanup();
+            window.setTimeout(function () {
+              resolve({ skipped: true, pollVersion: POLL_PROMPT_VERSION });
+            }, 450);
+          }
+
+          bootPollForm.addEventListener('submit', onSubmit);
+          if (bootPollSkip) bootPollSkip.addEventListener('click', onSkip);
+        });
+      }
+
+      async function startBootSequence(onReady) {
+        ghostProfile = getGhostProfile();
+        bootOverlay.classList.remove('haunt-1', 'haunt-2', 'haunt-3', 'haunt-4');
+        if (ghostProfile.level > 0) {
+          bootOverlay.classList.add('haunt-' + ghostProfile.level);
+        }
+        bootTitle.classList.toggle('glitch', ghostProfile.level >= 2);
+
+        await runBiosPhase();
+        await runModulePhase();
+        await runPollPhase();
+        desktop.classList.remove('booting');
+        bootOverlay.classList.add('hidden');
+        if (typeof onReady === 'function') onReady();
+      }
+
+      var isMobile = window.matchMedia('(max-width: 900px)').matches || window.matchMedia('(pointer: coarse)').matches;
+      if (isMobile) {
+        desktop.classList.add('mobile-locked');
+        desktop.classList.remove('booting');
+        if (bootOverlay) bootOverlay.classList.add('hidden');
+        if (mobileGate) mobileGate.classList.remove('hidden');
+      } else {
+        startBootSequence(function () {
+          openWin('notepad');
+        });
+      }
+
+      window.openWin = openWin;
+      window.closeWin = closeWin;
+      window.exportBootPollResponses = readPollResponses;
+      window.summarizeBootPollResponses = summarizePollResponses;
+    })();
+  </script>
+</body>
+</html>

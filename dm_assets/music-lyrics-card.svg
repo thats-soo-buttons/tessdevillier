@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-label="Music symbols and lyrics graphic">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10131d"/>
+      <stop offset="100%" stop-color="#1b1f2d"/>
+    </linearGradient>
+    <linearGradient id="note" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#d9a844"/>
+    </linearGradient>
+    <linearGradient id="sheet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fbff"/>
+      <stop offset="100%" stop-color="#e6eef8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+
+  <g opacity="0.2" fill="#2d3550">
+    <circle cx="180" cy="170" r="90"/>
+    <circle cx="1020" cy="240" r="120"/>
+    <circle cx="940" cy="960" r="160"/>
+    <circle cx="250" cy="980" r="140"/>
+  </g>
+
+  <rect x="130" y="230" width="940" height="670" rx="26" fill="url(#sheet)" stroke="#cad7e9" stroke-width="8"/>
+
+  <g stroke="#d4deec" stroke-width="8" opacity="0.95">
+    <line x1="190" y1="350" x2="1010" y2="350"/>
+    <line x1="190" y1="430" x2="1010" y2="430"/>
+    <line x1="190" y1="510" x2="1010" y2="510"/>
+    <line x1="190" y1="590" x2="1010" y2="590"/>
+    <line x1="190" y1="670" x2="1010" y2="670"/>
+  </g>
+
+  <g fill="url(#note)">
+    <ellipse cx="360" cy="620" rx="46" ry="34"/>
+    <rect x="395" y="450" width="22" height="170" rx="11"/>
+
+    <ellipse cx="560" cy="520" rx="44" ry="32"/>
+    <rect x="594" y="340" width="20" height="180" rx="10"/>
+
+    <ellipse cx="760" cy="580" rx="44" ry="32"/>
+    <rect x="794" y="395" width="20" height="185" rx="10"/>
+  </g>
+
+  <g fill="#364261" opacity="0.75">
+    <rect x="240" y="740" width="720" height="18" rx="9"/>
+    <rect x="240" y="785" width="560" height="16" rx="8"/>
+    <rect x="240" y="825" width="640" height="16" rx="8"/>
+  </g>
+
+  <text x="600" y="1030" text-anchor="middle" fill="#ffd166" font-size="74" font-family="Segoe UI, Arial, sans-serif" font-weight="700" letter-spacing="5">MUSIC + LYRICS</text>
+</svg>

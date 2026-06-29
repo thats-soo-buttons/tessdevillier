@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-label="Instagram card">
+  <defs>
+    <linearGradient id="igBg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#5b2cff"/>
+      <stop offset="45%" stop-color="#d62976"/>
+      <stop offset="75%" stop-color="#fa7e1e"/>
+      <stop offset="100%" stop-color="#feda75"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#igBg)"/>
+  <rect x="220" y="220" width="760" height="760" rx="190" fill="none" stroke="#ffffff" stroke-width="56"/>
+  <circle cx="600" cy="600" r="190" fill="none" stroke="#ffffff" stroke-width="56"/>
+  <circle cx="830" cy="370" r="54" fill="#ffffff"/>
+  <text x="600" y="1080" text-anchor="middle" fill="#ffffff" font-size="94" font-family="Arial, sans-serif" font-weight="700">INSTAGRAM</text>
+</svg>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Watch and listen: ThatsSooButtons, music and lyrics, podcasts, and creative worlds.">
+    <title>Watch | Tess Devillier</title>
+    <style>
+        :root {
+            --bg: #0f121a;
+            --card: #171d2a;
+            --ink: #eef2ff;
+            --muted: #b3bdd5;
+            --accent: #ffd166;
+            --line: #2d3850;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--ink);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 80% 5%, rgba(255, 209, 102, 0.14), transparent 30%), var(--bg);
+        }
+        .wrap { max-width: 980px; margin: 0 auto; padding: 30px 16px 44px; }
+        .top { margin-bottom: 20px; }
+        .top a { color: var(--muted); text-decoration: none; font-weight: 600; }
+        h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
+        .sub { margin: 0 0 22px; color: var(--muted); }
+        .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.26);
+        }
+        .card h2 { margin: 0 0 8px; font-size: 1.2rem; }
+        .card p { margin: 0 0 12px; color: var(--muted); line-height: 1.5; }
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 8px;
+            padding: 9px 12px;
+            background: var(--accent);
+            color: #232942;
+        }
+        .footer-links {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <main class="wrap" role="main">
+        <div class="top"><a href="index.html">Back To Home</a></div>
+        <h1>Watch</h1>
+        <p class="sub">Watch and listen across streaming, music, podcast work, and creative universe previews.</p>
+
+        <section class="grid" aria-label="Watch Links">
+            <article class="card">
+                <h2>ThatsSooButtons</h2>
+                <p>Streaming and gaming home base.</p>
+                <a class="btn" href="https://twitch.tv/thats_soo_buttons" target="_blank" rel="noopener noreferrer">Open on Twitch</a>
+            </article>
+
+            <article class="card">
+                <h2>Music and Lyrics</h2>
+                <p>Songs, lyric work, and audio-focused creative releases.</p>
+                <a class="btn" href="music-lyrics.html">Open Music + Lyrics</a>
+            </article>
+
+            <article class="card">
+                <h2>Podcasts</h2>
+                <p>Current and upcoming podcast projects.</p>
+                <ul>
+                    <li>Wayward Bound (TTRPG podcast) - Spotify</li>
+                    <li>More podcasts coming soon</li>
+                </ul>
+                <a class="btn" href="podcasts.html">Open Podcasts Page</a>
+            </article>
+
+            <article class="card">
+                <h2>Creative Worlds</h2>
+                <p>Explore previews from XYZthians and TIGIDB.</p>
+                <a class="btn" href="xyzthians.html">Explore Worlds</a>
+            </article>
+        </section>
+
+        <div class="footer-links" aria-label="Quick booking links">
+            <a href="#">Back to top</a>
+            <a href="hire.html">Hire/Book</a>
+            <a href="contact.html">Contact</a>
+            <a href="availability.html">Availability</a>
+            <a href="pets.html">Pet Services</a>
+        </div>
+    </main>
+</body>
+</html>

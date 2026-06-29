@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-label="TikTok card">
+  <rect width="1200" height="1200" fill="#0f0f15"/>
+  <path d="M560 230v430c-34-23-76-36-122-36-123 0-223 100-223 223s100 223 223 223 223-100 223-223V500c53 47 121 75 195 75v-162c-76 0-138-62-138-138H560z" fill="#25f4ee" opacity="0.95"/>
+  <path d="M620 210v430c-34-23-76-36-122-36-123 0-223 100-223 223s100 223 223 223 223-100 223-223V480c53 47 121 75 195 75V393c-76 0-138-62-138-138H620z" fill="#fe2c55" opacity="0.95"/>
+  <path d="M590 220v430c-34-23-76-36-122-36-123 0-223 100-223 223s100 223 223 223 223-100 223-223V490c53 47 121 75 195 75V403c-76 0-138-62-138-138H590z" fill="#ffffff"/>
+  <text x="600" y="1080" text-anchor="middle" fill="#ffffff" font-size="94" font-family="Arial, sans-serif" font-weight="700">TIKTOK</text>
+</svg>

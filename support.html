@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Support Tess through tips, referrals, and free support options like social engagement and Prime Twitch sub.">
+    <title>Support | Tess Devillier</title>
+    <style>
+        :root {
+            --bg: #15121a;
+            --card: #1f1a25;
+            --ink: #f8f2ff;
+            --muted: #c6b8d6;
+            --accent: #ffd166;
+            --line: #3d3350;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--ink);
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 85% 5%, rgba(255, 209, 102, 0.16), transparent 30%), var(--bg);
+        }
+        .wrap { max-width: 980px; margin: 0 auto; padding: 30px 16px 44px; }
+        .top a { color: var(--muted); text-decoration: none; font-weight: 600; }
+        h1 { margin: 20px 0 8px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
+        .sub { margin: 0 0 20px; color: var(--muted); }
+        .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 14px;
+        }
+        .card h2 { margin: 0 0 8px; font-size: 1.08rem; }
+        .card ul { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.5; }
+        .card li + li { margin-top: 6px; }
+        .card a { color: var(--accent); text-decoration: none; font-weight: 700; }
+        .footer-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <main class="wrap" role="main">
+        <div class="top"><a href="index.html">Back To Home</a></div>
+        <h1>Support</h1>
+        <p class="sub">Choose what is easiest. Financial support, referrals, and free engagement all help.</p>
+
+        <section class="grid" aria-label="Support Options">
+            <article class="card">
+                <h2>Support Financially</h2>
+                <ul>
+                    <li><a href="https://cash.app/$888buttons" target="_blank" rel="noopener noreferrer">Cash App</a></li>
+                    <li><a href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Ko-fi</a></li>
+                    <li><a href="https://buymeacoffee.com/tessdevillier" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a></li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2>Support For Free</h2>
+                <ul>
+                    <li>Use your monthly Amazon Prime Twitch sub at no extra cost.</li>
+                    <li><a href="freesupport.html">Read the full Prime + Twitch setup guide</a>.</li>
+                    <li>Share, save, and comment on social posts.</li>
+                    <li>Follow on <a href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Instagram</a> and <a href="https://www.tiktok.com/@thatssoobuttons" target="_blank" rel="noopener noreferrer">TikTok</a>.</li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2>Referral Support</h2>
+                <ul>
+                    <li>Send pet-sitting referrals my way.</li>
+                    <li>Share my website with people looking for creative support.</li>
+                    <li><a href="mailto:contact@tessdevillier.com">Email referrals directly</a>.</li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <h2>OTFN Mission Support</h2>
+                <ul>
+                    <li>Support a creative network focused on living-wage opportunities for neurodivergent and chronically ill community members.</li>
+                    <li><a href="mailto:contact@ontheflynetwork.com">Volunteer and fundraising inquiries</a>.</li>
+                    <li><a href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer">Visit On The Fly Network</a>.</li>
+                </ul>
+            </article>
+        </section>
+
+        <div class="footer-links" aria-label="Quick booking links">
+            <a href="#">Back to top</a>
+            <a href="hire.html">Hire/Book</a>
+            <a href="contact.html">Contact</a>
+            <a href="availability.html">Availability</a>
+            <a href="pets.html">Pet Services</a>
+        </div>
+    </main>
+</body>
+</html>

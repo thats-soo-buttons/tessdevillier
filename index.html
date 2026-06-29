@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://open.spotify.com https://drive.google.com;">
-    <meta name="description" content="Tess Devillier: Professional media, photography, writing, and creative services. Choose your vibe: professional, whimsical, or both. Baton Rouge & beyond.">
+    <meta name="description" content="Tess Devillier: Tess Does Stuff professional services, photography, writing, and creative work. Choose your vibe: professional, whimsical, or both. Baton Rouge & beyond.">
     <title>Tess Devillier | Professional & Whimsical Services in Baton Rouge</title>
     <style>
         /* Glitch effect for whimsical transition */
@@ -139,6 +139,72 @@
         .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: difference; }
         h1 { font-size: 2.5rem; letter-spacing: 6px; margin-bottom: 5px; font-weight: 700; color: #fff; }
         #vibe-text { color: #fff; font-size: 1.3rem; min-height: 1.6em; font-weight: 300; text-transform: uppercase; }
+        .mode-headline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            pointer-events: auto;
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 6px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .mode-headline .separator {
+            color: #fff;
+            opacity: 0.8;
+        }
+        .mode-headline .mode-tab {
+            appearance: none;
+            border: none;
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            color: #fff;
+            font: inherit;
+            letter-spacing: inherit;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: color 0.18s ease;
+        }
+        .mode-headline .mode-tab:hover,
+        .mode-headline .mode-tab:focus {
+            color: #ffd700;
+            outline: none;
+        }
+        .mode-headline .mode-tab.active {
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+        }
+        .mode-blurb {
+            margin-top: 14px;
+            pointer-events: auto;
+            text-align: center;
+            text-shadow: 0 2px 8px #000;
+        }
+        .mode-blurb-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+        .mode-blurb-text {
+            font-size: 0.95rem;
+            color: #fff;
+            max-width: 820px;
+            margin: 0 auto 4px auto;
+            line-height: 1.35;
+        }
+        .mode-blurb-quote {
+            font-size: 0.92rem;
+            color: #e6e6e6;
+            font-style: italic;
+            max-width: 840px;
+            margin: 0 auto;
+        }
 
         .split-container { display: flex; width: 100vw; height: 100vh; }
         .choice { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden; }
@@ -288,9 +354,9 @@
         <div style="margin-top: 1.5em;">
             <strong>Support Links:</strong><br>
             <a href="https://ko-fi.com/thatssoobuttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Ko-fi: ko-fi.com/thatssoobuttons</a><br>
-            <a href="https://patreon.com/c/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Patreon: patreon.com/c/tessdevillier</a><br>
             <a href="https://buymeacoffee.com/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Buy Me a Coffee: buymeacoffee.com/tessdevillier</a><br>
-            <span style="color:#ffd700;">Cash App: $888buttons</span>
+            <a href="https://cash.app/$888buttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Cash App: $888buttons</a><br>
+            <span style="color:#ffd700;">Free support: Amazon Prime Twitch sub + social shares</span>
         </div>
         <div style="margin-top: 2.2em; display: flex; flex-direction: column; align-items: center; gap: 18px;">
             <span style="font-size:1.18em; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:700; margin-bottom: 6px;">Make a Choice:</span>
@@ -308,7 +374,20 @@
 
 
         <header class="header-container" role="banner">
-            <h1>HIRE • WATCH • CONNECT • SUPPORT</h1>
+            <h1 class="mode-headline" aria-label="Section mode selector">
+                <button type="button" class="mode-tab active" data-mode="hire">HIRE</button>
+                <span class="separator" aria-hidden="true">•</span>
+                <button type="button" class="mode-tab" data-mode="watch">WATCH</button>
+                <span class="separator" aria-hidden="true">•</span>
+                <button type="button" class="mode-tab" data-mode="connect">CONNECT</button>
+                <span class="separator" aria-hidden="true">•</span>
+                <button type="button" class="mode-tab" data-mode="support">SUPPORT</button>
+            </h1>
+            <div class="mode-blurb" id="mode-blurb" aria-live="polite">
+                <div class="mode-blurb-title" id="mode-blurb-title">Hire Tess</div>
+                <div class="mode-blurb-text" id="mode-blurb-text">Reliable, creative, and a little chaotic in the best way. Baton Rouge and remote.</div>
+                <div class="mode-blurb-quote" id="mode-blurb-quote">"Why hire me? I'm the common denominator, you are hiring my energy and reliability."</div>
+            </div>
             <div id="vibe-text"></div>
             <div id="mode-toggle" style="display:flex; gap:18px; justify-content:center; align-items:center; margin: 18px 0 0 0; pointer-events:auto;">
                 <button id="btn-professional" type="button" style="background:rgba(40,40,40,0.55); border:2px solid #ffd700; color:#ffd700; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Professional</button>
@@ -369,7 +448,235 @@
             const overlay = document.getElementById('music-unlock');
             const choicePro = document.getElementById('choice-professional');
             const choiceWhim = document.getElementById('choice-whimsical');
+            const modeTabs = document.querySelectorAll('.mode-tab');
+            const modeBlurbTitle = document.getElementById('mode-blurb-title');
+            const modeBlurbText = document.getElementById('mode-blurb-text');
+            const modeBlurbQuote = document.getElementById('mode-blurb-quote');
             // Overlay will NOT auto-hide; user must pick a side
+
+            const modeData = {
+                hire: {
+                    title: 'Hire Tess',
+                    text: 'Reliable, creative, and a little chaotic in the best way. Baton Rouge and remote.',
+                    quote: '"Why hire me? I\'m the common denominator, you are hiring my energy and reliability."',
+                    panels: [
+                        {
+                            theme: 'professional',
+                            image: 'dm_assets/house-petsitting-photo.jpg',
+                            title: 'House & Pet Sitting',
+                            subtitle: 'Book me',
+                            href: 'pets.html',
+                            external: false,
+                            aria: 'House and pet sitting'
+                        },
+                        {
+                            theme: 'buttons',
+                            image: 'professionalindex.jpg',
+                            title: 'Photography',
+                            subtitle: 'View packages',
+                            href: 'photography/index.html',
+                            external: false,
+                            aria: 'Photography'
+                        },
+                        {
+                            theme: 'otf',
+                            image: 'simulationindex.jpg',
+                            title: 'Worldbuilding / Narrative',
+                            subtitle: 'Explore services',
+                            href: 'worldbuilding.html',
+                            external: false,
+                            aria: 'Worldbuilding and narrative design'
+                        },
+                        {
+                            theme: 'other',
+                            image: 'helixotopeexample.jpg',
+                            title: 'Creative Consulting',
+                            subtitle: 'Explore consulting',
+                            href: 'creative-consulting.html',
+                            external: false,
+                            aria: 'Creative consulting'
+                        }
+                    ]
+                },
+                watch: {
+                    title: 'Watch and Listen',
+                    text: 'Streaming, music, and creative network projects in one place.',
+                    quote: '"If you like one corner of my world, there is always another portal."',
+                    panels: [
+                        {
+                            theme: 'professional',
+                            image: 'dm_assets/couch.jpg',
+                            title: '🎮 ThatsSooButtons',
+                            subtitle: 'Open on Twitch',
+                            href: 'https://twitch.tv/thats_soo_buttons',
+                            external: true,
+                            aria: 'ThatsSooButtons'
+                        },
+                        {
+                            theme: 'buttons',
+                            image: 'dm_assets/music-lyrics-card.svg',
+                            title: '🎵 Music and Lyrics',
+                            subtitle: 'Listen and explore',
+                            href: 'music-lyrics.html',
+                            external: false,
+                            aria: 'Music and lyrics'
+                        },
+                        {
+                            theme: 'otf',
+                            image: 'dm_assets/podcasts-card.svg',
+                            title: '🎙️ Podcasts',
+                            subtitle: 'Wayward Bound + future shows',
+                            href: 'podcasts.html',
+                            external: false,
+                            aria: 'Podcasts'
+                        },
+                        {
+                            theme: 'other',
+                            image: 'helixotopeexample.jpg',
+                            title: '🌌 Creative Worlds',
+                            subtitle: 'XYZthians and TIGIDB',
+                            href: 'xyzthians.html',
+                            external: false,
+                            aria: 'Creative worlds'
+                        }
+                    ]
+                },
+                connect: {
+                    title: 'Connect with Tess',
+                    text: 'Community, social posts, and clear contact lanes across brands.',
+                    quote: '"Come hang out online. The vibe is collaborative and weird in a good way."',
+                    panels: [
+                        {
+                            theme: 'professional',
+                            image: 'dm_assets/instagram-card.svg',
+                            title: '📸 Instagram',
+                            subtitle: 'Follow and engage',
+                            href: 'https://www.instagram.com/thatssoobuttons',
+                            external: true,
+                            aria: 'Instagram'
+                        },
+                        {
+                            theme: 'buttons',
+                            image: 'dm_assets/tiktok-card.svg',
+                            title: '🎥 TikTok',
+                            subtitle: 'Short-form posts',
+                            href: 'https://www.tiktok.com/@thatssoobuttons',
+                            external: true,
+                            aria: 'TikTok'
+                        },
+                        {
+                            theme: 'otf',
+                            image: 'dm_assets/discord-card.svg',
+                            title: '💬 Discord Community',
+                            subtitle: 'Join the server',
+                            href: 'https://discord.gg/dC34nguEEC',
+                            external: true,
+                            aria: 'Discord community'
+                        },
+                        {
+                            theme: 'other',
+                            image: 'professionalindex.jpg',
+                            title: '✉️ Email',
+                            subtitle: 'Hire / Buttons / OTFN',
+                            href: 'contact.html',
+                            external: false,
+                            aria: 'Contact lane options'
+                        }
+                    ]
+                },
+                support: {
+                    title: 'Support the Work',
+                    text: 'Every tip, share, referral, and mission contribution helps keep this work moving.',
+                    quote: '"Support does not have to be expensive to be meaningful."',
+                    panels: [
+                        {
+                            theme: 'professional',
+                            image: 'helixotopeexample.jpg',
+                            title: '$ Cash App',
+                            subtitle: '$888buttons',
+                            href: 'https://cash.app/$888buttons',
+                            external: true,
+                            aria: 'Cash App'
+                        },
+                        {
+                            theme: 'buttons',
+                            image: 'dm_assets/couch.jpg',
+                            title: '☕ Ko-fi',
+                            subtitle: 'Tip jar and support',
+                            href: 'https://ko-fi.com/thatssoobuttons',
+                            external: true,
+                            aria: 'Ko-fi'
+                        },
+                        {
+                            theme: 'otf',
+                            image: 'professionalindex.jpg',
+                            title: '🆓 Free Support',
+                            subtitle: 'Prime sub + shares',
+                            href: 'freesupport.html',
+                            external: false,
+                            aria: 'Free support options'
+                        },
+                        {
+                            theme: 'other',
+                            image: 'simulationindex.jpg',
+                            title: '🪽 OTFN Mission Support',
+                            subtitle: 'Volunteer + fundraising',
+                            href: 'https://ontheflynetwork.com',
+                            external: true,
+                            aria: 'On The Fly Network mission support'
+                        }
+                    ]
+                }
+            };
+
+            function applyMode(mode) {
+                const config = modeData[mode];
+                if (!config) return;
+
+                if (modeBlurbTitle) modeBlurbTitle.textContent = config.title;
+                if (modeBlurbText) modeBlurbText.textContent = config.text;
+                if (modeBlurbQuote) modeBlurbQuote.textContent = config.quote;
+
+                modeTabs.forEach((tab) => {
+                    tab.classList.toggle('active', tab.dataset.mode === mode);
+                });
+
+                config.panels.forEach((panel, index) => {
+                    const panelIndex = index + 1;
+                    const panelEl = document.getElementById(`panel-${panelIndex}`);
+                    const linkEl = document.getElementById(`panel-link-${panelIndex}`);
+                    const imageEl = document.getElementById(`panel-image-${panelIndex}`);
+                    const labelEl = document.getElementById(`panel-label-${panelIndex}`);
+
+                    if (panelEl) panelEl.className = `choice ${panel.theme}`;
+                    if (linkEl) {
+                        linkEl.href = panel.href;
+                        linkEl.setAttribute('aria-label', panel.aria);
+                        if (panel.external) {
+                            linkEl.target = '_blank';
+                            linkEl.rel = 'noopener noreferrer';
+                        } else {
+                            linkEl.removeAttribute('target');
+                            linkEl.removeAttribute('rel');
+                        }
+                    }
+                    if (imageEl) {
+                        imageEl.style.backgroundImage = `url('${panel.image}')`;
+                        imageEl.setAttribute('aria-label', panel.aria);
+                    }
+                    if (labelEl) {
+                        labelEl.innerHTML = `${panel.title}<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">${panel.subtitle}</span>`;
+                    }
+                });
+            }
+
+            modeTabs.forEach((tab) => {
+                tab.addEventListener('click', function () {
+                    applyMode(tab.dataset.mode);
+                });
+            });
+
+            applyMode('hire');
 
             function setToggleState(professionalActive) {
                 const audioControls = document.getElementById('audio-controls');
@@ -436,8 +743,7 @@
             });
             if (choiceWhim) choiceWhim.addEventListener('click', function(e) {
                 e.stopPropagation();
-                if (overlay) overlay.style.display = 'none';
-                setToggleState(false);
+                window.location.href = 'whimsical.html';
                 clearTimeout(overlayTimeout);
             });
             // Top toggles
@@ -452,8 +758,7 @@
             });
             btnWhimsical.addEventListener('click', function(e) {
                 e.stopPropagation();
-                setToggleState(false);
-                if (overlay && overlay.style.display !== 'none') overlay.style.display = 'none';
+                window.location.href = 'whimsical.html';
                 clearTimeout(overlayTimeout);
             });
             // Do not auto-switch to professional on load
@@ -473,64 +778,43 @@
                 <a href="https://discord.gg/dC34nguEEC" target="_blank">Join the Discord</a>
             </div>
         </div>
-    <div class="choice professional">
-          <a href="https://devilliermedia.com" aria-label="Devillier Media: Media Services, Photography, Writing, and Consultations" style="display:block;">
-              <div class="vignette" style="background-image: url('professionalindex.jpg');" role="img" aria-label="Professional media and photography"></div>
+    <div id="panel-1" class="choice professional">
+          <a id="panel-link-1" href="pets.html" aria-label="House and pet sitting" style="display:block;">
+              <div id="panel-image-1" class="vignette" style="background-image: url('dm_assets/house-petsitting-photo.jpg');" role="img" aria-label="House and pet sitting"></div>
           </a>
-          <div class="label">Devillier Media<br><span style="font-size:1.05rem; font-weight:600;">Photography & Creative Projects</span></div>
+          <div id="panel-label-1" class="label">House & Pet Sitting<br><span style="font-size:1.05rem; font-weight:600;">Book me</span></div>
       </div>
 
-    <div class="choice buttons">
-          <a href="https://thatssoobuttons.com" target="_blank" rel="noopener noreferrer" aria-label="That's Soo Buttons: Twitch Streamer, Cozy/Spooky Games" style="display:block;">
-              <div class="vignette" style="background-image: url('dm_assets/couch.jpg');" role="img" aria-label="ThatsSooButtons"></div>
+    <div id="panel-2" class="choice buttons">
+          <a id="panel-link-2" href="photography/index.html" aria-label="Photography" style="display:block;">
+              <div id="panel-image-2" class="vignette" style="background-image: url('professionalindex.jpg');" role="img" aria-label="Photography"></div>
           </a>
-          <div class="label">ThatsSooButtons<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">Lyrics. Gaming. Fiction.</span></div>
+          <div id="panel-label-2" class="label">Photography<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">View packages</span></div>
       </div>
 
-    <div class="choice otf">
-          <a href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer" aria-label="On The Fly Network: Entertainment and Non Profit Goals" style="display:block;">
-              <div class="vignette" style="background-image: url('simulationindex.jpg');" role="img" aria-label="On The Fly Network, creative community"></div>
+    <div id="panel-3" class="choice otf">
+          <a id="panel-link-3" href="worldbuilding.html" aria-label="Worldbuilding and narrative design" style="display:block;">
+              <div id="panel-image-3" class="vignette" style="background-image: url('simulationindex.jpg');" role="img" aria-label="Worldbuilding and narrative design"></div>
           </a>
-          <div class="label">On The Fly Network<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">Creative Community</span></div>
+          <div id="panel-label-3" class="label">Worldbuilding / Narrative<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">Explore services</span></div>
       </div>
 
-    <div class="choice other" style="background:#0d1a14;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-        <div class="vignette" style="background-image: url('helixotopeexample.jpg'); background-size: cover; background-position: center;"></div>
-        <div class="label" style="margin-top: 24px; color:#ffd700; font-size:1.1em; font-weight:800; text-align:center;">
-            SHOP/SUPPORT
-        </div>
-        <div style="margin-top:12px; color:#ffd700; font-size:1.08em; text-align:center; font-weight:700; display:flex; flex-direction:column; gap:8px;">
-            <a href="https://ko-fi.com/thatssoobuttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Ko-fi</a>
-            <a href="https://patreon.com/c/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Patreon</a>
-            <a href="https://buymeacoffee.com/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Buy Me a Coffee</a>
-            <a href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" style="color:#ffd700; text-decoration:underline;">House/Pet Sitting</a>
-            <a href="https://cash.app/$888buttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Cash App</a>
-        </div>
+    <div id="panel-4" class="choice other">
+        <a id="panel-link-4" href="creative-consulting.html" aria-label="Creative consulting" style="display:block;">
+            <div id="panel-image-4" class="vignette" style="background-image: url('helixotopeexample.jpg'); background-size: cover; background-position: center;"></div>
+        </a>
+        <div id="panel-label-4" class="label">Creative Consulting<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">Explore consulting</span></div>
     </div>
   </div>
 </main>
 
-<footer style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.85rem; opacity: 0.9; color: #fff; z-index: 50; background: rgba(0,0,0,0.65); padding: 8px 14px; border-radius: 8px;" role="contentinfo">
+<footer style="position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.85rem; opacity: 0.95; color: #fff; z-index: 50; background: rgba(8,10,16,0.42); backdrop-filter: blur(6px); padding: 8px 12px; border-radius: 12px; width: min(980px, calc(100vw - 24px));" role="contentinfo">
     <div id="audio-controls" style="margin-bottom:10px; display:flex; justify-content:center; align-items:center; gap:18px;">
         <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Pause</button>
         <label style="color:#ffd700;font-size:0.95em;">
             Volume
             <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.4" style="vertical-align:middle;">
         </label>
-    </div>
-    <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.8rem;">
-        <a href="https://devilliermedia.com" style="color: #fff; text-decoration: none;" aria-label="Devillier Media">Devillier Media</a>
-        <span aria-hidden="true">•</span>
-        <a href="https://thatssoobuttons.com" style="color: #fff; text-decoration: none;" aria-label="That's Soo Buttons">That's Soo Buttons</a>
-        <span aria-hidden="true">•</span>
-        <a href="https://ontheflynetwork.com" style="color: #fff; text-decoration: none;" aria-label="OTF Network">OTF Network</a>
-    </div>
-    <div style="display: flex; gap: 15px; justify-content: center; font-size: 1em; margin-top: 6px;">
-        <a href="https://everythingandthekitchensink.xyz" style="color: #ffd700; text-decoration: none; font-weight: 700;" aria-label="XYZ" target="_blank" rel="noopener">XYZ</a>
-        <span aria-hidden="true">•</span>
-        <a href="https://projectmiracle.org" style="color: #ffd700; text-decoration: none; font-weight: 700;" aria-label="Project Miracle" target="_blank" rel="noopener">Project Miracle</a>
-        <span aria-hidden="true">•</span>
-        <a href="https://tigidb.com" style="color: #ffd700; text-decoration: none; font-weight: 700;" aria-label="TIGIDB" target="_blank" rel="noopener">TIGIDB</a>
     </div>
     <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.9rem; margin-top: 8px;">
         <!-- FAQ/Fine Print link removed as requested -->
@@ -574,10 +858,10 @@
         <!-- Cleaned up: no lone dot here -->
     </div>
     <div style="margin-top:6px; font-size:1.1em; display:flex; justify-content:center; gap:18px; align-items:center;">
-        <a href="https://www.instagram.com/tessdevillier" target="_blank" aria-label="Instagram" style="color:#fff;transition:color 0.2s;">
+        <a href="https://www.instagram.com/thatssoobuttons" target="_blank" aria-label="Instagram" style="color:#fff;transition:color 0.2s;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><circle cx="17.5" cy="6.5" r="1.5"/></svg>
         </a>
-        <a href="https://www.tiktok.com/@tessdevillier" target="_blank" aria-label="TikTok" style="color:#fff;transition:color 0.2s;">
+        <a href="https://www.tiktok.com/@thatssoobuttons" target="_blank" aria-label="TikTok" style="color:#fff;transition:color 0.2s;">
             <svg width="22" height="22" viewBox="0 0 48 48" fill="currentColor" style="vertical-align:middle;"><path d="M41.5 15.5c-3.6 0-6.5-2.9-6.5-6.5h-5v24.1c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4c.7 0 1.4.2 2 .5v-5.2c-.7-.1-1.3-.2-2-.2-5 0-9 4-9 9s4 9 9 9 9-4 9-9V21.2c2 1.1 4.3 1.8 6.5 1.8v-7.5z"/></svg>
         </a>
         <a href="https://discord.gg/dC34nguEEC" target="_blank" aria-label="Discord" style="color:#fff;transition:color 0.2s;">
@@ -586,6 +870,16 @@
         <a href="https://ko-fi.com/thatssoobuttons/shop" target="_blank" aria-label="Shop on Ko-fi" style="background:#ffd700;color:#222;font-weight:bold;padding:6px 18px;border-radius:8px;margin-left:12px;text-decoration:none;transition:background 0.2s;">SHOP</a>
         <span style="font-size:0.85em; color:#cfcfcf; margin-left:10px;">✈️ 🧳 FLY ME OUT</span>
         <a href="#" id="bookContactLink" style="color: #fff; text-decoration: none; margin-left:14px;" aria-label="Book or Contact">Book/Contact</a>
+    </div>
+    <div aria-label="Quick Jump Menu" style="margin-top:8px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap; font-size:0.8rem;">
+        <a href="hire.html" style="color:#ffd700;text-decoration:none;">Hire/Book</a>
+        <a href="pets.html" style="color:#ffd700;text-decoration:none;">Pets</a>
+        <a href="photography/index.html" style="color:#ffd700;text-decoration:none;">Photography</a>
+        <a href="music-lyrics.html" style="color:#ffd700;text-decoration:none;">Music</a>
+        <a href="podcasts.html" style="color:#ffd700;text-decoration:none;">Podcasts</a>
+        <a href="worldbuilding.html" style="color:#ffd700;text-decoration:none;">Worldbuilding</a>
+        <a href="creative-consulting.html" style="color:#ffd700;text-decoration:none;">Consulting</a>
+        <a href="availability.html" style="color:#ffd700;text-decoration:none;">Availability</a>
     </div>
     <div style="margin-top:4px;font-size:0.8em;color:#cfcfcf;text-align:center;">&copy; 2026 Tess Devillier. All rights reserved.</div>
     <style>
@@ -905,9 +1199,6 @@
         });
     }
 </script>
-<!-- Contact Modal Trigger -->
-<button id="contactBtn" style="position:fixed;bottom:32px;right:32px;z-index:10010;background:#ffd700;color:#222;font-family:'Montserrat',sans-serif;font-size:1.1em;padding:12px 28px;border:none;border-radius:8px;box-shadow:0 2px 12px #0003;cursor:pointer;">Contact</button>
-
 <!-- Contact Modal -->
 <div id="contactModal" style="display:none;position:fixed;z-index:10020;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;">
     <div style="background:#fffbe6;padding:32px 24px 24px 24px;border-radius:16px;max-width:360px;width:90vw;box-shadow:0 4px 32px #0006;position:relative;">

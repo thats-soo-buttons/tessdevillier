@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pet care services by Tess Devillier: drop-ins, full-day care, and overnight house and pet sitting in Baton Rouge and beyond.">
+    <title>Pets & Pet Care | Tess Devillier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5efe4;
+            --paper: #fbf7ef;
+            --blue: #5f9bd6;
+            --blue-dark: #4f87bf;
+            --sand: #f7c46d;
+            --peach: #f4b2a8;
+            --ink: #5f5a55;
+            --soft: #8f8a84;
+        }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; }
+        body {
+            background:
+                radial-gradient(circle at top left, rgba(95,155,214,0.10), transparent 25%),
+                radial-gradient(circle at bottom right, rgba(247,196,109,0.16), transparent 30%),
+                #f2f2f4;
+            color: var(--ink);
+            font-family: 'Quicksand', Arial, sans-serif;
+            line-height: 1.55;
+        }
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 24px 16px 40px;
+        }
+        .flyer {
+            position: relative;
+            overflow: hidden;
+            background: var(--paper);
+            border: 1px solid rgba(120,110,100,0.18);
+            box-shadow: 0 18px 40px rgba(92, 92, 110, 0.10);
+            border-radius: 10px;
+            padding: 38px 24px 26px;
+        }
+        .flyer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(244,178,168,0.82) 0 18%, transparent 18% 72%, rgba(95,155,214,0.96) 72% 100%);
+            opacity: 0.95;
+            pointer-events: none;
+        }
+        .flyer::after {
+            content: '';
+            position: absolute;
+            inset: 18px;
+            border: 1px solid rgba(140, 132, 125, 0.28);
+            pointer-events: none;
+        }
+        .flyer-inner {
+            position: relative;
+            z-index: 1;
+            border: 2px dashed rgba(245, 238, 230, 0.85);
+            border-radius: 8px;
+            min-height: 700px;
+            padding: 34px 22px 26px;
+        }
+        .badge {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d94f4a;
+            color: #fff;
+            font: 700 0.92rem/1 'Quicksand', sans-serif;
+            padding: 6px 12px;
+            border-radius: 999px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+        .hero {
+            position: relative;
+            min-height: 460px;
+            background: linear-gradient(180deg, rgba(251,247,239,0.98) 0 74%, rgba(251,247,239,0.98) 74% 100%);
+            border-radius: 8px;
+            border: 1px solid rgba(150, 140, 130, 0.26);
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 58px 18px 28px;
+            overflow: hidden;
+        }
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            color: var(--blue-dark);
+            margin-bottom: 10px;
+        }
+        h1, h2, h3 {
+            font-family: 'Patrick Hand', cursive;
+            margin-top: 0;
+        }
+        h1 {
+            font-size: clamp(3rem, 6vw, 5.1rem);
+            line-height: 0.9;
+            margin-bottom: 12px;
+            color: var(--blue);
+            letter-spacing: 1px;
+        }
+        .intro {
+            max-width: 760px;
+            font-size: 1.18rem;
+            color: var(--soft);
+            margin: 0 auto 22px;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+            justify-content: center;
+        }
+        .button {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background: var(--blue-dark);
+            padding: 12px 18px;
+            border-radius: 999px;
+            font-weight: 700;
+            border: 1px solid transparent;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+        }
+        .button:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(79,135,191,0.24); }
+        .button.secondary {
+            background: #fff;
+            color: var(--blue-dark);
+            border-color: rgba(79,135,191,0.24);
+        }
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 24, 28, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            z-index: 2000;
+        }
+        .modal-overlay.is-open { display: flex; }
+        .modal {
+            width: min(860px, 100%);
+            max-height: min(88vh, 900px);
+            overflow: auto;
+            background: #fffdf8;
+            border: 1px solid rgba(130,120,112,0.25);
+            border-radius: 16px;
+            box-shadow: 0 26px 50px rgba(0,0,0,0.20);
+            padding: 20px;
+        }
+        .modal-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .modal-head h3 {
+            margin: 0;
+            font-size: 2rem;
+            color: var(--blue-dark);
+        }
+        .close-modal {
+            border: 1px solid rgba(79,135,191,0.24);
+            border-radius: 999px;
+            background: #fff;
+            color: var(--blue-dark);
+            padding: 8px 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .modal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+        .modal-card {
+            background: #fff;
+            border: 1px solid rgba(130,120,112,0.16);
+            border-radius: 12px;
+            padding: 14px;
+        }
+        .modal-card h4 {
+            margin: 0 0 8px;
+            color: var(--blue-dark);
+            font-size: 1.2rem;
+        }
+        .modal-card ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .modal-card li { margin-bottom: 6px; }
+        body.modal-open { overflow: hidden; }
+        .section {
+            margin-top: 28px;
+            background: rgba(255,255,255,0.78);
+            border: 1px solid rgba(130,120,112,0.16);
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        .section h2 {
+            font-size: 2.4rem;
+            color: var(--blue-dark);
+            margin-bottom: 18px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .two-col {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .card {
+            background: #fffaf2;
+            border: 1px solid rgba(150,140,130,0.16);
+            border-radius: 16px;
+            padding: 24px;
+            min-height: 100%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+        }
+        .card h3 {
+            font-size: 1.8rem;
+            color: var(--blue-dark);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        .price {
+            display: inline-block;
+            margin-bottom: 14px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(244,178,168,0.28);
+            color: #bd5a4e;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .card p, .step {
+            font-family: 'Quicksand', sans-serif;
+            color: var(--ink);
+        }
+        .card ul {
+            margin: 14px 0 0 18px;
+            padding: 0;
+        }
+        .card li { margin-bottom: 8px; color: var(--soft); }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .step {
+            background: #fffdf8;
+            border: 1px solid rgba(150,140,130,0.14);
+            border-radius: 14px;
+            padding: 18px;
+        }
+        .step strong {
+            display: block;
+            color: #c27345;
+            margin-bottom: 8px;
+        }
+        .note {
+            margin-top: 18px;
+            color: var(--ink);
+            background: rgba(95,155,214,0.10);
+            border-left: 4px solid var(--blue-dark);
+            padding: 14px 16px;
+            border-radius: 10px;
+        }
+        .jump-nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .jump-nav label {
+            font-weight: 700;
+            color: var(--blue-dark);
+        }
+        .jump-nav select {
+            min-width: 250px;
+            max-width: 100%;
+            background: #fff;
+            border: 1px solid rgba(130,120,112,0.22);
+            border-radius: 999px;
+            padding: 10px 14px;
+            color: var(--ink);
+            font: 600 0.95rem/1.2 'Quicksand', Arial, sans-serif;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+            justify-content: center;
+        }
+        .footer-links a {
+            color: var(--blue-dark);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(79,135,191,0.24);
+            font-weight: 700;
+        }
+        .doodle {
+            position: absolute;
+            color: rgba(247,196,109,0.88);
+            font-size: 2.2rem;
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+        }
+        .doodle.star-1 { top: 14px; left: 26%; transform: rotate(12deg); }
+        .doodle.star-2 { top: 92px; right: 30%; transform: rotate(-16deg); }
+        .doodle.star-3 { bottom: 34px; left: 20%; transform: rotate(10deg); }
+        .cat,
+        .dog {
+            position: absolute;
+            bottom: -12px;
+            font-size: 7rem;
+            line-height: 1;
+            filter: drop-shadow(0 8px 14px rgba(0,0,0,0.12));
+            user-select: none;
+            pointer-events: none;
+        }
+        .cat { left: -8px; transform: rotate(-4deg); }
+        .dog { right: -8px; transform: rotate(4deg); }
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+            padding: 0 20px 18px;
+        }
+        @media (max-width: 920px) {
+            .grid, .steps, .two-col { grid-template-columns: 1fr; }
+            .hero, .section { padding: 22px; }
+            .flyer-inner { min-height: unset; }
+            .cat, .dog { font-size: 5rem; }
+            .hero {
+                min-height: 360px;
+                padding: 32px 14px 20px;
+            }
+        }
+        @media (max-width: 640px) {
+            .flyer {
+                padding: 16px;
+                overflow: visible;
+            }
+            .flyer::before {
+                background: linear-gradient(180deg, rgba(244,178,168,0.78) 0 14%, transparent 14% 68%, rgba(95,155,214,0.94) 68% 100%);
+            }
+            .flyer::after {
+                inset: 10px;
+            }
+            .flyer-inner {
+                padding: 18px 12px 14px;
+                border-width: 1px;
+            }
+            .hero {
+                min-height: 0;
+                padding: 24px 12px 20px;
+                overflow: visible;
+            }
+            .hero-copy {
+                padding: 0;
+            }
+            .badge {
+                position: static;
+                transform: none;
+                display: inline-block;
+                margin: 0 auto 10px;
+                font-size: 0.8rem;
+            }
+            .eyebrow {
+                letter-spacing: 2px;
+                margin-bottom: 6px;
+            }
+            h1 {
+                font-size: clamp(2.1rem, 14vw, 3.2rem);
+                line-height: 1.05;
+                margin-bottom: 8px;
+            }
+            .intro {
+                font-size: 1rem;
+                margin-bottom: 14px;
+            }
+            .cat, .dog { display: none; }
+            .doodle { display: none; }
+            .actions {
+                flex-direction: column;
+                align-items: center;
+                margin-top: 10px;
+            }
+            .button {
+                width: 100%;
+                max-width: 320px;
+                text-align: center;
+                padding: 11px 16px;
+            }
+            .section { padding: 18px; }
+            .section h2 { font-size: 2rem; }
+            .modal-grid { grid-template-columns: 1fr; }
+            .modal { padding: 14px; }
+            .modal-head h3 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <main class="page" role="main">
+        <section class="flyer" aria-label="Pet Care Flyer">
+            <div class="flyer-inner">
+                <div class="badge">Pet Sitting + Housesitting</div>
+                <div class="hero" aria-label="Pet Care Overview">
+                    <div class="doodle star-1">✳</div>
+                    <div class="doodle star-2">✳</div>
+                    <div class="doodle star-3">✳</div>
+                    <div class="cat">🐈</div>
+                    <div class="dog">🐕</div>
+                    <div class="hero-copy">
+                        <div class="eyebrow">Tess Devillier</div>
+                        <h1>TESS DOES<br>HOUSESITTING</h1>
+                        <p class="intro">
+                            Your pet’s favorite staycation. Cozy, dependable care while you’re away, at work,
+                            or just needing an extra hand.
+                        </p>
+                        <div class="actions">
+                            <a class="button" href="pets-contact.html">Book or Ask a Question</a>
+                            <button class="button secondary" type="button" data-modal-open>House/Plant Sitting Details</button>
+                        </div>
+                        <div class="jump-nav" aria-label="Pets page quick navigation">
+                            <label for="section-jump">Quick Jump:</label>
+                            <select id="section-jump" name="section-jump">
+                                <option value="">Select a section...</option>
+                                <option value="pets-offer">What I Offer</option>
+                                <option value="pets-policies">Booking Policies</option>
+                                <option value="pets-how">How It Works</option>
+                                <option value="pets-availability">Availability</option>
+                                <option value="pets-testimonials">Client Love</option>
+                                <option value="pets-faq">Pets FAQ</option>
+                                <option value="pets-footer">Payment + Links</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="pets-offer" aria-label="Pet care options">
+            <h2>What I Offer</h2>
+            <div class="grid">
+                <article class="card">
+                    <div class="price">$25 / 1 hr visit</div>
+                    <h3>Drop-In Visits</h3>
+                    <p>One-hour check-ins for feeding, potty breaks, playtime, and companionship.</p>
+                    <ul>
+                        <li>Fresh water and meals</li>
+                        <li>Potty break or short walk</li>
+                        <li>Photo and text updates</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <div class="price">$15 / hr</div>
+                    <h3>One-Day Care</h3>
+                    <p>Extended daytime care for workdays or travel days. 4 hour minimum.</p>
+                    <ul>
+                        <li>Multiple walks and potty breaks</li>
+                        <li>Medication administration if needed</li>
+                        <li>Extended playtime and companionship</li>
+                        <li>Photo and text updates</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <div class="price">Dogs from $75/night | Cats from $50/night</div>
+                    <h3>Overnight House + Pet Sitting</h3>
+                    <p>Overnight presence, security, and animal care with weekly pricing based on pet type.</p>
+                    <ul>
+                        <li>Dog: $75/night for the first dog, +$20/night for a second dog</li>
+                        <li>Cat: $50/night for the first cat, +$20/night for a second cat</li>
+                        <li>One dog + one cat: $125/night total</li>
+                        <li>Weekly examples: 1 dog = $525, 2 dogs = $665, 1 cat = $350, 2 cats = $490, 1 dog + 1 cat = $875</li>
+                        <li>2-night minimum for overnight bookings</li>
+                        <li>Holiday surcharge: +$20/night</li>
+                        <li>Puppy/high-needs care add-on: +$10 to +$20/night</li>
+                        <li>Complex medication care add-on: +$5 to +$10/day</li>
+                        <li>Feeding, walks, and playtime</li>
+                        <li>Mail, package, and plant care</li>
+                        <li>Daily updates and photos</li>
+                        <li>Travel-ready outside Baton Rouge (travel fee may apply)</li>
+                    </ul>
+                </article>
+            </div>
+            <div class="note">
+                <strong>Meet & Greet required for new clients and pets.</strong> This helps me learn your pet's routines, needs, and comfort level before the first booking.
+            </div>
+        </section>
+
+        <section class="section" id="pets-policies" aria-label="Booking policies">
+            <h2>Booking Policies</h2>
+            <div class="grid two-col">
+                <article class="card">
+                    <h3>Minimums + Add-Ons</h3>
+                    <ul>
+                        <li>Overnight bookings have a 2-night minimum</li>
+                        <li>Major holidays are +$20/night</li>
+                        <li>Puppy or high-needs support is +$10 to +$20/night</li>
+                        <li>Complex medication support is +$5 to +$10/day</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Travel Radius</h3>
+                    <ul>
+                        <li>Local Baton Rouge service area included in base pricing</li>
+                        <li>Outside local radius may include a travel fee</li>
+                        <li>Ask for a custom quote for farther sits</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Cancellation Policy</h3>
+                    <ul>
+                        <li>50% fee for cancellations within 48 hours</li>
+                        <li>100% fee for same-day overnight cancellations</li>
+                        <li>Emergency situations are reviewed with care and flexibility</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Need A Custom Plan?</h3>
+                    <p>If your pets have unique needs, reach out and we can build a care plan that works for everyone.</p>
+                    <p><a href="pets-contact.html">Book or Ask a Question</a></p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="pets-how" aria-label="How it works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step"><strong>1. Reach out</strong>Tell me about your pet, dates, and what kind of care you need.</div>
+                <div class="step"><strong>2. Meet & Greet</strong>We set up a quick intro so your pet can get comfortable with me.</div>
+                <div class="step"><strong>3. Care Plan</strong>I confirm the schedule, routines, and any special instructions.</div>
+                <div class="step"><strong>4. Stay Updated</strong>You get photos and notes so you know how things are going.</div>
+            </div>
+        </section>
+
+        <section class="section" id="pets-availability" aria-label="Availability">
+            <h2>Availability</h2>
+            <div class="grid two-col">
+                <article class="card">
+                    <h3>Live Availability</h3>
+                    <p>The most up-to-date availability is on Rover.</p>
+                    <p><a href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" rel="noopener noreferrer">Check live availability on Rover</a></p>
+                    <p><a href="availability.html">View full availability page</a></p>
+                </article>
+                <article class="card">
+                    <h3>Unavailable / Already Booked Dates</h3>
+                    <p>Quick summary below (booked and vacation blackout dates). For blackout details plus drop-in time slots, use the full availability page.</p>
+                    <ul>
+                        <li>July 30-August 2, 2026</li>
+                        <li>August 3-9, 2026</li>
+                        <li>August 20-24, 2026</li>
+                        <li>October 28-November 3, 2026</li>
+                        <li>November 20-28, 2026</li>
+                    </ul>
+                    <p><small>Updated manually as dates change.</small></p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="pets-testimonials" aria-label="Rover Testimonials">
+            <h2>Client Love (Rover Reviews)</h2>
+            <div class="grid">
+                <article class="card full-width">
+                    <div class="price">Brad N. • Jun 14, 2026</div>
+                    <p>"We hired Tess to watch our 16-year-old Poodle Dachshund mix, BoBo. We were very nervous about leaving him for a week due to his age and anxiety. Tess went above and beyond to comfort him and ensure he had everything he needed. She even made a special trip to the vet to pick up his medication, all while keeping us updated with plenty of pictures, videos, and text messages so we knew how he was doing. We knew Tess was genuine from her very first interview with us, but her true care and compassion really showed when we returned home. BoBo wanted nothing to do with us and was completely attached to Tess. That said everything about the loving care she provided. She even bought him special treats with her own money. We will absolutely ask Tess to watch our baby boy again. We would not trust him with anyone else. If you are looking for true peace of mind while you are away from your fur baby, Tess is the one. She is hands down the best!"</p>
+                </article>
+                <article class="card">
+                    <div class="price">Edie B. • Apr 20, 2026</div>
+                    <p>"Tess has been taking care of my dogs when I am out of town or gone for most of a day for years now. She loves being with them. She has sent me adorable photos of the pups. She has worked on having them sit and stay. I trust her completely in my home and with my dogs."</p>
+                </article>
+                <article class="card">
+                    <div class="price">Karen M. • Apr 20, 2026</div>
+                    <p>"Tess is a neighbor and I have known her for the past 30 years. She is dependable, honest, has a big heart, and loves animals. I highly recommend her to anyone that needs help with their pets while they are working or out of town. She will walk your pet, feed them, and most of all will spend time playing with them daily."</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="pets-faq" aria-label="Pet sitting FAQ">
+            <h2>Pets FAQ</h2>
+            <div class="grid">
+                <article class="card">
+                    <h3>Do you require a meet & greet?</h3>
+                    <p>Yes. I like to meet each pet and learn their routine before the first booking.</p>
+                </article>
+                <article class="card">
+                    <h3>What should I leave for my pet?</h3>
+                    <p>Food, leash, litter or waste supplies, medications, and anything that helps them stay comfortable.</p>
+                </article>
+                <article class="card">
+                    <h3>Will you send updates?</h3>
+                    <p>Yes. I can send photo and text updates so you know how your pet is doing.</p>
+                </article>
+                <article class="card">
+                    <h3>Do you give medications?</h3>
+                    <p>Yes, if your pet has a routine and clear instructions.</p>
+                </article>
+                <article class="card">
+                    <h3>Can you stay overnight?</h3>
+                    <p>Yes. Overnight house and pet sitting is my preferred sit, and I recommend it for pets that are more nervous.</p>
+                </article>
+                <article class="card">
+                    <h3>Why are your rates higher than average?</h3>
+                    <p>This is my full-time job, not side income. You’re paying for dedicated in-home care, more consistent attention, and the peace of mind that your pets and home are being looked after while you’re away.</p>
+                </article>
+                <article class="card">
+                    <h3>How do payments work?</h3>
+                    <p>Cash, Zelle, Cash App, or Rover. A 50% deposit is due up front for direct bookings, and the remaining balance is due at completion. Rover pricing may be higher because of Rover’s fee.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="pets-footer" aria-label="Footer">
+            <h2>Footer Notes</h2>
+            <div class="grid two-col">
+                <article class="card">
+                    <h3>Payment Options</h3>
+                    <p>Cash, Zelle, Cash App, or Rover.</p>
+                    <p>Rover has a fee they take out, so pricing may be higher.</p>
+                </article>
+                <article class="card">
+                    <h3>Have We Worked Together?</h3>
+                    <p>If I’ve taken care of your pets, please leave a review on Rover.</p>
+                    <p><a href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" rel="noopener noreferrer">Leave a Rover review</a></p>
+                </article>
+            </div>
+            <div class="footer-links" style="margin-top: 22px;">
+                <a href="#">Back to top</a>
+                <a href="index.html">Home</a>
+                <a href="hire.html">Hire/Book</a>
+                <a href="pets-contact.html">Contact</a>
+                <a href="availability.html">Availability</a>
+                <a href="#pets-faq">FAQ</a>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="housePlantModal" aria-hidden="true">
+        <section class="modal" role="dialog" aria-modal="true" aria-labelledby="housePlantTitle">
+            <div class="modal-head">
+                <h3 id="housePlantTitle">House / Plant Sitting</h3>
+                <button class="close-modal" type="button" data-modal-close>Close</button>
+            </div>
+            <p>
+                Best for trips where you want someone reliable at your home while you are out of town for an extended period.
+                I stay on-site, keep things running smoothly, and can also do scheduled drop-ins if full overnight care is not needed.
+            </p>
+            <div class="modal-grid">
+                <article class="modal-card">
+                    <h4>What Is Included</h4>
+                    <ul>
+                        <li>Mail and package pickup</li>
+                        <li>Plant watering schedule and light home checks</li>
+                        <li>General occupied-home presence and routine upkeep</li>
+                        <li>Photo/text updates while you are away</li>
+                    </ul>
+                </article>
+                <article class="modal-card">
+                    <h4>Pricing Guide</h4>
+                    <ul>
+                        <li>House + plant sitting (no pets): starting at $60/night</li>
+                        <li>Extended stay discount example: 7+ nights from $385/week</li>
+                        <li>Drop-in house/plant checks: $25 per 1-hour visit</li>
+                        <li>Custom quote for large properties or complex routines</li>
+                    </ul>
+                </article>
+                <article class="modal-card">
+                    <h4>Out-of-State Travel</h4>
+                    <ul>
+                        <li>Available for out-of-state sits when schedule allows</li>
+                        <li>Client covers travel costs (flight/mileage + lodging if needed) plus food or a daily food stipend</li>
+                        <li>Standard sitting rates still apply for all booked days</li>
+                        <li>If travel costs are higher than the base stay amount, out-of-state bookings have a $200 minimum total per booking</li>
+                        <li>Final quote is based on location, trip length, and care needs</li>
+                    </ul>
+                </article>
+                <article class="modal-card">
+                    <h4>Contact Me</h4>
+                    <p>Tell me your dates, location, and what support you need.</p>
+                    <p><a href="pets-contact.html">Contact for a House/Plant Sitting Quote</a></p>
+                </article>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        (function () {
+            var openBtn = document.querySelector('[data-modal-open]');
+            var overlay = document.getElementById('housePlantModal');
+            if (!openBtn || !overlay) return;
+
+            var closeBtn = overlay.querySelector('[data-modal-close]');
+
+            function openModal() {
+                overlay.classList.add('is-open');
+                overlay.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+            }
+
+            function closeModal() {
+                overlay.classList.remove('is-open');
+                overlay.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+            }
+
+            openBtn.addEventListener('click', openModal);
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+            overlay.addEventListener('click', function (event) {
+                if (event.target === overlay) closeModal();
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && overlay.classList.contains('is-open')) {
+                    closeModal();
+                }
+            });
+
+            var sectionJump = document.getElementById('section-jump');
+            if (sectionJump) {
+                sectionJump.addEventListener('change', function () {
+                    if (!sectionJump.value) return;
+                    var target = document.getElementById(sectionJump.value);
+                    if (!target) return;
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    history.replaceState(null, '', '#' + sectionJump.value);
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

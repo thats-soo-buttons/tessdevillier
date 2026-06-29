@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PhosphorNet Navigator browser shell for the whimsical side of Tess Devillier.">
+  <title>PhosphorNet Navigator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+    :root {
+      --bg: #030d04;
+      --frame: #071609;
+      --panel: #0b2010;
+      --line: rgba(108,255,144,0.32);
+      --glow: #6cff90;
+      --text: #94ffb3;
+      --text-dim: #5dd47f;
+      --warn: #dfff85;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: #000; }
+    body {
+      font-family: 'VT323', monospace;
+      color: var(--text);
+      background: radial-gradient(circle at center, rgba(108,255,144,0.06), transparent 35%), linear-gradient(180deg, #021106, #041407 60%, #020c04);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.035) 0, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 4px);
+      opacity: 0.25;
+    }
+    .shell {
+      min-height: 100vh;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .toolbar {
+      border: 1px solid var(--line);
+      background: rgba(7, 22, 9, 0.92);
+      padding: 10px 12px;
+      box-shadow: 0 0 26px rgba(108,255,144,0.08);
+      display: grid;
+      grid-template-columns: auto auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn, .address {
+      border: 1px solid var(--line);
+      background: rgba(3, 13, 5, 0.96);
+      color: var(--glow);
+      font: inherit;
+      padding: 7px 10px;
+      text-decoration: none;
+    }
+    .btn { cursor: pointer; }
+    .brand { color: var(--warn); letter-spacing: 0.06em; }
+    .address {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--text-dim);
+    }
+    .frame {
+      flex: 1;
+      min-height: calc(100vh - 96px);
+      border: 1px solid var(--line);
+      background: rgba(3, 13, 5, 0.94);
+      box-shadow: 0 0 30px rgba(108,255,144,0.08);
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: calc(100vh - 118px);
+      border: 0;
+      background: #fff;
+    }
+    .notice {
+      padding: 10px 12px;
+      color: var(--text-dim);
+    }
+    @media (max-width: 860px) {
+      .toolbar {
+        grid-template-columns: 1fr 1fr;
+      }
+      .brand, .address {
+        grid-column: 1 / -1;
+      }
+      iframe {
+        height: calc(100vh - 170px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="toolbar">
+      <a class="btn" href="whimsical.html">Back</a>
+      <button class="btn" type="button" onclick="document.getElementById('browserFrame').contentWindow.location.reload()">Reload</button>
+      <div class="brand">PhosphorNet Navigator</div>
+      <div class="address" id="addressBar">loading...</div>
+    </div>
+    <div class="frame">
+      <iframe id="browserFrame" title="PhosphorNet content frame"></iframe>
+      <div class="notice" id="fallbackNotice" hidden>If this page cannot load in-frame, use the direct page link from the address bar path.</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var page = params.get('page') || 'index.html';
+      var title = params.get('title') || 'Document';
+      var frame = document.getElementById('browserFrame');
+      var addressBar = document.getElementById('addressBar');
+      document.title = title + ' | PhosphorNet Navigator';
+      addressBar.textContent = 'phosphornet://local/' + page;
+      frame.src = page;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tess Does Photography: natural light portraits and cinematic experience photoshoots in Baton Rouge and beyond.">
+    <title>Tess Does Photography</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+        :root {
+            --bg: #0b1018;
+            --card: #121a27;
+            --ink: #eff4ff;
+            --muted: #aab5c9;
+            --line: #263248;
+            --accent: #f2bf64;
+            --accent-2: #77c9ff;
+            --left: 50%;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--ink);
+            font-family: 'Montserrat', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background:
+                radial-gradient(circle at 8% 10%, rgba(119, 201, 255, 0.16), transparent 26%),
+                radial-gradient(circle at 86% 5%, rgba(242, 191, 100, 0.18), transparent 24%),
+                var(--bg);
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 28px 16px 52px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .link {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero {
+            background: linear-gradient(160deg, rgba(18,26,39,0.97), rgba(13,19,29,0.96));
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 26px;
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(119,201,255,0.08), transparent 48%, rgba(242,191,100,0.09));
+            pointer-events: none;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lead {
+            margin-top: 10px;
+            margin-bottom: 0;
+            color: var(--muted);
+            max-width: 760px;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            margin: 0 0 6px;
+            color: var(--accent);
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-row {
+            margin-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+
+        .btn.primary { background: var(--accent); color: #1a2333; }
+        .btn.secondary { color: var(--accent-2); border-color: #35506e; }
+
+        .section {
+            margin-top: 22px;
+            background: linear-gradient(170deg, rgba(18,26,39,0.95), rgba(12,17,26,0.95));
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+        }
+
+        .split-showcase {
+            display: flex;
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #2f3d58;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+            min-height: 360px;
+        }
+
+        .show-panel {
+            flex: 1;
+            position: relative;
+            text-decoration: none;
+            color: #fff;
+            display: flex;
+            align-items: end;
+            padding: 20px;
+            transition: flex 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .show-panel::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(4,8,14,0.20) 0%, rgba(5,8,14,0.72) 80%);
+        }
+
+        .show-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255,255,255,0.10);
+            pointer-events: none;
+        }
+
+        .show-panel:hover {
+            flex: 1.35;
+        }
+
+        .show-panel.active {
+            flex: 1.35;
+            box-shadow: inset 0 0 0 2px rgba(242,191,100,0.65);
+        }
+
+        .show-copy {
+            position: relative;
+            z-index: 1;
+            max-width: 520px;
+        }
+
+        .show-copy h3 {
+            margin: 0 0 6px;
+            font-size: 1.45rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .show-copy p {
+            margin: 0;
+            color: #d8deeb;
+            font-size: 0.96rem;
+            line-height: 1.45;
+        }
+
+        .panel-natural {
+            color: #131927;
+            background-image: url('../professionalindex.jpg');
+            background-color: #f5f7fb;
+        }
+
+        .panel-natural::before {
+            background: linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(245,247,251,0.84) 82%);
+        }
+
+        .panel-natural .show-copy h3 {
+            color: #1a2333;
+            text-shadow: none;
+        }
+
+        .panel-natural .show-copy p {
+            color: #2b374e;
+        }
+
+        .panel-cinematic {
+            background-image: url('../helixotopeexample.jpg');
+            background-color: #050a06;
+        }
+
+        .panel-cinematic::before {
+            background:
+                linear-gradient(180deg, rgba(0,0,0,0.34) 0%, rgba(0,0,0,0.86) 82%),
+                linear-gradient(135deg, rgba(0,255,65,0.16), rgba(0,255,65,0.02));
+        }
+
+        .panel-cinematic .show-copy h3 {
+            color: #00ff41;
+            text-shadow: 0 0 8px rgba(0,255,65,0.35);
+        }
+
+        .panel-cinematic .show-copy p {
+            color: #b7ffd1;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.7rem;
+        }
+
+        .muted { color: var(--muted); }
+
+        .package-card {
+            margin-top: 14px;
+            border: 1px solid #2f3d58;
+            border-radius: 14px;
+            padding: 0;
+            background: #0d131e;
+        }
+
+        .package {
+            min-height: 320px;
+            padding: 20px;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .package-option { display: none; }
+        .package-option.active { display: block; }
+
+        .package:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .package h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.35rem;
+        }
+
+        .package .price {
+            display: inline-block;
+            margin-bottom: 12px;
+            background: rgba(242, 191, 100, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(242, 191, 100, 0.32);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .package ul {
+            margin: 10px 0 0 18px;
+            padding: 0;
+            color: var(--muted);
+        }
+
+        .package li { margin-bottom: 7px; }
+
+        .helper {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .addon-box {
+            margin-top: 14px;
+            padding: 16px;
+            background: #0f1623;
+            border: 1px solid #2f3d58;
+            border-radius: 12px;
+        }
+
+        .addon-box h3 {
+            margin: 0 0 10px;
+            font-size: 1.2rem;
+        }
+
+        .gallery {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .shot {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #2d3a54;
+            background: #0f1623;
+            min-height: 160px;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .shot.hidden {
+            display: none;
+        }
+
+        .shot img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .grid-two {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (max-width: 940px) {
+            .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .grid-two { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 760px) {
+            .package {
+                min-height: 0;
+            }
+
+            .helper {
+                display: none;
+            }
+
+            .split-showcase {
+                flex-direction: column;
+                min-height: 0;
+            }
+
+            .show-panel {
+                min-height: 210px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="wrap" role="main">
+        <div class="topbar">
+            <a class="link" href="../index.html">Back To Home</a>
+            <span class="muted">Tess Does Stuff</span>
+        </div>
+
+        <section class="hero" aria-label="Photography intro">
+            <p class="eyebrow">Tess Devillier</p>
+            <h1>Tess Does Photography</h1>
+            <p class="lead">Portraits with story and atmosphere. This page uses the same panel energy as the homepage: compare the two shoot styles side by side, then drag the divider to focus on the package you want.</p>
+            <div class="cta-row">
+                <a class="btn primary" href="../contact.html">Book A Session</a>
+                <a class="btn secondary" href="mailto:contact@tessdevillier.com?subject=Photography%20Session%20Inquiry">Email Photography Inquiry</a>
+            </div>
+        </section>
+
+        <section class="section" aria-label="Photography style split panels">
+            <h2>Choose The Shoot Vibe</h2>
+            <p class="muted">Hover either panel to expand it, similar to the homepage experience.</p>
+            <div class="split-showcase">
+                <a class="show-panel panel-natural" href="#packages" data-package="natural" aria-label="Show natural light package">
+                    <div class="show-copy">
+                        <h3>Natural Light</h3>
+                        <p>Clean, warm, and candid storytelling in daylight with minimal setup and an organic flow.</p>
+                    </div>
+                </a>
+                <a class="show-panel panel-cinematic" href="#packages" data-package="cinematic" aria-label="Show cinematic package">
+                    <div class="show-copy">
+                        <h3>Cinematic Experience</h3>
+                        <p>Directed concept visuals with mood, styling, and dramatic framing built around a full story look.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="section" id="packages" aria-label="Photography packages">
+            <h2>Packages And Pricing</h2>
+            <p class="muted">Select a vibe above and this card updates to show that package.</p>
+
+            <div class="package-card" id="packageCard">
+                <article class="package package-option active" id="package-natural" aria-label="Natural light photography package">
+                    <h3>Natural Light Photography</h3>
+                    <div class="price">Starting at $250</div>
+                    <p class="muted">Warm, candid, and clean natural-light sessions for portraits, couples, and personal branding.</p>
+                    <ul>
+                        <li>60 to 75 minute shoot</li>
+                        <li>1 location in Baton Rouge area</li>
+                        <li>1 outfit change</li>
+                        <li>25 edited high-resolution images guaranteed</li>
+                        <li>Image mix: 5 environment/detail shots + 20 subject-focused portraits</li>
+                        <li>Online delivery gallery in 7 to 10 days</li>
+                        <li>Additional edited images: $12 each</li>
+                    </ul>
+                </article>
+
+                <article class="package package-option" id="package-cinematic" aria-label="Cinematic experience photoshoot package">
+                    <h3>Cinematic Experience Photoshoot</h3>
+                    <div class="price">Starting at $480</div>
+                    <p class="muted">Styled, mood-driven visuals with direction, shot planning, and a dramatic final edit style.</p>
+                    <ul>
+                        <li>2 to 2.5 hour shoot</li>
+                        <li>Up to 2 locations</li>
+                        <li>2 to 3 outfit changes</li>
+                        <li>40 edited high-resolution images guaranteed</li>
+                        <li>Image mix: 5 detail shots + 5 environmental shots + 5 artistic concept shots + 25 subject-focused portraits</li>
+                        <li>Creative direction call before shoot</li>
+                        <li>Online delivery gallery in 10 to 14 days</li>
+                        <li>Optional short teaser reel add-on: +$120</li>
+                    </ul>
+                </article>
+            </div>
+            <p class="helper">Tip: Click Natural Light or Cinematic Experience above to switch this card.</p>
+        </section>
+
+        <section class="section" aria-label="Photography add-ons">
+            <h2>Optional Add-Ons</h2>
+            <p class="muted">Standard add-on pricing you can stack onto either package.</p>
+            <div class="addon-box">
+                <ul class="muted" style="margin: 0 0 0 18px;">
+                    <li>Curated Thrift Shopping Experience: +$85</li>
+                    <li>Curated Snacks/Beverage Setup: +$35</li>
+                    <li>Location Changes: +$45 per additional location</li>
+                    <li>Outfit Changes: +$20 per additional outfit beyond package included amount</li>
+                    <li>Graphic Design (business cards / flyer): $50 per design/page</li>
+                    <li>By-the-hour editing: $65/hr for light edits on photos outside the included number of images</li>
+                    <li>Overtime charge: +$45 per 30 minutes over session time</li>
+                </ul>
+                <p class="muted" style="margin: 12px 0 0;">Add-on prices are standard starting rates and may vary based on scope or production needs.</p>
+                <div class="cta-row" style="margin-top: 12px;">
+                    <a class="btn primary" href="../contact.html">Book Photography</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" aria-label="Photography samples">
+            <h2>Selected Work</h2>
+            <p class="muted">Showing <span id="gallery-mode-label">Natural Light</span> work.</p>
+            <div class="gallery">
+                <figure class="shot" data-gallery="natural"><img src="../professionalindex.jpg" alt="Portrait sample in natural light"></figure>
+                <figure class="shot" data-gallery="natural"><img src="../seititnes.jpg" alt="Warm natural light portrait"></figure>
+                <figure class="shot" data-gallery="natural"><img src="../ytaeron.jpg" alt="Natural light storytelling portrait"></figure>
+                <figure class="shot" data-gallery="natural"><img src="../zotrexon.jpg" alt="Golden hour portrait concept"></figure>
+                <figure class="shot" data-gallery="cinematic"><img src="../ResinCallingCoin.jpg" alt="Close-up cinematic concept photo"></figure>
+                <figure class="shot" data-gallery="cinematic"><img src="../helixotopeexample.jpg" alt="Creative fantasy-style cinematic portrait"></figure>
+                <figure class="shot" data-gallery="cinematic"><img src="../simulationindex.jpg" alt="Moody editorial cinematic frame"></figure>
+                <figure class="shot" data-gallery="cinematic"><img src="../TenebraeumCalling.png" alt="Dark cinematic concept image"></figure>
+            </div>
+        </section>
+
+        <section class="section" aria-label="Booking notes">
+            <h2>Booking Notes</h2>
+            <div class="grid-two">
+                <article>
+                    <h3>Travel And Scheduling</h3>
+                    <p class="muted">Travel outside Baton Rouge is available. Travel fees may apply depending on distance and timeline. Rush turnaround is available by quote.</p>
+                </article>
+                <article>
+                    <h3>Deposit And Delivery</h3>
+                    <p class="muted">A 50% retainer secures your date. Final gallery is delivered after the remaining balance is paid.</p>
+                </article>
+                <article>
+                    <h3>Reschedule And Cancellation</h3>
+                    <p class="muted">Retainers are non-refundable but can be transferred one time if you reschedule at least 72 hours in advance. Weather reschedules are flexible and handled case by case.</p>
+                </article>
+                <article>
+                    <h3>Usage And Licensing</h3>
+                    <p class="muted">Portrait packages include personal-use rights. Commercial use, paid ads, or brand licensing are quoted separately. RAW files are not included.</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="footer-links" aria-label="Quick booking links">
+            <a href="#">Back to top</a>
+            <a href="../hire.html">Hire/Book</a>
+            <a href="../contact.html">Contact</a>
+            <a href="../availability.html">Availability</a>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            var chooser = document.querySelectorAll('[data-package]');
+            var packageNatural = document.getElementById('package-natural');
+            var packageCinematic = document.getElementById('package-cinematic');
+            var packagesSection = document.getElementById('packages');
+            var galleryShots = document.querySelectorAll('[data-gallery]');
+            var galleryModeLabel = document.getElementById('gallery-mode-label');
+
+            if (!chooser.length || !packageNatural || !packageCinematic || !packagesSection) return;
+
+            function setActivePackage(mode) {
+                var isNatural = mode === 'natural';
+                packageNatural.classList.toggle('active', isNatural);
+                packageCinematic.classList.toggle('active', !isNatural);
+
+                galleryShots.forEach(function (shot) {
+                    var shotMode = shot.getAttribute('data-gallery');
+                    shot.classList.toggle('hidden', shotMode !== mode);
+                });
+
+                if (galleryModeLabel) {
+                    galleryModeLabel.textContent = isNatural ? 'Natural Light' : 'Cinematic Experience';
+                }
+
+                chooser.forEach(function (link) {
+                    link.classList.toggle('active', link.getAttribute('data-package') === mode);
+                });
+            }
+
+            chooser.forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    var mode = link.getAttribute('data-package') === 'cinematic' ? 'cinematic' : 'natural';
+                    setActivePackage(mode);
+                    packagesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+
+            setActivePackage('natural');
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Worldbuilding and narrative design services by Tess Devillier for games, fiction, podcasts, and interactive projects.">
+  <title>Worldbuilding / Narrative | Tess Devillier</title>
+  <style>
+    :root {
+      --bg: #0f1320;
+      --card: #171f31;
+      --ink: #eef3ff;
+      --muted: #b5c0d7;
+      --line: #2a3752;
+      --accent: #9fd3ff;
+      --accent-2: #f0c34a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at 15% 6%, rgba(159,211,255,0.16), transparent 28%),
+        radial-gradient(circle at 88% 2%, rgba(240,195,74,0.12), transparent 24%),
+        var(--bg);
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 16px 46px; }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .top a { color: var(--muted); text-decoration: none; font-weight: 700; }
+    h1 { margin: 0; font-size: clamp(1.9rem, 4.2vw, 3rem); letter-spacing: 0.03em; }
+    .sub { margin: 8px 0 18px; color: var(--muted); max-width: 840px; }
+    .section {
+      margin-top: 14px;
+      background: linear-gradient(160deg, var(--card), #121a2a);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+    }
+    h2 { margin: 0 0 8px; font-size: 1.25rem; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card { background: #121a2a; border: 1px solid #2b3b59; border-radius: 12px; padding: 14px; }
+    .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.45; }
+    .price {
+      display: inline-block;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: rgba(240,195,74,0.14);
+      border: 1px solid rgba(240,195,74,0.33);
+      color: var(--accent-2);
+      padding: 4px 10px;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+    ul { margin: 8px 0 0 18px; padding: 0; color: var(--muted); }
+    li { margin-bottom: 6px; }
+    .actions { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 9px 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      background: var(--accent-2);
+      color: #1a2538;
+    }
+    .btn.alt {
+      background: transparent;
+      color: var(--accent);
+      border-color: #395170;
+    }
+    .footer-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .footer-links a { color: var(--accent-2); text-decoration: none; font-weight: 700; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <div class="top">
+      <a href="index.html">Back To Home</a>
+      <span style="color: var(--muted);">Tess Does Stuff</span>
+    </div>
+
+    <h1>Worldbuilding / Narrative</h1>
+    <p class="sub">Lore systems, narrative arcs, faction design, and setting development for creators building worlds with depth and cohesion.</p>
+
+    <section class="section" aria-label="What I build">
+      <h2>What I Build</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Setting Foundations</h3>
+          <p>Core world rules, tone, geography, culture anchors, and conflict engine so your project stays coherent as it grows.</p>
+        </article>
+        <article class="card">
+          <h3>Faction + Character Lore</h3>
+          <p>Interlocking factions, values, voice, and motivations that generate natural story pressure and strong role-play hooks.</p>
+        </article>
+        <article class="card">
+          <h3>Narrative Architecture</h3>
+          <p>Story map planning for campaigns, interactive experiences, episodes, or game beats with expandable branching outcomes.</p>
+        </article>
+        <article class="card">
+          <h3>Documentation Packs</h3>
+          <p>Deliverables can include lore bibles, narrative outlines, timeline docs, and style guides tailored to your team.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Engagement options">
+      <h2>Engagement Options</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Lore Sprint (Starter)</h3>
+          <p>Fast kickoff package for early-stage projects that need a clear world identity.</p>
+          <div class="price">Starting at $250</div>
+          <ul>
+            <li>1 strategy call</li>
+            <li>Core world framework document</li>
+            <li>Initial faction or location pass</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Narrative Build (Standard)</h3>
+          <p>Expanded world + story architecture for active projects in production.</p>
+          <div class="price">Starting at $450</div>
+          <ul>
+            <li>2 collaborative sessions</li>
+            <li>Narrative arc and milestone map</li>
+            <li>Revision pass included</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-label="How we work">
+      <h2>How We Work</h2>
+      <ul>
+        <li>Step 1: You share your project goals, medium, and current materials.</li>
+        <li>Step 2: I propose scope, timeline, and deliverables.</li>
+        <li>Step 3: We collaborate in focused checkpoints until final handoff.</li>
+      </ul>
+      <div class="actions">
+        <a class="btn" href="contact.html">Start A Worldbuilding Inquiry</a>
+        <a class="btn alt" href="mailto:contact@tessdevillier.com?subject=Worldbuilding%20Narrative%20Inquiry">Email Directly</a>
+      </div>
+    </section>
+
+    <div class="footer-links" aria-label="Quick links">
+      <a href="#">Back to top</a>
+      <a href="hire.html">Hire/Book</a>
+      <a href="creative-consulting.html">Creative Consulting</a>
+      <a href="contact.html">Contact</a>
+      <a href="availability.html">Availability</a>
+    </div>
+  </main>
+</body>
+</html>

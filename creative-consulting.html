@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Creative consulting services by Tess Devillier: strategy, concept direction, messaging, and execution support.">
+  <title>Creative Consulting | Tess Devillier</title>
+  <style>
+    :root {
+      --bg: #13121a;
+      --card: #1d1a24;
+      --ink: #f7f3ff;
+      --muted: #c4bdd3;
+      --line: #3a3348;
+      --accent: #ffd166;
+      --accent-2: #8ed9ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at 84% 4%, rgba(255,209,102,0.18), transparent 28%),
+        radial-gradient(circle at 12% 8%, rgba(142,217,255,0.12), transparent 26%),
+        var(--bg);
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 16px 46px; }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 18px; }
+    .top a { color: var(--muted); text-decoration: none; font-weight: 700; }
+    h1 { margin: 0; font-size: clamp(1.9rem, 4.2vw, 3rem); letter-spacing: 0.03em; }
+    .sub { margin: 8px 0 18px; color: var(--muted); max-width: 860px; }
+    .section {
+      margin-top: 14px;
+      background: linear-gradient(160deg, var(--card), #17131f);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+    }
+    h2 { margin: 0 0 8px; font-size: 1.25rem; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card { background: #181420; border: 1px solid #3d3650; border-radius: 12px; padding: 14px; }
+    .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.45; }
+    .price {
+      display: inline-block;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: rgba(255,209,102,0.14);
+      border: 1px solid rgba(255,209,102,0.33);
+      color: var(--accent);
+      padding: 4px 10px;
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+    ul { margin: 8px 0 0 18px; padding: 0; color: var(--muted); }
+    li { margin-bottom: 6px; }
+    .actions { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 9px 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      background: var(--accent);
+      color: #2a2438;
+    }
+    .btn.alt {
+      background: transparent;
+      color: var(--accent-2);
+      border-color: #46607a;
+    }
+    .footer-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .footer-links a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <div class="top">
+      <a href="index.html">Back To Home</a>
+      <span style="color: var(--muted);">Tess Does Stuff</span>
+    </div>
+
+    <h1>Creative Consulting</h1>
+    <p class="sub">Strategic and creative support for founders, creators, and teams who need clearer direction, stronger messaging, and faster decision-making.</p>
+
+    <section class="section" aria-label="Consulting support types">
+      <h2>What I Help With</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Project Direction</h3>
+          <p>Clarifying offer, audience, and creative focus so your next phase has a sharper roadmap.</p>
+        </article>
+        <article class="card">
+          <h3>Creative Problem Solving</h3>
+          <p>Unblock stalled ideas, refine concepts, and identify practical next steps you can execute right away.</p>
+        </article>
+        <article class="card">
+          <h3>Messaging + Positioning</h3>
+          <p>Polish tone, narrative framing, and key talking points for websites, decks, launches, or campaigns.</p>
+        </article>
+        <article class="card">
+          <h3>Systems + Workflow</h3>
+          <p>Build sustainable creative workflows that balance output quality, consistency, and bandwidth.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Consulting packages">
+      <h2>Consulting Formats</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Quick Voice Consult</h3>
+          <p>Fast alignment call for one specific decision or bottleneck.</p>
+          <div class="price">$75 / 45 min</div>
+          <ul>
+            <li>Pre-call intake review</li>
+            <li>Live focused voice session</li>
+            <li>Quick action recap</li>
+            <li>Example: clarify launch angle for one offer in a single call</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Full Strategy Call</h3>
+          <p>Deep-dive planning call for bigger projects that need structure and next steps.</p>
+          <div class="price">$120 / 60 min</div>
+          <ul>
+            <li>Pre-call intake review</li>
+            <li>Live strategy mapping</li>
+            <li>Post-call action notes</li>
+            <li>Example: map a 30-day content and execution plan for your brand or project</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Follow-Up Voice Session</h3>
+          <p>Short implementation checkpoint for existing clients only.</p>
+          <div class="price">$60 / 30 min</div>
+          <ul>
+            <li>Only available after a consult or strategy call</li>
+            <li>Tight feedback + recalibration</li>
+            <li>Example: review what worked, fix what stalled, set the next 7-day priorities</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Monthly Advisory</h3>
+          <p>Ongoing support for active projects needing regular iteration and accountability.</p>
+          <div class="price">Starting at $380 / month</div>
+          <ul>
+            <li>Two calls per month</li>
+            <li>Async feedback checkpoints</li>
+            <li>Priority scheduling</li>
+            <li>Example: ongoing consulting for a multi-part creative rollout</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Booking flow">
+      <h2>Booking Flow</h2>
+      <ul>
+        <li>Step 1: Share your current project context and goals.</li>
+        <li>Step 2: I recommend the best-fit consulting format.</li>
+        <li>Step 3: We schedule your session and start implementation.</li>
+      </ul>
+      <div class="actions">
+        <a class="btn" href="contact.html">Book Consulting</a>
+        <a class="btn alt" href="mailto:contact@tessdevillier.com?subject=Creative%20Consulting%20Inquiry">Email Consulting Inquiry</a>
+      </div>
+    </section>
+
+    <div class="footer-links" aria-label="Quick links">
+      <a href="#">Back to top</a>
+      <a href="hire.html">Hire/Book</a>
+      <a href="worldbuilding.html">Worldbuilding</a>
+      <a href="contact.html">Contact</a>
+      <a href="availability.html">Availability</a>
+    </div>
+  </main>
+</body>
+</html>
