@@ -1184,6 +1184,16 @@
                     if (audioControls) audioControls.style.display = 'none';
                 }
             }
+
+            function enterProfessionalFromHash() {
+                if (window.location.hash !== '#professional') return;
+                if (overlay) overlay.style.display = 'none';
+                setToggleState(true);
+                if (typeof unlockAudio === 'function') unlockAudio();
+            }
+
+            enterProfessionalFromHash();
+            window.addEventListener('hashchange', enterProfessionalFromHash);
             // Overlay entry buttons
             if (choicePro) choicePro.addEventListener('click', function(e) {
                 e.stopPropagation();
