@@ -214,9 +214,31 @@
             text-shadow: none;
         }
 
+        .mobile-overlay-links {
+            display: none;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 6px 0 14px;
+        }
+
+        .mobile-overlay-links a {
+            display: inline-block;
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            padding: 7px 11px;
+            border-radius: 999px;
+            border: 1px solid rgba(244, 230, 218, 0.4);
+            background: rgba(8, 10, 16, 0.45);
+            color: #f4e6da;
+        }
+
         .header-container { text-align: center; padding-top: 60px; position: absolute; width: 100%; z-index: 100; pointer-events: none; mix-blend-mode: normal; }
         h1 { font-size: 2.5rem; letter-spacing: 4px; margin-bottom: 5px; font-weight: 700; color: var(--brand-ink); font-family: var(--font-display); }
-        #vibe-text { color: #fff; font-size: 1.3rem; min-height: 1.6em; font-weight: 300; text-transform: uppercase; }
+        #vibe-text { color: #fff; font-size: 1.3rem; min-height: 1.6em; font-weight: 300; text-transform: uppercase; margin-top: 12px; }
         .mode-headline {
             display: flex;
             justify-content: center;
@@ -777,6 +799,12 @@
 <main role="main">
     <div id="music-unlock" aria-label="Unlock Audio Overlay" style="cursor:default;">
         <h1 style="margin-bottom: 0.5em;">HIRE • WATCH • CONNECT • SUPPORT</h1>
+        <div class="mobile-overlay-links" aria-label="Mobile quick section links">
+            <a href="hire.html">HIRE</a>
+            <a href="watch.html">WATCH</a>
+            <a href="connect.html">CONNECT</a>
+            <a href="support.html">SUPPORT</a>
+        </div>
         <p style="font-size:1.18em; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:600; margin-bottom: 1.5em;">Well Hello There! Glad you're here. I'm Tess aka Buttons – pet/housesitter, writer, photographer, and creative community builder.<br><br>Explore, collaborate, or just say hi.<br>Like what you see? Check out the support options below.</p>
         <div style="margin-top: 1.5em;">
             <strong>Support Links:</strong><br>
@@ -785,7 +813,7 @@
             <a href="https://cash.app/$888buttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Cash App: $888buttons</a><br>
             <span style="color:#ffd700;">Free support: Amazon Prime Twitch sub + social shares</span>
         </div>
-        <div style="margin-top: 2.2em; display: flex; flex-direction: column; align-items: center; gap: 18px;">
+        <div class="overlay-choice-group" style="margin-top: 2.2em; display: flex; flex-direction: column; align-items: center; gap: 18px;">
             <span style="font-size:1.18em; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:700; margin-bottom: 6px;">Make a Choice:</span>
             <div style="display: flex; gap: 22px;">
                 <button id="choice-professional" style="background:#3c495b; color:#f5f7fa; font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.13em; padding:12px 32px; border:1px solid #7f93aa; border-radius:10px; cursor:pointer; box-shadow:0 2px 12px #0003; transition:background 0.2s;">Professional</button>
@@ -793,7 +821,7 @@
             </div>
         </div>
 
-        <span class="mobile-note" style="display:none;color:#ffd700;font-size:1.08em;margin-top:18px;">FULL EXPERIENCE ON DESKTOP - Designed by Tess - GitHub Copilot - Visual Studio Code - Cloudflare</span>
+        <span class="mobile-note" style="display:none;color:#ffd700;font-size:1.08em;margin-top:10px;">FULL EXPERIENCE ON DESKTOP - Designed by Tess - GitHub Copilot - Visual Studio Code - Cloudflare</span>
     </div>
 <!-- About Me Modal -->
 <!-- About Me Modal removed: replaced by confident intro above -->
@@ -1385,6 +1413,14 @@
                 text-align: center;
             }
 
+            .mobile-overlay-links {
+                display: flex;
+            }
+
+            .overlay-choice-group {
+                display: none !important;
+            }
+
             #music-unlock p,
             #music-unlock a,
             #music-unlock strong,
@@ -1440,6 +1476,10 @@
 
             .mode-headline .mode-tab {
                 display: none;
+            }
+
+            #vibe-text {
+                margin-top: 16px;
             }
         }
 
