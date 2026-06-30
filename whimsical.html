@@ -1691,13 +1691,13 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       }
 
       var tracks = [
-        { name: "Why Can't We Hear Them.mp3", src: "dm_audio/Why Can't We Hear Them.mp3" },
-        { name: 'The Day The World Went Quiet.mp3', src: 'dm_audio/The Day The World Went Quiet.mp3' },
-        { name: 'Red Lining Demise.mp3', src: 'dm_audio/Red Lining Demise.mp3' },
-        { name: 'rawpiano1 cover.mp3', src: 'dm_audio/rawpiano1 cover.mp3' },
-        { name: 'noedits_rawpiano2.mp3', src: 'dm_audio/noedits_rawpiano2.mp3' },
-        { name: 'noedits_rawpiano1.mp3', src: 'dm_audio/noedits_rawpiano1.mp3' },
-        { name: 'Just Stop (In This Chaos).mp3', src: 'dm_audio/Just Stop (In This Chaos).mp3' }
+        { name: "Why Can't We Hear Them.mp3", src: "dm_audio_web/Why Can't We Hear Them.mp3" },
+        { name: 'The Day The World Went Quiet.mp3', src: 'dm_audio_web/The Day The World Went Quiet.mp3' },
+        { name: 'Red Lining Demise.mp3', src: 'dm_audio_web/Red Lining Demise.mp3' },
+        { name: 'rawpiano1 cover.mp3', src: 'dm_audio_web/rawpiano1 cover.mp3' },
+        { name: 'noedits_rawpiano2.mp3', src: 'dm_audio_web/noedits_rawpiano2.mp3' },
+        { name: 'noedits_rawpiano1.mp3', src: 'dm_audio_web/noedits_rawpiano1.mp3' },
+        { name: 'Just Stop (In This Chaos).mp3', src: 'dm_audio_web/Just Stop (In This Chaos).mp3' }
       ];
       var trackIndex = 0;
       var audio = document.getElementById('audioPlayer');
@@ -1706,6 +1706,22 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var playerVol = document.getElementById('playerVol');
       var desktopVol = document.getElementById('desktopVol');
 
+      function reportAudioError(prefix, err) {
+        var message = (err && err.name) ? err.name : 'PlaybackError';
+        if (trackName) {
+          trackName.textContent = prefix + ': ' + message;
+        }
+      }
+
+      function attemptPlay(prefix) {
+        var playPromise = audio.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(function (err) {
+            reportAudioError(prefix, err);
+          });
+        }
+      }
+
       function setTrack(index, autoplay) {
         trackIndex = (index + tracks.length) % tracks.length;
         var track = tracks[trackIndex];
@@ -1713,7 +1729,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         trackName.textContent = '♫ ' + track.name;
         progressFill.style.width = '0%';
         if (autoplay) {
-          audio.play().catch(function () {});
+          attemptPlay('Play failed');
         }
       }
 
@@ -1721,7 +1737,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       document.getElementById('btnNext').addEventListener('click', function () { setTrack(trackIndex + 1, true); });
       document.getElementById('btnPlay').addEventListener('click', function () {
         if (!audio.src) setTrack(trackIndex, false);
-        audio.play().catch(function () {});
+        attemptPlay('Play failed');
       });
       document.getElementById('btnPause').addEventListener('click', function () { audio.pause(); });
       document.getElementById('btnStop').addEventListener('click', function () {
@@ -1752,6 +1768,19 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         }
         var pct = Math.min(100, Math.max(0, (audio.currentTime / audio.duration) * 100));
         progressFill.style.width = pct.toFixed(1) + '%';
+      });
+      audio.addEventListener('error', function () {
+        var codeMap = {
+          1: 'aborted',
+          2: 'network',
+          3: 'decode',
+          4: 'unsupported format'
+        };
+        var code = audio.error && audio.error.code;
+        var detail = codeMap[code] || 'unknown';
+        if (trackName) {
+          trackName.textContent = 'Audio error: ' + detail;
+        }
       });
       audio.addEventListener('ended', function () { setTrack(trackIndex + 1, true); });
       audio.volume = 0.35;

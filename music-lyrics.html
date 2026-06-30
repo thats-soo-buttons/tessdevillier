@@ -99,40 +99,37 @@
     </div>
 
     <h1>Music + Lyrics</h1>
-    <p class="sub">This is your dedicated music space. Demos stay on-site for control and reliability, while Tumblr can be your writing and update hub.</p>
+    <p class="sub">My brain has enough worldbuilding ideas to fuel three novels and a spin-off, but not always enough hours to write them cover to cover. So when a scene, character, or weird little universe shows up, I turn it into a song or a writing prompt so the idea does not go to waste.</p>
+    <p class="sub">To hear more lyric concepts and story ideas, explore the whimsical side. If you are interested in taking on lyrics, please contact me at <a href="mailto:Contact@TessDevillier.com" style="color:#fff; font-weight:700;">Contact@TessDevillier.com</a>.</p>
 
     <section class="section" aria-label="Music demos">
       <h2>Demo Tracks</h2>
       <p class="muted">These are on-site demos so they always work without relying on social platforms.</p>
       <div class="grid">
         <article class="card">
-          <h3>Dreams In Slow Motion (Lofi)</h3>
-          <audio controls preload="none" src="dm_audio/dreams-in-slow-motion-chill-lofi.mp3"></audio>
+          <h3>Why Can't We Hear Them</h3>
+          <audio controls preload="none" src="dm_audio_web/Why Can't We Hear Them.mp3"></audio>
         </article>
         <article class="card">
-          <h3>Lofi Buttons</h3>
-          <audio controls preload="none" src="dm_audio/lofi-buttons.mp3"></audio>
+          <h3>The Day The World Went Quiet</h3>
+          <audio controls preload="none" src="dm_audio_web/The Day The World Went Quiet.mp3"></audio>
         </article>
         <article class="card">
-          <h3>Track 1</h3>
-          <audio controls preload="none" src="dm_audio/track1.mp3"></audio>
+          <h3>Red Lining Demise</h3>
+          <audio controls preload="none" src="dm_audio_web/Red Lining Demise.mp3"></audio>
         </article>
         <article class="card">
-          <h3>Track 2</h3>
-          <audio controls preload="none" src="dm_audio/track2.mp3"></audio>
+          <h3>Just Stop (In This Chaos)</h3>
+          <audio controls preload="none" src="dm_audio_web/Just Stop (In This Chaos).mp3"></audio>
         </article>
       </div>
     </section>
 
     <section class="section" aria-label="Lyrics and tumblr hub">
       <h2>Lyrics + Writing Hub</h2>
-      <p class="muted">Use Tumblr for lyric drops, drafts, and community comments. Keep your core demos on this site.</p>
+      <p class="muted">You can find lyric drops, drafts, and community comments.</p>
       <a class="btn" id="tumblrLink" href="#" target="_blank" rel="noopener noreferrer">Open Lyrics Posts on Tumblr</a>
-      <a class="btn alt" href="mailto:contact@thatssoobuttons.com?subject=Music%20and%20Lyrics%20Inquiry">Music/Lyrics Inquiry</a>
-      <div class="embed-wrap" id="tumblrEmbedWrap" style="display:none;">
-        <iframe id="tumblrEmbed" title="Tumblr feed"></iframe>
-      </div>
-      <p class="muted" style="margin-top: 10px;"><small>This feed is targeted to posts tagged <strong>lyrics</strong>.</small></p>
+      <a class="btn alt" style="color: var(--ink);" href="mailto:Contact@TessDevillier.com?subject=Music%20and%20Lyrics%20Inquiry">Work With Me</a>
     </section>
 
     <div class="footer-links" aria-label="Quick links">
@@ -151,10 +148,8 @@
       var tumblrUrl = 'https://www.tumblr.com/thatssoobuttons/tagged/lyrics';
 
       var link = document.getElementById('tumblrLink');
-      var wrap = document.getElementById('tumblrEmbedWrap');
-      var embed = document.getElementById('tumblrEmbed');
 
-      if (!link || !wrap || !embed) return;
+      if (!link) return;
 
       if (!tumblrUrl) {
         link.textContent = 'Add Tumblr Link (Coming Soon)';
@@ -165,8 +160,6 @@
       }
 
       link.setAttribute('href', tumblrUrl);
-      wrap.style.display = 'block';
-      embed.setAttribute('src', tumblrUrl);
     })();
   </script>
 </body>
