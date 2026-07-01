@@ -86,7 +86,7 @@
       pointer-events: none;
     }
 
-    .desktop.mobile-locked > *:not(.mobile-gate) {
+    .desktop.mobile-locked > *:not(.mobile-gate):not(.mobile-lite) {
       display: none !important;
     }
 
@@ -360,6 +360,87 @@
       font-size: 14px;
       line-height: 1.5;
       color: #cfd9ef;
+    }
+
+    .mobile-gate .mobile-gate-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .mobile-lite {
+      position: absolute;
+      inset: 0;
+      z-index: 151;
+      overflow-y: auto;
+      padding: 18px 14px 24px;
+      background: radial-gradient(circle at 50% 18%, rgba(41, 64, 122, 0.55), rgba(6, 8, 20, 0.96));
+      color: #eef4ff;
+      display: none;
+    }
+
+    .mobile-lite.active {
+      display: block;
+    }
+
+    .mobile-lite-panel {
+      max-width: 520px;
+      margin: 0 auto;
+      border: 2px outset #dfdfdf;
+      background: #c0c0c0;
+      color: #111;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+      padding: 8px;
+    }
+
+    .mobile-lite-title {
+      margin: 0 0 8px;
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+      font-weight: 700;
+      background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+      padding: 3px 6px;
+      border: 1px solid #0a246a;
+    }
+
+    .mobile-lite-body {
+      border: 2px inset #dfdfdf;
+      background: #fff;
+      padding: 10px;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .mobile-lite-links {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .mobile-lite-link {
+      border: 2px outset #dfdfdf;
+      background: #c0c0c0;
+      text-decoration: none;
+      color: #111;
+      padding: 6px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      display: block;
+    }
+
+    .mobile-lite-link:active {
+      border: 2px inset #dfdfdf;
+    }
+
+    .mobile-lite-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     .desktop-icons {
@@ -801,6 +882,85 @@
       background: #ececec;
     }
 
+    .clip-toggle {
+      position: absolute;
+      right: 12px;
+      bottom: 40px;
+      z-index: 98;
+      border: 2px outset #dfdfdf;
+      background: #c0c0c0;
+      min-width: 42px;
+      min-height: 38px;
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .clip-toggle:active {
+      border: 2px inset #dfdfdf;
+    }
+
+    .clip-helper {
+      position: absolute;
+      right: 10px;
+      bottom: 84px;
+      z-index: 99;
+      width: 260px;
+      border: 2px outset #dfdfdf;
+      background: #d4d0c8;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+      display: none;
+    }
+
+    .clip-helper.active {
+      display: block;
+    }
+
+    .clip-title {
+      background: linear-gradient(90deg, #000080, #1084d0);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2px 6px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .clip-close {
+      border: 2px outset #dfdfdf;
+      background: #c0c0c0;
+      width: 16px;
+      height: 14px;
+      cursor: pointer;
+      font-size: 9px;
+      line-height: 1;
+      padding: 0;
+    }
+
+    .clip-close:active {
+      border: 2px inset #dfdfdf;
+    }
+
+    .clip-body {
+      padding: 8px;
+      font-size: 11px;
+      line-height: 1.4;
+      border-top: 1px solid #9a9a9a;
+    }
+
+    .clip-body ul {
+      margin: 6px 0 0 16px;
+      padding: 0;
+    }
+
+    .clip-body li {
+      margin-bottom: 4px;
+    }
+
     @media (max-width: 900px) {
       .screen-bezel {
         min-height: 100vh;
@@ -835,7 +995,30 @@
           <div class="mobile-gate hidden" id="mobileGate">
             <div>
               <h1>Desktop Experience Required</h1>
-              <p>Please log in via desktop for the desktop experience.</p>
+              <p>Please use desktop for best results. If you requested Desktop Site on mobile, you can try it anyway.</p>
+              <div class="mobile-gate-actions">
+                <button type="button" class="boot-btn" id="mobileGateContinue">Try Desktop Anyway</button>
+                <button type="button" class="boot-btn" id="mobileGateLite">Use Lite Mobile Mode</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="mobile-lite hidden" id="mobileLitePanel">
+            <div class="mobile-lite-panel">
+              <h2 class="mobile-lite-title">Tess Lite Mobile Mode</h2>
+              <div class="mobile-lite-body">
+                <p>Desktop mode is heavy on small screens. Lite mode keeps quick access to your most used pages.</p>
+                <div class="mobile-lite-links" aria-label="Lite mobile quick links">
+                  <a class="mobile-lite-link" href="hire.html#contact-lanes">Book / Inquire</a>
+                  <a class="mobile-lite-link" href="phosphornet-availability.html">Phosphornet Booking Board</a>
+                  <a class="mobile-lite-link" href="whimsical.html">Reload Whimsical</a>
+                  <a class="mobile-lite-link" href="index.html#professional">Main Site</a>
+                  <a class="mobile-lite-link" href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener noreferrer">Discord Community</a>
+                </div>
+                <div class="mobile-lite-actions">
+                  <button type="button" class="boot-btn" id="mobileLiteDesktopBtn">Switch To Desktop Experience</button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -949,6 +1132,14 @@
             <button class="desktop-icon" data-open="tarot" aria-label="Open Buttons Tarot">
               <div class="emoji">🃏</div>
               <div class="icon-label">Tarot Deck</div>
+            </button>
+            <button class="desktop-icon" data-open="maildrop" aria-label="Open MailDrop">
+              <div class="emoji">📧</div>
+              <div class="icon-label">MailDrop</div>
+            </button>
+            <button class="desktop-icon" data-open="relayim" aria-label="Open RelayIM">
+              <div class="emoji">🗨️</div>
+              <div class="icon-label">RelayIM</div>
             </button>
           </div>
 
@@ -1178,6 +1369,34 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
             </div>
           </section>
 
+          <section class="window hidden win-border" id="win-maildrop" style="top:176px;left:528px;width:340px;">
+            <div class="title-bar" data-drag-handle>
+              <span>MailDrop.exe</span>
+              <div class="title-actions"><button type="button" data-close="maildrop" aria-label="Close">x</button></div>
+            </div>
+            <div class="window-body">
+              <div class="win-inset" style="padding:8px;background:#fff;">
+                <p><b>Down for Maintenance</b></p>
+                <p>Webhook mail bridge is being configured.</p>
+                <p>Planned mode: one outbound message only, then follow-up through Discord or verified email.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="window hidden win-border" id="win-relayim" style="top:184px;left:556px;width:340px;">
+            <div class="title-bar" data-drag-handle>
+              <span>RelayIM.exe</span>
+              <div class="title-actions"><button type="button" data-close="relayim" aria-label="Close">x</button></div>
+            </div>
+            <div class="window-body">
+              <div class="win-inset" style="padding:8px;background:#fff;">
+                <p><b>Down for Maintenance</b></p>
+                <p>RelayIM chat service is currently offline.</p>
+                <p>Please check back after system updates.</p>
+              </div>
+            </div>
+          </section>
+
           <div class="start-menu" id="startMenu" aria-label="Start menu">
             <div class="start-layout">
               <div class="start-rail"><span>Tess95</span></div>
@@ -1190,11 +1409,29 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
                 <div class="start-item" data-open="connect">Connect</div>
                 <div class="start-item" data-open="support">Support</div>
                 <div class="start-item" data-open="photos">Photos</div>
+                <div class="start-item" data-open="maildrop">MailDrop</div>
+                <div class="start-item" data-open="relayim">RelayIM</div>
                 <div class="start-sep"></div>
                 <div class="start-item" id="openDiscord">Discord Chat</div>
                 <div class="start-item" id="openTwitch">Twitch</div>
                 <div class="start-item" id="openMainSite">Main Site</div>
               </div>
+            </div>
+          </div>
+
+          <button type="button" class="clip-toggle" id="clipToggle" aria-label="Toggle helper">📎</button>
+          <div class="clip-helper" id="clipHelper" role="dialog" aria-label="Desktop helper">
+            <div class="clip-title">
+              <span>Desktop Helper</span>
+              <button type="button" class="clip-close" id="clipClose" aria-label="Close helper">x</button>
+            </div>
+            <div class="clip-body">
+              <p><b>How can I help you?</b></p>
+              <ul>
+                <li>Double-click desktop icons to launch apps.</li>
+                <li>Use MailDrop for one-shot contact flow later.</li>
+                <li>RelayIM is the retro AIM-style lane.</li>
+              </ul>
             </div>
           </div>
 
@@ -1239,13 +1476,21 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var pollStatus = document.getElementById('pollStatus');
       var bootPromptText = document.getElementById('bootPromptText');
       var bootHandoff = document.getElementById('bootHandoff');
+      var clipToggle = document.getElementById('clipToggle');
+      var clipHelper = document.getElementById('clipHelper');
+      var clipClose = document.getElementById('clipClose');
       var WEBHOOK_PROXY_URL = '';
       var POLL_PROMPT_VERSION = 'v1';
       var POLL_ANSWERED_VERSION_KEY = 'tessPollAnsweredVersion';
       var mobileGate = document.getElementById('mobileGate');
+      var mobileGateContinue = document.getElementById('mobileGateContinue');
+      var mobileGateLite = document.getElementById('mobileGateLite');
+      var mobileLitePanel = document.getElementById('mobileLitePanel');
+      var mobileLiteDesktopBtn = document.getElementById('mobileLiteDesktopBtn');
       var zCounter = 40;
       var ghostProfile = null;
       var bootSkipRequested = false;
+      var desktopBootStarted = false;
       var popoutMap = {
         notepad: 'index.html',
         connect: 'https://discord.gg/dC34nguEEC',
@@ -1395,6 +1640,24 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           }
         });
       });
+
+      function setHelperVisible(visible) {
+        if (!clipHelper) return;
+        clipHelper.classList.toggle('active', !!visible);
+      }
+
+      if (clipToggle) {
+        clipToggle.addEventListener('click', function () {
+          if (!clipHelper) return;
+          setHelperVisible(!clipHelper.classList.contains('active'));
+        });
+      }
+
+      if (clipClose) {
+        clipClose.addEventListener('click', function () {
+          setHelperVisible(false);
+        });
+      }
 
       startItems.forEach(function (item) {
         item.addEventListener('click', function () {
@@ -1723,8 +1986,11 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
 
         function addRecent(url) {
           if (!url) return;
-          if (merged.some(function (entry) { return entry.url === url; })) return;
-          merged.push({ url: url, label: labelForRecentPage(url) });
+          var label = labelForRecentPage(url);
+          if (merged.some(function (entry) {
+            return entry.url === url || entry.label.toLowerCase() === label.toLowerCase();
+          })) return;
+          merged.push({ url: url, label: label });
         }
 
         stored.forEach(function (entry) {
@@ -2804,17 +3070,92 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         if (typeof onReady === 'function') onReady();
       }
 
-      var isMobile = window.matchMedia('(max-width: 900px)').matches || window.matchMedia('(pointer: coarse)').matches;
-      if (isMobile) {
+      function shouldLockForMobile() {
+        var narrowViewport = window.matchMedia('(max-width: 900px)').matches || window.innerHeight < 640;
+        var coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+        var likelyDesktopModeOnMobile = window.innerWidth >= 980;
+        var forcedOverride = window.sessionStorage.getItem('tessWhimsicalMobileOverride') === '1';
+        if (forcedOverride || likelyDesktopModeOnMobile) return false;
+        return narrowViewport && coarsePointer;
+      }
+
+      function lockToMobileGate() {
         desktop.classList.add('mobile-locked');
         desktop.classList.remove('booting');
         if (bootOverlay) bootOverlay.classList.add('hidden');
         if (mobileGate) mobileGate.classList.remove('hidden');
-      } else {
+        if (mobileLitePanel) {
+          mobileLitePanel.classList.remove('active');
+          mobileLitePanel.classList.add('hidden');
+        }
+      }
+
+      function showLiteMode() {
+        desktop.classList.add('mobile-locked');
+        desktop.classList.remove('booting');
+        if (bootOverlay) bootOverlay.classList.add('hidden');
+        if (mobileGate) mobileGate.classList.add('hidden');
+        if (mobileLitePanel) {
+          mobileLitePanel.classList.remove('hidden');
+          mobileLitePanel.classList.add('active');
+        }
+      }
+
+      function launchDesktopExperience() {
+        if (desktopBootStarted) return;
+        desktopBootStarted = true;
+        desktop.classList.remove('mobile-locked');
+        if (mobileGate) mobileGate.classList.add('hidden');
+        if (mobileLitePanel) {
+          mobileLitePanel.classList.remove('active');
+          mobileLitePanel.classList.add('hidden');
+        }
         startBootSequence(function () {
           openWin('notepad');
         });
       }
+
+      if (mobileGateContinue) {
+        mobileGateContinue.addEventListener('click', function () {
+          window.sessionStorage.setItem('tessWhimsicalMobileOverride', '1');
+          window.sessionStorage.setItem('tessWhimsicalMobileMode', 'desktop');
+          launchDesktopExperience();
+        });
+      }
+
+      if (mobileGateLite) {
+        mobileGateLite.addEventListener('click', function () {
+          window.sessionStorage.removeItem('tessWhimsicalMobileOverride');
+          window.sessionStorage.setItem('tessWhimsicalMobileMode', 'lite');
+          showLiteMode();
+        });
+      }
+
+      if (mobileLiteDesktopBtn) {
+        mobileLiteDesktopBtn.addEventListener('click', function () {
+          window.sessionStorage.setItem('tessWhimsicalMobileOverride', '1');
+          window.sessionStorage.setItem('tessWhimsicalMobileMode', 'desktop');
+          launchDesktopExperience();
+        });
+      }
+
+      var storedMobileMode = window.sessionStorage.getItem('tessWhimsicalMobileMode');
+      if (shouldLockForMobile()) {
+        if (storedMobileMode === 'lite') {
+          showLiteMode();
+        } else {
+          lockToMobileGate();
+        }
+      } else {
+        window.sessionStorage.setItem('tessWhimsicalMobileMode', 'desktop');
+        launchDesktopExperience();
+      }
+
+      window.addEventListener('resize', function () {
+        if (!desktopBootStarted && !shouldLockForMobile()) {
+          launchDesktopExperience();
+        }
+      });
 
       window.openWin = openWin;
       window.closeWin = closeWin;
