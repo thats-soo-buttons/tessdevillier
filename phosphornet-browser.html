@@ -118,8 +118,15 @@
       var addressBar = document.getElementById('addressBar');
       document.title = title + ' | PhosphorNet Navigator';
       addressBar.textContent = 'phosphornet://local/' + page;
-      var sep = page.indexOf('?') === -1 ? '?' : '&';
-      frame.src = page + sep + '_v=' + Date.now();
+      var decodedPage = page;
+      try {
+        decodedPage = decodeURIComponent(page);
+      } catch (_) {}
+      var hashIndex = decodedPage.indexOf('#');
+      var pagePath = hashIndex === -1 ? decodedPage : decodedPage.slice(0, hashIndex);
+      var pageHash = hashIndex === -1 ? '' : decodedPage.slice(hashIndex);
+      var sep = pagePath.indexOf('?') === -1 ? '?' : '&';
+      frame.src = pagePath + sep + '_v=' + Date.now() + pageHash;
     })();
   </script>
 </body>

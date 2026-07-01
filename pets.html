@@ -505,6 +505,88 @@
             max-width: 760px;
             padding: 0 20px 18px;
         }
+        .photo-carousel {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            gap: 12px;
+            align-items: center;
+            background: rgba(255,255,255,0.82);
+            border: 1px solid rgba(130,120,112,0.16);
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        .photo-carousel-viewport {
+            overflow: hidden;
+            border-radius: 14px;
+            background: #fffaf2;
+            border: 1px solid rgba(150,140,130,0.16);
+            min-height: 360px;
+        }
+        .photo-carousel-track {
+            display: flex;
+            transition: transform 0.32s ease;
+            will-change: transform;
+        }
+        .photo-slide {
+            min-width: 100%;
+            margin: 0;
+            position: relative;
+            background: #fffaf2;
+        }
+        .photo-slide img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            display: block;
+        }
+        .photo-caption {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(130,120,112,0.14);
+            border-radius: 12px;
+            padding: 10px 12px;
+            color: var(--ink);
+            font-weight: 700;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        }
+        .photo-carousel-btn {
+            border: 1px solid rgba(79,135,191,0.22);
+            background: #fff;
+            color: var(--blue-dark);
+            border-radius: 999px;
+            width: 40px;
+            height: 40px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .photo-carousel-btn:hover { background: #f4f8fc; }
+        .photo-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .photo-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 0;
+            background: rgba(79,135,191,0.24);
+            cursor: pointer;
+        }
+        .photo-dot.active { background: var(--blue-dark); }
+        .photo-carousel-note {
+            margin-top: 10px;
+            color: var(--soft);
+            text-align: center;
+            font-size: 0.92rem;
+        }
         @media (max-width: 920px) {
             .grid, .steps, .two-col { grid-template-columns: 1fr; }
             .hero, .section { padding: 22px; }
@@ -571,6 +653,18 @@
                 text-align: center;
                 padding: 11px 16px;
             }
+            .photo-carousel {
+                grid-template-columns: 1fr;
+            }
+            .photo-carousel-btn {
+                width: 100%;
+                height: 42px;
+            }
+            .photo-slide img,
+            .photo-carousel-viewport {
+                height: 260px;
+                min-height: 260px;
+            }
             .section { padding: 18px; }
             .section h2 { font-size: 2rem; }
             .modal-grid { grid-template-columns: 1fr; }
@@ -612,7 +706,7 @@
                             or just needing an extra hand.
                         </p>
                         <div class="actions">
-                            <a class="button" href="pets-contact.html">Book or Ask a Question</a>
+                            <a class="button" href="hire.html#contact-lanes">Book or Ask a Question</a>
                             <button class="button secondary" type="button" data-modal-open>House/Plant Sitting Details</button>
                         </div>
                         <div class="jump-nav" aria-label="Pets page quick navigation">
@@ -635,6 +729,17 @@
 
         <section class="section" id="pets-offer" aria-label="Pet care options">
             <h2>What I Offer</h2>
+            <div class="photo-carousel" id="pet-photo-carousel" aria-label="Pet photo carousel">
+                <button class="photo-carousel-btn" type="button" id="pet-photo-prev" aria-label="Previous pet photo">‹</button>
+                <div>
+                    <div class="photo-carousel-viewport">
+                        <div class="photo-carousel-track" id="pet-photo-track"></div>
+                    </div>
+                    <div class="photo-dots" id="pet-photo-dots" aria-label="Pet photo navigation"></div>
+                    <p class="photo-carousel-note">Pet photos live here now. Add new entries in <code>data/pet-sits.json</code> and they will appear in the carousel.</p>
+                </div>
+                <button class="photo-carousel-btn" type="button" id="pet-photo-next" aria-label="Next pet photo">›</button>
+            </div>
             <div class="grid">
                 <article class="card">
                     <div class="price">$25 / 1 hr visit</div>
@@ -777,7 +882,7 @@
                 <article class="card">
                     <h3>Need A Custom Plan?</h3>
                     <p>If your pets have unique needs, reach out and we can build a care plan that works for everyone.</p>
-                    <p><a href="pets-contact.html">Book or Ask a Question</a></p>
+                    <p><a href="hire.html#contact-lanes">Book or Ask a Question</a></p>
                 </article>
             </div>
         </section>
@@ -799,7 +904,7 @@
                     <h3>Live Availability</h3>
                     <p>The most up-to-date availability is on Rover.</p>
                     <p><a href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" rel="noopener noreferrer">Check live availability on Rover</a></p>
-                    <p><a href="availability.html">View full availability page</a></p>
+                    <p><a href="hire.html#availability">View full availability details</a></p>
                 </article>
                 <article class="card">
                     <h3>Unavailable / Already Booked Dates</h3>
@@ -886,15 +991,13 @@
                 <a href="#top">Back to top</a>
                 <a href="index.html#professional">Home</a>
                 <a href="hire.html">Book or Inquire</a>
-                <a href="contact.html">Contact</a>
-                <a href="availability.html">Availability</a>
-                <a href="pets-contact.html">Pet Contact</a>
+                <a href="hire.html#contact-lanes">Pet Contact</a>
                 <a href="#pets-faq">FAQ</a>
             </div>
         </section>
     </main>
 
-    <a class="promo-floater" href="pets-contact.html" aria-label="Act now book a meet and greet today">
+    <a class="promo-floater" href="hire.html#contact-lanes" aria-label="Act now book a meet and greet today">
         <span class="promo-top">ACT NOW</span>
         <span class="promo-bottom">BOOK A MEET &amp; GREET TODAY!</span>
     </a>
@@ -941,7 +1044,7 @@
                 <article class="modal-card">
                     <h4>Contact Me</h4>
                     <p>Tell me your dates, location, and what support you need.</p>
-                    <p><a href="pets-contact.html">Contact for a House/Plant Sitting Quote</a></p>
+                    <p><a href="hire.html#contact-lanes">Contact for a House/Plant Sitting Quote</a></p>
                 </article>
             </div>
         </section>
@@ -952,6 +1055,87 @@
             var openBtn = document.querySelector('[data-modal-open]');
             var overlay = document.getElementById('housePlantModal');
             if (!openBtn || !overlay) return;
+
+            var carouselTrack = document.getElementById('pet-photo-track');
+            var carouselDots = document.getElementById('pet-photo-dots');
+            var carouselPrev = document.getElementById('pet-photo-prev');
+            var carouselNext = document.getElementById('pet-photo-next');
+            var carouselIndex = 0;
+            var carouselSlides = [];
+
+            function escapeHtml(value) {
+                return String(value || '').replace(/[&<>"']/g, function (char) {
+                    return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char];
+                });
+            }
+
+            function renderCarousel(items) {
+                if (!carouselTrack || !carouselDots) return;
+                var slides = items && items.length ? items : [
+                    { src: 'dm_assets/house-petsitting-photo.jpg', caption: 'House and pet sitting in action' }
+                ];
+                carouselSlides = slides;
+                carouselIndex = 0;
+                carouselTrack.innerHTML = slides.map(function (item, index) {
+                    return '<figure class="photo-slide">' +
+                        '<img src="' + escapeHtml(item.src) + '" alt="Pet care photo ' + (index + 1) + '">' +
+                        '<figcaption class="photo-caption">' + escapeHtml(item.caption || ('Pet photo ' + (index + 1))) + '</figcaption>' +
+                    '</figure>';
+                }).join('');
+                carouselDots.innerHTML = slides.map(function (_, index) {
+                    return '<button class="photo-dot' + (index === 0 ? ' active' : '') + '" type="button" aria-label="Show pet photo ' + (index + 1) + '" data-index="' + index + '"></button>';
+                }).join('');
+                updateCarousel();
+            }
+
+            function updateCarousel() {
+                if (!carouselTrack || !carouselSlides.length) return;
+                carouselTrack.style.transform = 'translateX(' + (-carouselIndex * 100) + '%)';
+                Array.prototype.forEach.call(carouselDots.querySelectorAll('.photo-dot'), function (dot, index) {
+                    dot.classList.toggle('active', index === carouselIndex);
+                });
+            }
+
+            function stepCarousel(delta) {
+                if (!carouselSlides.length) return;
+                carouselIndex = (carouselIndex + delta + carouselSlides.length) % carouselSlides.length;
+                updateCarousel();
+            }
+
+            if (carouselPrev) {
+                carouselPrev.addEventListener('click', function () { stepCarousel(-1); });
+            }
+            if (carouselNext) {
+                carouselNext.addEventListener('click', function () { stepCarousel(1); });
+            }
+            if (carouselDots) {
+                carouselDots.addEventListener('click', function (event) {
+                    var button = event.target.closest('[data-index]');
+                    if (!button) return;
+                    carouselIndex = Number(button.getAttribute('data-index')) || 0;
+                    updateCarousel();
+                });
+            }
+
+            fetch('data/pet-sits.json')
+                .then(function (response) { return response.ok ? response.json() : []; })
+                .then(function (albums) {
+                    var slides = [];
+                    (albums || []).forEach(function (album) {
+                        if (!album || !Array.isArray(album.photos)) return;
+                        album.photos.forEach(function (photo, index) {
+                            if (!photo) return;
+                            slides.push({
+                                src: photo,
+                                caption: album.title + (album.location ? ' · ' + album.location : '')
+                            });
+                        });
+                    });
+                    renderCarousel(slides);
+                })
+                .catch(function () {
+                    renderCarousel([]);
+                });
 
             var closeBtn = overlay.querySelector('[data-modal-close]');
 

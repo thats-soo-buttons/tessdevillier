@@ -161,6 +161,8 @@
             --brand-merlot: #8e3f5a;
             --brand-deep: #1a1513;
             --brand-panel: #2a211d;
+            --title-gradient: linear-gradient(102deg, #5b2630 0%, #8e3f5a 20%, #5e4b8b 42%, #2f5f9b 63%, #1f6a5a 82%, #b58a45 100%);
+            --title-text-gradient: linear-gradient(98deg, #f2cf86 0%, #d9a3ff 28%, #84bfff 56%, #8de2c8 78%, #f4d79a 100%);
             --font-display: 'Cinzel', serif;
             --font-body: 'Montserrat', sans-serif;
             --font-whimsy: 'VT323', monospace;
@@ -201,17 +203,436 @@
             font-family: 'VT323';
             color: #f4e6da;
             text-align: center;
+            padding: 26px 16px;
+        }
+
+        .unlock-card {
+            width: min(1080px, 100%);
+            border: 1px solid rgba(244, 230, 218, 0.28);
+            border-radius: 18px;
+            padding: 18px;
+            background: rgba(8, 10, 16, 0.56);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 22px 42px rgba(0, 0, 0, 0.4);
+        }
+
+        .unlock-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .unlock-copy {
+            text-align: left;
+            color: #f4e6da;
+            font-family: var(--font-body);
+        }
+
+        .unlock-title-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .unlock-title {
+            margin: 0;
+            font-family: var(--font-display);
+            letter-spacing: 0.08em;
+            color: #f4e6da;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            line-height: 0.92;
+            white-space: nowrap;
+        }
+
+        .unlock-title .unlock-word {
+            display: block;
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        .unlock-title .title-letter {
+            display: inline-block;
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        .unlock-title.is-revealing .unlock-word {
+            opacity: 0;
+            transform: translate(-18px, 14px);
+            animation: wordDiagonalIn 0.42s ease-out forwards;
+            animation-delay: var(--word-delay, 0s);
+        }
+
+        .unlock-title.is-revealing .title-letter {
+            opacity: 0;
+            transform: translate(-11px, 9px);
+            animation: letterIgnite 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: calc(var(--letter-delay, 0s) + 0.06s);
+        }
+
+        @keyframes wordDiagonalIn {
+            to {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes letterIgnite {
+            0% {
+                opacity: 0;
+                transform: translate(-11px, 9px);
+                filter: blur(1px);
+            }
+            72% {
+                opacity: 1;
+                transform: translate(0, 0);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(0, 0);
+                filter: blur(0);
+            }
+        }
+
+        .title-lamp-controls {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            margin-right: 18px;
+        }
+
+        .lamp-btn {
+            appearance: none;
+            border: 1px solid rgba(244, 230, 218, 0.38);
+            border-radius: 999px;
+            background: rgba(17, 22, 34, 0.42);
+            color: #f4e6da;
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 10px;
+            cursor: pointer;
+            transition: transform 0.16s ease, background 0.2s ease;
+        }
+
+        .lamp-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .lamp-btn.active {
+            background: rgba(244, 230, 218, 0.15);
+            border-color: rgba(244, 230, 218, 0.72);
+            box-shadow: 0 0 10px rgba(244, 230, 218, 0.22);
+        }
+        }
+
+        .unlock-title .unlock-tess {
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            letter-spacing: 0.1em;
+        }
+
+        .unlock-title .unlock-does {
+            font-size: clamp(2.4rem, 6.2vw, 4.5rem);
+            letter-spacing: 0.12em;
+        }
+
+        .unlock-title .unlock-stuff {
+            font-size: clamp(2.7rem, 7.8vw, 5.4rem);
+            letter-spacing: 0.1em;
+        }
+
+        .unlock-sub,
+        .unlock-blurb {
+            margin: 10px 0 0;
+            color: #f0e3d7;
+            font-size: 1rem;
+            line-height: 1.45;
+        }
+
+        .unlock-blurb .intro-line {
+            display: block;
+        }
+
+        .unlock-copy .reveal-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .unlock-copy.reveal-ready .reveal-item {
+            opacity: 0;
+            animation-duration: 0.56s;
+            animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation-fill-mode: forwards;
+            animation-delay: var(--info-delay, 0s);
+        }
+
+        .unlock-copy.reveal-ready .reveal-item.from-center {
+            animation-name: infoFadeCenter;
+        }
+
+        .unlock-copy.reveal-ready .reveal-item.from-right {
+            animation-name: infoFadeFromRight;
+        }
+
+        .unlock-copy.reveal-ready .reveal-item.from-left {
+            animation-name: infoFadeFromLeft;
+        }
+
+        @keyframes infoFadeCenter {
+            from {
+                opacity: 0;
+                transform: scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes infoFadeFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(22px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes infoFadeFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-22px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .unlock-title,
+            .unlock-title .unlock-word,
+            .unlock-title .title-letter,
+            .unlock-copy .reveal-item,
+            .unlock-copy.reveal-ready .reveal-item,
+            .unlock-polaroids .polaroid-link,
+            .unlock-polaroids.reveal-ready .polaroid-link {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .unlock-polaroids .polaroid img {
+                animation: none !important;
+                filter: none !important;
+            }
+
+            .unlock-polaroids .polaroid figcaption {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        .unlock-chips {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .unlock-chip {
+            padding: 7px 12px;
+            border: 1px solid rgba(244, 230, 218, 0.32);
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            background: rgba(8, 10, 16, 0.5);
+            color: #f4e6da;
+        }
+
+        .overlay-action-row {
+            margin-top: 16px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .overlay-btn {
+            appearance: none;
+            border: 1px solid rgba(244, 230, 218, 0.34);
+            border-radius: 999px;
+            background: rgba(17, 22, 34, 0.72);
+            color: #f4e6da;
+            font-family: var(--font-body);
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            font-size: 0.88rem;
+            padding: 10px 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .overlay-btn.primary {
+            background: linear-gradient(130deg, #d2dae6, #bcc7d6);
+            color: #1d2430;
+            border-color: #d9e2ef;
+        }
+
+        .overlay-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .overlay-vibe-note {
+            margin-top: 18px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 7px;
+        }
+
+        .overlay-vibe-link {
+            font-size: 0.84rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            color: #f0e3d7;
+            opacity: 0.95;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .unlock-polaroids {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            perspective: 1200px;
+        }
+
+        .unlock-polaroids .polaroid-link {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+        }
+
+        .unlock-polaroids.reveal-ready .polaroid-link {
+            opacity: 0;
+            animation: polaroidSpiralIn 0.7s cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
+            animation-delay: var(--polaroid-delay, 0s);
+        }
+
+        .unlock-polaroids.reveal-ready .polaroid img {
+            animation: polaroidDevelop 2.3s ease-out forwards;
+            animation-delay: calc(var(--polaroid-delay, 0s) + 0.08s);
+            filter: saturate(0.3) contrast(0.86) brightness(1.2) sepia(0.22);
+            opacity: 0.15;
+        }
+
+        @keyframes polaroidSpiralIn {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 6px, -80px) rotate(-8deg) scale(0.9);
+                filter: blur(1px);
+            }
+            45% {
+                opacity: 1;
+                transform: translate3d(calc(var(--swirl-x, 0px) * 0.35), calc(var(--swirl-y, 0px) * 0.35), 0) rotate(calc(var(--swirl-rot, 0deg) * 0.45)) scale(1.02);
+                filter: blur(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        @keyframes polaroidDevelop {
+            0% {
+                filter: saturate(0.3) contrast(0.86) brightness(1.2) sepia(0.22);
+                opacity: 0.15;
+            }
+            55% {
+                filter: saturate(0.68) contrast(0.95) brightness(1.08) sepia(0.1);
+                opacity: 0.62;
+            }
+            100% {
+                filter: saturate(1) contrast(1) brightness(1) sepia(0);
+                opacity: 1;
+            }
+        }
+
+        .polaroid {
+            background: #f8f6f1;
+            border: 1px solid rgba(30, 34, 44, 0.2);
+            border-radius: 4px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+            padding: 8px 8px 12px;
+            transform-origin: center;
+        }
+
+        .polaroid:nth-child(1) { transform: rotate(-7deg); }
+        .polaroid:nth-child(2) { transform: rotate(5deg); }
+        .polaroid:nth-child(3) { transform: rotate(4deg); }
+        .polaroid:nth-child(4) { transform: rotate(-5deg); }
+
+        .polaroid img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+            border: 1px solid rgba(20, 24, 34, 0.24);
+        }
+
+        .polaroid figcaption {
+            margin-top: 7px;
+            font-family: 'VT323', monospace;
+            font-size: 1.08rem;
+            letter-spacing: 0.04em;
+            color: #2f2a24;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .unlock-polaroids.captions-ready .polaroid figcaption {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         #music-unlock h1 {
             font-family: var(--font-display);
             font-weight: 700;
             letter-spacing: 4px;
-            background: linear-gradient(90deg, var(--mode-hire) 0%, var(--mode-watch) 33%, var(--mode-connect) 66%, var(--mode-support) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: inherit;
             text-shadow: none;
+        }
+
+        @media (max-width: 900px) {
+            .unlock-title-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .title-lamp-controls {
+                margin-top: 0;
+                margin-right: 0;
+            }
         }
 
         .mobile-overlay-links {
@@ -397,6 +818,17 @@
             backdrop-filter: blur(6px);
         }
 
+        .matrix-invite {
+            margin-left: 8px;
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: #f4e6da;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.72);
+            white-space: nowrap;
+        }
+
         #audio-controls {
             position: fixed !important;
             right: 16px;
@@ -415,7 +847,6 @@
 
         #music-unlock p,
         #music-unlock a,
-        #music-unlock span,
         #music-unlock .mobile-note,
         #audio-controls label,
         #audio-playpause,
@@ -426,11 +857,44 @@
             text-shadow: -1px 0 var(--outline-brown), 0 1px var(--outline-brown), 1px 0 var(--outline-brown), 0 -1px var(--outline-brown);
         }
 
-        #choice-whimsical,
-        #btn-professional {
+        .overlay-btn,
+        #btn-whimsical {
             color: var(--soft-peach) !important;
             border-color: var(--soft-peach) !important;
             text-shadow: -1px 0 var(--outline-brown), 0 1px var(--outline-brown), 1px 0 var(--outline-brown), 0 -1px var(--outline-brown);
+        }
+
+        #music-unlock .unlock-title,
+        #music-unlock .unlock-title .unlock-word,
+        #music-unlock .unlock-title .title-letter {
+            color: #f4e6da !important;
+            -webkit-text-fill-color: #f4e6da !important;
+        }
+
+        #music-unlock.lamp-on .unlock-title,
+        #music-unlock.lamp-on .unlock-title .unlock-word,
+        #music-unlock.lamp-on .unlock-title .title-letter {
+            background:
+                var(--title-text-gradient),
+                linear-gradient(120deg, transparent 34%, rgba(255, 245, 221, 0.72) 49%, transparent 64%) !important;
+            -webkit-background-clip: text !important;
+            background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            color: transparent !important;
+            text-shadow:
+                0 0 10px rgba(220, 174, 255, 0.35),
+                0 0 22px rgba(131, 194, 255, 0.26),
+                0 2px 10px rgba(0, 0, 0, 0.4) !important;
+            background-size: 100% 100%, 240% 100% !important;
+            background-position: 0 0, 40% 0 !important;
+        }
+
+        #choice-explore.overlay-btn.primary {
+            background: var(--title-gradient) !important;
+            border-color: rgba(244, 230, 218, 0.62) !important;
+            color: #fdf8f2 !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.42) !important;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 244, 224, 0.45) !important;
         }
 
         .split-container { display: flex; width: 100vw; height: 100vh; }
@@ -814,26 +1278,53 @@
 
 <main role="main">
     <div id="music-unlock" aria-label="Unlock Audio Overlay" style="cursor:default;">
-        <h1 class="overlay-title" style="margin-bottom: 0.5em;">HIRE • WATCH • CONNECT • SUPPORT</h1>
-        <div class="mobile-overlay-links" aria-label="Mobile quick section links">
-            <a href="hire.html">HIRE</a>
-            <a href="watch.html">WATCH</a>
-            <a href="connect.html">CONNECT</a>
-            <a href="support.html">SUPPORT</a>
-        </div>
-        <p style="font-size:1.18em; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:600; margin-bottom: 1.5em;">Well Hello There! Glad you're here. I'm Tess aka Buttons – pet/housesitter, writer, photographer, and creative community builder.<br><br>This is my portfolio and booking hub.<br>Explore the work, hire me, or just say hi.</p>
-        <div style="margin-top: 1.5em;">
-            <strong>Support Links:</strong><br>
-            <a href="https://ko-fi.com/thatssoobuttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Ko-fi: ko-fi.com/thatssoobuttons</a><br>
-            <a href="https://buymeacoffee.com/tessdevillier" target="_blank" style="color:#ffd700; text-decoration:underline;">Buy Me a Coffee: buymeacoffee.com/tessdevillier</a><br>
-            <a href="https://cash.app/$888buttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Cash App: $888buttons</a><br>
-            <span style="color:#ffd700;">Free support: Amazon Prime Twitch sub + social shares</span>
-        </div>
-        <div class="overlay-choice-group" style="margin-top: 2.2em; display: flex; flex-direction: column; align-items: center; gap: 18px;">
-            <span style="font-size:1.18em; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:700; margin-bottom: 6px;">Make a Choice:</span>
-            <div style="display: flex; gap: 22px;">
-                <button id="choice-professional" style="background:#3c495b; color:#f5f7fa; font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.13em; padding:12px 32px; border:1px solid #7f93aa; border-radius:10px; cursor:pointer; box-shadow:0 2px 12px #0003; transition:background 0.2s;">Professional</button>
-                <button id="choice-whimsical" style="background:#222; color:#ffd700; font-family:'VT323',monospace; font-weight:700; font-size:1.13em; padding:12px 32px; border:2px solid #ffd700; border-radius:10px; cursor:pointer; box-shadow:0 2px 12px #0003; transition:background 0.2s;">Whimsical</button>
+        <div class="unlock-card">
+            <div class="unlock-grid">
+                <section class="unlock-copy" aria-label="Intro copy">
+                    <div class="unlock-title-row">
+                        <h1 class="unlock-title"><span class="unlock-word unlock-tess">Tess</span><span class="unlock-word unlock-does">Does</span><span class="unlock-word unlock-stuff">Stuff</span></h1>
+                        <div class="title-lamp-controls" role="group" aria-label="Title lamp control">
+                            <button id="title-lamp-on" class="lamp-btn active" type="button" aria-pressed="true">On</button>
+                            <button id="title-lamp-off" class="lamp-btn" type="button" aria-pressed="false">Off</button>
+                        </div>
+                    </div>
+                    <p class="unlock-sub reveal-item from-center">Pet and house sitter, photographer, worldbuilder, and creative consultant. Baton Rouge. (Remote and available for travel)</p>
+                    <p class="unlock-blurb">
+                        <span class="intro-line reveal-item from-right">Who I am: Tess, aka Buttons.</span>
+                        <span class="intro-line reveal-item from-left">What I do: clear communication, strong delivery, and vibe-forward creative work.</span>
+                        <span class="intro-line reveal-item from-right">Where to go next: hire me now or explore the full professional index.</span>
+                    </p>
+                    <div class="overlay-vibe-note reveal-item from-left">
+                        <button id="choice-explore" class="overlay-btn primary" type="button">ENTER SITE</button>
+                        <a id="choice-vibe" class="overlay-vibe-link" href="whimsical.html">or add a little whimsy</a>
+                    </div>
+                </section>
+                <section class="unlock-polaroids" aria-label="Polaroid collage">
+                    <a class="polaroid-link" href="pets.html" aria-label="Open pet sitting page">
+                        <figure class="polaroid">
+                            <img src="dm_assets/house-petsitting-photo.jpg" alt="Pet sitting polaroid">
+                            <figcaption>Petsitting</figcaption>
+                        </figure>
+                    </a>
+                    <a class="polaroid-link" href="creative-consulting.html" aria-label="Open creative consulting page">
+                        <figure class="polaroid">
+                            <img src="dm_assets/_1420346-2.jpg" alt="Creative consulting polaroid">
+                            <figcaption>Creative Consulting</figcaption>
+                        </figure>
+                    </a>
+                    <a class="polaroid-link" href="worldbuilding.html" aria-label="Open world building page">
+                        <figure class="polaroid">
+                            <img src="helixotopeexample.jpg" alt="World building polaroid">
+                            <figcaption>World Building</figcaption>
+                        </figure>
+                    </a>
+                    <a class="polaroid-link" href="photography/index.html" aria-label="Open photography page">
+                        <figure class="polaroid">
+                            <img src="dm_assets/me.jpg" alt="Photography portrait polaroid">
+                            <figcaption>Photography</figcaption>
+                        </figure>
+                    </a>
+                </section>
             </div>
         </div>
 
@@ -871,8 +1362,9 @@
             </div>
             <div id="vibe-text"></div>
             <div id="mode-toggle" style="display:flex; gap:18px; justify-content:center; align-items:center; margin: 18px 0 0 0; pointer-events:auto;">
-                <button id="btn-professional" type="button" style="background:rgba(40,40,40,0.55); border:2px solid #ffd700; color:#ffd700; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Professional</button>
-                <button id="btn-whimsical" type="button" style="background:rgba(40,40,40,0.35); border:2px solid #fff; color:#fff; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Whimsical</button>
+                <button id="btn-professional" type="button" style="display:none;background:rgba(40,40,40,0.55); border:2px solid #ffd700; color:#ffd700; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Professional</button>
+                <button id="btn-whimsical" type="button" style="background:rgba(40,40,40,0.55); border:2px solid #f4e6da; color:#f4e6da; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Try A Different Vibe</button>
+                <span class="matrix-invite" aria-hidden="true">↷ I wonder what this does? Ooo, a button.</span>
             </div>
             <div id="audio-controls">
                 <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Pause</button>
@@ -934,14 +1426,141 @@
             const professionalContent = document.querySelector('.split-container');
             const whimsyContent = document.getElementById('whimsy-desktop');
             const overlay = document.getElementById('music-unlock');
-            const choicePro = document.getElementById('choice-professional');
-            const choiceWhim = document.getElementById('choice-whimsical');
+            const choiceHire = document.getElementById('choice-hire');
+            const choiceExplore = document.getElementById('choice-explore');
+            const choiceVibe = document.getElementById('choice-vibe');
             const modeTabs = document.querySelectorAll('.mode-tab');
             const modeMobilePicker = document.getElementById('mode-mobile-picker');
             const modeBlurbTitle = document.getElementById('mode-blurb-title');
             const modeBlurbText = document.getElementById('mode-blurb-text');
             const modeBlurbQuote = document.getElementById('mode-blurb-quote');
+            const titleLampOnBtn = document.getElementById('title-lamp-on');
+            const titleLampOffBtn = document.getElementById('title-lamp-off');
+            const unlockTitle = document.querySelector('.unlock-title');
+            const unlockCopy = document.querySelector('.unlock-copy');
+            const unlockPolaroids = document.querySelector('.unlock-polaroids');
+            let polaroidCaptionTimer = null;
             // Overlay will NOT auto-hide; user must pick a side
+
+            function setLampButtons(isOn) {
+                if (!titleLampOnBtn || !titleLampOffBtn) return;
+                titleLampOnBtn.classList.toggle('active', isOn);
+                titleLampOffBtn.classList.toggle('active', !isOn);
+                titleLampOnBtn.setAttribute('aria-pressed', isOn ? 'true' : 'false');
+                titleLampOffBtn.setAttribute('aria-pressed', isOn ? 'false' : 'true');
+            }
+
+            function setLampState(isOn) {
+                if (overlay) overlay.classList.toggle('lamp-on', isOn);
+                setLampButtons(isOn);
+            }
+
+            function runTitleIgnition() {
+                if (!unlockTitle) return;
+                const words = unlockTitle.querySelectorAll('.unlock-word');
+                if (!words.length) return 0;
+
+                const letterStep = 0.06;
+                const wordPause = 0.36;
+                let timelineCursor = 0;
+
+                words.forEach((wordEl) => {
+                    const originalWord = (wordEl.dataset.word || wordEl.textContent || '').trim();
+                    if (!originalWord) return;
+                    wordEl.dataset.word = originalWord;
+                    wordEl.textContent = '';
+                    wordEl.style.setProperty('--word-delay', `${timelineCursor.toFixed(3)}s`);
+
+                    Array.from(originalWord).forEach((char, index) => {
+                        const letterEl = document.createElement('span');
+                        letterEl.className = 'title-letter';
+                        letterEl.textContent = char;
+                        letterEl.style.setProperty('--letter-delay', `${(timelineCursor + index * letterStep).toFixed(3)}s`);
+                        wordEl.appendChild(letterEl);
+                    });
+
+                    timelineCursor += (Math.max(originalWord.length, 1) * letterStep) + wordPause;
+                });
+
+                unlockTitle.classList.remove('is-revealing');
+                void unlockTitle.offsetWidth;
+                unlockTitle.classList.add('is-revealing');
+
+                window.setTimeout(() => {
+                    unlockTitle.classList.remove('is-revealing');
+                }, Math.max(1200, (timelineCursor + 0.5) * 1000));
+
+                return Math.max(1200, (timelineCursor + 0.5) * 1000);
+            }
+
+            function runInfoReveal(startDelayMs) {
+                if (!unlockCopy) return;
+                const infoItems = unlockCopy.querySelectorAll('.reveal-item');
+                if (!infoItems.length) return;
+
+                const baseDelay = Math.max(0, startDelayMs || 0) / 1000;
+                infoItems.forEach(function (item, index) {
+                    item.style.setProperty('--info-delay', `${(baseDelay + index * 0.18).toFixed(3)}s`);
+                });
+
+                unlockCopy.classList.remove('reveal-ready');
+                void unlockCopy.offsetWidth;
+                unlockCopy.classList.add('reveal-ready');
+            }
+
+            function runPolaroidReveal(startDelayMs) {
+                if (!unlockPolaroids) return;
+                const cards = unlockPolaroids.querySelectorAll('.polaroid-link');
+                if (!cards.length) return;
+
+                const swirlMap = [
+                    { x: '-32px', y: '-20px', r: '-12deg' },
+                    { x: '34px', y: '-22px', r: '14deg' },
+                    { x: '-28px', y: '24px', r: '11deg' },
+                    { x: '30px', y: '22px', r: '-13deg' }
+                ];
+
+                const baseDelay = Math.max(0, startDelayMs || 0) / 1000;
+                cards.forEach(function (card, index) {
+                    const swirl = swirlMap[index % swirlMap.length];
+                    card.style.setProperty('--polaroid-delay', `${(baseDelay + index * 0.24).toFixed(3)}s`);
+                    card.style.setProperty('--swirl-x', swirl.x);
+                    card.style.setProperty('--swirl-y', swirl.y);
+                    card.style.setProperty('--swirl-rot', swirl.r);
+                });
+
+                unlockPolaroids.classList.remove('captions-ready');
+                unlockPolaroids.classList.remove('reveal-ready');
+                void unlockPolaroids.offsetWidth;
+                unlockPolaroids.classList.add('reveal-ready');
+
+                if (polaroidCaptionTimer) {
+                    window.clearTimeout(polaroidCaptionTimer);
+                }
+                const revealEndMs = (baseDelay + ((cards.length - 1) * 0.24) + 0.08 + 2.3) * 1000;
+                polaroidCaptionTimer = window.setTimeout(function () {
+                    unlockPolaroids.classList.add('captions-ready');
+                }, revealEndMs);
+            }
+
+            setLampState(true);
+            const introIgnitionMs = runTitleIgnition();
+            runInfoReveal(introIgnitionMs * 0.68);
+            runPolaroidReveal(introIgnitionMs * 0.38);
+
+            if (titleLampOnBtn) {
+                titleLampOnBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    setLampState(true);
+                });
+            }
+
+            if (titleLampOffBtn) {
+                titleLampOffBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    setLampState(false);
+                });
+            }
 
             const modeData = {
                 hire: {
@@ -1066,7 +1685,7 @@
                             image: 'dm_assets/P1400226.jpg',
                             title: '✉️ Email',
                             subtitle: 'Hire / Buttons / OTFN',
-                            href: 'contact.html',
+                            href: 'hire.html#contact-lanes',
                             external: false,
                             aria: 'Contact lane options'
                         }
@@ -1256,33 +1875,42 @@
             enterProfessionalFromHash();
             window.addEventListener('hashchange', enterProfessionalFromHash);
             // Overlay entry buttons
-            if (choicePro) choicePro.addEventListener('click', function(e) {
+            if (choiceExplore) choiceExplore.addEventListener('click', function(e) {
                 e.stopPropagation();
                 if (overlay) overlay.style.display = 'none';
                 setToggleState(true);
                 if (typeof unlockAudio === 'function') unlockAudio();
                 clearTimeout(overlayTimeout);
             });
-            if (choiceWhim) choiceWhim.addEventListener('click', function(e) {
+            if (choiceVibe) choiceVibe.addEventListener('click', function(e) {
                 e.stopPropagation();
                 window.location.href = 'whimsical.html';
+                clearTimeout(overlayTimeout);
+            });
+            if (choiceHire) choiceHire.addEventListener('click', function(e) {
+                e.stopPropagation();
+                window.location.href = 'hire.html#contact-lanes';
                 clearTimeout(overlayTimeout);
             });
             // Top toggles
-            btnProfessional.addEventListener('click', function(e) {
-                e.stopPropagation();
-                setToggleState(true);
-                if (overlay && overlay.style.display !== 'none') {
-                    overlay.style.display = 'none';
-                    if (typeof unlockAudio === 'function') unlockAudio();
-                }
-                clearTimeout(overlayTimeout);
-            });
-            btnWhimsical.addEventListener('click', function(e) {
-                e.stopPropagation();
-                window.location.href = 'whimsical.html';
-                clearTimeout(overlayTimeout);
-            });
+            if (btnProfessional) {
+                btnProfessional.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    setToggleState(true);
+                    if (overlay && overlay.style.display !== 'none') {
+                        overlay.style.display = 'none';
+                        if (typeof unlockAudio === 'function') unlockAudio();
+                    }
+                    clearTimeout(overlayTimeout);
+                });
+            }
+            if (btnWhimsical) {
+                btnWhimsical.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    window.location.href = 'whimsical.html';
+                    clearTimeout(overlayTimeout);
+                });
+            }
             // Do not auto-switch to professional on load
         });
         </script>
@@ -1393,7 +2021,7 @@
                 </a>
         <span style="font-size:0.95em; color:#cfcfcf; margin-left:10px;">✈️ 🧳 FLY ME OUT</span>
     </div>
-    <div style="margin-top:4px;font-size:0.95em;color:#cfcfcf;text-align:center;">&copy; 2026 Tess Devillier. All rights reserved.</div>
+    <div class="site-credit" style="margin-top:4px;font-size:0.95em;color:#cfcfcf;text-align:center;">&copy; 2026 Created by Tess Devillier with GitHub Copilot, Visual Studio Code, GitHub, and Cloudflare.</div>
     <style>
       footer a[aria-label]:hover, footer a[aria-label]:focus {
         color: var(--soft-peach-hover) !important;
@@ -1440,12 +2068,57 @@
                 display: none;
             }
 
-            .mobile-overlay-links {
-                display: flex;
+            .unlock-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
             }
 
-            .overlay-choice-group {
-                display: none !important;
+            .unlock-card {
+                padding: 12px;
+                border-radius: 14px;
+            }
+
+            .unlock-copy {
+                text-align: center;
+            }
+
+            .unlock-title-row {
+                align-items: center;
+            }
+
+            .title-lamp-controls {
+                justify-content: center;
+            }
+
+            .unlock-sub,
+            .unlock-blurb {
+                font-size: 0.93rem;
+                line-height: 1.38;
+            }
+
+            .unlock-chips,
+            .overlay-action-row {
+                justify-content: center;
+            }
+
+            .overlay-btn {
+                width: 100%;
+            }
+
+            .unlock-polaroids {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px;
+                max-width: 360px;
+                margin: 0 auto;
+            }
+
+            .polaroid {
+                padding: 6px 6px 9px;
+            }
+
+            .polaroid figcaption {
+                font-size: 0.82rem;
+                margin-top: 5px;
             }
 
             #music-unlock p,
@@ -1457,8 +2130,7 @@
                 text-shadow: -1px 0 var(--outline-brown), 0 1px var(--outline-brown), 1px 0 var(--outline-brown), 0 -1px var(--outline-brown) !important;
             }
 
-            #choice-professional,
-            #choice-whimsical {
+            .overlay-btn {
                 background: rgba(28, 32, 44, 0.92) !important;
                 border-color: var(--soft-peach) !important;
             }
@@ -1507,6 +2179,12 @@
 
             #vibe-text {
                 margin-top: 16px;
+            }
+
+            .site-credit {
+                font-size: 0.82rem !important;
+                line-height: 1.35;
+                padding: 0 6px;
             }
         }
 

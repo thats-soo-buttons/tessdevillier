@@ -979,6 +979,18 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
                 <button type="button" class="menu-btn" id="browserGo">Go</button>
                 <button type="button" class="menu-btn" id="browserSearch">Search</button>
               </div>
+              <div class="browser-recents" style="margin-top:6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+                <label for="browserRecent" style="font-size:11px;color:#333;white-space:nowrap;">Recently visited</label>
+                <select id="browserRecent" class="browser-input" style="max-width:260px;min-width:220px;">
+                  <option value="">Choose a recent page...</option>
+                  <option value="phosphornet-availability.html">Availability</option>
+                  <option value="phosphornet-pets.html">Pet Services</option>
+                  <option value="phosphornet-photography.html">Photography</option>
+                  <option value="phosphornet-consulting.html">Creative Consulting</option>
+                  <option value="phosphornet-worldbuilding.html">Worldbuilding</option>
+                  <option value="phosphornet-freesupport.html">Free Support</option>
+                </select>
+              </div>
               <div class="browser-frame">
                 <iframe id="browserFrame" title="Browser view" src="https://duckduckgo.com" sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer"></iframe>
               </div>
@@ -1492,9 +1504,11 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var browserGo = document.getElementById('browserGo');
       var browserSearch = document.getElementById('browserSearch');
       var browserHome = document.getElementById('browserHome');
+      var browserRecent = document.getElementById('browserRecent');
       var browserStatus = document.getElementById('browserStatus');
       var browserHistory = ['https://duckduckgo.com'];
       var historyIndex = 0;
+      var recentStorageKey = 'tessBrowserRecentPages';
       var photosWindow = document.getElementById('win-photos');
       var photoAlbumGrid = document.getElementById('photoAlbumGrid');
       var photoAlbumStatus = document.getElementById('photoAlbumStatus');
@@ -1621,6 +1635,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           browserHistory = browserHistory.slice(0, historyIndex + 1);
           browserHistory.push(url);
           historyIndex = browserHistory.length - 1;
+          recordRecentPage(url);
         }
 
         window.setTimeout(function () {
@@ -1672,6 +1687,75 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           navigateBrowser('https://duckduckgo.com', true);
         });
       }
+      function getStoredRecentPages() {
+        try {
+          var raw = window.localStorage.getItem(recentStorageKey);
+          var parsed = raw ? JSON.parse(raw) : [];
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (_) {
+          return [];
+        }
+      }
+
+      function setStoredRecentPages(items) {
+        try {
+          window.localStorage.setItem(recentStorageKey, JSON.stringify(items));
+        } catch (_) {}
+      }
+
+      function labelForRecentPage(url) {
+        if (!url) return 'Page';
+        if (/phosphornet-availability\.html/i.test(url)) return 'Availability';
+        if (/phosphornet-pets\.html/i.test(url)) return 'Pet Services';
+        if (/phosphornet-photography\.html/i.test(url)) return 'Photography';
+        if (/phosphornet-consulting\.html/i.test(url)) return 'Creative Consulting';
+        if (/phosphornet-worldbuilding\.html/i.test(url)) return 'Worldbuilding';
+        if (/phosphornet-freesupport\.html/i.test(url)) return 'Free Support';
+        if (/hire\.html/i.test(url)) return 'Hire Tess';
+        if (/whimsical\.html/i.test(url)) return 'Whimsical Desktop';
+        return url.replace(/^.*\//, '').replace(/\.html.*/i, '') || 'Page';
+      }
+
+      function renderRecentDropdown() {
+        if (!browserRecent) return;
+        var stored = getStoredRecentPages();
+        var merged = [];
+
+        function addRecent(url) {
+          if (!url) return;
+          if (merged.some(function (entry) { return entry.url === url; })) return;
+          merged.push({ url: url, label: labelForRecentPage(url) });
+        }
+
+        stored.forEach(function (entry) {
+          if (entry && entry.url) addRecent(entry.url);
+        });
+
+        [
+          'phosphornet-availability.html',
+          'phosphornet-pets.html',
+          'phosphornet-photography.html',
+          'phosphornet-consulting.html',
+          'phosphornet-worldbuilding.html',
+          'phosphornet-freesupport.html'
+        ].forEach(addRecent);
+
+        browserRecent.innerHTML = '<option value="">Choose a recent page...</option>' + merged.map(function (entry) {
+          return '<option value="' + entry.url.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '">' + entry.label.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</option>';
+        }).join('');
+      }
+
+      function recordRecentPage(url) {
+        if (!url) return;
+        var current = getStoredRecentPages();
+        current = current.filter(function (entry) { return entry && entry.url !== url; });
+        current.unshift({ url: url, label: labelForRecentPage(url) });
+        current = current.slice(0, 8);
+        setStoredRecentPages(current);
+        renderRecentDropdown();
+      }
+
+      renderRecentDropdown();
       if (browserBack) {
         browserBack.addEventListener('click', function () {
           if (historyIndex <= 0) return;
@@ -1679,6 +1763,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           var url = browserHistory[historyIndex];
           browserFrame.src = url;
           browserInput.value = url;
+          recordRecentPage(url);
         });
       }
       if (browserInput) {
@@ -1686,6 +1771,13 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           if (event.key === 'Enter') {
             navigateBrowser(browserInput.value, true);
           }
+        });
+      }
+      if (browserRecent) {
+        browserRecent.addEventListener('change', function () {
+          if (!browserRecent.value) return;
+          navigateBrowser(browserRecent.value, true);
+          browserRecent.value = '';
         });
       }
 

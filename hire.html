@@ -7,23 +7,35 @@
   <title>Inquiries + Availability | Tess Devillier</title>
   <style>
     :root {
-      --bg: #121212;
-      --card: #1a1a1a;
-      --ink: #e4e4e4;
-      --muted: #b2b2b2;
-      --line: #2a2a2a;
-      --accent: #d7d7d7;
-      --accent-2: #8e8e8e;
+      --bg: #1e232b;
+      --card: rgba(47, 55, 66, 0.62);
+      --ink: #e6e9ee;
+      --muted: #b7bec9;
+      --line: #5d6877;
+      --accent: #d4dbe6;
+      --accent-2: #a9b2bf;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
-      background: radial-gradient(circle at 82% 5%, rgba(80, 80, 80, 0.18), transparent 32%), var(--bg);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(150, 165, 185, 0.14), transparent 40%),
+        radial-gradient(circle at 88% 4%, rgba(112, 126, 145, 0.12), transparent 34%),
+        linear-gradient(165deg, #1a1f26 0%, #1f252e 54%, #262d37 100%);
       color: var(--ink);
       font-family: 'Montserrat', 'Segoe UI', sans-serif;
-      line-height: 1.6;
+      line-height: 1.68;
+      font-size: 17px;
       padding: 36px 18px;
+    }
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+    a:hover {
+      color: var(--ink);
     }
     .wrap {
       max-width: 760px;
@@ -43,7 +55,10 @@
       text-decoration: none;
       border-bottom: 1px solid transparent;
     }
-    .top a:hover { border-bottom-color: var(--accent-2); }
+    .top a:hover {
+      color: var(--ink);
+      border-bottom-color: var(--accent);
+    }
     header {
       margin-bottom: 30px;
       border-bottom: 1px solid var(--line);
@@ -58,7 +73,7 @@
     .sub {
       margin: 0;
       color: var(--accent-2);
-      font-size: 1rem;
+      font-size: 1.03rem;
     }
     .quick-select-wrap {
       margin-top: 14px;
@@ -74,7 +89,7 @@
     }
     .quick-select {
       width: 100%;
-      background: #171717;
+      background: rgba(43, 50, 60, 0.74);
       color: var(--ink);
       border: 1px solid var(--line);
       border-radius: 4px;
@@ -87,23 +102,27 @@
       border-radius: 6px;
       padding: 18px;
       margin-top: 14px;
+      box-shadow: 0 12px 24px rgba(7, 10, 14, 0.32);
+      backdrop-filter: blur(4px);
     }
     h2 {
       margin: 0 0 10px;
       font-size: 1.1rem;
       font-weight: 650;
+      color: var(--accent-2);
+      text-shadow: none;
       border-bottom: 1px solid var(--line);
       padding-bottom: 8px;
     }
     p {
       margin: 0 0 10px;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 1.02rem;
     }
     .card-list {
       margin: 8px 0 12px 18px;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.98rem;
     }
     .card-list li { margin-bottom: 7px; }
     .micro-note {
@@ -132,20 +151,32 @@
       transition: background-color 0.18s ease, border-color 0.18s ease;
     }
     .btn:hover {
-      background: #202020;
-      border-color: #454545;
+      background: rgba(173, 186, 206, 0.14);
+      border-color: #7b889c;
     }
     .btn.primary {
-      background: var(--ink);
-      color: #121212;
-      border-color: var(--ink);
+      background: linear-gradient(130deg, #d2dae6, #bcc7d6);
+      color: #1d2430;
+      border-color: #d9e2ef;
     }
-    .btn.primary:hover { background: #ffffff; }
+    .btn.primary:hover { background: linear-gradient(130deg, #dde4ef, #c8d2e0); }
     .social-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
+    }
+    .social-links {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px;
+    }
+    .social-links .social-btn {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 8px 8px;
+      font-size: 0.82rem;
+      white-space: nowrap;
     }
     .social-btn svg {
       width: 13px;
@@ -181,13 +212,15 @@
       border: 1px solid var(--line);
       border-radius: 4px;
       padding: 12px;
-      background: #161616;
+      background: rgba(39, 46, 56, 0.62);
+      backdrop-filter: blur(3px);
     }
     .inquire-pane h3,
     .inquire-call h3 {
       margin: 0 0 8px;
-      font-size: 0.94rem;
-      color: var(--accent);
+      font-size: 1rem;
+      color: var(--accent-2);
+      text-shadow: none;
       letter-spacing: 0.02em;
     }
     .inquire-call {
@@ -195,12 +228,15 @@
       border: 1px solid var(--line);
       border-radius: 4px;
       padding: 12px;
-      background: #161616;
+      background: rgba(39, 46, 56, 0.62);
+      backdrop-filter: blur(3px);
     }
     .section-title {
       margin-top: 32px;
       margin-bottom: 10px;
       font-size: 1.18rem;
+      color: var(--accent-2);
+      text-shadow: none;
       border-bottom: 1px solid var(--line);
       padding-bottom: 8px;
     }
@@ -213,7 +249,7 @@
     }
     .service-tab {
       border: 1px solid var(--line);
-      background: #151515;
+      background: rgba(43, 50, 61, 0.74);
       color: var(--muted);
       border-radius: 4px;
       padding: 10px 8px;
@@ -224,14 +260,14 @@
       transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
     }
     .service-tab:hover {
-      background: #1f1f1f;
+      background: rgba(70, 80, 96, 0.76);
       color: var(--ink);
-      border-color: #444;
+      border-color: #8b98ac;
     }
     .service-tab.active {
-      background: var(--ink);
-      color: #121212;
-      border-color: var(--ink);
+      background: linear-gradient(130deg, #d2dae6, #bcc7d6);
+      color: #1d2430;
+      border-color: #d9e2ef;
     }
     .service-panel {
       display: none;
@@ -260,8 +296,8 @@
       bottom: 16px;
       z-index: 40;
       text-decoration: none;
-      border: 1px solid #565656;
-      background: #1f1f1f;
+      border: 1px solid #7e8b9f;
+      background: linear-gradient(145deg, #3b4657, #2e3744);
       color: var(--ink);
       border-radius: 999px;
       padding: 10px 14px;
@@ -274,8 +310,8 @@
       transition: background-color 0.18s ease, border-color 0.18s ease;
     }
     .otfn-floater:hover {
-      background: #2a2a2a;
-      border-color: #808080;
+      background: linear-gradient(145deg, #465365, #353f4d);
+      border-color: #98a8bd;
     }
     .otfn-floater.is-hidden {
       transform: translateY(calc(100% + 16px));
@@ -285,6 +321,20 @@
     @media (max-width: 640px) {
       body { padding-bottom: 120px; }
       .links { grid-template-columns: 1fr; }
+      .social-links {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      .social-links .social-btn {
+        padding: 7px 6px;
+        font-size: 0.76rem;
+        gap: 4px;
+      }
+      .social-links .social-btn svg {
+        width: 11px;
+        height: 11px;
+      }
       .inquire-grid { grid-template-columns: 1fr; }
       .service-switcher { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .otfn-floater {
@@ -325,7 +375,7 @@
     <section id="contact-lanes" aria-label="Contact lanes">
       <article class="card" id="how-to-inquire">
         <h2>How To Inquire (Any Service)</h2>
-        <p><strong>Email:</strong> contact@tessdevillier.com</p>
+        <p><strong>Email:</strong> <a href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a></p>
         <div class="inquire-grid" aria-label="Inquiry email guidance">
           <div class="inquire-pane">
             <h3>Email Steps</h3>
@@ -351,6 +401,7 @@
             </ul>
           </div>
         </div>
+        <p class="micro-note" style="margin-top: 12px;">After you inquire, we can set up a free 15-minute meeting to make sure the project is a fit before booking.</p>
         <div class="inquire-call">
           <h3>Call/Text</h3>
           <p>Text/Call: <a href="tel:+12252834458">(225) 283-4458</a></p>
@@ -366,7 +417,7 @@
       <article class="card">
         <h2>Social + Community Channels</h2>
         <p>If social is easier, DM through your preferred platform. Discord inquiry routing is available through the inquiry lane.</p>
-        <div class="links">
+        <div class="links social-links">
           <a class="btn social-btn" href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm11.5 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
             Instagram
@@ -456,11 +507,27 @@
         <a class="btn" href="https://buymeacoffee.com/tessdevillier" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a>
       </div>
     </article>
+    <section id="faq" aria-label="FAQ and fine print">
+      <article class="card">
+        <details>
+          <summary class="notes-toggle">FAQ + Fine Print</summary>
+          <ul class="notes-list">
+            <li><strong>What is the free initial meeting?</strong> It is a short 15-minute intro call for creative consulting, photography inquiries, and pet-sitting meet-and-greets so we can see if it is a good fit and confirm the basics before booking.</li>
+            <li><strong>What should I send before the call?</strong> A short summary of your project, your ideal timeline, and any links, references, or questions you already have.</li>
+            <li><strong>What happens after the call?</strong> If it feels like a fit, I will send the next steps, pricing, or booking details.</li>
+            <li><strong>Do I have to book after the free meeting?</strong> No. It is simply a low-pressure intro to make sure we are on the same page.
+            </li>
+            <li><strong>Refunds and Policies:</strong> All sales are final unless otherwise discussed.</li>
+            <li><strong>Booking Policy:</strong> A retainer is required to reserve your date for pet sitting, photography, or consulting and will go toward the final cost. If you cancel 7 or more days before your service, the retainer is returned. If you cancel between 7 days and 48 hours before the service, 50% of the retainer is returned. Cancellations within 48 hours are not refunded.</li>
+            <li><strong>Custom Requests:</strong> Absolutely. Reach out and let us talk about your project.</li>
+          </ul>
+        </details>
+      </article>
+    </section>
 
     <div class="footer-links" aria-label="Quick links">
       <a href="#top">Back to top</a>
       <a href="index.html#professional">Home</a>
-      <a href="#contact-lanes">Contact Lanes</a>
     </div>
   </main>
   <a class="otfn-floater" id="otfn-floater" href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer" aria-label="Find out more at On The Fly Network">
