@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="One-page recap of Tess Devillier's website, projects, services, and creative work.">
+  <title>All In One Place | Tess Devillier</title>
+  <style>
+    :root {
+      --bg: #111722;
+      --panel: #1a2333;
+      --panel-2: #141d2c;
+      --ink: #f2f6ff;
+      --muted: #b8c1d8;
+      --accent: #f0c34a;
+      --accent-2: #7ed0ff;
+      --line: #283650;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(126, 208, 255, 0.18), transparent 35%),
+        radial-gradient(circle at 80% 0%, rgba(240, 195, 74, 0.14), transparent 30%),
+        var(--bg);
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 16px 44px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .top a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(160deg, var(--panel), var(--panel-2));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      letter-spacing: 0.02em;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 850px;
+    }
+
+    .toolbar {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .toolbar label {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .toolbar select {
+      appearance: none;
+      background: #fff;
+      color: #1e2432;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      min-width: min(100%, 340px);
+      font: inherit;
+    }
+
+    details.section {
+      margin-top: 12px;
+      background: linear-gradient(160deg, var(--panel), var(--panel-2));
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+      overflow: hidden;
+    }
+
+    details.section[open] {
+      border-color: #3b5375;
+    }
+
+    summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 14px 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: rgba(255, 255, 255, 0.02);
+      border-bottom: 1px solid transparent;
+    }
+
+    details.section[open] summary {
+      border-bottom-color: var(--line);
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .section-body {
+      padding: 14px 14px 16px;
+    }
+
+    .section-note {
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .side-scroll {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(250px, 320px);
+      gap: 10px;
+      overflow-x: auto;
+      padding: 2px 2px 8px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .tile {
+      scroll-snap-align: start;
+      background: #162034;
+      border: 1px solid #324461;
+      border-radius: 12px;
+      padding: 14px;
+      min-height: 165px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tile-link {
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .tile-link:hover,
+    .tile-link:focus-visible {
+      border-color: #4d6f99;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.28);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .kicker {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .tile h3 {
+      margin: 0;
+      font-size: 1.04rem;
+      color: var(--ink);
+    }
+
+    .tile p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .link-list {
+      margin: 6px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .sub-links {
+      margin: 6px 0 0 16px;
+      padding: 0;
+      list-style: disc;
+      display: grid;
+      gap: 6px;
+    }
+
+    .sub-links li {
+      color: var(--muted);
+    }
+
+    .growth-columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .growth-columns > li {
+      list-style: none;
+      border: 1px solid rgba(126, 208, 255, 0.28);
+      border-radius: 10px;
+      background: rgba(17, 28, 45, 0.45);
+      padding: 10px;
+    }
+
+    .growth-columns > li > a {
+      font-weight: 700;
+    }
+
+    .link-list a {
+      color: var(--accent-2);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .link-list a:hover,
+    .link-list a:focus-visible {
+      color: var(--accent);
+      text-decoration: underline;
+      outline: none;
+    }
+
+
+    .viewer-status {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .embed-frame {
+      width: 100%;
+      height: 680px;
+      border: 0;
+      background: #0f1726;
+    }
+
+    .footer-links {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      .toolbar select {
+        min-width: 100%;
+      }
+
+      .side-scroll {
+        grid-auto-columns: minmax(240px, 88vw);
+      }
+
+      .embed-frame {
+        height: 540px;
+      }
+
+      .growth-columns {
+        grid-template-columns: 1fr;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <div class="top">
+      <a href="index.html#professional">Back To Home</a>
+      <span style="color: var(--muted); font-size: 0.92rem;">Tess Does Stuff</span>
+    </div>
+
+    <section class="hero" aria-label="All in one place intro">
+      <h1>All In One Place</h1>
+      <p class="sub">Everything in one place: click links in Main Index or Services Index and the page loads directly in the Full Page Viewer below.</p>
+      <div class="toolbar">
+        <label for="quickFind">Quick Find</label>
+        <select id="quickFind">
+          <option value="">Jump to section</option>
+          <option value="index-links">Main Index</option>
+          <option value="services-index">Services Index</option>
+          <option value="full-viewer">Full Page Viewer</option>
+        </select>
+      </div>
+    </section>
+
+    <details class="section" id="index-links" open>
+      <summary>Main Index</summary>
+      <div class="section-body">
+        <p class="section-note">Quick links first, no extra digging.</p>
+        <div class="side-scroll">
+          <article class="tile">
+            <span class="kicker">Start Here</span>
+            <h3>Core Pages</h3>
+            <ul class="link-list">
+              <li><a href="index.html#professional">Home</a></li>
+              <li><a href="about.html">About Me</a></li>
+              <li><a href="hire.html#contact-lanes">Book / Contact</a></li>
+            </ul>
+          </article>
+          <article class="tile">
+            <span class="kicker">Professional</span>
+            <h3>Work Pages</h3>
+            <ul class="link-list">
+              <li><a href="services.html">Services</a></li>
+              <li><a href="availability.html">Availability</a></li>
+              <li><a href="documents.html">Documents</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+            </ul>
+          </article>
+          <article class="tile">
+            <span class="kicker">Portfolio</span>
+            <h3>Portfolio</h3>
+            <ul class="link-list">
+              <li><a href="portfolio.html">Open Portfolio</a></li>
+            </ul>
+          </article>
+          <article class="tile">
+            <span class="kicker">Growth</span>
+            <h3>Social Media &amp; More</h3>
+            <ul class="link-list growth-columns">
+              <li>
+                <a href="connect.html">Connect Page</a>
+                <ul class="sub-links">
+                  <li><a href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                  <li><a href="https://www.tiktok.com/@thatssoobuttons" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+                  <li><a href="https://twitch.tv/thats_soo_buttons" target="_blank" rel="noopener noreferrer">Twitch</a></li>
+                  <li><a href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener noreferrer">Discord</a></li>
+                  <li><a href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer">OTF Network</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="support.html">Support Page</a>
+                <ul class="sub-links">
+                  <li><a href="https://cash.app/$888buttons" target="_blank" rel="noopener noreferrer">Cash App</a></li>
+                  <li><a href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Ko-fi</a></li>
+                  <li><a href="https://buymeacoffee.com/tessdevillier" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a></li>
+                  <li><a href="twitch-prime.html">Free Prime Sub</a></li>
+                </ul>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </details>
+
+    <details class="section" id="services-index">
+      <summary>Services Index</summary>
+      <div class="section-body">
+        <p class="section-note">Direct links to each service lane.</p>
+        <div class="side-scroll">
+          <a class="tile tile-link" href="pets.html" aria-label="Open Pet and House Sitting page">
+            <span class="kicker">Care</span>
+            <h3>Pet and House Sitting</h3>
+            <p>Go to pets services and booking details.</p>
+          </a>
+          <a class="tile tile-link" href="photography/index.html" aria-label="Open Photography page">
+            <span class="kicker">Visual</span>
+            <h3>Photography</h3>
+            <p>Packages, pricing, and sample galleries.</p>
+          </a>
+          <a class="tile tile-link" href="worldbuilding.html" aria-label="Open Worldbuilding and Writing page">
+            <span class="kicker">Narrative</span>
+            <h3>Worldbuilding and Writing</h3>
+            <p>Narrative design, lore systems, and writing support.</p>
+          </a>
+          <a class="tile tile-link" href="creative-consulting.html" aria-label="Open Creative Consulting page">
+            <span class="kicker">Strategy</span>
+            <h3>Creative Consulting</h3>
+            <p>Calls and project planning support options.</p>
+          </a>
+        </div>
+      </div>
+    </details>
+
+    <details class="section" id="full-viewer">
+      <summary>Full Page Viewer</summary>
+      <div class="section-body">
+        <p class="section-note">Use the links above and the selected page will open here.</p>
+        <p class="viewer-status" id="viewerStatus">Viewer idle. Select any link from Main Index or Services Index.</p>
+        <iframe class="embed-frame" id="viewerFrame" title="Full Page Viewer" loading="lazy"></iframe>
+      </div>
+    </details>
+
+    <div class="footer-links" aria-label="Quick links">
+      <a href="#">Back to top</a>
+      <a href="index.html#professional">Home</a>
+      <a href="hire.html#contact-lanes">Book / Contact</a>
+      <a href="about.html">About Me</a>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var quickFind = document.getElementById('quickFind');
+      if (!quickFind) return;
+
+      quickFind.addEventListener('change', function () {
+        var id = quickFind.value;
+        if (!id) return;
+
+        var section = document.getElementById(id);
+        if (!section) return;
+
+        var parent = section.parentElement;
+        while (parent && parent.tagName && parent.tagName.toLowerCase() !== 'main') {
+          if (parent.tagName.toLowerCase() === 'details') {
+            parent.open = true;
+          }
+          parent = parent.parentElement;
+        }
+
+        if (section.tagName.toLowerCase() === 'details') {
+          section.open = true;
+        }
+
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        quickFind.selectedIndex = 0;
+      });
+
+      var viewerSection = document.getElementById('full-viewer');
+      var viewerFrame = document.getElementById('viewerFrame');
+      var viewerStatus = document.getElementById('viewerStatus');
+
+      function loadInViewer(url, label) {
+        if (!viewerSection || !viewerFrame) return;
+        viewerSection.open = true;
+        viewerFrame.setAttribute('src', url);
+        viewerFrame.setAttribute('title', (label || 'Selected page') + ' preview');
+        if (viewerStatus) {
+          viewerStatus.textContent = 'Now viewing: ' + (label || url);
+        }
+        viewerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function bindViewerLinks(containerId) {
+        var container = document.getElementById(containerId);
+        if (!container) return;
+
+        container.addEventListener('click', function (event) {
+          var link = event.target.closest('a[href]');
+          if (!link) return;
+          var href = link.getAttribute('href');
+          if (!href) return;
+          if (/^(https?:|mailto:|tel:)/i.test(href)) return;
+          if (event.button !== 0) return;
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          if (link.getAttribute('target') && link.getAttribute('target') !== '_self') return;
+
+          event.preventDefault();
+          loadInViewer(href, link.textContent.trim());
+        });
+      }
+
+      bindViewerLinks('index-links');
+      bindViewerLinks('services-index');
+    })();
+  </script>
+</body>
+</html>

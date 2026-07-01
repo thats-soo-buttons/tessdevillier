@@ -3,23 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | Tess Devillier</title>
+  <meta name="description" content="About Tess Devillier: creative portfolio, visual style, and the work behind the site.">
+  <title>About Me | Tess Devillier</title>
   <style>
-    body { background: #f7f7fa; color: #222; font-family: 'Montserrat', Arial, sans-serif; margin: 0; padding: 0; }
-    .container { max-width: 700px; margin: 0 auto; padding: 48px 16px 32px 16px; background: #fff; border-radius: 18px; box-shadow: 0 4px 24px rgba(60,60,90,0.08); }
-    h1 { font-size: 2.3em; color: #22334a; margin-bottom: 0.2em; }
-    .desc { font-size: 1.15em; margin-bottom: 2em; }
-    .back-link { display: block; margin-top: 32px; color: #4b7fa5; text-decoration: underline; }
-    .footer-links { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
-    .footer-links a { color: #4b7fa5; text-decoration: none; font-weight: 700; }
+    :root {
+      --bg: #111722;
+      --card: #1a2333;
+      --ink: #f2f6ff;
+      --muted: #b8c1d8;
+      --accent: #f0c34a;
+      --accent-2: #7ed0ff;
+      --line: #283650;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(126, 208, 255, 0.18), transparent 35%),
+        radial-gradient(circle at 80% 0%, rgba(240, 195, 74, 0.14), transparent 30%),
+        var(--bg);
+    }
+    a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 30px 16px 44px; }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+    .home-link { color: var(--muted); text-decoration: none; font-weight: 600; }
+    .hero {
+      background: linear-gradient(160deg, var(--card), #141d2c);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+      margin-bottom: 18px;
+    }
+    h1 { margin: 0; font-size: clamp(1.9rem, 4vw, 3rem); letter-spacing: 0.02em; }
+    .sub { margin-top: 8px; margin-bottom: 0; color: var(--muted); font-size: 1.04rem; line-height: 1.55; max-width: 820px; }
+    .tag {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(240, 195, 74, 0.12);
+      border: 1px solid rgba(240, 195, 74, 0.3);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+    .card {
+      background: linear-gradient(160deg, var(--card), #141d2c);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h2 { margin: 0 0 10px; font-size: 1.3rem; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.55; }
+    .about-copy p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .about-copy p:last-of-type { margin-bottom: 0; }
+    .card ul { margin: 8px 0 0 18px; padding: 0; color: var(--muted); line-height: 1.55; }
+    .actions { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 9px;
+      padding: 10px 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+    .btn.primary { background: var(--accent); color: #182032; }
+    .btn.secondary { background: transparent; color: var(--accent-2); border-color: #35506e; }
+    .footer-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .footer-links a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>About Tess Devillier</h1>
-    <div class="desc">
-      Tess Devillier is a creative professional based in Baton Rouge, specializing in media, photography, writing, and immersive storytelling. Her work blends professional expertise with whimsical, cinematic, and world-building elements. Tess is passionate about connecting people, fostering creativity, and making every project a unique experience.
+  <main class="wrap" role="main">
+    <div class="top">
+      <a class="home-link" href="index.html#professional">Back To Home</a>
+      <span style="color: var(--muted); font-size: 0.92rem;">Tess Does Stuff</span>
     </div>
+
+    <section class="hero" aria-label="About Tess">
+      <h1>About Me</h1>
+      <p class="sub"><strong>Hey, I'm Tess (or Buttons, depending on where you found me on the internet).</strong></p>
+      <span class="tag">Creative Director • Photographer • Writer • Worldbuilder</span>
+    </section>
+
+    <section aria-label="About narrative" style="margin-top: 16px;">
+      <article class="card about-copy" style="min-height: unset;">
+        <p>I usually just tell people I make stuff. Right now, my home base is Baton Rouge, but I've got a massive travel itch. My ultimate goal is to keep things mobile-taking my projects on the road, house-sitting in new cities, and just experiencing as many different places as possible.</p>
+        <p>I have always been obsessed with storytelling, and that spills over into pretty much everything I do. Most days, you can find me deep in some kind of world-building. That might mean writing narrative dialogue for indie games, running massive TTRPG campaigns, or building out <em>Xyzthians</em> (my living mythology project that blends books, music, and digital lore). Aesthetically, my brain pretty much lives in dark academia and gothic horror.</p>
+        <p>I love capturing the real, candid moments of everyday life, so whenever I'm out exploring a new spot, I've almost always got my camera in tow. I also love getting lost in audio production and seeing how sound, visuals, and words all piece together to create a specific feeling.</p>
+        <p>Beyond the creative projects, community is a huge deal to me. I stream over on Twitch with the Brigade (usually getting terrified in <em>Phasmophobia</em> or chilling in <em>Palia</em>), and I'm currently laying the groundwork for the On The Fly (OTF) Network. The entire idea behind OTF is to build a space where neurospicy and chronically ill creatives can collaborate and actually put life first without worry about missing out on pay-because we're humans before we're artists.</p>
+        <p>The honest truth? I am just here to bring ideas to life, find good stories, and fundamentally change how the world views creativity, pay, and lifestyle. I want to be the change I want to see, and I'm looking for people who get it and want to be a part of that shift. You can help by supporting my creative work, spreading the word about my services, or-and this is a big one-stepping up to collaborate. I am actively looking for someone who excels at grant proposals, fundraising, and non-profit management to help take the lead on the business side of OTF Network and bring this system-changing idea to life.</p>
+        <p>Please take a look around the website, share my social media content, or donate if you're able. Also, if you happen to have Amazon Prime, you can actually link your Amazon account to Twitch to get one free subscription every month. Using that free sub on my Twitch channel sends a couple of dollars my way at zero cost to you (you just have to remember to click it each month!).</p>
+        <p>Anyway, thank you-truly-for taking the time to read all of this. I really hope I can count on your support as I keep doing great things and putting new creative worlds out there.</p>
+        <div class="actions">
+          <a class="btn primary" href="hire.html">Hire / Inquire</a>
+          <a class="btn secondary" href="contact.html">Contact</a>
+          <a class="btn secondary" href="allinoneplace.html">All In One Place</a>
+        </div>
+      </article>
+    </section>
+
     <div class="footer-links" aria-label="Quick links">
       <a href="#">Back to top</a>
       <a href="index.html#professional">Home</a>
@@ -27,7 +133,6 @@
       <a href="contact.html">Contact</a>
       <a href="availability.html">Availability</a>
     </div>
-    <a href="index.html#professional" class="back-link">&larr; Back to Home</a>
-  </div>
+  </main>
 </body>
 </html>

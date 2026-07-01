@@ -930,9 +930,9 @@
               <div class="emoji">🎮</div>
               <div class="icon-label">Games</div>
             </button>
-            <button class="desktop-icon" data-open="floppy" aria-label="Open Hire Disk">
+            <button class="desktop-icon" data-open="floppy" aria-label="Open CV Disk">
               <div class="emoji">💾</div>
-              <div class="icon-label">Hire Disk (A:)</div>
+              <div class="icon-label">CV</div>
             </button>
             <button class="desktop-icon" data-open="connect" aria-label="Open Connect">
               <div class="emoji">💬</div>
@@ -1034,15 +1034,14 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
 
           <section class="window hidden win-border" id="win-floppy" style="top:64px;left:236px;width:294px;">
             <div class="title-bar" data-drag-handle>
-              <span>A:\\HIRE</span>
+              <span>A:\\CV</span>
               <div class="title-actions"><button type="button" data-close="floppy" aria-label="Close">x</button></div>
             </div>
             <div class="window-body win-inset">
-              <p>Reliable, creative, and collaborative services:</p>
-              <a href="phosphornet-pets.html" class="link-item">Pet + House Sitting</a>
-              <a href="phosphornet-photography.html" class="link-item">Photography</a>
-              <a href="phosphornet-worldbuilding.html" class="link-item">Worldbuilding</a>
-              <a href="phosphornet-consulting.html" class="link-item">Creative Consulting</a>
+              <p>Download my current CV:</p>
+              <a href="Tess-Devillier-CV.txt" class="link-item" download>Download CV (.txt)</a>
+              <a href="Tess-Devillier-CV.txt" class="link-item" target="_blank" rel="noopener noreferrer">View CV</a>
+              <a href="hire.html#contact-lanes" class="link-item">Book / Contact</a>
               <a href="mailto:contact@tessdevillier.com" class="link-item">contact@tessdevillier.com</a>
             </div>
           </section>
@@ -1172,7 +1171,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
               <div class="start-rail"><span>Tess95</span></div>
               <div class="start-items">
                 <div class="start-item" data-open="notepad">About Me</div>
-                <div class="start-item" data-open="floppy">Hire</div>
+                <div class="start-item" data-open="floppy">CV</div>
                 <div class="start-item" data-open="player">Watch and Listen</div>
                 <div class="start-item" data-open="games">Games</div>
                 <div class="start-item" data-open="browser">Web Browser</div>
@@ -1690,15 +1689,20 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         });
       }
 
-      var tracks = [
-        { name: "Why Can't We Hear Them.mp3", src: "dm_audio_web/Why Can't We Hear Them.mp3" },
-        { name: 'The Day The World Went Quiet.mp3', src: 'dm_audio_web/The Day The World Went Quiet.mp3' },
-        { name: 'Red Lining Demise.mp3', src: 'dm_audio_web/Red Lining Demise.mp3' },
-        { name: 'rawpiano1 cover.mp3', src: 'dm_audio_web/rawpiano1 cover.mp3' },
-        { name: 'noedits_rawpiano2.mp3', src: 'dm_audio_web/noedits_rawpiano2.mp3' },
-        { name: 'noedits_rawpiano1.mp3', src: 'dm_audio_web/noedits_rawpiano1.mp3' },
-        { name: 'Just Stop (In This Chaos).mp3', src: 'dm_audio_web/Just Stop (In This Chaos).mp3' }
+      var defaultTracks = [
+        { name: 'dreams-in-slow-motion-chill-lofi.mp3', src: 'dm_audio_playlist/dreams-in-slow-motion-chill-lofi.mp3' },
+        { name: 'track1.mp3', src: 'dm_audio_playlist/track1.mp3' },
+        { name: 'track2.mp3', src: 'dm_audio_playlist/track2.mp3' },
+        { name: 'lofi-buttons.mp3', src: 'dm_audio_playlist/lofi-buttons.mp3' },
+        { name: "Why Can't We Hear Them.mp3", src: "dm_audio_playlist/Why Can't We Hear Them.mp3" },
+        { name: 'The Day The World Went Quiet.mp3', src: 'dm_audio_playlist/The Day The World Went Quiet.mp3' },
+        { name: 'Red Lining Demise.mp3', src: 'dm_audio_playlist/Red Lining Demise.mp3' },
+        { name: 'rawpiano1 cover.mp3', src: 'dm_audio_playlist/rawpiano1 cover.mp3' },
+        { name: 'noedits_rawpiano2.mp3', src: 'dm_audio_playlist/noedits_rawpiano2.mp3' },
+        { name: 'noedits_rawpiano1.mp3', src: 'dm_audio_playlist/noedits_rawpiano1.mp3' },
+        { name: 'Just Stop (In This Chaos).mp3', src: 'dm_audio_playlist/Just Stop (In This Chaos).mp3' }
       ];
+      var tracks = [];
       var trackIndex = 0;
       var audio = document.getElementById('audioPlayer');
       var progressFill = document.getElementById('progressFill');
@@ -1722,10 +1726,51 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         }
       }
 
+      function toAudioUrl(path) {
+        return path.split('/').map(function (segment, i) {
+          return i === 0 ? segment : encodeURIComponent(segment);
+        }).join('/');
+      }
+
+      function normalizeTracks(payload) {
+        var list = Array.isArray(payload) ? payload : (payload && Array.isArray(payload.tracks) ? payload.tracks : []);
+        return list
+          .filter(function (item) {
+            return item && typeof item.src === 'string' && item.src.trim().length > 0;
+          })
+          .map(function (item) {
+            var src = item.src.trim();
+            var name = (typeof item.name === 'string' && item.name.trim())
+              ? item.name.trim()
+              : src.split('/').pop();
+            return { name: name, src: src };
+          });
+      }
+
+      function loadTracksFromPlaylist() {
+        return fetch('data/jukebox95-playlist.json', { cache: 'no-store' })
+          .then(function (response) {
+            if (!response.ok) throw new Error('playlist fetch failed');
+            return response.json();
+          })
+          .then(function (payload) {
+            var loadedTracks = normalizeTracks(payload);
+            if (!loadedTracks.length) throw new Error('playlist empty');
+            tracks = loadedTracks;
+          })
+          .catch(function () {
+            tracks = defaultTracks.slice();
+          });
+      }
+
       function setTrack(index, autoplay) {
+        if (!tracks.length) {
+          if (trackName) trackName.textContent = 'No playlist tracks found';
+          return;
+        }
         trackIndex = (index + tracks.length) % tracks.length;
         var track = tracks[trackIndex];
-        audio.src = track.src;
+        audio.src = toAudioUrl(track.src);
         trackName.textContent = '♫ ' + track.name;
         progressFill.style.width = '0%';
         if (autoplay) {
@@ -1784,7 +1829,9 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       });
       audio.addEventListener('ended', function () { setTrack(trackIndex + 1, true); });
       audio.volume = 0.35;
-      setTrack(0, false);
+      loadTracksFromPlaylist().then(function () {
+        setTrack(0, false);
+      });
 
       var catGrid = document.getElementById('catGrid');
       var catStatus = document.getElementById('catStatus');

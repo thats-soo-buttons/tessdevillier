@@ -20,5 +20,27 @@
     "collab_note": "Ethereal vocals, think FKA twigs energy but open to interpretation. Demo track available.",
     "demo_available": true,
     "status": "seeking collaborator"
+  },
+  {
+    "id": "the-crumbling",
+    "title": "The Crumbling",
+    "tags": ["lyrics", "musical", "ttrpg", "tumblr"],
+    "mood": "dramatic",
+    "preview": "Do you understand the severity, the brevity, the reasoning behind the crumbling...",
+    "full": "Do you understand the severity, the brevity, the reasoning behind the crumbling, the company's demise?\nYou traded my wisdom for a fool's paradise.\nYou chased their illusions, their glittering lies,\nAnd in that betrayal, a part of me died.\n\nI offered you truth, you chose their sweet deceit,\nNow you're reaping the sorrow, the bitter defeat.\nDon't come crawling back, with your charming facade,\nYour silver tongue's whispers are hollow and flawed.\n\nThis bridge is burned, there's no turning around,\nMy heart's closed to you, no solace is found.\nSo have a nice life, in the mess you have made,\nJust one last thing: don't ever speak my name.",
+    "collab_note": "A TTRPG-inspired musical number with theatrical delivery.",
+    "demo_available": false,
+    "status": "portfolio piece"
+  },
+  {
+    "id": "words-lyrics",
+    "title": "Words",
+    "tags": ["lyrics", "songwriting", "musical theatre", "tumblr"],
+    "mood": "confrontational",
+    "preview": "You say you're gonna be there, you say you're gonna change, but like Shakespeare once wrote: words...",
+    "full": "You say you're gonna be there,\nYou say you're gonna change,\nBut like Shakespeare once wrote...\n\nWords,\nwords,\nwords.\n\nThey are just sounds,\nForming syllables that sound\nSomething somewhat comforting,\nSomething sort of sincere.\n\nBut I am not buying it.\nTry it on someone\nWho hasn't had the experience\nOf you and your...\n\nWords (words)\nWords (words)\nWords (words).\n\nI remember the past.\nI remember your words.\nThe web of lies,\nThe passive-aggressive sighs.\nAnd I know that these are just...\n\nWords.\nWords.\nWords.",
+    "collab_note": "Lyricist credit: That's Soo Buttons / Tess Alexandra Devillier.",
+    "demo_available": false,
+    "status": "portfolio piece"
   }
 ]

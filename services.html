@@ -4,198 +4,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professional support services by Tess Devillier: pet sitting, house sitting, and digital organization in Baton Rouge and beyond. Clear pricing and compassionate care.">
-    <title>Professional Support Services | Tess Devillier - Baton Rouge</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Services hub for Tess Devillier: pet and house sitting, photography, worldbuilding and writing, and creative consulting.">
+    <title>Services Hub | Tess Devillier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@400;600;700&family=Patrick+Hand&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { background: #101820; color: #f5f5f5; font-family: 'Inter', Arial, sans-serif; }
-        .services-layout { max-width: 1200px; margin: 48px auto 40px auto; padding: 0 16px; }
-        .main-content { width: 100%; }
-        .service-section h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            margin-bottom: 32px;
-            color: #d4af37;
-            text-align: center;
-            letter-spacing: 2px;
+        :root {
+            --bg: #0d111a;
+            --panel: #151c29;
+            --ink: #eff3ff;
+            --muted: #b3bfd8;
+            --line: #273650;
+            --gold: #d4af37;
         }
-        .card-list {
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--ink);
+            font-family: 'Montserrat', Arial, sans-serif;
+            background:
+                radial-gradient(circle at 12% 5%, rgba(126, 208, 255, 0.16), transparent 30%),
+                radial-gradient(circle at 86% 2%, rgba(212, 175, 55, 0.15), transparent 26%),
+                var(--bg);
+        }
+
+        .wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 28px 16px 52px;
+        }
+
+        .top {
             display: flex;
-            flex-direction: column;
-            gap: 32px;
-            align-items: stretch;
-        }
-        .card {
-            background: linear-gradient(135deg, #181f2a 80%, #232b3a 100%);
-            border-radius: 18px;
-            box-shadow: 0 4px 24px #0004;
-            padding: 0;
-            color: #f5f5f5;
-            display: flex;
-            flex-direction: row;
-            align-items: stretch;
-            border: 1.5px solid #232b3a;
-            min-height: 180px;
-            transition: box-shadow 0.18s, border-color 0.18s;
-        }
-        .card:hover {
-            box-shadow: 0 8px 32px #0006;
-            border-color: #d4af37;
-        }
-        .card-icon {
-            font-size: 2.5rem;
-            background: #232b3a;
-            border-radius: 18px 0 0 18px;
-            min-width: 90px;
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            padding: 0 24px;
+            gap: 10px;
+            margin-bottom: 16px;
         }
-        .card-content {
-            flex: 1;
-            padding: 28px 32px 24px 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .card-header-row {
-            display: flex;
-            align-items: baseline;
-            gap: 18px;
-            margin-bottom: 8px;
-        }
-        .card h3 {
-            font-size: 1.25rem;
-            color: #d4af37;
-            font-family: 'Cinzel', serif;
+
+        .top a {
+            color: var(--muted);
+            text-decoration: none;
             font-weight: 700;
-            letter-spacing: 1px;
-            margin: 0;
         }
-        .price {
-            color: #fff;
-            background: #d4af37;
-            border-radius: 6px;
-            padding: 3px 12px;
-            font-weight: 600;
-            font-size: 1.08em;
+
+        .hero {
+            background: linear-gradient(160deg, #171f2f, #101725);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 16px;
+        }
+
+        h1 {
             margin: 0;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.04em;
+            font-size: clamp(1.8rem, 4vw, 2.9rem);
+            color: var(--gold);
+        }
+
+        .sub {
+            margin: 10px 0 0;
+            color: var(--muted);
+            line-height: 1.55;
+            max-width: 800px;
+        }
+
+        .hub-section {
+            border-radius: 16px;
+            border: 1px solid transparent;
+            margin-top: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+        }
+
+        .hub-header {
+            padding: 16px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hub-header h2 {
+            margin: 0;
+            font-size: 1.25rem;
+            letter-spacing: 0.02em;
+        }
+
+        .chip {
             display: inline-block;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.35);
         }
-        .card ul {
-            margin: 10px 0 0 18px;
-            padding-left: 0;
+
+        .hub-body {
+            padding: 18px;
         }
-        .card ul li {
-            margin-bottom: 6px;
-            font-size: 1em;
+
+        .hub-body p {
+            margin: 0;
+            line-height: 1.58;
         }
-        .card p {
-            margin: 8px 0 0 0;
-            font-size: 1.04em;
+
+        .detail-grid {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
         }
-        @media (max-width: 900px) {
-            .card-list { gap: 24px; }
-            .card { flex-direction: column; min-height: unset; }
-            .card-icon { border-radius: 18px 18px 0 0; min-width: unset; padding: 18px 0; justify-content: flex-start; }
-            .card-content { padding: 18px 18px 18px 18px; }
+
+        .detail-card {
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .detail-card h3 {
+            margin: 0 0 6px;
+            font-size: 1rem;
+        }
+
+        .detail-card p {
+            color: inherit;
+            opacity: 0.9;
+            font-size: 0.94rem;
+        }
+
+        .actions {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            border-radius: 10px;
+            padding: 9px 13px;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+
+        .btn.alt {
+            background: transparent;
+        }
+
+        .pets {
+            background: linear-gradient(155deg, #fff7ea, #f5f0e5);
+            border-color: #e4d9c5;
+            color: #5f5a55;
+        }
+
+        .pets .hub-header h2 {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.65rem;
+            color: #4f87bf;
+        }
+
+        .pets .chip { color: #4f87bf; border-color: #4f87bf55; }
+        .pets .btn { background: #4f87bf; color: #ffffff; }
+        .pets .btn.alt { color: #4f87bf; border-color: #4f87bf66; }
+
+        .photo {
+            background: linear-gradient(160deg, #111b29, #0b1018);
+            border-color: #2a3952;
+            color: #eff4ff;
+        }
+
+        .photo .hub-header h2 {
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: #f2bf64;
+        }
+
+        .photo .chip { color: #77c9ff; border-color: #77c9ff66; }
+        .photo .btn { background: #f2bf64; color: #1a2333; }
+        .photo .btn.alt { color: #77c9ff; border-color: #4a688c; }
+
+        .world {
+            background: linear-gradient(160deg, #2a202a, #1b171b);
+            border-color: #4e3d4a;
+            color: #efe6d8;
+        }
+
+        .world .hub-header h2 { color: #d9c4a9; }
+        .world .chip { color: #9a7a84; border-color: #9a7a8466; }
+        .world .btn { background: #4e1a2a; color: #f3e7d8; }
+        .world .btn.alt { color: #64735f; border-color: #64735f66; }
+
+        .consult {
+            background: linear-gradient(160deg, #2b212a, #231d23);
+            border-color: #5a4a5f;
+            color: #efe6d8;
+        }
+
+        .consult .hub-header h2 { color: #f2dfc8; }
+        .consult .chip { color: #64735f; border-color: #64735f66; }
+        .consult .btn { background: #64735f; color: #efe6d8; }
+        .consult .btn.alt { color: #f2dfc8; border-color: #8f6f78; }
+
+        .footer-links {
+            margin-top: 22px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .footer-links a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (max-width: 860px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-<main class="services-layout" role="main">
-    <section class="main-content" style="margin:auto;" aria-label="Professional Support Services">
-        <h2>Professional Support Services</h2>
-        <div style="text-align:center; margin-bottom:32px; font-size:1.08em; color:#d4af37; letter-spacing:1px;">
-            Local to Baton Rouge &nbsp;|&nbsp; Available to Travel / Fly Out
+<main class="wrap" role="main">
+    <div class="top">
+        <a href="index.html#professional">Back To Home</a>
+        <span style="color: var(--muted); font-size: 0.92rem;">Tess Does Stuff</span>
+    </div>
+
+    <section class="hero" aria-label="Services intro">
+        <h1>Services Hub</h1>
+        <p class="sub">One page, four lanes. Each section keeps the vibe of its own full page so you can feel the tone and choose the right fit fast.</p>
+    </section>
+
+    <section class="hub-section pets" aria-label="Pet and house sitting services">
+        <div class="hub-header">
+            <h2>Pet and House Sitting</h2>
+            <span class="chip">Pets page vibe</span>
         </div>
-        <div style="text-align:center; margin-bottom:28px; display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
-            <a href="pets.html" style="display:inline-block; color:#101820; background:#d4af37; text-decoration:none; padding:10px 18px; border-radius:999px; font-weight:700; border:1px solid #d4af37;">View the Pets Page</a>
-            <a href="pet-gallery.html" style="display:inline-block; color:#d4af37; background:transparent; text-decoration:none; padding:10px 18px; border-radius:999px; font-weight:700; border:1px solid #d4af37;">🐾 Pet Photo Gallery</a>
-            <a href="creative.html" style="display:inline-block; color:#d4af37; background:transparent; text-decoration:none; padding:10px 18px; border-radius:999px; font-weight:700; border:1px solid #d4af37;">✍️ Creative Portfolio</a>
-        </div>
-        <div class="card-list" role="list">
-                        <div class="card" role="listitem">
-                            <div class="card-icon" aria-label="Digital Organization">💻</div>
-                            <div class="card-content">
-                                <div class="card-header-row">
-                                    <h3>Digital Organization</h3>
-                                    <span class="price">$20/hour</span>
-                                    <span class="price" style="font-size:0.95em; color:#b88e1a; background:#232b3a;">Senior (65+): $15/hour</span>
-                                </div>
-                                <p>Messy desktop? Files scattered everywhere? Storage system that isn't working for you?</p>
-                                <p>I'll help you regain control of your digital life:</p>
-                                <ul>
-                                    <li>Desktop cleanup and organization</li>
-                                    <li>Folder structure setup that actually makes sense</li>
-                                    <li>File sorting and renaming systems</li>
-                                    <li>Backing up and migrating files to Google Drive</li>
-                                    <li>Custom organization system tailored to how you work</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card" role="listitem">
-                            <div class="card-icon" aria-label="Pet Sitting Drop-In">🐕</div>
-                            <div class="card-content">
-                                <div class="card-header-row">
-                                    <h3>Pet Sitting (Drop-In)</h3>
-                                    <span class="price">$25/visit</span>
-                                    <span class="price" style="font-size:0.95em; color:#b88e1a; background:#232b3a;">+ $10/visit each add'l pet</span>
-                                </div>
-                                <p>Quick check-ins for your fur babies while you're at work or out for the day.</p>
-                                <ul>
-                                    <li>Feeding, fresh water, treats</li>
-                                    <li>Potty break or short walk</li>
-                                    <li>Playtime and companionship</li>
-                                    <li>Photo/text updates</li>
-                                    <li>Free opt-in: Intuitive dog training</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card" role="listitem">
-                            <div class="card-icon" aria-label="Pet Sitting Full Day">🐕</div>
-                            <div class="card-content">
-                                <div class="card-header-row">
-                                    <h3>Pet Sitting (Full Day)</h3>
-                                    <span class="price">$60/day</span>
-                                    <span class="price" style="font-size:0.95em; color:#b88e1a; background:#232b3a;">+ $20/day each add'l pet</span>
-                                </div>
-                                <p>All-day care when you need extended coverage without overnight.</p>
-                                <ul>
-                                    <li>Multiple feedings, walks, and potty breaks throughout the day</li>
-                                    <li>Extended playtime and companionship</li>
-                                    <li>Medication administration if needed</li>
-                                    <li>Photo/text updates</li>
-                                    <li>Free opt-in: Intuitive dog training</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card" role="listitem">
-                            <div class="card-icon" aria-label="House and Pet Sitting Overnight">🏠</div>
-                            <div class="card-content">
-                                <div class="card-header-row">
-                                    <h3>House + Pet Sitting (Overnight)</h3>
-                                    <span class="price">$100/night (1 pet incl.)</span>
-                                    <span class="price" style="font-size:0.95em; color:#b88e1a; background:#232b3a;">+ $30/night each add'l pet</span>
-                                </div>
-                                <p>Peace of mind for Baton Rouge homeowners while you're away.</p>
-                                <ul>
-                                    <li>Overnight in-home presence for property security</li>
-                                    <li>Mail and package collection</li>
-                                    <li>Plant care and watering</li>
-                                    <li>Pet care: feeding, walks, playtime, medication if needed</li>
-                                    <li>Daily updates and photos</li>
-                                    <li>Free opt-in: Intuitive dog training</li>
-                                </ul>
-                                <p style="font-size:0.95em; color:#d4af37; margin-top:10px;"><strong>The Explorer's Window:</strong> I reserve up to 4 hours per day outside the house for errands or creative work.</p>
-                                <p style="font-size:0.95em; color:#d4af37; margin-top:10px;"><strong>Fly Me Out:</strong> Travel-ready for extended sits outside Greater Baton Rouge. Client covers travel/lodging.</p>
-                                <p style="font-size:0.95em; color:#fff; margin-top:10px;"><strong>Required:</strong> "Meet & Greet" for all new clients and pets.</p>
-                            </div>
-                        </div>
+        <div class="hub-body">
+            <p>Drop-ins, full-day coverage, and overnight support with thoughtful updates and a calm routine for pets and homes.</p>
+            <div class="detail-grid">
+                <article class="detail-card">
+                    <h3>Drop-In Visits</h3>
+                    <p>Quick care visits for feeding, playtime, potty breaks, and check-ins while you are out.</p>
+                </article>
+                <article class="detail-card">
+                    <h3>Full Day / Overnight</h3>
+                    <p>Longer coverage options for homes that need all-day or overnight presence.</p>
+                </article>
+            </div>
+            <div class="actions">
+                <a class="btn" href="pets.html">Open Pets Page</a>
+                <a class="btn alt" href="pet-gallery.html">Pet Gallery</a>
+            </div>
         </div>
     </section>
+
+    <section class="hub-section photo" aria-label="Photography services">
+        <div class="hub-header">
+            <h2>Photography</h2>
+            <span class="chip">Photography page vibe</span>
+        </div>
+        <div class="hub-body">
+            <p>Three shoot styles tuned for mood and intent: Mini, Natural Light, and Cinematic Experience.</p>
+            <div class="detail-grid">
+                <article class="detail-card">
+                    <h3>Mini Shoot</h3>
+                    <p>Quick sessions for portraits, updates, or content refresh without full-session scope.</p>
+                </article>
+                <article class="detail-card">
+                    <h3>Natural / Cinematic</h3>
+                    <p>Choose grounded realism or stylized visual storytelling depending on project mood.</p>
+                </article>
+            </div>
+            <div class="actions">
+                <a class="btn" href="photography/index.html">Open Photography Page</a>
+                <a class="btn alt" href="photos.html">View Photo Collections</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="hub-section world" aria-label="Worldbuilding and writing services">
+        <div class="hub-header">
+            <h2>Worldbuilding and Writing</h2>
+            <span class="chip">Worldbuilding page vibe</span>
+        </div>
+        <div class="hub-body">
+            <p>Story systems, lore architecture, and narrative structure for projects that need cohesion, depth, and voice.</p>
+            <div class="detail-grid">
+                <article class="detail-card">
+                    <h3>Lore Sprint</h3>
+                    <p>Fast foundational pass for setting rules, tone, and core identity.</p>
+                </article>
+                <article class="detail-card">
+                    <h3>Narrative Build</h3>
+                    <p>Expanded planning with factions, arcs, and documentation for active development.</p>
+                </article>
+            </div>
+            <div class="actions">
+                <a class="btn" href="worldbuilding.html">Open Worldbuilding Page</a>
+                <a class="btn alt" href="writing.html">Writing Page</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="hub-section consult" aria-label="Creative consulting services">
+        <div class="hub-header">
+            <h2>Creative Consulting</h2>
+            <span class="chip">Consulting page vibe</span>
+        </div>
+        <div class="hub-body">
+            <p>Strategic support for projects needing sharper messaging, clearer priorities, and an execution plan that actually moves.</p>
+            <div class="detail-grid">
+                <article class="detail-card">
+                    <h3>Consult Formats</h3>
+                    <p>Free fit-check consults, full strategy calls, follow-ups, and monthly advisory options.</p>
+                </article>
+                <article class="detail-card">
+                    <h3>Use Cases</h3>
+                    <p>Brand positioning, rollout planning, creative roadmaps, and decision support.</p>
+                </article>
+            </div>
+            <div class="actions">
+                <a class="btn" href="creative-consulting.html">Open Consulting Page</a>
+                <a class="btn alt" href="contact.html">Book Inquiry</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-links" aria-label="Quick links">
+        <a href="#">Back to top</a>
+        <a href="allinoneplace.html">All In One Place</a>
+        <a href="hire.html">Hire / Inquire</a>
+        <a href="contact.html">Contact</a>
+    </div>
 </main>
 </body>
 </html>

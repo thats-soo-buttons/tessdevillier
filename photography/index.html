@@ -216,6 +216,26 @@
             color: #2b374e;
         }
 
+        .panel-mini {
+            background-image: url('../dm_assets/P1430442-2.jpg');
+            background-color: #120f18;
+        }
+
+        .panel-mini::before {
+            background:
+                linear-gradient(180deg, rgba(10,8,18,0.24) 0%, rgba(18,15,24,0.78) 82%),
+                linear-gradient(135deg, rgba(242,191,100,0.12), rgba(119,201,255,0.08));
+        }
+
+        .panel-mini .show-copy h3 {
+            color: #f2bf64;
+            text-shadow: 0 0 10px rgba(242,191,100,0.24);
+        }
+
+        .panel-mini .show-copy p {
+            color: #efe7f7;
+        }
+
         .panel-cinematic {
             background-image: url('../helixotopeexample.jpg');
             background-color: #050a06;
@@ -392,7 +412,7 @@
         <section class="hero" aria-label="Photography intro">
             <p class="eyebrow">Tess Devillier</p>
             <h1>Tess Does Photography</h1>
-            <p class="lead">Portraits with story and atmosphere. This page uses the same panel energy as the homepage: compare the two shoot styles side by side, then drag the divider to focus on the package you want.</p>
+            <p class="lead">Portraits with story and atmosphere. This page uses the same panel energy as the homepage: compare the three shoot styles side by side, then drag the divider to focus on the package you want.</p>
             <div class="cta-row">
                 <a class="btn primary" href="../contact.html">Book A Session</a>
                 <a class="btn secondary" href="mailto:contact@tessdevillier.com?subject=Photography%20Session%20Inquiry">Email Photography Inquiry</a>
@@ -407,6 +427,12 @@
                     <div class="show-copy">
                         <h3>Natural Light</h3>
                         <p>Clean, warm, and candid storytelling in daylight with minimal setup and an organic flow.</p>
+                    </div>
+                </a>
+                <a class="show-panel panel-mini" href="#packages" data-package="mini" aria-label="Show mini shoot package">
+                    <div class="show-copy">
+                        <h3>Mini Shoot</h3>
+                        <p>A shorter, lower-cost session for quick portraits, updates, and content refreshes.</p>
                     </div>
                 </a>
                 <a class="show-panel panel-cinematic" href="#packages" data-package="cinematic" aria-label="Show cinematic package">
@@ -435,6 +461,21 @@
                         <li>Image mix: 5 environment/detail shots + 20 subject-focused portraits</li>
                         <li>Online delivery gallery in 7 to 10 days</li>
                         <li>Additional edited images: $12 each</li>
+                    </ul>
+                </article>
+
+                <article class="package package-option" id="package-mini" aria-label="Mini shoot photography package">
+                    <h3>Mini Shoot</h3>
+                    <div class="price">$100</div>
+                    <p class="muted">A quick, affordable session for fresh portraits, content updates, or a small set of standout images.</p>
+                    <ul>
+                        <li>20 minute shoot</li>
+                        <li>1 location in Baton Rouge area</li>
+                        <li>1 outfit</li>
+                        <li>8 edited high-resolution images guaranteed</li>
+                        <li>Image mix: 2 detail shots + 6 subject-focused portraits</li>
+                        <li>Online delivery gallery in 5 to 7 days</li>
+                        <li>Additional edited images: $15 each</li>
                     </ul>
                 </article>
 
@@ -526,25 +567,29 @@
         (function () {
             var chooser = document.querySelectorAll('[data-package]');
             var packageNatural = document.getElementById('package-natural');
+            var packageMini = document.getElementById('package-mini');
             var packageCinematic = document.getElementById('package-cinematic');
             var packagesSection = document.getElementById('packages');
             var galleryShots = document.querySelectorAll('[data-gallery]');
             var galleryModeLabel = document.getElementById('gallery-mode-label');
 
-            if (!chooser.length || !packageNatural || !packageCinematic || !packagesSection) return;
+            if (!chooser.length || !packageNatural || !packageMini || !packageCinematic || !packagesSection) return;
 
             function setActivePackage(mode) {
                 var isNatural = mode === 'natural';
+                var isMini = mode === 'mini';
                 packageNatural.classList.toggle('active', isNatural);
-                packageCinematic.classList.toggle('active', !isNatural);
+                packageMini.classList.toggle('active', isMini);
+                packageCinematic.classList.toggle('active', mode === 'cinematic');
 
                 galleryShots.forEach(function (shot) {
                     var shotMode = shot.getAttribute('data-gallery');
-                    shot.classList.toggle('hidden', shotMode !== mode);
+                    var visibleMode = mode === 'mini' ? 'natural' : mode;
+                    shot.classList.toggle('hidden', shotMode !== visibleMode);
                 });
 
                 if (galleryModeLabel) {
-                    galleryModeLabel.textContent = isNatural ? 'Natural Light' : 'Cinematic Experience';
+                    galleryModeLabel.textContent = mode === 'mini' ? 'Mini Shoot' : (isNatural ? 'Natural Light' : 'Cinematic Experience');
                 }
 
                 chooser.forEach(function (link) {
@@ -555,7 +600,7 @@
             chooser.forEach(function (link) {
                 link.addEventListener('click', function (event) {
                     event.preventDefault();
-                    var mode = link.getAttribute('data-package') === 'cinematic' ? 'cinematic' : 'natural';
+                    var mode = link.getAttribute('data-package') === 'cinematic' ? 'cinematic' : (link.getAttribute('data-package') === 'mini' ? 'mini' : 'natural');
                     setActivePackage(mode);
                     packagesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });

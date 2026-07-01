@@ -1,17 +1,12 @@
 [
   {
     "id": "photos-the-gang",
-    "title": "Uploaded Photos",
-    "description": "Photo albums and gallery sets. These files live in dm_assets and are listed here by relative path.",
-    "tags": ["gallery", "photos", "albums"],
     "albums": [
       {
         "id": "album-dm-assets",
         "title": "Main Uploads",
         "photos": [
           "dm_assets/ColoringClub211.jpg",
-          "dm_assets/couch.jpg",
-          "dm_assets/house-petsitting-photo.jpg",
           "dm_assets/P1140292 copy.jpg",
           "dm_assets/P1140393.jpg",
           "dm_assets/P1140442.jpg",
@@ -80,19 +75,6 @@
           "dm_assets/_1420346-2.jpg",
           "dm_assets/_1420432.jpg"
         ]
-      }
-    ]
-  },
-  {
-    "id": "photos-add-yours",
-    "title": "Add Your Album Here",
-    "description": "Update this file to add more galleries. For each album, list image paths in the photos array.",
-    "tags": ["how to update", "docs"],
-    "albums": [
-      {
-        "id": "album-template",
-        "title": "Template Album",
-        "photos": []
       }
     ]
   }

@@ -31,6 +31,26 @@
         .writing-body.open { display: block; }
         .writing-text { white-space: pre-wrap; color: #e0e0e0; line-height: 1.9; font-size: .97em; margin: 20px 0; }
         .loading { text-align: center; color: #555; padding: 60px 0; }
+        .discord-cta {
+            border: 1px solid #3a2d16;
+            background: linear-gradient(140deg, #16120c, #0f0f0f);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin: 0 auto 26px;
+            color: #d7c7ad;
+            max-width: 760px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+        }
+        .discord-cta p { margin: 0; line-height: 1.5; }
+        .discord-cta a {
+            display: inline-block;
+            margin-top: 8px;
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: .4px;
+        }
+        .discord-cta a:hover { text-decoration: underline; }
         @media (max-width: 600px) { h1 { font-size: 1.7rem; } }
     </style>
 </head>
@@ -39,6 +59,10 @@
     <a href="index.html#professional" class="back-link">← back</a>
     <h1>WRITING</h1>
     <p class="tagline">Fiction snippets · Narrative design · Writing prompts</p>
+    <div class="discord-cta" aria-label="Discord writing community invite">
+        <p>Want more writing prompts, live workshops, and free creative resources/services? Join the Discord writing space.</p>
+        <a href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener noreferrer">Join the Discord community</a>
+    </div>
     <div class="filter-bar">
         <button class="filter-btn active" onclick="filterBy('all', this)">All</button>
         <button class="filter-btn" onclick="filterBy('snippet', this)">Snippets</button>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://open.spotify.com https://drive.google.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://i.imgur.com; connect-src 'self' https://open.spotify.com https://drive.google.com;">
     <meta name="description" content="Tess Devillier: Tess Does Stuff professional services, photography, writing, and creative work. Choose your vibe: professional, whimsical, or both. Baton Rouge & beyond.">
     <title>Tess Devillier | Professional & Whimsical Services in Baton Rouge</title>
     <style>
@@ -395,6 +395,22 @@
             border-radius: 12px;
             padding: 8px 10px;
             backdrop-filter: blur(6px);
+        }
+
+        #audio-controls {
+            position: fixed !important;
+            right: 16px;
+            bottom: 36px;
+            z-index: 240;
+            background: rgba(8, 10, 16, 0.56);
+            border: 1px solid rgba(244, 230, 218, 0.22);
+            border-radius: 12px;
+            padding: 8px 10px;
+            backdrop-filter: blur(6px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
         }
 
         #music-unlock p,
@@ -805,7 +821,7 @@
             <a href="connect.html">CONNECT</a>
             <a href="support.html">SUPPORT</a>
         </div>
-        <p style="font-size:1.18em; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:600; margin-bottom: 1.5em;">Well Hello There! Glad you're here. I'm Tess aka Buttons – pet/housesitter, writer, photographer, and creative community builder.<br><br>Explore, collaborate, or just say hi.<br>Like what you see? Check out the support options below.</p>
+        <p style="font-size:1.18em; color:#ffd700; font-family:'Montserrat',sans-serif; font-weight:600; margin-bottom: 1.5em;">Well Hello There! Glad you're here. I'm Tess aka Buttons – pet/housesitter, writer, photographer, and creative community builder.<br><br>This is my portfolio and booking hub.<br>Explore the work, hire me, or just say hi.</p>
         <div style="margin-top: 1.5em;">
             <strong>Support Links:</strong><br>
             <a href="https://ko-fi.com/thatssoobuttons" target="_blank" style="color:#ffd700; text-decoration:underline;">Ko-fi: ko-fi.com/thatssoobuttons</a><br>
@@ -857,6 +873,13 @@
             <div id="mode-toggle" style="display:flex; gap:18px; justify-content:center; align-items:center; margin: 18px 0 0 0; pointer-events:auto;">
                 <button id="btn-professional" type="button" style="background:rgba(40,40,40,0.55); border:2px solid #ffd700; color:#ffd700; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Professional</button>
                 <button id="btn-whimsical" type="button" style="background:rgba(40,40,40,0.35); border:2px solid #fff; color:#fff; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Whimsical</button>
+            </div>
+            <div id="audio-controls">
+                <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Pause</button>
+                <label style="color:#ffd700;font-size:0.95em;">
+                    Volume
+                    <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.4" style="vertical-align:middle;">
+                </label>
             </div>
         </header>
 
@@ -1308,13 +1331,6 @@
 </main>
 
 <footer style="position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.95rem; opacity: 0.95; color: #fff; z-index: 50; background: rgba(8,10,16,0.42); backdrop-filter: blur(6px); padding: 8px 12px; border-radius: 12px; width: min(980px, calc(100vw - 24px));" role="contentinfo">
-    <div id="audio-controls" style="margin-bottom:10px; display:flex; justify-content:center; align-items:center; gap:18px;">
-        <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Pause</button>
-        <label style="color:#ffd700;font-size:0.95em;">
-            Volume
-            <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.4" style="vertical-align:middle;">
-        </label>
-    </div>
     <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.95rem; margin-top: 8px;">
         <!-- FAQ/Fine Print link removed as requested -->
     </div>
@@ -1356,29 +1372,26 @@
         </script>
         <!-- Cleaned up: no lone dot here -->
     </div>
-    <div style="margin-top:6px; font-size:1.1em; display:flex; justify-content:center; gap:18px; align-items:center;">
+    <div aria-label="Quick Jump Menu" style="margin-top:8px; display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap; font-size:0.95rem;">
         <a href="https://www.instagram.com/thatssoobuttons" target="_blank" aria-label="Instagram" style="color:#fff;transition:color 0.2s;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><circle cx="17.5" cy="6.5" r="1.5"/></svg>
         </a>
         <a href="https://www.tiktok.com/@thatssoobuttons" target="_blank" aria-label="TikTok" style="color:#fff;transition:color 0.2s;">
-            <svg width="22" height="22" viewBox="0 0 48 48" fill="currentColor" style="vertical-align:middle;"><path d="M41.5 15.5c-3.6 0-6.5-2.9-6.5-6.5h-5v24.1c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4c.7 0 1.4.2 2 .5v-5.2c-.7-.1-1.3-.2-2-.2-5 0-9 4-9 9s4 9 9 9 9-4 9-9V21.2c2 1.1 4.3 1.8 6.5 1.8v-7.5z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 48 48" fill="currentColor" style="vertical-align:middle;"><path d="M41.5 15.5c-3.6 0-6.5-2.9-6.5-6.5h-5v24.1c0 2.2-1.8 4-4 4s-4-1.8-4-4 1.8-4 4-4c.7 0 1.4.2 2 .5v-5.2c-.7-.1-1.3-.2-2-.2-5 0-9 4-9 9s4 9 9 9 9-4 9-9V21.2c2 1.1 4.3 1.8 6.5 1.8v-7.5z"/></svg>
         </a>
         <a href="https://discord.gg/dC34nguEEC" target="_blank" aria-label="Discord" style="color:#fff;transition:color 0.2s;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.424 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.37-1.342-3.37-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.34-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.254-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 7.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.396.1 2.65.64.7 1.028 1.594 1.028 2.687 0 3.847-2.339 4.695-4.566 4.944.359.31.678.921.678 1.857 0 1.34-.012 2.421-.012 2.751 0 .268.18.579.688.481C19.138 20.183 22 16.442 22 12.021 22 6.484 17.523 2 12 2z"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.424 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.37-1.342-3.37-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.34-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.254-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 7.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.025 2.747-1.025.546 1.378.202 2.396.1 2.65.64.7 1.028 1.594 1.028 2.687 0 3.847-2.339 4.695-4.566 4.944.359.31.678.921.678 1.857 0 1.34-.012 2.421-.012 2.751 0 .268.18.579.688.481C19.138 20.183 22 16.442 22 12.021 22 6.484 17.523 2 12 2z"/></svg>
         </a>
-        <a href="https://ko-fi.com/thatssoobuttons/shop" target="_blank" aria-label="Shop on Ko-fi" style="background:#ffffff;color:#222;font-weight:bold;padding:6px 18px;border-radius:8px;margin-left:12px;text-decoration:none;transition:background 0.2s; border:1px solid #d6d9df;">SHOP</a>
+        <a href="about.html" style="color:#ffd700;text-decoration:none;">About Me</a>
+        <a href="hire.html#availability" style="color:#ffd700;text-decoration:none;">Book / Contact</a>
+        <a href="allinoneplace.html" style="color:#7ed0ff;text-decoration:none;font-weight:700;margin-left:10px;">Index</a>
+        <a href="https://ko-fi.com/thatssoobuttons/shop" target="_blank" aria-label="Shop on Ko-fi" style="background:#222;color:#f4e6da;font-weight:bold;padding:4px 12px;border-radius:8px;text-decoration:none;transition:background 0.2s; border:1px solid #5a3d2a; margin-left:8px;">SHOP</a>
+        <span class="portfolio-row-break" aria-hidden="true"></span>
+                <a href="portfolio.html" style="color:#f4e6da;font-weight:800;display:inline-flex;align-items:center;line-height:1;text-shadow:-1px 0 #5a3d2a,0 1px #5a3d2a,1px 0 #5a3d2a,0 -1px #5a3d2a;text-decoration:none;gap:6px;">
+                    <span>Portfolio:</span>
+                    <span style="color:#f4e6da;font-style:italic;font-weight:700;opacity:0.95;text-shadow:-1px 0 #5a3d2a,0 1px #5a3d2a,1px 0 #5a3d2a,0 -1px #5a3d2a;">writing, photos, worldbuilding</span>
+                </a>
         <span style="font-size:0.95em; color:#cfcfcf; margin-left:10px;">✈️ 🧳 FLY ME OUT</span>
-        <a href="hire.html" id="bookContactLink" style="color: #fff; text-decoration: none; margin-left:14px;" aria-label="Book or Inquire">Book or Inquire</a>
-    </div>
-    <div aria-label="Quick Jump Menu" style="margin-top:8px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap; font-size:0.95rem;">
-        <a href="hire.html" style="color:#ffd700;text-decoration:none;">Book or Inquire</a>
-        <a href="pets.html" style="color:#ffd700;text-decoration:none;">Pets</a>
-        <a href="photography/index.html" style="color:#ffd700;text-decoration:none;">Photography</a>
-        <a href="music-lyrics.html" style="color:#ffd700;text-decoration:none;">Music</a>
-        <a href="podcasts.html" style="color:#ffd700;text-decoration:none;">Podcasts</a>
-        <a href="worldbuilding.html" style="color:#ffd700;text-decoration:none;">Worldbuilding</a>
-        <a href="creative-consulting.html" style="color:#ffd700;text-decoration:none;">Consulting</a>
-        <a href="availability.html" style="color:#ffd700;text-decoration:none;">Availability</a>
     </div>
     <div style="margin-top:4px;font-size:0.95em;color:#cfcfcf;text-align:center;">&copy; 2026 Tess Devillier. All rights reserved.</div>
     <style>
@@ -1410,6 +1423,14 @@
             border-bottom: 2px solid var(--soft-peach);
         }
         @media (max-width: 700px) {
+            .portfolio-row-break {
+                display: block;
+                flex-basis: 100%;
+                width: 100%;
+                height: 0;
+                margin: 2px 0 0 0;
+            }
+
             .mobile-note {
                 display: block !important;
                 text-align: center;
@@ -1497,15 +1518,23 @@
                 margin: 14px auto 0 auto !important;
                 width: fit-content;
             }
+
+            #audio-controls {
+                position: static !important;
+                right: auto;
+                bottom: auto;
+                margin: 8px auto 0 auto !important;
+                width: fit-content;
+            }
         }
         </style>
 </footer>
 
 <!-- Use local fallback audio files from sibling `dm_audio` folder to avoid Drive/CORS issues -->
-<audio id="music-clean" src="dm_audio_web/track1.mp3" loop preload="auto"></audio>
-<audio id="music-8bit" src="dm_audio_web/track2.mp3" loop preload="auto"></audio>
-<audio id="music-buttons" src="dm_audio_web/lofi-buttons.mp3" loop preload="auto"></audio>
-<audio id="music-other" src="dm_audio_web/dreams-in-slow-motion-chill-lofi.mp3" loop preload="auto"></audio>
+<audio id="music-clean" src="dm_audio_web/track1.mp3" loop preload="none"></audio>
+<audio id="music-8bit" src="dm_audio_web/track2.mp3" loop preload="none"></audio>
+<audio id="music-buttons" src="dm_audio_web/lofi-buttons.mp3" loop preload="none"></audio>
+<audio id="music-other" src="dm_audio_web/dreams-in-slow-motion-chill-lofi.mp3" loop preload="none"></audio>
 
 <script>
             // Audio Controls UI
@@ -1650,6 +1679,11 @@
                 await cleanTrack.play();
                 cleanTrack.volume = 0.4;
             } else {
+                // Warm all tracks after unlock so hover switching feels immediate.
+                cleanTrack.load();
+                bit8Track.load();
+                buttonsTrack.load();
+                otherTrack.load();
                 await Promise.all([cleanTrack.play(), bit8Track.play(), buttonsTrack.play(), otherTrack.play()]);
                 // Force Sync
                 bit8Track.currentTime = cleanTrack.currentTime;

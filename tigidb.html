@@ -1,48 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TIGIDB | Tess Devillier</title>
-    <style>
-        body {
-            background: linear-gradient(135deg, #181a1f 0%, #23232b 100%);
-            color: #eaeaea;
-            font-family: 'Montserrat', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 48px auto;
-            background: rgba(24,26,31,0.95);
-            border-radius: 18px;
-            box-shadow: 0 4px 24px rgba(30,30,40,0.25);
-            padding: 32px 24px;
-        }
-        h1 {
-            color: #b6b6d6;
-            margin-bottom: 0.5em;
-        }
-        h2 {
-            color: #7e4b7a;
-            margin-top: 2em;
-        }
-        .coming-soon {
-            color: #b6b6d6;
-            font-style: italic;
-            margin-top: 1.5em;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Worldbuilding portfolio samples by Tess Devillier.">
+  <title>Worldbuilding Portfolio | Tess Devillier</title>
+  <style>
+    :root {
+      --bg: #111018;
+      --panel: #1a1724;
+      --line: #3e3454;
+      --ink: #f4e6da;
+      --muted: #c7b4d9;
+      --accent: #8c73b8;
+      --gold: #ffd700;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: 'Montserrat', Arial, sans-serif;
+      background:
+        radial-gradient(circle at 14% 10%, rgba(140, 115, 184, 0.24), transparent 30%),
+        radial-gradient(circle at 88% 8%, rgba(255, 215, 0, 0.12), transparent 28%),
+        var(--bg);
+    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 30px 16px 48px; }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .top a { color: var(--gold); text-decoration: none; font-weight: 700; }
+    .top a:hover { text-decoration: underline; }
+    h1 { margin: 0; font-size: clamp(1.9rem, 4.2vw, 2.8rem); letter-spacing: 0.03em; }
+    .sub { margin: 10px 0 18px; color: var(--muted); max-width: 820px; line-height: 1.45; }
+    .note {
+      margin: 0 0 16px;
+      border: 1px solid rgba(255, 215, 0, 0.26);
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: rgba(255, 215, 0, 0.07);
+      color: #f7eec0;
+      font-size: 0.95rem;
+    }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card {
+      background: linear-gradient(160deg, var(--panel), #201b2f);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 16px;
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.28);
+    }
+    .card h2 { margin: 0 0 8px; color: var(--gold); font-size: 1.08rem; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.45; }
+    .actions { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-weight: 700;
+      border: 1px solid rgba(255, 215, 0, 0.34);
+      color: var(--ink);
+      background: rgba(255, 215, 0, 0.08);
+    }
+    .btn.alt {
+      border-color: rgba(140, 115, 184, 0.42);
+      color: #e4d6f7;
+      background: rgba(140, 115, 184, 0.14);
+    }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>TIGIDB</h1>
-        <div>
-            <h2>What is TIGIDB?</h2>
-            <p>TIGIDB is a work-in-progress project by Tess Devillier. More details and features will be revealed soon. Stay tuned for updates!</p>
-            <div class="coming-soon">Coming soon...</div>
-        </div>
+  <main class="wrap" role="main">
+    <div class="top">
+      <a href="portfolio.html">Back To Portfolio</a>
+      <span style="color:var(--muted);">TigiDB</span>
     </div>
+
+    <h1>Worldbuilding Portfolio</h1>
+    <p class="sub">Selected world design examples focused on tone, internal logic, conflict systems, and narrative continuity.</p>
+    <p class="note">This page is portfolio-facing. Service scopes and booking live on the Hire-side worldbuilding page.</p>
+
+    <section class="grid" aria-label="Worldbuilding samples">
+      <article class="card">
+        <h2>Faction Framework Sample</h2>
+        <p>Three-faction pressure model with ideology collision points, leadership voice notes, and long-form campaign hooks.</p>
+      </article>
+      <article class="card">
+        <h2>Setting Bible Excerpt</h2>
+        <p>Locale taxonomy, environmental constraints, timeline skeleton, and glossary baseline for narrative consistency.</p>
+      </article>
+      <article class="card">
+        <h2>Conflict Engine Snapshot</h2>
+        <p>Escalation paths, stakes ladder, and character consequences designed for interactive and episodic formats.</p>
+      </article>
+      <article class="card">
+        <h2>Lore Maintenance System</h2>
+        <p>Revision-safe structure for adding canon updates without fragmenting continuity across collaborative teams.</p>
+      </article>
+    </section>
+
+    <div class="actions">
+      <a class="btn" href="worldbuilding.html">View Worldbuilding Service Page</a>
+      <a class="btn alt" href="hire.html#contact-lanes">Book / Contact</a>
+    </div>
+  </main>
 </body>
 </html>
