@@ -1,27 +1,5 @@
 [
   {
-    "id": "hollow-signal",
-    "title": "Hollow Signal",
-    "tags": ["demo", "seeking vocalist", "dark pop", "synth"],
-    "mood": "melancholic",
-    "preview": "You're just a hollow signal / bouncing off the walls I built...",
-    "full": "You're just a hollow signal\nBouncing off the walls I built\nI kept the frequency on\nBut the channel never filled\n\nI tuned in through the static\nHoping you'd come through\nJust a hollow signal now\nWhere I used to find you\n\n[CHORUS]\nHollow, hollow\nEcho in the dark\nHollow, hollow\nYou left your mark\nBut marks don't speak\nAnd I don't sleep\nJust hollow signal\nRunning deep",
-    "collab_note": "Looking for a vocalist with a smoky alt/indie voice. Open to genre interpretation.",
-    "demo_available": true,
-    "status": "seeking collaborator"
-  },
-  {
-    "id": "neon-cathedral",
-    "title": "Neon Cathedral",
-    "tags": ["demo", "seeking vocalist", "electronic", "ethereal"],
-    "mood": "transcendent",
-    "preview": "In the neon cathedral / where the stained glass bleeds light...",
-    "full": "In the neon cathedral\nWhere the stained glass bleeds light\nI kneeled at the altar\nOf your electric night\n\nThe hymns are distorted\nThe choir's made of code\nAnd I keep on confessing\nTo a god that I don't know\n\n[CHORUS]\nNeon cathedral\nPray to the glow\nNeon cathedral\nEverything we know\nIs burning so bright\nIt looks like faith\nNeon cathedral\nHoly mistakes",
-    "collab_note": "Ethereal vocals, think FKA twigs energy but open to interpretation. Demo track available.",
-    "demo_available": true,
-    "status": "seeking collaborator"
-  },
-  {
     "id": "the-crumbling",
     "title": "The Crumbling",
     "tags": ["lyrics", "musical", "ttrpg", "tumblr"],

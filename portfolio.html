@@ -427,6 +427,49 @@
 
     .community-cta a:hover { text-decoration: underline; }
 
+    .websites-copy {
+      margin: 0 0 12px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .website-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .website-links a {
+      display: block;
+      text-decoration: none;
+      border: 1px solid rgba(239, 229, 214, 0.24);
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: var(--ink);
+      background: rgba(239, 229, 214, 0.04);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .website-links a:hover {
+      border-color: rgba(210, 165, 95, 0.54);
+      background: rgba(210, 165, 95, 0.12);
+      color: #ffe3bd;
+    }
+
+    .coming-soon {
+      margin: 18px 0 6px;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: clamp(2rem, 8vw, 4.2rem);
+      color: #ffe3bd;
+      text-shadow: 0 0 26px rgba(210, 165, 95, 0.22);
+    }
+
     @media (max-width: 960px) {
       .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -437,6 +480,10 @@
       .design-grid,
       .card-grid,
       .photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .website-links {
         grid-template-columns: 1fr;
       }
 
@@ -461,7 +508,6 @@
   <main class="wrap" role="main">
     <div class="topbar">
       <a href="index.html#professional">Back To Home</a>
-      <span style="color:var(--ink-soft);">Dark Academia Portfolio</span>
     </div>
 
     <section class="hero" aria-label="Portfolio intro">
@@ -469,8 +515,7 @@
       <div class="secret-hint" id="secret-hint">Whimsical mode leaks in...</div>
       <h1>Portfolio</h1>
       <p>
-        Cinematic, moody, and intentional. This is the actual work floor: writing pieces, lyrics, worldbuilding samples,
-        photography selects, and visual design studies. Services stay on Hire. Portfolio lives here.
+        You’ve read about the services and projects. Here is the evidence.
       </p>
     </section>
 
@@ -487,8 +532,9 @@
       <section class="menu-card">
         <h2 class="menu-title">Media</h2>
         <div class="menu-items">
-          <a href="#photography" data-target="photography" data-group="media" class="active">Photography</a>
+          <a href="#photography" data-target="photography" data-group="media">Photography</a>
           <a href="#graphic-design" data-target="graphic-design" data-group="media">Graphic Design</a>
+          <a href="#websites" data-target="websites" data-group="media">Websites</a>
         </div>
       </section>
     </nav>
@@ -499,7 +545,7 @@
         <p class="section-note">Narrative fragments and scene excerpts</p>
       </div>
       <div class="card-grid" id="snippets-grid"></div>
-      <a class="view-link" href="portfolio.html#snippets">View full writing archive</a>
+      <p class="small-note">Read More: <a class="view-link" href="https://www.tumblr.com/thatssoobuttons" target="_blank" rel="noopener noreferrer" style="display:inline; margin-top:0;">Tumblr</a></p>
     </section>
 
     <section class="section hidden" id="prompts" aria-label="Writing prompts">
@@ -551,40 +597,45 @@
       <a class="view-link" href="sandbox.html">Open dedicated worldbuilding portfolio page</a>
     </section>
 
-    <section class="section" id="photography" aria-label="Photography">
+    <section class="section hidden" id="photography" aria-label="Photography">
       <div class="section-header">
         <h2 class="section-title">Photography</h2>
         <p class="section-note">Selected portfolio frames</p>
       </div>
       <div class="photo-grid" id="photo-grid"></div>
       <p class="small-note">Gear workflow: Panasonic G85 + Lightroom.</p>
-      <a class="view-link" href="portfolio.html#photography">Open full photography gallery</a>
+      <a class="view-link" href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Follow on Instagram to see more</a>
     </section>
 
     <section class="section hidden" id="graphic-design" aria-label="Graphic design">
       <div class="section-header">
         <h2 class="section-title">Graphic Design</h2>
-        <p class="section-note">Visual direction studies and concept compositions</p>
+        <p class="section-note">New design showcases are on the way</p>
       </div>
-      <div class="design-grid">
-        <figure class="design">
-          <img src="professionalindex.jpg" alt="Graphic design concept board featuring a structured professional theme">
-          <figcaption>Professional identity concept: sharp hierarchy, muted tone, service-first clarity.</figcaption>
-        </figure>
-        <figure class="design">
-          <img src="simulationindex.jpg" alt="Graphic design concept board with atmospheric surreal styling">
-          <figcaption>Simulation concept study: cinematic depth, textured overlays, and narrative atmosphere.</figcaption>
-        </figure>
-        <figure class="design">
-          <img src="helixotopeexample.jpg" alt="Experimental visual concept composition with layered imagery">
-          <figcaption>Experimental composition: layered world motifs built for campaign and lore visual systems.</figcaption>
-        </figure>
-        <figure class="design">
-          <img src="TenebraeumCalling.png" alt="Fantasy graphic concept with symbolic title treatment">
-          <figcaption>Title treatment exploration for dark-fantasy storytelling and transmedia branding.</figcaption>
-        </figure>
+      <p class="coming-soon" aria-label="Graphic design coming soon">COMING SOON</p>
+    </section>
+
+    <section class="section hidden" id="websites" aria-label="Websites by Tess">
+      <div class="section-header">
+        <h2 class="section-title">Websites</h2>
+        <p class="section-note">Built and shipped by Tess</p>
       </div>
-      <p class="small-note">Painting can be added here as a third media lane whenever you are ready.</p>
+      <p class="websites-copy">Websites designed and developed by me, then pushed live with a focused toolchain.</p>
+      <div class="website-links" aria-label="Website links">
+        <a href="https://devilliermedia.com" target="_blank" rel="noopener noreferrer">DevillierMedia.com</a>
+        <a href="https://thatssoobuttons.com" target="_blank" rel="noopener noreferrer">Thatssoobuttons.com</a>
+        <a href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer">OnTheFlyNetwork.com</a>
+        <a href="https://projectmiracles.org" target="_blank" rel="noopener noreferrer">ProjectMiracles.org</a>
+        <a href="https://everythingandthekitchensink.xyz" target="_blank" rel="noopener noreferrer">EverythingandTheKitchenSink.xyz</a>
+        <a href="https://tessdevillier.com" target="_blank" rel="noopener noreferrer">TessDevillier.com</a>
+      </div>
+      <div class="community-cta">
+        Stack: GitHub Copilot, Visual Studio Code, GitHub, and Cloudflare.<br>
+        Images and video: shot and edited by me.<br>
+        Stock footage sources: Adobe Stock.<br>
+        Project concept images: Adobe Firefly (concept phase only, not final product).
+      </div>
+      <p class="small-note">Note: Thatssoobuttons.com and DevillierMedia.com are no longer updated/active sites, as I have consolidated to TessDevillier.com.</p>
     </section>
   </main>
 
@@ -742,18 +793,16 @@
       }
     }
 
-    function toggleSection(group, target) {
-      var writingIds = ['snippets', 'prompts', 'lyrics', 'worldbuilding'];
-      var mediaIds = ['photography', 'graphic-design'];
-      var ids = group === 'writing' ? writingIds : mediaIds;
+    function showSection(target) {
+      var ids = ['snippets', 'prompts', 'lyrics', 'worldbuilding', 'photography', 'graphic-design', 'websites'];
       ids.forEach(function (id) {
         var section = document.getElementById(id);
         if (!section) return;
-        section.classList.toggle('hidden', !target || id !== target);
+        section.classList.toggle('hidden', id !== target);
       });
 
-      document.querySelectorAll('.menu-items a[data-group="' + group + '"]').forEach(function (el) {
-        el.classList.toggle('active', !!target && el.getAttribute('data-target') === target);
+      document.querySelectorAll('.menu-items a[data-target]').forEach(function (el) {
+        el.classList.toggle('active', el.getAttribute('data-target') === target);
       });
     }
 
@@ -762,11 +811,8 @@
         link.addEventListener('click', function (event) {
           event.preventDefault();
           var target = link.getAttribute('data-target');
-          var group = link.getAttribute('data-group');
-          var isActive = link.classList.contains('active');
           playSoundFor(target);
-          toggleSection(group, isActive ? null : target);
-          if (isActive) return;
+          showSection(target);
           var section = document.getElementById(target);
           if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
@@ -799,6 +845,7 @@
     }
 
     hydratePortfolio();
+    showSection('snippets');
     wireMenuInteractions();
     wireSecretEgg();
   </script>
