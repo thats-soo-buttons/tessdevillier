@@ -2723,7 +2723,7 @@
 <!-- Contact Modal -->
 <div id="contactModal" style="display:none;position:fixed;z-index:10020;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;">
     <div style="background:#fffbe6;padding:32px 24px 24px 24px;border-radius:16px;max-width:360px;width:90vw;box-shadow:0 4px 32px #0006;position:relative;">
-        <button onclick="closeContactModal()" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.6em;color:#222;cursor:pointer;">&times;</button>
+        <button id="contactModalCloseBtn" type="button" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.6em;color:#222;cursor:pointer;">&times;</button>
         <h2 style="color:#222;font-family:'Montserrat',sans-serif;margin-bottom:18px;">Contact</h2>
         <p style="font-size:1.08em; color:#222; margin-bottom:18px;">To contact me, just click the button below to send an email:</p>
         <a href="mailto:contact@tessdevillier.com" style="display:inline-block;background:#ffd700;color:#222;padding:12px 24px;border-radius:8px;font-weight:bold;font-size:1.1em;text-decoration:none;">Email contact@tessdevillier.com</a>
@@ -2733,10 +2733,12 @@
     // Modal logic
     const contactBtn = document.getElementById('contactBtn');
     const contactModal = document.getElementById('contactModal');
+    const contactModalCloseBtn = document.getElementById('contactModalCloseBtn');
     const bookContactLink = document.getElementById('bookContactLink');
     function openContactModal() { contactModal.style.display = 'flex'; }
     function closeContactModal() { contactModal.style.display = 'none'; }
     if (contactBtn) contactBtn.addEventListener('click', openContactModal);
+    if (contactModalCloseBtn) contactModalCloseBtn.addEventListener('click', closeContactModal);
     if (bookContactLink) bookContactLink.addEventListener('click', function(e) { e.preventDefault(); openContactModal(); });
     if (contactModal) contactModal.addEventListener('click', function(e) { if (e.target === contactModal) closeContactModal(); });
 </script>

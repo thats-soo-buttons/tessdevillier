@@ -78,7 +78,7 @@ async function loadLyrics() {
 
             return `
             <div class="lyric-card">
-                <div class="lyric-header" onclick="toggle(${i})" aria-expanded="false" id="header-${i}">
+                <div class="lyric-header" data-lyric-index="${i}" aria-expanded="false" id="header-${i}">
                     <div class="lyric-header-left">
                         <h2>${title}</h2>
                         <div class="preview">${preview}</div>
@@ -98,6 +98,13 @@ async function loadLyrics() {
                 </div>
             </div>`;
         }).join('');
+
+        container.querySelectorAll('.lyric-header[data-lyric-index]').forEach(function (header) {
+            header.addEventListener('click', function () {
+                var idx = Number(header.getAttribute('data-lyric-index'));
+                if (!Number.isNaN(idx)) toggle(idx);
+            });
+        });
     } catch(e) { container.innerHTML = '<p style="color:#888;text-align:center;">Lyrics coming soon.</p>'; }
 }
 function toggle(i) {

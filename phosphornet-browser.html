@@ -100,7 +100,7 @@
   <div class="shell">
     <div class="toolbar">
       <a class="btn" href="whimsical.html">Back</a>
-      <button class="btn" type="button" onclick="document.getElementById('browserFrame').contentWindow.location.reload()">Reload</button>
+      <button class="btn" id="reloadBtn" type="button">Reload</button>
       <div class="brand">PhosphorNet Navigator</div>
       <div class="address" id="addressBar">loading...</div>
     </div>
@@ -115,6 +115,7 @@
       var page = params.get('page') || 'index.html';
       var title = params.get('title') || 'Document';
       var frame = document.getElementById('browserFrame');
+      var reloadBtn = document.getElementById('reloadBtn');
       var addressBar = document.getElementById('addressBar');
       document.title = title + ' | PhosphorNet Navigator';
       addressBar.textContent = 'phosphornet://local/' + page;
@@ -127,6 +128,13 @@
       var pageHash = hashIndex === -1 ? '' : decodedPage.slice(hashIndex);
       var sep = pagePath.indexOf('?') === -1 ? '?' : '&';
       frame.src = pagePath + sep + '_v=' + Date.now() + pageHash;
+      if (reloadBtn) {
+        reloadBtn.addEventListener('click', function () {
+          if (frame && frame.contentWindow) {
+            frame.contentWindow.location.reload();
+          }
+        });
+      }
     })();
   </script>
 </body>
