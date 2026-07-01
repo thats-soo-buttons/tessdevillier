@@ -370,6 +370,98 @@
       flex-wrap: wrap;
     }
 
+    .tablet-mode-picker {
+      margin-top: 12px;
+      border: 2px outset #dfdfdf;
+      background: #c0c0c0;
+      color: #111;
+      max-width: 420px;
+      padding: 10px;
+      text-align: left;
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+    }
+
+    .tablet-mode-picker.hidden {
+      display: none;
+    }
+
+    .tablet-mode-title {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(90deg, #000080 0%, #1084d0 100%);
+      border: 1px solid #0a246a;
+      padding: 3px 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .tablet-mode-switch {
+      margin-top: 10px;
+      position: relative;
+      border: 2px inset #dfdfdf;
+      background: #f3f3f3;
+      padding: 3px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      min-height: 62px;
+    }
+
+    .tablet-mode-slider {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      bottom: 3px;
+      width: calc(50% - 5px);
+      background: linear-gradient(180deg, #2c4d95 0%, #173568 100%);
+      border: 2px outset #9ab4e9;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+      transition: left 0.2s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .tablet-mode-switch[data-mode="lite"] .tablet-mode-slider {
+      left: calc(50% + 1px);
+    }
+
+    .tablet-mode-option {
+      position: relative;
+      z-index: 2;
+      border: 2px outset #dfdfdf;
+      background: rgba(255, 255, 255, 0.7);
+      color: #111;
+      min-height: 54px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 6px;
+    }
+
+    .tablet-mode-option .mode-icon {
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .tablet-mode-option.active {
+      border: 2px inset #dfdfdf;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.16);
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+    }
+
+    .tablet-mode-help {
+      margin: 8px 0 0;
+      font-size: 11px;
+      color: #222;
+      line-height: 1.35;
+    }
+
     .mobile-lite {
       position: absolute;
       inset: 0;
@@ -996,6 +1088,21 @@
             <div>
               <h1>Desktop Experience Required</h1>
               <p>Please use desktop for best results. If you requested Desktop Site on mobile, you can try it anyway.</p>
+              <div class="tablet-mode-picker hidden" id="tabletModePicker" aria-label="Tablet mode chooser">
+                <p class="tablet-mode-title">Tablet Mode Switch</p>
+                <div class="tablet-mode-switch" id="tabletModeSwitch" data-mode="desktop" role="group" aria-label="Choose tablet mode">
+                  <div class="tablet-mode-slider" aria-hidden="true"></div>
+                  <button type="button" class="tablet-mode-option active" id="tabletModeDesktop" data-mode="desktop" aria-label="Use desktop mode">
+                    <span class="mode-icon">🖥️</span>
+                    <span>Desktop</span>
+                  </button>
+                  <button type="button" class="tablet-mode-option" id="tabletModeLite" data-mode="lite" aria-label="Use mobile mode">
+                    <span class="mode-icon">📱</span>
+                    <span>Mobile</span>
+                  </button>
+                </div>
+                <p class="tablet-mode-help">Tap monitor for full desktop, or phone for faster mobile mode.</p>
+              </div>
               <div class="mobile-gate-actions">
                 <button type="button" class="boot-btn" id="mobileGateContinue">Try Desktop Anyway</button>
                 <button type="button" class="boot-btn" id="mobileGateLite">Use Lite Mobile Mode</button>
@@ -1496,6 +1603,10 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var mobileGate = document.getElementById('mobileGate');
       var mobileGateContinue = document.getElementById('mobileGateContinue');
       var mobileGateLite = document.getElementById('mobileGateLite');
+      var tabletModePicker = document.getElementById('tabletModePicker');
+      var tabletModeSwitch = document.getElementById('tabletModeSwitch');
+      var tabletModeDesktop = document.getElementById('tabletModeDesktop');
+      var tabletModeLite = document.getElementById('tabletModeLite');
       var mobileLitePanel = document.getElementById('mobileLitePanel');
       var mobileLiteDesktopBtn = document.getElementById('mobileLiteDesktopBtn');
       var zCounter = 40;
@@ -1799,6 +1910,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var photoAlbumPaths = [];
       var photoViewMode = 'small';
       var photoSortMode = 'date';
+      var photoObserver = null;
 
       function flattenPhotoManifest(data) {
         var out = [];
@@ -1837,11 +1949,46 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         if (!photoAlbumGrid) return;
         applyPhotoGridMode();
         photoAlbumGrid.innerHTML = '';
+        if (photoObserver) {
+          photoObserver.disconnect();
+          photoObserver = null;
+        }
+
+        if ('IntersectionObserver' in window) {
+          photoObserver = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              var img = entry.target;
+              var queuedSrc = img.getAttribute('data-src');
+              if (queuedSrc) {
+                img.src = queuedSrc;
+                img.removeAttribute('data-src');
+              }
+              observer.unobserve(img);
+            });
+          }, {
+            root: photoAlbumGrid,
+            rootMargin: '180px 0px',
+            threshold: 0.01
+          });
+        }
+
         sortPhotoPaths(paths).forEach(function (path, index) {
           var img = document.createElement('img');
-          img.src = path;
+          if (index < 8) {
+            img.src = path;
+            img.fetchPriority = 'high';
+            img.loading = 'eager';
+          } else {
+            img.setAttribute('data-src', path);
+            img.loading = 'lazy';
+            if (photoObserver) {
+              photoObserver.observe(img);
+            } else {
+              img.src = path;
+            }
+          }
           img.alt = 'Album photo ' + (index + 1);
-          img.loading = 'lazy';
           img.decoding = 'async';
           img.referrerPolicy = 'no-referrer';
           img.draggable = false;
@@ -1853,6 +2000,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
 
       function loadPhotoAlbum() {
         if (!photoAlbumGrid || !photoAlbumStatus) return;
+        photoAlbumStatus.textContent = 'Loading photo previews...';
         fetch('data/photos.json', { cache: 'no-store' }).then(function (response) {
           if (!response.ok) throw new Error('Unable to load photo manifest');
           return response.json();
@@ -3191,20 +3339,78 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         if (typeof onReady === 'function') onReady();
       }
 
+      function isLikelyTabletDevice() {
+        var coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+        var ua = window.navigator.userAgent || '';
+        var iPadUA = /iPad/i.test(ua);
+        var androidTabletUA = /Android/i.test(ua) && !/Mobile/i.test(ua);
+        var desktopIpadUA = /Macintosh/i.test(ua) && window.navigator.maxTouchPoints > 1;
+        var touchTabletSize = coarsePointer && Math.min(window.screen.width, window.screen.height) >= 700 && Math.max(window.screen.width, window.screen.height) <= 1600;
+        return iPadUA || androidTabletUA || desktopIpadUA || touchTabletSize;
+      }
+
+      function getTabletSuggestedMode() {
+        var landscape = window.matchMedia('(orientation: landscape)').matches;
+        return landscape ? 'desktop' : 'lite';
+      }
+
+      function setTabletModeSwitch(mode) {
+        var resolvedMode = mode === 'lite' ? 'lite' : 'desktop';
+        if (tabletModeSwitch) {
+          tabletModeSwitch.setAttribute('data-mode', resolvedMode);
+        }
+        if (tabletModeDesktop) {
+          tabletModeDesktop.classList.toggle('active', resolvedMode === 'desktop');
+        }
+        if (tabletModeLite) {
+          tabletModeLite.classList.toggle('active', resolvedMode === 'lite');
+        }
+      }
+
+      function applyTabletModeChoice(mode) {
+        var resolvedMode = mode === 'lite' ? 'lite' : 'desktop';
+        setTabletModeSwitch(resolvedMode);
+        window.sessionStorage.setItem('tessWhimsicalTabletChoice', '1');
+        if (resolvedMode === 'desktop') {
+          window.sessionStorage.setItem('tessWhimsicalMobileOverride', '1');
+          window.sessionStorage.setItem('tessWhimsicalMobileMode', 'desktop');
+          launchDesktopExperience();
+        } else {
+          window.sessionStorage.removeItem('tessWhimsicalMobileOverride');
+          window.sessionStorage.setItem('tessWhimsicalMobileMode', 'lite');
+          showLiteMode();
+        }
+      }
+
       function shouldLockForMobile() {
         var narrowViewport = window.matchMedia('(max-width: 900px)').matches || window.innerHeight < 640;
         var coarsePointer = window.matchMedia('(pointer: coarse)').matches;
         var likelyDesktopModeOnMobile = window.innerWidth >= 980;
         var forcedOverride = window.sessionStorage.getItem('tessWhimsicalMobileOverride') === '1';
+        var tabletChoiceDone = window.sessionStorage.getItem('tessWhimsicalTabletChoice') === '1';
+
+        if (isLikelyTabletDevice() && !tabletChoiceDone) return true;
         if (forcedOverride || likelyDesktopModeOnMobile) return false;
         return narrowViewport && coarsePointer;
       }
 
       function lockToMobileGate() {
+        var isTablet = isLikelyTabletDevice();
         desktop.classList.add('mobile-locked');
         desktop.classList.remove('booting');
         if (bootOverlay) bootOverlay.classList.add('hidden');
         if (mobileGate) mobileGate.classList.remove('hidden');
+        if (tabletModePicker) {
+          tabletModePicker.classList.toggle('hidden', !isTablet);
+        }
+        if (mobileGateContinue && mobileGateLite) {
+          mobileGateContinue.style.display = isTablet ? 'none' : 'inline-block';
+          mobileGateLite.style.display = isTablet ? 'none' : 'inline-block';
+        }
+        if (isTablet) {
+          var savedMode = window.sessionStorage.getItem('tessWhimsicalMobileMode');
+          setTabletModeSwitch(savedMode === 'lite' || savedMode === 'desktop' ? savedMode : getTabletSuggestedMode());
+        }
         if (mobileLitePanel) {
           mobileLitePanel.classList.remove('active');
           mobileLitePanel.classList.add('hidden');
@@ -3240,6 +3446,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         mobileGateContinue.addEventListener('click', function () {
           window.sessionStorage.setItem('tessWhimsicalMobileOverride', '1');
           window.sessionStorage.setItem('tessWhimsicalMobileMode', 'desktop');
+          window.sessionStorage.setItem('tessWhimsicalTabletChoice', '1');
           launchDesktopExperience();
         });
       }
@@ -3248,7 +3455,20 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         mobileGateLite.addEventListener('click', function () {
           window.sessionStorage.removeItem('tessWhimsicalMobileOverride');
           window.sessionStorage.setItem('tessWhimsicalMobileMode', 'lite');
+          window.sessionStorage.setItem('tessWhimsicalTabletChoice', '1');
           showLiteMode();
+        });
+      }
+
+      if (tabletModeDesktop) {
+        tabletModeDesktop.addEventListener('click', function () {
+          applyTabletModeChoice('desktop');
+        });
+      }
+
+      if (tabletModeLite) {
+        tabletModeLite.addEventListener('click', function () {
+          applyTabletModeChoice('lite');
         });
       }
 
@@ -3256,6 +3476,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         mobileLiteDesktopBtn.addEventListener('click', function () {
           window.sessionStorage.setItem('tessWhimsicalMobileOverride', '1');
           window.sessionStorage.setItem('tessWhimsicalMobileMode', 'desktop');
+          window.sessionStorage.setItem('tessWhimsicalTabletChoice', '1');
           launchDesktopExperience();
         });
       }

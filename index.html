@@ -1552,6 +1552,7 @@
             const choiceHire = document.getElementById('choice-hire');
             const choiceExplore = document.getElementById('choice-explore');
             const choiceVibe = document.getElementById('choice-vibe');
+            var overlayTimeout = null;
             const modeTabs = document.querySelectorAll('.mode-tab');
             const modeMobilePicker = document.getElementById('mode-mobile-picker');
             const modeBlurbTitle = document.getElementById('mode-blurb-title');
@@ -2009,23 +2010,30 @@
 
             enterProfessionalFromHash();
             window.addEventListener('hashchange', enterProfessionalFromHash);
+
+            function clearOverlayTimeoutSafe() {
+                if (typeof overlayTimeout !== 'undefined' && overlayTimeout !== null) {
+                    clearTimeout(overlayTimeout);
+                }
+            }
+
             // Overlay entry buttons
             if (choiceExplore) choiceExplore.addEventListener('click', function(e) {
                 e.stopPropagation();
                 if (overlay) overlay.style.display = 'none';
                 setToggleState(true);
                 if (typeof unlockAudio === 'function') unlockAudio();
-                clearTimeout(overlayTimeout);
+                clearOverlayTimeoutSafe();
             });
             if (choiceVibe) choiceVibe.addEventListener('click', function(e) {
                 e.stopPropagation();
                 window.location.href = 'whimsical.html';
-                clearTimeout(overlayTimeout);
+                clearOverlayTimeoutSafe();
             });
             if (choiceHire) choiceHire.addEventListener('click', function(e) {
                 e.stopPropagation();
                 window.location.href = 'hire.html#contact-lanes';
-                clearTimeout(overlayTimeout);
+                clearOverlayTimeoutSafe();
             });
             // Top toggles
             if (btnProfessional) {
@@ -2036,14 +2044,14 @@
                         overlay.style.display = 'none';
                         if (typeof unlockAudio === 'function') unlockAudio();
                     }
-                    clearTimeout(overlayTimeout);
+                    clearOverlayTimeoutSafe();
                 });
             }
             if (btnWhimsical) {
                 btnWhimsical.addEventListener('click', function(e) {
                     e.stopPropagation();
                     window.location.href = 'whimsical.html';
-                    clearTimeout(overlayTimeout);
+                    clearOverlayTimeoutSafe();
                 });
             }
             // Do not auto-switch to professional on load
