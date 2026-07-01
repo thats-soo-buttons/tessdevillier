@@ -2394,6 +2394,30 @@
                 max-width: calc(100vw - 20px);
             }
         }
+
+        @media (pointer: coarse) {
+            #mode-toggle {
+                position: static !important;
+                right: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                top: auto !important;
+                margin: 12px auto 0 !important;
+                width: fit-content;
+                max-width: calc(100vw - 20px);
+            }
+
+            #audio-controls {
+                position: static !important;
+                right: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                top: auto !important;
+                margin: 8px auto 0 !important;
+                width: fit-content;
+                max-width: calc(100vw - 20px);
+            }
+        }
         </style>
 </footer>
 
@@ -2683,8 +2707,15 @@
 </script>
 <script>
     (function () {
+        var isCoarsePointer = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+
         function makeFloatingPanelDraggable(el) {
             if (!el) return;
+
+            if (isCoarsePointer) {
+                el.style.cursor = 'default';
+                return;
+            }
 
             var startX = 0;
             var startY = 0;
