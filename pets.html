@@ -81,7 +81,7 @@
         .hero {
             position: relative;
             min-height: 460px;
-            background: linear-gradient(180deg, rgba(251,247,239,0.98) 0 74%, rgba(251,247,239,0.98) 74% 100%);
+            background: linear-gradient(180deg, rgba(234,223,208,0.96) 0 74%, rgba(226,214,198,0.96) 74% 100%);
             border-radius: 8px;
             border: 1px solid rgba(150, 140, 130, 0.26);
             display: grid;
@@ -138,6 +138,54 @@
             background: #fff;
             color: var(--blue-dark);
             border-color: rgba(79,135,191,0.24);
+        }
+        .promo-floater {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 1700;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            width: 260px;
+            min-height: 96px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            text-decoration: none;
+            background: linear-gradient(160deg, #e04f49 0%, #bf3732 100%);
+            border: 1px solid #a72a26;
+            color: #fff;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            text-align: center;
+            animation: promoPulse 2.2s ease-in-out infinite;
+        }
+        .promo-floater:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 34px rgba(0, 0, 0, 0.40);
+        }
+        .promo-floater .promo-top {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: 1.3px;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+        .promo-floater .promo-bottom {
+            font-size: 0.98rem;
+            font-weight: 700;
+            line-height: 1.25;
+            min-height: 2.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        @keyframes promoPulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); }
         }
         .modal-overlay {
             position: fixed;
@@ -239,11 +287,11 @@
             font-size: 1.8rem;
             color: var(--blue-dark);
             margin-bottom: 10px;
-            line-height: 1;
-        }
+                background: rgba(58, 58, 62, 0.94);
+                border: 1px solid rgba(25, 25, 28, 0.42);
         .price {
             display: inline-block;
-            margin-bottom: 14px;
+                box-shadow: 0 14px 34px rgba(0,0,0,0.24);
             padding: 4px 10px;
             border-radius: 999px;
             background: rgba(244,178,168,0.28);
@@ -259,9 +307,115 @@
             margin: 14px 0 0 18px;
             padding: 0;
         }
-        .card li { margin-bottom: 8px; color: var(--soft); }
-        .full-width {
+        .card ul li.list-gap-before {
+            margin-top: 10px;
+        }
+        .overnight-pricing {
+            margin-top: 14px;
+        }
+        .rate-select-wrap {
+            display: grid;
+            gap: 8px;
+        }
+        .pet-setup-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .pet-setup-grid .full {
             grid-column: 1 / -1;
+        }
+        .rate-select-wrap label {
+            font-weight: 700;
+            color: var(--blue-dark);
+            font-size: 0.95rem;
+        }
+        .rate-select {
+            width: 100%;
+            background: #fff;
+            border: 1px solid rgba(130,120,112,0.22);
+            border-radius: 10px;
+            padding: 10px 12px;
+            color: var(--ink);
+            font: 600 0.95rem/1.2 'Quicksand', Arial, sans-serif;
+        }
+        .rate-display {
+            margin-top: 12px;
+            background: rgba(95,155,214,0.10);
+            border: 1px solid rgba(79,135,191,0.28);
+            border-radius: 12px;
+            padding: 12px;
+        }
+        .rate-main,
+        .rate-sub,
+        .rate-note {
+            margin: 0;
+            color: var(--ink);
+            font-size: 0.94rem;
+        }
+        .rate-sub,
+        .rate-note {
+            margin-top: 4px;
+        }
+        .rate-example {
+            margin: 8px 0 0;
+            color: var(--ink);
+            font-size: 0.93rem;
+            font-weight: 700;
+        }
+        .rate-holiday {
+            margin: 6px 0 0;
+            color: #8b4f2d;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+        .included-box {
+            margin-top: 14px;
+            background: #fffdf8;
+            border: 1px solid rgba(150,140,130,0.18);
+            border-radius: 12px;
+            padding: 12px;
+        }
+        .included-box h4 {
+            margin: 0 0 8px;
+            color: var(--blue-dark);
+            font-size: 1.05rem;
+        }
+        .included-box ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .included-box li {
+            margin-bottom: 6px;
+        }
+        .extended-box {
+            margin-top: 12px;
+            background: #fffdf8;
+            border: 1px solid rgba(150,140,130,0.18);
+            border-radius: 12px;
+            padding: 12px;
+        }
+        .extended-box h4 {
+            margin: 0 0 8px;
+            color: var(--blue-dark);
+            font-size: 1.05rem;
+        }
+        .extended-box ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .extended-box li {
+            margin-bottom: 6px;
+        }
+        .overnight-alt-note {
+            margin: 12px 0 0;
+            font-size: 0.95rem;
+            color: var(--ink);
+        }
+                background: rgba(255,255,255,0.78);
+                border: 1px solid rgba(130,120,112,0.16);
+            grid-column: 1 / -1;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.07);
         }
         .steps {
             display: grid;
@@ -422,6 +576,20 @@
             .modal-grid { grid-template-columns: 1fr; }
             .modal { padding: 14px; }
             .modal-head h3 { font-size: 1.6rem; }
+            .pet-setup-grid {
+                grid-template-columns: 1fr;
+            }
+            .promo-floater {
+                right: 10px;
+                left: 10px;
+                bottom: 10px;
+                min-width: 0;
+                width: auto;
+                min-height: 88px;
+                padding: 12px 14px;
+            }
+            .promo-floater .promo-top { font-size: 1.05rem; }
+            .promo-floater .promo-bottom { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -490,23 +658,87 @@
                     </ul>
                 </article>
                 <article class="card">
-                    <div class="price">Dogs from $75/night | Cats from $50/night</div>
+                    <div class="price">Rates Vary</div>
                     <h3>Overnight House + Pet Sitting</h3>
-                    <p>Overnight presence, security, and animal care with weekly pricing based on pet type.</p>
-                    <ul>
-                        <li>Dog: $75/night for the first dog, +$20/night for a second dog</li>
-                        <li>Cat: $50/night for the first cat, +$20/night for a second cat</li>
-                        <li>One dog + one cat: $125/night total</li>
-                        <li>Weekly examples: 1 dog = $525, 2 dogs = $665, 1 cat = $350, 2 cats = $490, 1 dog + 1 cat = $875</li>
-                        <li>2-night minimum for overnight bookings</li>
-                        <li>Holiday surcharge: +$20/night</li>
-                        <li>Puppy/high-needs care add-on: +$10 to +$20/night</li>
-                        <li>Complex medication care add-on: +$5 to +$10/day</li>
-                        <li>Feeding, walks, and playtime</li>
-                        <li>Mail, package, and plant care</li>
-                        <li>Daily updates and photos</li>
-                        <li>Travel-ready outside Baton Rouge (travel fee may apply)</li>
-                    </ul>
+                    <p>Select pets and nights to see live overnight rates.</p>
+                    <div class="overnight-pricing">
+                        <div class="pet-setup-grid">
+                            <div class="rate-select-wrap">
+                                <label for="overnight-pet-1">Pet 1</label>
+                                <select id="overnight-pet-1" class="rate-select" name="overnight-pet-1">
+                                    <option value="none" selected>None</option>
+                                    <option value="dog">Dog</option>
+                                    <option value="cat">Cat</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="rate-select-wrap">
+                                <label for="overnight-pet-2">Pet 2</label>
+                                <select id="overnight-pet-2" class="rate-select" name="overnight-pet-2">
+                                    <option value="none" selected>None</option>
+                                    <option value="dog">Dog</option>
+                                    <option value="cat">Cat</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="rate-select-wrap">
+                                <label for="overnight-pet-3">Pet 3</label>
+                                <select id="overnight-pet-3" class="rate-select" name="overnight-pet-3">
+                                    <option value="none" selected>None</option>
+                                    <option value="dog">Dog</option>
+                                    <option value="cat">Cat</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="rate-select-wrap">
+                                <label for="overnight-nights">How Many Nights</label>
+                                <select id="overnight-nights" class="rate-select" name="overnight-nights">
+                                    <option value="2" selected>2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="rate-display" id="overnight-rate-display" aria-live="polite">
+                            <p class="rate-main" id="rate-main"><strong>Standard</strong> overnight from $75/night.</p>
+                            <p class="rate-sub" id="rate-sub"><strong>New Client</strong> rate: $50 first dog, +$25 second dog.</p>
+                            <p class="rate-example" id="rate-example"><u><em>Standard Quote Example</em></u> (1 dog, 2 nights): $150</p>
+                            <p class="rate-holiday" id="rate-holiday"><u><em>New Client Rate Quote Example</em></u> (1 dog, 2 nights): $100</p>
+                            <p class="rate-note" id="rate-note"><u><em>Holiday Examples</em></u> (1 dog): July 3-5 = $140 new-client / $190 standard; Dec 23-Jan 2 = $700 new-client / $950 standard.</p>
+                        </div>
+                        <div class="included-box" aria-label="Overnight care inclusions">
+                            <h4>What Is Included</h4>
+                            <ul>
+                                <li>All-day + overnight presence</li>
+                                <li>Feeding, walks, and playtime</li>
+                                <li>Mail, package, and plant care</li>
+                                <li>Daily photo and text updates</li>
+                                <li>2-night minimum for overnight bookings</li>
+                                <li>Holiday surcharge: +$20/night</li>
+                            </ul>
+                        </div>
+                        <div class="extended-box" aria-label="Extended stay discounts and perks">
+                            <h4>Extended Stay Discounts / Perks</h4>
+                            <ul>
+                                <li>5 nights: 5% off base overnight rate</li>
+                                <li>7 nights: 8% off base overnight rate</li>
+                                <li>10 nights: 10% off base overnight rate</li>
+                                <li>7+ nights include a free mini Pet Staycation photoshoot</li>
+                                <li>Discounts apply to base overnight rates only (not holiday surcharge or add-ons)</li>
+                            </ul>
+                        </div>
+                        <p class="overnight-alt-note"><strong><em>If you do not need overnight presence, Drop-In Visits and One-Day Care are available.</em></strong><br><br>~New Client Rate Valid for 30 days after the initial fulfilled booking then turns to standard rate.</p>
+                    </div>
                 </article>
             </div>
             <div class="note">
@@ -662,6 +894,11 @@
         </section>
     </main>
 
+    <a class="promo-floater" href="pets-contact.html" aria-label="Act now book a meet and greet today">
+        <span class="promo-top">ACT NOW</span>
+        <span class="promo-bottom">BOOK A MEET &amp; GREET TODAY!</span>
+    </a>
+
     <div class="modal-overlay" id="housePlantModal" aria-hidden="true">
         <section class="modal" role="dialog" aria-modal="true" aria-labelledby="housePlantTitle">
             <div class="modal-head">
@@ -752,6 +989,120 @@
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     history.replaceState(null, '', '#' + sectionJump.value);
                 });
+            }
+
+            var pet1 = document.getElementById('overnight-pet-1');
+            var pet2 = document.getElementById('overnight-pet-2');
+            var pet3 = document.getElementById('overnight-pet-3');
+            var nightsSelect = document.getElementById('overnight-nights');
+            var rateMain = document.getElementById('rate-main');
+            var rateSub = document.getElementById('rate-sub');
+            var rateExample = document.getElementById('rate-example');
+            var rateHoliday = document.getElementById('rate-holiday');
+            var rateNote = document.getElementById('rate-note');
+
+            if (pet1 && pet2 && pet3 && nightsSelect && rateMain && rateSub && rateExample && rateHoliday && rateNote) {
+                function discountPercent(nights) {
+                    if (nights >= 10) return 10;
+                    if (nights >= 7) return 8;
+                    if (nights >= 5) return 5;
+                    return 0;
+                }
+
+                function formatSetupLabel(dogs, cats, others) {
+                    var parts = [];
+                    if (dogs > 0) parts.push(dogs + ' dog' + (dogs === 1 ? '' : 's'));
+                    if (cats > 0) parts.push(cats + ' cat' + (cats === 1 ? '' : 's'));
+                    if (others > 0) parts.push(others + ' other');
+                    return parts.length ? parts.join(' + ') : 'no pets selected';
+                }
+
+                function computeNightly(dogs, cats, isNewClient) {
+                    var firstDog = isNewClient ? 50 : 75;
+                    var firstCat = isNewClient ? 40 : 50;
+                    var extraDog = isNewClient ? 25 : 20;
+                    var extraCat = isNewClient ? 15 : 20;
+
+                    var total = 0;
+                    if (dogs > 0) total += firstDog + Math.max(0, dogs - 1) * extraDog;
+                    if (cats > 0) total += firstCat + Math.max(0, cats - 1) * extraCat;
+                    return total;
+                }
+
+                function totalWithDiscount(nightly, nights) {
+                    var discount = discountPercent(nights) / 100;
+                    return Math.round(nightly * nights * (1 - discount));
+                }
+
+                function updateOvernightQuote() {
+                    var selections = [pet1.value, pet2.value, pet3.value];
+                    var dogs = selections.filter(function (v) { return v === 'dog'; }).length;
+                    var cats = selections.filter(function (v) { return v === 'cat'; }).length;
+                    var others = selections.filter(function (v) { return v === 'other'; }).length;
+                    var totalPets = dogs + cats + others;
+                    var nights = parseInt(nightsSelect.value, 10) || 2;
+                    var setupLabel = formatSetupLabel(dogs, cats, others);
+
+                    if (totalPets === 0) {
+                        rateMain.innerHTML = '<strong>Standard</strong> overnight rate: select at least one pet.';
+                        rateSub.innerHTML = '<strong>New Client</strong> rate: select at least one pet.';
+                        rateExample.innerHTML = '<u><em>Standard Quote Example</em></u>: choose pets and nights to see totals.';
+                        rateHoliday.innerHTML = '<u><em>New Client Rate Quote Example</em></u>: choose pets and nights to see totals.';
+                        rateNote.innerHTML = '<u><em>Holiday Examples</em></u>: calculated after your pet setup is selected.';
+                        return;
+                    }
+
+                    if (others > 0) {
+                        rateMain.innerHTML = '<strong>Standard</strong> overnight rate: custom quote for selected setup.';
+                        rateSub.innerHTML = '<strong>New Client</strong> rate: custom quote after care review.';
+                        rateExample.innerHTML = '<u><em>Standard Quote Example</em></u> (' + setupLabel + ', ' + nights + ' nights): custom.';
+                        rateHoliday.innerHTML = '<u><em>New Client Rate Quote Example</em></u> (' + setupLabel + ', ' + nights + ' nights): custom.';
+                        rateNote.innerHTML = '<u><em>Holiday Examples</em></u> (' + setupLabel + '): July 3-5 and Dec 23-Jan 2 are custom and quoted after care review.';
+                        return;
+                    }
+
+                    var nightlyStandard = computeNightly(dogs, cats, false);
+                    var nightlyNewClient = computeNightly(dogs, cats, true);
+
+                    var standardTotal = totalWithDiscount(nightlyStandard, nights);
+                    var newClientTotal = totalWithDiscount(nightlyNewClient, nights);
+
+                    var julyNights = 2;
+                    var decNights = 10;
+                    var julyStandard = totalWithDiscount(nightlyStandard, julyNights) + (20 * julyNights);
+                    var julyNew = totalWithDiscount(nightlyNewClient, julyNights) + (20 * julyNights);
+                    var decStandard = totalWithDiscount(nightlyStandard, decNights) + (20 * decNights);
+                    var decNew = totalWithDiscount(nightlyNewClient, decNights) + (20 * decNights);
+
+                    var discountText = discountPercent(nights) > 0
+                        ? ' Includes ' + discountPercent(nights) + '% extended-stay discount.'
+                        : ' No extended-stay discount at this night count.';
+
+                    rateMain.innerHTML = '<strong>Standard</strong> overnight rate for ' + setupLabel + ': $' + nightlyStandard + '/night.';
+                    rateSub.innerHTML = '<strong>New Client</strong> rate for ' + setupLabel + ': $' + nightlyNewClient + '/night.';
+                    rateExample.innerHTML = '<u><em>Standard Quote Example</em></u> (' + setupLabel + ', ' + nights + ' nights): $' + standardTotal + '.';
+                    rateHoliday.innerHTML = '<u><em>New Client Rate Quote Example</em></u> (' + setupLabel + ', ' + nights + ' nights): $' + newClientTotal + '.';
+                    rateNote.innerHTML = '<u><em>Holiday Examples</em></u> (' + setupLabel + '): July 3-5 = $' + julyNew + ' new-client / $' + julyStandard + ' standard; Dec 23-Jan 2 = $' + decNew + ' new-client / $' + decStandard + ' standard.' + discountText;
+                }
+
+                [pet1, pet2, pet3, nightsSelect].forEach(function (el) {
+                    el.addEventListener('change', updateOvernightQuote);
+                });
+                updateOvernightQuote();
+            }
+
+            var promoBottom = document.querySelector('.promo-floater .promo-bottom');
+            if (promoBottom) {
+                var promoMessages = [
+                    'BOOK A MEET &amp;<br>GREET TODAY!',
+                    'NEW CLIENT RATE<br>AVAILABLE',
+                    'ASK ABOUT<br>INTRO PRICING'
+                ];
+                var promoIndex = 0;
+                setInterval(function () {
+                    promoIndex = (promoIndex + 1) % promoMessages.length;
+                    promoBottom.innerHTML = promoMessages[promoIndex];
+                }, 2600);
             }
         })();
     </script>
