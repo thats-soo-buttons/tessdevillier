@@ -206,7 +206,9 @@
             font-family: 'VT323';
             color: #f4e6da;
             text-align: center;
-            padding: 26px 16px;
+            padding: max(26px, env(safe-area-inset-top)) 16px max(18px, env(safe-area-inset-bottom));
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .unlock-card {
@@ -246,8 +248,8 @@
             color: #f4e6da;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
             text-transform: uppercase;
-            line-height: 0.92;
-            white-space: nowrap;
+            line-height: 1.02;
+            white-space: normal;
         }
 
         .unlock-title .unlock-word {
@@ -2093,6 +2095,11 @@
             border-bottom: 2px solid var(--soft-peach);
         }
         @media (max-width: 700px) {
+            #music-unlock {
+                justify-content: flex-start;
+                padding-top: max(34px, env(safe-area-inset-top));
+            }
+
             .portfolio-row-break {
                 display: block;
                 flex-basis: 100%;
@@ -2279,19 +2286,21 @@
             }
 
             #mode-toggle {
-                position: static !important;
-                right: auto;
-                bottom: auto;
-                margin: 14px auto 0 auto !important;
+                position: fixed !important;
+                right: 10px;
+                bottom: 86px;
+                margin: 0 !important;
                 width: fit-content;
+                max-width: calc(100vw - 20px);
             }
 
             #audio-controls {
-                position: static !important;
-                right: auto;
-                bottom: auto;
-                margin: 8px auto 0 auto !important;
+                position: fixed !important;
+                right: 10px;
+                bottom: 16px;
+                margin: 0 !important;
                 width: fit-content;
+                max-width: calc(100vw - 20px);
             }
         }
         </style>
@@ -2580,6 +2589,93 @@
     if (contactBtn) contactBtn.addEventListener('click', openContactModal);
     if (bookContactLink) bookContactLink.addEventListener('click', function(e) { e.preventDefault(); openContactModal(); });
     if (contactModal) contactModal.addEventListener('click', function(e) { if (e.target === contactModal) closeContactModal(); });
+</script>
+<script>
+    (function () {
+        function makeFloatingPanelDraggable(el) {
+            if (!el) return;
+
+            var startX = 0;
+            var startY = 0;
+            var originLeft = 0;
+            var originTop = 0;
+            var dragging = false;
+            var activePointerId = null;
+
+            el.style.cursor = 'grab';
+
+            el.addEventListener('pointerdown', function (event) {
+                if (event.target.closest('button,input,select,textarea,a,label')) return;
+                if (event.button !== undefined && event.button !== 0) return;
+
+                var rect = el.getBoundingClientRect();
+                var position = window.getComputedStyle(el).position;
+                if (position !== 'fixed') {
+                    el.style.position = 'fixed';
+                    el.style.left = rect.left + 'px';
+                    el.style.top = rect.top + 'px';
+                    el.style.right = 'auto';
+                    el.style.bottom = 'auto';
+                    el.style.margin = '0';
+                }
+
+                dragging = true;
+                activePointerId = event.pointerId;
+                startX = event.clientX;
+                startY = event.clientY;
+                originLeft = rect.left;
+                originTop = rect.top;
+                el.style.cursor = 'grabbing';
+
+                try {
+                    el.setPointerCapture(event.pointerId);
+                } catch (_) {}
+
+                window.addEventListener('pointermove', onMove);
+                window.addEventListener('pointerup', onUp);
+                window.addEventListener('pointercancel', onUp);
+            });
+
+            function onMove(event) {
+                if (!dragging) return;
+                if (activePointerId !== null && event.pointerId !== activePointerId) return;
+
+                var dx = event.clientX - startX;
+                var dy = event.clientY - startY;
+                var nextLeft = originLeft + dx;
+                var nextTop = originTop + dy;
+                var maxLeft = Math.max(0, window.innerWidth - el.offsetWidth - 4);
+                var maxTop = Math.max(0, window.innerHeight - el.offsetHeight - 4);
+
+                nextLeft = Math.max(0, Math.min(maxLeft, nextLeft));
+                nextTop = Math.max(0, Math.min(maxTop, nextTop));
+
+                el.style.left = nextLeft + 'px';
+                el.style.top = nextTop + 'px';
+            }
+
+            function onUp(event) {
+                if (!dragging) return;
+                if (activePointerId !== null && event && event.pointerId !== activePointerId) return;
+
+                dragging = false;
+                if (activePointerId !== null) {
+                    try {
+                        el.releasePointerCapture(activePointerId);
+                    } catch (_) {}
+                }
+                activePointerId = null;
+                el.style.cursor = 'grab';
+
+                window.removeEventListener('pointermove', onMove);
+                window.removeEventListener('pointerup', onUp);
+                window.removeEventListener('pointercancel', onUp);
+            }
+        }
+
+        makeFloatingPanelDraggable(document.getElementById('audio-controls'));
+        makeFloatingPanelDraggable(document.getElementById('mode-toggle'));
+    })();
 </script>
 <script>
   (function () {

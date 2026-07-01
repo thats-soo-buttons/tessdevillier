@@ -1220,7 +1220,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
               <label style="display:block;margin-top:8px;font-size:11px;">Volume
                 <input type="range" id="playerVol" min="0" max="1" step="0.01" value="0.35" style="width:100%;">
               </label>
-              <div class="win-inset" style="margin-top:8px;padding:6px;font-size:10px;line-height:1.35;background:#f6f0cf;color:#111;border:1px solid #8b7f52;">
+              <div id="playlistNotice" class="win-inset" style="margin-top:8px;padding:6px;font-size:10px;line-height:1.35;background:#f6f0cf;color:#111;border:1px solid #8b7f52;">
                 Demo tracks only. For concept and preview purposes.<br>
                 Lyrics written by Tess Devillier.
               </div>
@@ -2083,6 +2083,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var desktopVol = document.getElementById('desktopVol');
       var playlistSelect = document.getElementById('playlistSelect');
       var playlistNowPlaying = document.getElementById('playlistNowPlaying');
+      var playlistNotice = document.getElementById('playlistNotice');
 
       function reportAudioError(prefix, err) {
         var message = (err && err.name) ? err.name : 'PlaybackError';
@@ -2151,6 +2152,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           tracks = [];
           if (trackName) trackName.textContent = 'No playlists found';
           if (playlistNowPlaying) playlistNowPlaying.textContent = 'Now playing: none';
+          if (playlistNotice) playlistNotice.textContent = 'No playlist notes available.';
           return;
         }
         activePlaylistIndex = (index + playlists.length) % playlists.length;
@@ -2161,6 +2163,26 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           var count = active.tracks.length;
           var suffix = count === 1 ? 'track' : 'tracks';
           playlistNowPlaying.textContent = 'Now playing: ' + active.name + ' (' + count + ' ' + suffix + ')';
+        }
+        if (playlistNotice) {
+          if (/^playlist\s*1$/i.test(active.name)) {
+            playlistNotice.innerHTML =
+              'Royalty Free &amp; Adobe Stock Acquired Music.<br>' +
+              'Have music and want it on the Jukebox? Contact me. RelayIM / Email App available soon, but for now ' +
+              '<a href="mailto:contact@tessdevillier.com" style="color:#111;text-decoration:underline;">contact@tessdevillier.com</a> ' +
+              'or <a href="https://discord.gg/8aBHWSBepH" target="_blank" rel="noopener noreferrer" style="color:#111;text-decoration:underline;">join the Discord</a>.';
+          } else if (/^mixed\s*demos$/i.test(active.name)) {
+            playlistNotice.innerHTML =
+              'MIXED DEMOS // LYRICS + PIANO: TESS DEVILLIER<br>' +
+              'SOME TRACKS USE SUNO-ASSISTED PRODUCTION // DEMO PREVIEW ONLY<br>' +
+              'OPEN TO COLLAB // ARTISTS + PRODUCERS WELCOME';
+          } else if (/^piano\s*edits$/i.test(active.name)) {
+            playlistNotice.innerHTML =
+              'Demo tracks only. For concept and preview purposes.<br>' +
+              'Piano played by Tess Devillier - no professional experience - plays by ear.';
+          } else {
+            playlistNotice.innerHTML = 'Demo tracks only. For concept and preview purposes.<br>Lyrics written by Tess Devillier.';
+          }
         }
         syncPlaylistSelect();
         setTrack(0, !!autoplay);
@@ -2720,16 +2742,20 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       function makeDraggable(win) {
         var handle = win.querySelector('[data-drag-handle]');
         if (!handle) return;
+        handle.style.touchAction = 'none';
         var startX = 0;
         var startY = 0;
         var originX = 0;
         var originY = 0;
         var dragging = false;
+        var activePointerId = null;
 
-        handle.addEventListener('mousedown', function (event) {
+        handle.addEventListener('pointerdown', function (event) {
           if (event.target.tagName.toLowerCase() === 'button') return;
+          if (event.button !== undefined && event.button !== 0) return;
           event.preventDefault();
           dragging = true;
+          activePointerId = event.pointerId;
           bringToFront(win);
           var rect = win.getBoundingClientRect();
           var parent = desktop.getBoundingClientRect();
@@ -2737,12 +2763,17 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           originY = rect.top - parent.top;
           startX = event.clientX;
           startY = event.clientY;
-          window.addEventListener('mousemove', onMove);
-          window.addEventListener('mouseup', onUp);
+          try {
+            handle.setPointerCapture(event.pointerId);
+          } catch (_) {}
+          window.addEventListener('pointermove', onMove);
+          window.addEventListener('pointerup', onUp);
+          window.addEventListener('pointercancel', onUp);
         });
 
         function onMove(event) {
           if (!dragging) return;
+          if (activePointerId !== null && event.pointerId !== activePointerId) return;
           var dx = event.clientX - startX;
           var dy = event.clientY - startY;
           var maxX = Math.max(0, desktop.clientWidth - win.offsetWidth - 4);
@@ -2753,10 +2784,18 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           win.style.top = nextY + 'px';
         }
 
-        function onUp() {
+        function onUp(event) {
+          if (activePointerId !== null && event && event.pointerId !== activePointerId) return;
           dragging = false;
-          window.removeEventListener('mousemove', onMove);
-          window.removeEventListener('mouseup', onUp);
+          if (activePointerId !== null) {
+            try {
+              handle.releasePointerCapture(activePointerId);
+            } catch (_) {}
+          }
+          activePointerId = null;
+          window.removeEventListener('pointermove', onMove);
+          window.removeEventListener('pointerup', onUp);
+          window.removeEventListener('pointercancel', onUp);
         }
       }
 
@@ -3039,14 +3078,11 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
             return;
           }
 
-          var autoContinueTimer = window.setTimeout(function () {
-            pollStatus.textContent = 'No input detected. Continuing to desktop...';
-            cleanup();
-            resolve({ skipped: true, reason: 'timeout', pollVersion: POLL_PROMPT_VERSION });
-          }, 5200);
+          if (pollStatus) {
+            pollStatus.textContent = 'Please submit to enter desktop, or use Skip for now.';
+          }
 
           function cleanup() {
-            window.clearTimeout(autoContinueTimer);
             bootPollForm.removeEventListener('submit', onSubmit);
             if (bootPollSkip) bootPollSkip.removeEventListener('click', onSkip);
           }
