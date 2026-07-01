@@ -92,6 +92,20 @@
       display: block;
     }
     .actions { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .footer-links {
+      margin-top: 26px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 0.94rem;
+    }
+    .footer-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .footer-links a:hover { text-decoration: underline; }
     .btn {
       display: inline-block;
       text-decoration: none;
@@ -149,7 +163,7 @@
 <body>
   <main class="wrap" role="main">
     <div class="top">
-      <a href="portfolio.html">Back To Portfolio</a>
+      <a href="index.html#professional">Back To Home</a>
       <span style="color:var(--muted);">Creative Worlds</span>
     </div>
 
@@ -192,6 +206,11 @@
       <a class="btn" href="xyzthians.html">Explore XYZthians</a>
       <a class="btn alt" href="worldbuilding.html">Worldbuilding Services</a>
       <a class="btn alt" href="hire.html#contact-lanes">Book / Contact</a>
+    </div>
+
+    <div class="footer-links" aria-label="Sandbox footer links">
+      <a href="index.html#professional">Home</a>
+      <a href="allinoneplace.html">All In One Place</a>
     </div>
   </main>
   <a class="inquiry-floater" href="hire.html#contact-lanes" aria-label="Open inquiry links">

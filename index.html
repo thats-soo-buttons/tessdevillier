@@ -816,17 +816,48 @@
             border-radius: 12px;
             padding: 8px 10px;
             backdrop-filter: blur(6px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .matrix-primary-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #btn-whimsical {
+            background: linear-gradient(135deg, rgba(29, 35, 52, 0.92), rgba(22, 61, 86, 0.86)) !important;
+            border: 1px solid rgba(186, 223, 255, 0.78) !important;
+            color: #f3fbff !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.06em;
+            padding: 8px 20px !important;
+            border-radius: 999px !important;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(219, 238, 255, 0.48) !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.44) !important;
         }
 
         .matrix-invite {
-            margin-left: 8px;
-            font-size: 0.86rem;
-            font-weight: 700;
+            margin-left: 0;
+            font-size: 0.72rem;
+            font-weight: 600;
             color: #f4e6da;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.72);
+            letter-spacing: 0.03em;
+            text-transform: none;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
             white-space: nowrap;
+            opacity: 0.92;
+        }
+
+        .matrix-invite .matrix-arrow {
+            display: inline-block;
+            transform: none;
+            transform-origin: center;
+            margin-right: 4px;
         }
 
         #audio-controls {
@@ -1361,10 +1392,12 @@
                 <div class="mode-blurb-quote" id="mode-blurb-quote">"Why hire me? I'm the common denominator, you are hiring my energy and reliability."</div>
             </div>
             <div id="vibe-text"></div>
-            <div id="mode-toggle" style="display:flex; gap:18px; justify-content:center; align-items:center; margin: 18px 0 0 0; pointer-events:auto;">
-                <button id="btn-professional" type="button" style="display:none;background:rgba(40,40,40,0.55); border:2px solid #ffd700; color:#ffd700; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Professional</button>
-                <button id="btn-whimsical" type="button" style="background:rgba(40,40,40,0.55); border:2px solid #f4e6da; color:#f4e6da; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Try A Different Vibe</button>
-                <span class="matrix-invite" aria-hidden="true">↷ I wonder what this does? Ooo, a button.</span>
+            <div id="mode-toggle" style="margin: 18px 0 0 0; pointer-events:auto;">
+                <div class="matrix-primary-row">
+                    <button id="btn-professional" type="button" style="display:none;background:rgba(40,40,40,0.55); border:2px solid #ffd700; color:#ffd700; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Professional</button>
+                    <button id="btn-whimsical" type="button" style="cursor:pointer; transition:all 0.2s; outline:none;">Enter The Matrix</button>
+                </div>
+                <span class="matrix-invite" aria-hidden="true"><span class="matrix-arrow">↑</span><span id="matrix-invite-text">I wonder what this does?</span></span>
             </div>
             <div id="audio-controls">
                 <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Pause</button>
@@ -1434,6 +1467,7 @@
             const modeBlurbTitle = document.getElementById('mode-blurb-title');
             const modeBlurbText = document.getElementById('mode-blurb-text');
             const modeBlurbQuote = document.getElementById('mode-blurb-quote');
+            const matrixInviteText = document.getElementById('matrix-invite-text');
             const titleLampOnBtn = document.getElementById('title-lamp-on');
             const titleLampOffBtn = document.getElementById('title-lamp-off');
             const unlockTitle = document.querySelector('.unlock-title');
@@ -1547,6 +1581,17 @@
             const introIgnitionMs = runTitleIgnition();
             runInfoReveal(introIgnitionMs * 0.68);
             runPolaroidReveal(introIgnitionMs * 0.38);
+
+            if (matrixInviteText) {
+                let showOooButton = false;
+                const cycleInviteCopy = function () {
+                    matrixInviteText.textContent = showOooButton ? 'Ooo, a button.' : 'I wonder what this does?';
+                    const nextDelay = showOooButton ? 2200 : 3200;
+                    showOooButton = !showOooButton;
+                    window.setTimeout(cycleInviteCopy, nextDelay);
+                };
+                cycleInviteCopy();
+            }
 
             if (titleLampOnBtn) {
                 titleLampOnBtn.addEventListener('click', function (e) {
