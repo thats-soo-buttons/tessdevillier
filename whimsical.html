@@ -1372,7 +1372,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
               <div class="browser-bar">
                 <button type="button" class="menu-btn" id="browserHome">Home</button>
                 <button type="button" class="menu-btn" id="browserBack">Back</button>
-                <input type="text" id="browserInput" class="browser-input" value="https://duckduckgo.com" aria-label="Browser URL or search query">
+                <input type="text" id="browserInput" class="browser-input" value="phosphornet-browser.html" aria-label="Browser URL or search query">
                 <button type="button" class="menu-btn" id="browserGo">Go</button>
                 <button type="button" class="menu-btn" id="browserSearch">Search</button>
               </div>
@@ -1389,7 +1389,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
                 </select>
               </div>
               <div class="browser-frame">
-                <iframe id="browserFrame" title="Browser view" src="https://duckduckgo.com" sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer"></iframe>
+                <iframe id="browserFrame" title="Browser view" src="phosphornet-browser.html" sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer"></iframe>
               </div>
               <div class="browser-tip" id="browserStatus">Ready. Some websites block embedding in iframes.</div>
               <div style="margin-top:6px;">
@@ -1838,7 +1838,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
 
       function getPopoutUrl(id) {
         if (id === 'browser') {
-          return normalizeUrl(browserInput ? browserInput.value : 'https://duckduckgo.com');
+          return normalizeUrl(browserInput ? browserInput.value : browserHomeUrl);
         }
         if (popoutMap[id]) return popoutMap[id];
         return window.location.href;
@@ -2131,7 +2131,8 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var browserPopout = document.getElementById('browserPopout');
       var browserRecent = document.getElementById('browserRecent');
       var browserStatus = document.getElementById('browserStatus');
-      var browserHistory = ['https://duckduckgo.com'];
+      var browserHomeUrl = 'phosphornet-browser.html';
+      var browserHistory = [browserHomeUrl];
       var historyIndex = 0;
       var recentStorageKey = 'tessBrowserRecentPages';
       var phosphornetPages = {
@@ -2355,7 +2356,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
 
       function normalizeUrl(value) {
         var input = (value || '').trim();
-        if (!input) return 'https://duckduckgo.com';
+        if (!input) return browserHomeUrl;
         if (/^(javascript|data|file|vbscript):/i.test(input)) {
           return 'https://duckduckgo.com/?q=' + encodeURIComponent(input);
         }
@@ -2435,7 +2436,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       }
       if (browserHome) {
         browserHome.addEventListener('click', function () {
-          navigateBrowser('https://duckduckgo.com', true);
+          navigateBrowser(browserHomeUrl, true);
         });
       }
       if (browserPopout) {

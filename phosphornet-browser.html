@@ -3,87 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="PhosphorNet Navigator browser shell for the whimsical side of Tess Devillier.">
-  <title>PhosphorNet Browser</title>
+  <meta name="description" content="PhosphorNet links, free support options, and paid services.">
+  <title>PhosphorNet Directory</title>
 </head>
 <body bgcolor="#081108" text="#8fffd0" link="#8fffd0" vlink="#b9d9ff" alink="#ffffff">
   <center>
-    <table width="980" border="1" cellpadding="10" cellspacing="0" bgcolor="#122018">
+    <table width="880" border="1" cellpadding="10" cellspacing="0" bgcolor="#122018">
       <tr>
         <td>
-          <table width="100%" border="1" cellpadding="6" cellspacing="0" bgcolor="#e0ded6">
-            <tr bgcolor="#c7c4bb">
-              <td><font face="Verdana" size="2"><b>PhosphorNet Browser 95</b></font></td>
+          <table width="100%" border="1" cellpadding="8" cellspacing="0" bgcolor="#0d1a12">
+            <tr bgcolor="#203326">
+              <td><font face="Verdana" size="4"><b>PHOSPHORNET DIRECTORY</b></font></td>
+            </tr>
+            <tr>
+              <td>
+                <font face="Courier New" size="3">Simple links for websites, free support, and paid services.</font>
+              </td>
+            </tr>
+          </table>
+
+          <table width="100%" border="1" cellpadding="8" cellspacing="0" bgcolor="#0d1a12" style="margin-top:8px;">
+            <tr bgcolor="#203326">
+              <td><font face="Verdana" size="3"><b>WEBSITES</b></font></td>
             </tr>
             <tr>
               <td>
                 <font face="Verdana" size="2">
-                  <a href="index.html#professional" id="homeLink">Home</a>
-                  |
-                  <a href="#" id="backLink">Back</a>
-                  |
-                  <a href="#" id="reloadLink">Reload</a>
+                  <ul>
+                    <li><a href="https://thatssoobuttons.com" target="_blank" rel="noopener noreferrer">thatssoobuttons.com</a></li>
+                    <li><a href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer">ontheflynetwork.com</a></li>
+                    <li><a href="https://tessdevillier.com" target="_blank" rel="noopener noreferrer">tessdevillier.com</a></li>
+                  </ul>
                 </font>
               </td>
             </tr>
+          </table>
+
+          <table width="100%" border="1" cellpadding="8" cellspacing="0" bgcolor="#0d1a12" style="margin-top:8px;">
+            <tr bgcolor="#203326">
+              <td><font face="Verdana" size="3"><b>SUPPORTING ME FOR FREE</b></font></td>
+            </tr>
             <tr>
-              <td bgcolor="#f3f1e9"><font face="Courier New" size="3"><b>Address:</b> <span id="addressBar">loading...</span></font></td>
+              <td>
+                <font face="Verdana" size="2">
+                  <ul>
+                    <li><a href="freesupport.html">See all FREE options</a></li>
+                    <li><a href="twitch-prime.html">Use your Amazon Prime Twitch sub</a></li>
+                    <li>Follow, share, and tag my work on social media</li>
+                  </ul>
+                </font>
+              </td>
             </tr>
           </table>
-          <iframe id="browserFrame" title="PhosphorNet content frame" style="width:100%;height:74vh;border:1px solid #5ed39a;background:#fff;margin-top:8px;"></iframe>
-          <p><font face="Verdana" size="2" id="fallbackNotice" hidden>If this page cannot load in-frame, use the direct page link from the address bar path.</font></p>
+
+          <table width="100%" border="1" cellpadding="8" cellspacing="0" bgcolor="#0d1a12" style="margin-top:8px;">
+            <tr bgcolor="#203326">
+              <td><font face="Verdana" size="3"><b>PAID SECTION</b></font></td>
+            </tr>
+            <tr>
+              <td>
+                <font face="Verdana" size="2">
+                  <p><b>Services:</b></p>
+                  <ul>
+                    <li><a href="hire.html">Creative consulting and custom project work</a></li>
+                    <li><a href="worldbuilding.html">Worldbuilding support</a></li>
+                    <li><a href="phosphornet-pets.html">Pet care and house sitting</a></li>
+                    <li><a href="lyrics.html">Lyrics and writing portfolio</a></li>
+                  </ul>
+                </font>
+              </td>
+            </tr>
+          </table>
+
           <p align="center"><font face="Verdana" size="2"><a href="whimsical.html">Back to Desktop</a> | <a href="index.html#professional">Main Site</a></font></p>
         </td>
       </tr>
     </table>
   </center>
-  <script>
-    (function () {
-      var params = new URLSearchParams(window.location.search);
-      var page = params.get('page') || 'index.html';
-      var title = params.get('title') || 'Document';
-      var frame = document.getElementById('browserFrame');
-      var reloadLink = document.getElementById('reloadLink');
-      var backLink = document.getElementById('backLink');
-      var homeLink = document.getElementById('homeLink');
-      var addressBar = document.getElementById('addressBar');
-      document.title = title + ' | PhosphorNet Browser';
-      addressBar.textContent = 'phosphornet://local/' + page;
-      var decodedPage = page;
-      try {
-        decodedPage = decodeURIComponent(page);
-      } catch (_) {}
-      var hashIndex = decodedPage.indexOf('#');
-      var pagePath = hashIndex === -1 ? decodedPage : decodedPage.slice(0, hashIndex);
-      var pageHash = hashIndex === -1 ? '' : decodedPage.slice(hashIndex);
-      var sep = pagePath.indexOf('?') === -1 ? '?' : '&';
-      frame.src = pagePath + sep + '_v=' + Date.now() + pageHash;
-      if (reloadLink) {
-        reloadLink.addEventListener('click', function (event) {
-          event.preventDefault();
-          if (frame && frame.contentWindow) {
-            frame.contentWindow.location.reload();
-          }
-        });
-      }
-      if (backLink) {
-        backLink.addEventListener('click', function (event) {
-          event.preventDefault();
-          if (frame && frame.contentWindow && frame.contentWindow.history) {
-            frame.contentWindow.history.back();
-          }
-        });
-      }
-      if (homeLink) {
-        homeLink.addEventListener('click', function (event) {
-          event.preventDefault();
-          if (frame) {
-            frame.src = 'index.html#professional';
-            addressBar.textContent = 'phosphornet://local/index.html#professional';
-          }
-        });
-      }
-    })();
-  </script>
 </body>
 </html>
