@@ -597,11 +597,34 @@
       min-width: 260px;
       min-height: 120px;
       z-index: 30;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      --win-scale: 1;
     }
 
     .window.hidden {
       display: none;
+    }
+
+    .window.maximized {
+      top: 4px !important;
+      left: 4px !important;
+      width: calc(100% - 8px) !important;
+      height: calc(100% - 38px) !important;
+      max-width: none !important;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .window.maximized .window-body {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+    }
+
+    .window.maximized .photo-album-grid {
+      max-height: none;
+      height: 100%;
     }
 
     .title-bar {
@@ -613,7 +636,7 @@
       align-items: center;
       user-select: none;
       cursor: move;
-      font-size: 12px;
+      font-size: calc(12px * var(--win-scale));
     }
 
     .title-actions {
@@ -625,9 +648,9 @@
     .title-bar button {
       background: var(--panel);
       border: 2px outset #dfdfdf;
-      width: 16px;
-      height: 14px;
-      font-size: 9px;
+      width: calc(16px * var(--win-scale));
+      height: calc(14px * var(--win-scale));
+      font-size: calc(9px * var(--win-scale));
       line-height: 1;
       cursor: pointer;
       padding: 0;
@@ -641,13 +664,58 @@
 
     .window-body {
       padding: 8px;
-      font-size: 11px;
+      font-size: calc(11px * var(--win-scale));
       color: #000;
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+    }
+
+    .window .link-item,
+    .window .menu-btn,
+    .window .disk-btn,
+    .window .game-cell,
+    .window .browser-input,
+    .window input,
+    .window select,
+    .window textarea,
+    .window label,
+    .window p,
+    .window span,
+    .window div {
+      font-size: inherit;
+    }
+
+    .window-resize-handle {
+      position: absolute;
+      right: 2px;
+      bottom: 2px;
+      width: 16px;
+      height: 16px;
+      cursor: nwse-resize;
+      z-index: 3;
+      border: 1px solid transparent;
+      background:
+        linear-gradient(135deg, transparent 42%, #6f6f6f 42%, #6f6f6f 49%, transparent 49%) no-repeat,
+        linear-gradient(135deg, transparent 58%, #8a8a8a 58%, #8a8a8a 65%, transparent 65%) no-repeat,
+        linear-gradient(135deg, transparent 74%, #a3a3a3 74%, #a3a3a3 81%, transparent 81%) no-repeat;
+    }
+
+    .window-resize-handle:focus {
+      outline: 1px dotted #000;
+    }
+
+    .window.maximized .window-resize-handle {
+      display: none;
     }
 
     .window-body p {
       margin: 0 0 8px;
       line-height: 1.35;
+    }
+
+    .notepad-content {
+      height: 100%;
     }
 
     .link-item {
@@ -846,13 +914,39 @@
       border: 2px inset #dfdfdf;
       padding: 2px 6px;
       font-size: 11px;
-      height: 24px;
+      height: auto;
+      min-height: calc(24px * var(--win-scale));
+      line-height: 1.2;
+    }
+
+    .browser-recents {
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      align-items: stretch;
+    }
+
+    .browser-recents label {
+      color: #333;
+      white-space: normal;
+      font-size: inherit;
+      line-height: 1.2;
+    }
+
+    .browser-recents .browser-input {
+      min-width: 0;
+      width: 100%;
+      max-width: none;
+      min-height: calc(26px * var(--win-scale));
     }
 
     .browser-frame {
       border: 2px inset #dfdfdf;
       background: #fff;
-      height: 290px;
+      min-height: 220px;
+      height: auto;
+      flex: 1 1 auto;
       width: 100%;
     }
 
@@ -861,6 +955,12 @@
       height: 100%;
       border: 0;
       background: #fff;
+    }
+
+    #win-browser .window-body {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
     }
 
     .browser-tip {
@@ -949,22 +1049,13 @@
       grid-template-columns: repeat(4, minmax(60px, 1fr));
     }
 
-    .photo-album-grid.small-icons img {
-      height: 64px;
-    }
-
     .photo-album-grid.large-icons {
       grid-template-columns: repeat(2, minmax(120px, 1fr));
     }
 
-    .photo-album-grid.large-icons img {
-      height: 120px;
-    }
-
     .photo-album-grid img {
       width: 100%;
-      height: 84px;
-      object-fit: cover;
+      height: auto;
       display: block;
       border: 1px solid #9b9b9b;
       user-select: none;
@@ -1073,7 +1164,7 @@
       }
 
       .browser-frame {
-        height: 260px;
+        min-height: 200px;
       }
     }
   </style>
@@ -1272,7 +1363,10 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           <section class="window hidden win-border" id="win-browser" style="top:36px;left:220px;width:560px;">
             <div class="title-bar" data-drag-handle>
               <span>PhosphorNet Explorer</span>
-              <div class="title-actions"><button type="button" data-close="browser" aria-label="Close">x</button></div>
+              <div class="title-actions">
+                <button type="button" id="browserPopout" aria-label="Open current page in new tab" title="Open current page in new tab">□↗</button>
+                <button type="button" data-close="browser" aria-label="Close">x</button>
+              </div>
             </div>
             <div class="window-body" style="background:#d4d0c8;">
               <div class="browser-bar">
@@ -1282,9 +1376,9 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
                 <button type="button" class="menu-btn" id="browserGo">Go</button>
                 <button type="button" class="menu-btn" id="browserSearch">Search</button>
               </div>
-              <div class="browser-recents" style="margin-top:6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-                <label for="browserRecent" style="font-size:11px;color:#333;white-space:nowrap;">Recently visited</label>
-                <select id="browserRecent" class="browser-input" style="max-width:260px;min-width:220px;">
+              <div class="browser-recents">
+                <label for="browserRecent">Recently visited</label>
+                <select id="browserRecent" class="browser-input">
                   <option value="">Choose a recent page...</option>
                   <option value="phosphornet-availability.html">Availability</option>
                   <option value="phosphornet-pets.html">Pet Services</option>
@@ -1386,9 +1480,14 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
               <div class="title-actions"><button type="button" data-close="support" aria-label="Close">x</button></div>
             </div>
             <div class="window-body win-inset">
+              <p><b>Why support?</b> Your support helps keep this creative ecosystem running: site updates, better tools, safer pet-care ops, and more free community resources.</p>
+              <p><b>What your support funds:</b> time for client work improvements, art/music/worldbuilding projects, and ongoing maintenance for this weird little internet world.</p>
+              <p><b>What you get out of it:</b> more consistent content, better service quality, and a creator who can keep showing up without burning out.</p>
+              <p><b>Pick what fits you best:</b></p>
               <a href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer" class="link-item">Ko-fi</a>
+              <a href="https://www.twitch.tv/subs/thats_soo_buttons" target="_blank" rel="noopener noreferrer" class="link-item">Twitch Sub (Free w/ Prime)</a>
               <a href="https://cash.app/$888buttons" target="_blank" rel="noopener noreferrer" class="link-item">Cash App: $888buttons</a>
-              <a href="phosphornet-freesupport.html" class="link-item">Free support guide</a>
+              <a href="phosphornet-freesupport.html" class="link-item">FREE OPTIONS</a>
               <a href="phosphornet-availability.html" class="link-item">Availability</a>
             </div>
           </section>
@@ -1550,6 +1649,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
                 <li>Use MailDrop for one-shot contact flow later.</li>
                 <li>RelayIM is the retro AIM-style lane.</li>
               </ul>
+              <p style="margin-top:8px;"><b>What is this R in the right corner of my windowed application?</b><br>It means Refresh / Reshuffle.</p>
             </div>
           </div>
 
@@ -1672,7 +1772,24 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         win.classList.remove('hidden');
         ensureTaskButton(id);
         setTaskActive(id, true);
+
+        if (id === 'notepad') {
+          centerWindow(win);
+        }
+
         bringToFront(win);
+      }
+
+      function centerWindow(win) {
+        if (!win || !desktop) return;
+
+        var maxX = Math.max(0, desktop.clientWidth - win.offsetWidth - 4);
+        var maxY = Math.max(0, desktop.clientHeight - win.offsetHeight - 34);
+        var nextX = Math.max(0, Math.min(maxX, Math.round((desktop.clientWidth - win.offsetWidth) / 2)));
+        var nextY = Math.max(0, Math.min(maxY, Math.round((desktop.clientHeight - win.offsetHeight) / 2)));
+
+        win.style.left = nextX + 'px';
+        win.style.top = nextY + 'px';
       }
 
       function closeWin(id) {
@@ -1680,6 +1797,43 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         if (!win) return;
         win.classList.add('hidden');
         removeTaskButton(id);
+      }
+
+      function applyWindowScale(win) {
+        if (!win) return;
+        var baseWidth = Number(win.dataset.baseWidth || 0);
+        var baseHeight = Number(win.dataset.baseHeight || 0);
+        if (!baseWidth) {
+          baseWidth = Math.max(260, win.offsetWidth || parseInt(win.style.width, 10) || 320);
+          win.dataset.baseWidth = String(baseWidth);
+        }
+        if (!baseHeight) {
+          baseHeight = Math.max(140, win.offsetHeight || parseInt(win.style.height, 10) || 220);
+          win.dataset.baseHeight = String(baseHeight);
+        }
+
+        var ratioW = (win.offsetWidth || baseWidth) / baseWidth;
+        var ratioH = (win.offsetHeight || baseHeight) / baseHeight;
+        var ratio = Math.max(ratioW, ratioH);
+        var scale = Math.max(1, Math.min(2.1, ratio));
+        win.style.setProperty('--win-scale', scale.toFixed(3));
+
+        // Scale inline pixel font sizes so fixed-size text grows with resized popups.
+        var nodes = Array.prototype.slice.call(win.querySelectorAll('[style*="font-size"]'));
+        nodes.forEach(function (node) {
+          var inlineSize = (node.style && node.style.fontSize ? node.style.fontSize.trim() : '');
+          if (!inlineSize || inlineSize.slice(-2).toLowerCase() !== 'px') return;
+
+          var base = Number(node.dataset.baseFontPx || 0);
+          if (!base) {
+            var parsed = parseFloat(inlineSize);
+            if (!Number.isFinite(parsed) || parsed <= 0) return;
+            base = parsed;
+            node.dataset.baseFontPx = String(base);
+          }
+
+          node.style.fontSize = (base * scale).toFixed(2) + 'px';
+        });
       }
 
       function getPopoutUrl(id) {
@@ -1691,8 +1845,54 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       }
 
       function expandWin(id) {
-        var url = getPopoutUrl(id);
-        safeOpenExternal(url);
+        if (id === 'browser') {
+          safeOpenExternal(getPopoutUrl('browser'));
+          return;
+        }
+
+        var win = document.getElementById('win-' + id);
+        if (!win) return;
+
+        if (win.classList.contains('maximized')) {
+          win.classList.remove('maximized');
+          if (win.dataset.restoreTop) win.style.top = win.dataset.restoreTop;
+          if (win.dataset.restoreLeft) win.style.left = win.dataset.restoreLeft;
+          if (win.dataset.restoreWidth) win.style.width = win.dataset.restoreWidth;
+          if (win.dataset.restoreHeight) win.style.height = win.dataset.restoreHeight;
+          updateExpandButtonState(id, false);
+          applyWindowScale(win);
+          return;
+        }
+
+        win.dataset.restoreTop = win.style.top || '';
+        win.dataset.restoreLeft = win.style.left || '';
+        win.dataset.restoreWidth = win.style.width || '';
+        win.dataset.restoreHeight = win.style.height || '';
+        win.classList.remove('hidden');
+        win.classList.add('maximized');
+        ensureTaskButton(id);
+        setTaskActive(id, true);
+        bringToFront(win);
+        updateExpandButtonState(id, true);
+        applyWindowScale(win);
+      }
+
+      function updateExpandButtonState(id, expanded) {
+        var win = document.getElementById('win-' + id);
+        if (!win) return;
+        var btn = win.querySelector('[data-expand="' + id + '"]');
+        if (!btn) return;
+
+        if (id === 'browser') {
+          btn.textContent = '□↗';
+          btn.setAttribute('aria-label', 'Open current page in new tab');
+          btn.title = 'Open current page in new tab';
+          return;
+        }
+
+        btn.textContent = '≡';
+        btn.setAttribute('aria-label', expanded ? 'Restore window size' : 'Expand window');
+        btn.title = expanded ? 'Restore window size' : 'Expand window';
       }
 
       function safeOpenExternal(url) {
@@ -1728,6 +1928,8 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           var actions = win.querySelector('.title-actions');
           if (!id || !actions) return;
 
+          applyWindowScale(win);
+
           if (!actions.querySelector('[data-min="' + id + '"]')) {
             var minBtn = document.createElement('button');
             minBtn.type = 'button';
@@ -1737,13 +1939,50 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
             actions.insertBefore(minBtn, actions.firstChild);
           }
 
-          if (!actions.querySelector('[data-expand="' + id + '"]')) {
+          if (id !== 'browser' && !actions.querySelector('[data-expand="' + id + '"]')) {
             var expBtn = document.createElement('button');
             expBtn.type = 'button';
             expBtn.setAttribute('data-expand', id);
-            expBtn.setAttribute('aria-label', 'Expand to new tab');
-            expBtn.textContent = '[]';
+            expBtn.textContent = '≡';
             actions.insertBefore(expBtn, actions.firstChild);
+          }
+
+          updateExpandButtonState(id, false);
+
+          Array.prototype.slice.call(actions.querySelectorAll('[data-close], [data-min], [data-expand]')).forEach(function (btn) {
+            if (btn.dataset.boundControlClick === '1') return;
+            btn.dataset.boundControlClick = '1';
+            btn.addEventListener('click', function (event) {
+              event.preventDefault();
+              event.stopPropagation();
+
+              var closeId = btn.getAttribute('data-close');
+              if (closeId) {
+                closeWin(closeId);
+                return;
+              }
+
+              var minId = btn.getAttribute('data-min');
+              if (minId) {
+                minimizeWin(minId);
+                return;
+              }
+
+              var expandId = btn.getAttribute('data-expand');
+              if (expandId) {
+                expandWin(expandId);
+              }
+            });
+          });
+
+          if (!win.querySelector('.window-resize-handle')) {
+            var resizeHandle = document.createElement('button');
+            resizeHandle.type = 'button';
+            resizeHandle.className = 'window-resize-handle';
+            resizeHandle.setAttribute('data-resize', id);
+            resizeHandle.setAttribute('aria-label', 'Resize window');
+            resizeHandle.title = 'Resize window';
+            win.appendChild(resizeHandle);
           }
         });
       }
@@ -1889,6 +2128,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var browserGo = document.getElementById('browserGo');
       var browserSearch = document.getElementById('browserSearch');
       var browserHome = document.getElementById('browserHome');
+      var browserPopout = document.getElementById('browserPopout');
       var browserRecent = document.getElementById('browserRecent');
       var browserStatus = document.getElementById('browserStatus');
       var browserHistory = ['https://duckduckgo.com'];
@@ -1911,6 +2151,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var photoViewMode = 'small';
       var photoSortMode = 'date';
       var photoObserver = null;
+      var photoOrientationMap = {};
 
       function flattenPhotoManifest(data) {
         var out = [];
@@ -1936,7 +2177,68 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         } else {
           list.sort(function (a, b) { return b.localeCompare(a, undefined, { numeric: true, sensitivity: 'base' }); });
         }
-        return list;
+
+        var vertical = [];
+        var horizontal = [];
+        var unknown = [];
+
+        list.forEach(function (path) {
+          var orientation = photoOrientationMap[path];
+          if (orientation === 'vertical') {
+            vertical.push(path);
+          } else if (orientation === 'horizontal') {
+            horizontal.push(path);
+          } else {
+            unknown.push(path);
+          }
+        });
+
+        return vertical.concat(horizontal, unknown);
+      }
+
+      function detectPhotoOrientation(path) {
+        return new Promise(function (resolve) {
+          if (photoOrientationMap[path]) {
+            resolve(photoOrientationMap[path]);
+            return;
+          }
+
+          var probe = new Image();
+          probe.decoding = 'async';
+
+          probe.onload = function () {
+            var w = probe.naturalWidth || 0;
+            var h = probe.naturalHeight || 0;
+            var orientation = (w && h && h > w) ? 'vertical' : 'horizontal';
+            photoOrientationMap[path] = orientation;
+            resolve(orientation);
+          };
+
+          probe.onerror = function () {
+            photoOrientationMap[path] = 'unknown';
+            resolve('unknown');
+          };
+
+          probe.src = path;
+        });
+      }
+
+      function detectPhotoOrientations(paths) {
+        var tasks = (paths || []).map(function (path) {
+          return detectPhotoOrientation(path);
+        });
+        return Promise.all(tasks);
+      }
+
+      function getOrientationCounts(paths) {
+        var counts = { vertical: 0, horizontal: 0, unknown: 0 };
+        (paths || []).forEach(function (path) {
+          var orientation = photoOrientationMap[path];
+          if (orientation === 'vertical') counts.vertical += 1;
+          else if (orientation === 'horizontal') counts.horizontal += 1;
+          else counts.unknown += 1;
+        });
+        return counts;
       }
 
       function applyPhotoGridMode() {
@@ -2007,7 +2309,17 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         }).then(function (json) {
           photoAlbumPaths = flattenPhotoManifest(json);
           renderPhotoAlbum(photoAlbumPaths);
-          photoAlbumStatus.textContent = photoAlbumPaths.length ? ('Showing ' + photoAlbumPaths.length + ' photos from DM assets.') : 'No photos listed in data/photos.json yet.';
+          if (!photoAlbumPaths.length) {
+            photoAlbumStatus.textContent = 'No photos listed in data/photos.json yet.';
+            return;
+          }
+
+          photoAlbumStatus.textContent = 'Detecting vertical/horizontal photo groups...';
+          detectPhotoOrientations(photoAlbumPaths).then(function () {
+            renderPhotoAlbum(photoAlbumPaths);
+            var counts = getOrientationCounts(photoAlbumPaths);
+            photoAlbumStatus.textContent = 'Showing ' + photoAlbumPaths.length + ' photos | Vertical: ' + counts.vertical + ' | Horizontal: ' + counts.horizontal;
+          });
         }).catch(function () {
           photoAlbumGrid.innerHTML = '';
           photoAlbumStatus.textContent = 'Could not load photo album.';
@@ -2124,6 +2436,11 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       if (browserHome) {
         browserHome.addEventListener('click', function () {
           navigateBrowser('https://duckduckgo.com', true);
+        });
+      }
+      if (browserPopout) {
+        browserPopout.addEventListener('click', function () {
+          safeOpenExternal(getPopoutUrl('browser'));
         });
       }
       function getStoredRecentPages() {
@@ -2911,6 +3228,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
 
         handle.addEventListener('pointerdown', function (event) {
           if (event.target.tagName.toLowerCase() === 'button') return;
+          if (win.classList.contains('maximized')) return;
           if (event.button !== undefined && event.button !== 0) return;
           event.preventDefault();
           dragging = true;
@@ -2958,7 +3276,81 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         }
       }
 
+      function makeResizable(win) {
+        var id = getWindowId(win);
+        var handle = win.querySelector('[data-resize="' + id + '"]');
+        if (!handle) return;
+
+        handle.style.touchAction = 'none';
+
+        var startX = 0;
+        var startY = 0;
+        var startWidth = 0;
+        var startHeight = 0;
+        var resizing = false;
+        var activePointerId = null;
+
+        handle.addEventListener('pointerdown', function (event) {
+          if (win.classList.contains('maximized')) return;
+          if (event.button !== undefined && event.button !== 0) return;
+          event.preventDefault();
+          event.stopPropagation();
+          resizing = true;
+          activePointerId = event.pointerId;
+          bringToFront(win);
+          startX = event.clientX;
+          startY = event.clientY;
+          startWidth = win.offsetWidth;
+          startHeight = win.offsetHeight;
+          try {
+            handle.setPointerCapture(event.pointerId);
+          } catch (_) {}
+          window.addEventListener('pointermove', onMove);
+          window.addEventListener('pointerup', onUp);
+          window.addEventListener('pointercancel', onUp);
+        });
+
+        function onMove(event) {
+          if (!resizing) return;
+          if (activePointerId !== null && event.pointerId !== activePointerId) return;
+
+          var dx = event.clientX - startX;
+          var dy = event.clientY - startY;
+          var minW = Math.max(260, Number(win.dataset.baseWidth || 260));
+          var minH = 140;
+          var maxW = Math.max(minW, desktop.clientWidth - win.offsetLeft - 4);
+          var maxH = Math.max(minH, desktop.clientHeight - win.offsetTop - 34);
+          var nextW = Math.max(minW, Math.min(maxW, startWidth + dx));
+          var nextH = Math.max(minH, Math.min(maxH, startHeight + dy));
+
+          win.style.width = nextW + 'px';
+          win.style.height = nextH + 'px';
+          applyWindowScale(win);
+        }
+
+        function onUp(event) {
+          if (activePointerId !== null && event && event.pointerId !== activePointerId) return;
+          resizing = false;
+          if (activePointerId !== null) {
+            try {
+              handle.releasePointerCapture(activePointerId);
+            } catch (_) {}
+          }
+          activePointerId = null;
+          window.removeEventListener('pointermove', onMove);
+          window.removeEventListener('pointerup', onUp);
+          window.removeEventListener('pointercancel', onUp);
+        }
+      }
+
       windows.forEach(makeDraggable);
+      windows.forEach(makeResizable);
+
+      window.addEventListener('resize', function () {
+        windows.forEach(function (win) {
+          applyWindowScale(win);
+        });
+      });
 
       function sleep(ms) {
         return new Promise(function (resolve) {
@@ -2991,6 +3383,14 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         if (biosStatus) biosStatus.textContent = 'Boot skipped by operator.';
         if (bootStatus) bootStatus.textContent = 'Jumping to desktop...';
         if (pollStatus) pollStatus.textContent = 'Boot skipped. Launching desktop...';
+
+        if (desktop) {
+          desktop.classList.remove('booting');
+        }
+        if (bootOverlay) {
+          bootOverlay.classList.add('hidden');
+        }
+        openWin('notepad');
       }
 
       if (bootSkipBtn) {
