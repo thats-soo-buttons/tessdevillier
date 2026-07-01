@@ -1203,6 +1203,11 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
               <div class="win-inset" style="padding:6px;background:#000;margin-bottom:8px;">
                 <div id="trackName" style="color:#00ff00;font-size:11px;">dreams_in_slow_motion.mp3</div>
               </div>
+              <label style="display:block;margin-top:4px;font-size:11px;">Playlist
+                <select id="playlistSelect" style="width:100%;margin-top:4px;">
+                  <option value="">Main Playlist</option>
+                </select>
+              </label>
               <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
               <div style="display:flex;gap:4px;justify-content:center;margin-top:8px;">
                 <button type="button" class="menu-btn" id="btnPrev"><<</button>
@@ -2062,11 +2067,14 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       ];
       var tracks = [];
       var trackIndex = 0;
+      var playlists = [];
+      var activePlaylistIndex = 0;
       var audio = document.getElementById('audioPlayer');
       var progressFill = document.getElementById('progressFill');
       var trackName = document.getElementById('trackName');
       var playerVol = document.getElementById('playerVol');
       var desktopVol = document.getElementById('desktopVol');
+      var playlistSelect = document.getElementById('playlistSelect');
 
       function reportAudioError(prefix, err) {
         var message = (err && err.name) ? err.name : 'PlaybackError';
@@ -2105,6 +2113,45 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           });
       }
 
+      function normalizePlaylists(payload) {
+        var list = payload && Array.isArray(payload.playlists) ? payload.playlists : [];
+        return list
+          .map(function (item, idx) {
+            var name = (item && typeof item.name === 'string' && item.name.trim())
+              ? item.name.trim()
+              : ('Playlist ' + (idx + 1));
+            var normalizedTracks = normalizeTracks(item && item.tracks ? { tracks: item.tracks } : []);
+            return { name: name, tracks: normalizedTracks };
+          })
+          .filter(function (item) { return item.tracks.length > 0; });
+      }
+
+      function syncPlaylistSelect() {
+        if (!playlistSelect) return;
+        playlistSelect.innerHTML = '';
+        playlists.forEach(function (playlist, idx) {
+          var option = document.createElement('option');
+          option.value = String(idx);
+          option.textContent = playlist.name;
+          playlistSelect.appendChild(option);
+        });
+        playlistSelect.value = String(activePlaylistIndex);
+      }
+
+      function setActivePlaylist(index, autoplay) {
+        if (!playlists.length) {
+          tracks = [];
+          if (trackName) trackName.textContent = 'No playlists found';
+          return;
+        }
+        activePlaylistIndex = (index + playlists.length) % playlists.length;
+        var active = playlists[activePlaylistIndex];
+        tracks = active.tracks.slice();
+        trackIndex = 0;
+        syncPlaylistSelect();
+        setTrack(0, !!autoplay);
+      }
+
       function loadTracksFromPlaylist() {
         return fetch('data/jukebox95-playlist.json', { cache: 'no-store' })
           .then(function (response) {
@@ -2112,12 +2159,18 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
             return response.json();
           })
           .then(function (payload) {
+            var loadedPlaylists = normalizePlaylists(payload);
+            if (loadedPlaylists.length) {
+              playlists = loadedPlaylists;
+              return;
+            }
+
             var loadedTracks = normalizeTracks(payload);
             if (!loadedTracks.length) throw new Error('playlist empty');
-            tracks = loadedTracks;
+            playlists = [{ name: 'Main Playlist', tracks: loadedTracks }];
           })
           .catch(function () {
-            tracks = defaultTracks.slice();
+            playlists = [{ name: 'Main Playlist', tracks: defaultTracks.slice() }];
           });
       }
 
@@ -2138,6 +2191,13 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
 
       document.getElementById('btnPrev').addEventListener('click', function () { setTrack(trackIndex - 1, true); });
       document.getElementById('btnNext').addEventListener('click', function () { setTrack(trackIndex + 1, true); });
+      if (playlistSelect) {
+        playlistSelect.addEventListener('change', function () {
+          var idx = Number(playlistSelect.value || 0);
+          if (Number.isNaN(idx)) idx = 0;
+          setActivePlaylist(idx, false);
+        });
+      }
       document.getElementById('btnPlay').addEventListener('click', function () {
         if (!audio.src) setTrack(trackIndex, false);
         attemptPlay('Play failed');
@@ -2188,7 +2248,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       audio.addEventListener('ended', function () { setTrack(trackIndex + 1, true); });
       audio.volume = 0.35;
       loadTracksFromPlaylist().then(function () {
-        setTrack(0, false);
+        setActivePlaylist(0, false);
       });
 
       var catGrid = document.getElementById('catGrid');
