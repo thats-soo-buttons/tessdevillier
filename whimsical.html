@@ -1208,6 +1208,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
                   <option value="">Main Playlist</option>
                 </select>
               </label>
+              <div id="playlistNowPlaying" class="win-inset" style="margin-top:6px;padding:4px 6px;font-size:10px;background:#f6f0cf;color:#111;border:1px solid #8b7f52;">Now playing: Main Playlist</div>
               <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
               <div style="display:flex;gap:4px;justify-content:center;margin-top:8px;">
                 <button type="button" class="menu-btn" id="btnPrev"><<</button>
@@ -1885,6 +1886,12 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         if (/^(javascript|data|file|vbscript):/i.test(input)) {
           return 'https://duckduckgo.com/?q=' + encodeURIComponent(input);
         }
+
+        // Allow safe workspace-relative navigation (used by PhosphorNet recents).
+        if (/^(?:\.\/|\.\.\/|\/)?[a-z0-9._\/-]+\.html(?:[?#].*)?$/i.test(input)) {
+          return input;
+        }
+
         var hasProtocol = /^https?:\/\//i.test(input);
         var looksLikeHost = /\.[a-z]{2,}(\/|$)/i.test(input) || input.startsWith('localhost');
         if (hasProtocol) return input;
@@ -2075,6 +2082,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var playerVol = document.getElementById('playerVol');
       var desktopVol = document.getElementById('desktopVol');
       var playlistSelect = document.getElementById('playlistSelect');
+      var playlistNowPlaying = document.getElementById('playlistNowPlaying');
 
       function reportAudioError(prefix, err) {
         var message = (err && err.name) ? err.name : 'PlaybackError';
@@ -2142,12 +2150,18 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         if (!playlists.length) {
           tracks = [];
           if (trackName) trackName.textContent = 'No playlists found';
+          if (playlistNowPlaying) playlistNowPlaying.textContent = 'Now playing: none';
           return;
         }
         activePlaylistIndex = (index + playlists.length) % playlists.length;
         var active = playlists[activePlaylistIndex];
         tracks = active.tracks.slice();
         trackIndex = 0;
+        if (playlistNowPlaying) {
+          var count = active.tracks.length;
+          var suffix = count === 1 ? 'track' : 'tracks';
+          playlistNowPlaying.textContent = 'Now playing: ' + active.name + ' (' + count + ' ' + suffix + ')';
+        }
         syncPlaylistSelect();
         setTrack(0, !!autoplay);
       }

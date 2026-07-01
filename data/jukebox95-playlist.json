@@ -41,16 +41,21 @@
           "src": "dm_audio_playlist/rawpiano1 cover.mp3"
         },
         {
+          "name": "Just Stop (In This Chaos).mp3",
+          "src": "dm_audio_playlist/Just Stop (In This Chaos).mp3"
+        }
+      ]
+    },
+    {
+      "name": "Piano Edits",
+      "tracks": [
+        {
           "name": "noedits_rawpiano2.mp3",
           "src": "dm_audio_playlist/noedits_rawpiano2.mp3"
         },
         {
           "name": "noedits_rawpiano1.mp3",
           "src": "dm_audio_playlist/noedits_rawpiano1.mp3"
-        },
-        {
-          "name": "Just Stop (In This Chaos).mp3",
-          "src": "dm_audio_playlist/Just Stop (In This Chaos).mp3"
         }
       ]
     }
