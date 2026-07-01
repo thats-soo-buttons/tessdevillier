@@ -75,6 +75,35 @@
     .card { background: #344559; border: 1px solid #7388a3; border-radius: 12px; padding: 14px; }
     .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
     .card p { margin: 0; color: var(--muted); line-height: 1.45; }
+    .photo-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .photo-shot {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #7388a3;
+      background: #2f3f52;
+      aspect-ratio: 4 / 5;
+      margin: 0;
+    }
+    .photo-shot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.03) contrast(1.04);
+      transition: transform 0.24s ease;
+    }
+    .photo-shot:hover img { transform: scale(1.03); }
+    .photo-note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-style: italic;
+    }
     .price {
       display: inline-block;
       margin-top: 8px;
@@ -149,12 +178,13 @@
         bottom: 12px;
         min-width: 0;
       }
+      .photo-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <main class="wrap" role="main">
+  <main id="top" class="wrap" role="main">
     <div class="top">
       <a href="index.html#professional">Back To Home</a>
       <span style="color: var(--muted);">Tess Does Stuff</span>
@@ -251,8 +281,20 @@
       </div>
     </section>
 
+    <section class="section" aria-label="Creative consulting visual references">
+      <h2>Creative Direction Visuals</h2>
+      <p class="sub" style="margin: 0;">Selected mood-forward shots that reflect the aesthetic range I bring into concept direction and messaging work.</p>
+      <div class="photo-strip">
+        <figure class="photo-shot"><img src="dm_assets/P1240132.jpg" alt="Warm cinematic lamp detail"></figure>
+        <figure class="photo-shot"><img src="dm_assets/P1250863.jpg" alt="Product bottles staged in ice"></figure>
+        <figure class="photo-shot"><img src="dm_assets/P1260629.jpg" alt="Cocktail pour captured in low light"></figure>
+        <figure class="photo-shot"><img src="dm_assets/P1200602.jpg" alt="Monochrome editorial bookshelf composition"></figure>
+      </div>
+      <p class="photo-note">Image note: these are compressed web previews for site performance and storage; original files are higher quality.</p>
+    </section>
+
     <div class="footer-links" aria-label="Quick links">
-      <a href="#">Back to top</a>
+      <a href="#top">Back to top</a>
       <a href="index.html#professional">Home</a>
       <a href="hire.html">Book or Inquire</a>
       <a href="portfolio.html">Portfolio</a>
