@@ -363,6 +363,26 @@
 
         .unlock-blurb .intro-line {
             display: block;
+            margin-top: 8px;
+            padding: 7px 10px;
+            border-radius: 10px;
+            background: rgba(8, 10, 16, 0.46);
+            border: 1px solid rgba(244, 230, 218, 0.24);
+            color: #f8eee4;
+        }
+
+        .unlock-blurb .intro-kicker {
+            display: inline-block;
+            margin-right: 6px;
+            padding: 1px 7px;
+            border-radius: 999px;
+            background: rgba(244, 230, 218, 0.18);
+            border: 1px solid rgba(244, 230, 218, 0.42);
+            color: #fff4e8;
+            font-size: 0.86em;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-weight: 700;
         }
 
         .unlock-copy .reveal-item {
@@ -962,6 +982,13 @@
             line-height: 1.38;
         }
 
+        .mobile-index-sub .mobile-recommend {
+            display: block;
+            margin-top: 2px;
+            font-style: italic;
+            text-align: center;
+        }
+
         .mobile-index-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -1385,9 +1412,9 @@
                     </div>
                     <p class="unlock-sub reveal-item from-center">Pet and house sitter, photographer, worldbuilder, and creative consultant. Baton Rouge. (Remote and available for travel)</p>
                     <p class="unlock-blurb">
-                        <span class="intro-line reveal-item from-right">Who I am: Tess, aka Buttons.</span>
-                        <span class="intro-line reveal-item from-left">What I do: clear communication, strong delivery, and vibe-forward creative work.</span>
-                        <span class="intro-line reveal-item from-right">Where to go next: hire me now or explore the full professional index.</span>
+                        <span class="intro-line reveal-item from-right"><span class="intro-kicker">Who I am</span>Tess, aka Buttons.</span>
+                        <span class="intro-line reveal-item from-left"><span class="intro-kicker">What I do</span>Clear communication, strong delivery, and vibe-forward creative work.</span>
+                        <span class="intro-line reveal-item from-right"><span class="intro-kicker">Where to go next</span>Hire me now or explore the full professional index.</span>
                     </p>
                     <div class="overlay-vibe-note reveal-item from-left">
                         <button id="choice-explore" class="overlay-btn primary" type="button">ENTER SITE</button>
@@ -2058,7 +2085,7 @@
 
   <section class="mobile-index-shell" aria-label="Mobile main navigation">
       <h2 class="mobile-index-title">Mobile Index</h2>
-    <p class="mobile-index-sub">View on Desktop for Full Experience - Highly Recommended</p>
+    <p class="mobile-index-sub">View on Desktop for Full Experience <span class="mobile-recommend">Highly Recommended</span></p>
       <div class="mobile-index-grid">
           <a class="mobile-index-card" href="hire.html#contact-lanes">
               <strong>Hire / Contact</strong>
