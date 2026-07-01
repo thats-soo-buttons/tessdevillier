@@ -4,116 +4,298 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Book or inquire with Tess using direct links for services, availability, and contact lanes in one page.">
-  <title>Hire / Book + Contact + Availability | Tess Devillier</title>
+  <title>Inquiries + Availability | Tess Devillier</title>
   <style>
     :root {
-      --bg: #faf8f5;
-      --card: #f3ece7;
-      --ink: #3d2620;
-      --muted: #8f756a;
-      --accent: #c99b93;
-      --line: #bfa89e;
+      --bg: #121212;
+      --card: #1a1a1a;
+      --ink: #e4e4e4;
+      --muted: #b2b2b2;
+      --line: #2a2a2a;
+      --accent: #d7d7d7;
+      --accent-2: #8e8e8e;
     }
     * { box-sizing: border-box; }
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid #3d2620;
-      outline-offset: 2px;
-    }
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: 'Montserrat', Arial, sans-serif;
+      background: radial-gradient(circle at 82% 5%, rgba(80, 80, 80, 0.18), transparent 32%), var(--bg);
       color: var(--ink);
-      background:
-        radial-gradient(circle at 82% 6%, rgba(201,155,147,0.22), transparent 32%),
-        radial-gradient(circle at 16% 5%, rgba(191,168,158,0.2), transparent 30%),
-        var(--bg);
+      font-family: 'Montserrat', 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      padding: 36px 18px;
     }
     .wrap {
-      max-width: 1040px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 28px 16px 46px;
     }
     .top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 18px;
       gap: 10px;
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+      color: var(--accent-2);
     }
     .top a {
-      color: var(--muted);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      font-weight: 700;
+      color: var(--accent-2);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .top a:hover { border-bottom-color: var(--accent-2); }
+    header {
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
     }
     h1 {
-      margin: 0;
-      font-size: clamp(1.9rem, 4vw, 2.9rem);
-      letter-spacing: 0.03em;
+      margin: 0 0 8px;
+      font-size: clamp(1.75rem, 3.6vw, 2.3rem);
+      font-weight: 650;
+      letter-spacing: -0.02em;
     }
     .sub {
-      margin: 8px 0 20px;
-      color: var(--muted);
-      max-width: 840px;
+      margin: 0;
+      color: var(--accent-2);
+      font-size: 1rem;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+    .quick-select-wrap {
+      margin-top: 14px;
+      margin-bottom: 20px;
+    }
+    .quick-select-wrap label {
+      display: block;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-2);
+      margin-bottom: 6px;
+    }
+    .quick-select {
+      width: 100%;
+      background: #171717;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 10px;
+      font-size: 0.9rem;
     }
     .card {
-      background: linear-gradient(160deg, #ffffff, var(--card));
+      background: var(--card);
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 6px;
       padding: 18px;
-      box-shadow: 0 8px 24px rgba(61,38,32,0.14);
+      margin-top: 14px;
     }
-    .card h2 {
-      margin: 0 0 8px;
-      font-size: 1.2rem;
+    h2 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      font-weight: 650;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 8px;
     }
-    .card p {
+    p {
       margin: 0 0 10px;
       color: var(--muted);
-      line-height: 1.45;
+      font-size: 0.95rem;
+    }
+    .card-list {
+      margin: 8px 0 12px 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .card-list li { margin-bottom: 7px; }
+    .micro-note {
+      color: var(--accent-2);
+      font-size: 0.86rem;
+      font-style: italic;
+      margin: 8px 0 12px;
     }
     .links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
     }
     .btn {
       display: inline-block;
+      text-align: center;
       text-decoration: none;
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 0.98rem;
-      font-weight: 700;
-      border: 1px solid transparent;
-      background: var(--accent);
-      color: #3d2620;
-    }
-    .btn.alt {
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      color: var(--ink);
       background: transparent;
+      padding: 10px 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+    .btn:hover {
+      background: #202020;
+      border-color: #454545;
+    }
+    .btn.primary {
+      background: var(--ink);
+      color: #121212;
+      border-color: var(--ink);
+    }
+    .btn.primary:hover { background: #ffffff; }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .social-btn svg {
+      width: 13px;
+      height: 13px;
+      display: block;
+    }
+    .notes-toggle {
+      cursor: pointer;
+      list-style: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .notes-toggle::-webkit-details-marker { display: none; }
+    .notes-toggle::before {
+      content: '+ ';
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+    details[open] .notes-toggle::before { content: '- '; }
+    .notes-list {
+      margin: 10px 0 0 18px;
       color: var(--muted);
-      border-color: var(--line);
+      font-size: 0.9rem;
+    }
+    .inquire-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .inquire-pane {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 12px;
+      background: #161616;
+    }
+    .inquire-pane h3,
+    .inquire-call h3 {
+      margin: 0 0 8px;
+      font-size: 0.94rem;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+    .inquire-call {
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 12px;
+      background: #161616;
+    }
+    .section-title {
+      margin-top: 32px;
+      margin-bottom: 10px;
+      font-size: 1.18rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 8px;
+    }
+    .service-switcher {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+      margin-bottom: 14px;
+    }
+    .service-tab {
+      border: 1px solid var(--line);
+      background: #151515;
+      color: var(--muted);
+      border-radius: 4px;
+      padding: 10px 8px;
+      font-size: 0.86rem;
+      font-weight: 650;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+    .service-tab:hover {
+      background: #1f1f1f;
+      color: var(--ink);
+      border-color: #444;
+    }
+    .service-tab.active {
+      background: var(--ink);
+      color: #121212;
+      border-color: var(--ink);
+    }
+    .service-panel {
+      display: none;
+    }
+    .service-panel.active {
+      display: block;
     }
     .footer-links {
-      margin-top: 20px;
+      margin-top: 36px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
       display: flex;
       justify-content: center;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
+      font-size: 0.85rem;
     }
     .footer-links a {
-      color: var(--accent);
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      font-weight: 700;
+      color: var(--accent-2);
+      text-decoration: none;
     }
-    @media (max-width: 820px) {
-      .grid { grid-template-columns: 1fr; }
+    .footer-links a:hover { color: var(--ink); }
+    .otfn-floater {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 40;
+      text-decoration: none;
+      border: 1px solid #565656;
+      background: #1f1f1f;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+      min-width: 220px;
+      text-align: center;
+      transition: background-color 0.18s ease, border-color 0.18s ease;
+    }
+    .otfn-floater:hover {
+      background: #2a2a2a;
+      border-color: #808080;
+    }
+    .otfn-floater.is-hidden {
+      transform: translateY(calc(100% + 16px));
+      opacity: 0;
+      pointer-events: none;
+    }
+    @media (max-width: 640px) {
+      body { padding-bottom: 120px; }
+      .links { grid-template-columns: 1fr; }
+      .inquire-grid { grid-template-columns: 1fr; }
+      .service-switcher { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .otfn-floater {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        padding: 9px 12px;
+        font-size: 0.8rem;
+        min-width: 0;
+        transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.24s ease, opacity 0.24s ease;
+      }
     }
   </style>
 </head>
@@ -121,134 +303,255 @@
   <main class="wrap" role="main">
     <div class="top">
       <a href="index.html#professional">Back To Home</a>
-      <span style="color: var(--muted);">Tess Does Stuff</span>
+      <span>Tess Does Stuff</span>
     </div>
 
-    <h1>Hire / Book + Contact + Availability</h1>
-    <p class="sub">Quick bulletin of services plus availability and direct contact lanes in one place so people can book fast without searching the site.</p>
+    <header>
+      <h1>Inquiries + Availability</h1>
+      <p class="sub">Quick bulletin of services, real-time availability, and direct contact lanes.</p>
+      <div class="quick-select-wrap">
+        <label for="quick-select">Quick Select</label>
+        <select id="quick-select" class="quick-select" aria-label="Quick jump menu">
+          <option value="">Jump to section...</option>
+          <option value="contact-lanes">Contact Lanes</option>
+          <option value="how-to-inquire">How To Inquire</option>
+          <option value="services-availability">Services + Availability</option>
+          <option value="availability">Notes</option>
+          <option value="support">Support</option>
+        </select>
+      </div>
+    </header>
 
-    <section class="grid" aria-label="Hire and booking bulletin">
-      <article class="card">
-        <h2>Pet Sitting + House/Plant Sitting</h2>
-        <p>Overnight sits, drop-ins, and house/plant care with blackout dates and slot-based availability.</p>
-        <div class="links">
-          <a class="btn" href="pets.html">Pet Services</a>
-          <a class="btn alt" href="#availability">Availability</a>
-          <a class="btn alt" href="pets-contact.html">Book Pet Care</a>
-          <a class="btn alt" href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" rel="noopener noreferrer">Rover Profile</a>
+    <section id="contact-lanes" aria-label="Contact lanes">
+      <article class="card" id="how-to-inquire">
+        <h2>How To Inquire (Any Service)</h2>
+        <p><strong>Email:</strong> contact@tessdevillier.com</p>
+        <div class="inquire-grid" aria-label="Inquiry email guidance">
+          <div class="inquire-pane">
+            <h3>Email Steps</h3>
+            <ul class="card-list" style="margin: 0 0 0 18px;">
+              <li>Include your full name and a brief message.</li>
+              <li>Include any dates you are inquiring about, if applicable.</li>
+              <li>Add service type, timeline, budget range, and core goal.</li>
+              <li>Attach links/assets if you have them so I can reply faster.</li>
+            </ul>
+          </div>
+          <div class="inquire-pane">
+            <h3>Subject Line Suggestions</h3>
+            <ul class="card-list" style="margin: 0 0 0 18px;">
+              <li>Pet Sitting Inquiry</li>
+              <li>Natural Light Photography Inquiry</li>
+              <li>Mini Photoshoot Inquiry</li>
+              <li>Worldbuilding Project Inquiry</li>
+              <li>Creative Consulting Inquiry</li>
+              <li>OTFN Volunteer/Future Employee Inquiry</li>
+              <li>OTFN Investor Inquiry</li>
+              <li>Music/Lyric Collaboration</li>
+              <li>Media Inquiry</li>
+            </ul>
+          </div>
+        </div>
+        <div class="inquire-call">
+          <h3>Call/Text</h3>
+          <p>Text/Call: <a href="tel:+12252834458">(225) 283-4458</a></p>
+          <ul class="card-list" style="margin: 0 0 0 18px;">
+            <li>Include your name, brief message, and any requested dates.</li>
+            <li><strong>Pets:</strong> include species, ages, and pet names.</li>
+            <li><strong>Photography:</strong> include occasion/event/theme and how many people are in the shoot.</li>
+          </ul>
+          <p class="micro-note" style="margin: 10px 0 0;">Rover option: <a href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" rel="noopener noreferrer">View profile / request booking</a>.</p>
         </div>
       </article>
 
       <article class="card">
-        <h2>Photography</h2>
-        <p>Mini Shoot, Natural Light, and Cinematic Experience packages, add-ons, and booking terms.</p>
+        <h2>Social + Community Channels</h2>
+        <p>If social is easier, DM through your preferred platform. Discord inquiry routing is available through the inquiry lane.</p>
         <div class="links">
-          <a class="btn" href="photography/index.html">Photography Page</a>
-          <a class="btn alt" href="#contact-lanes">Inquire</a>
-          <a class="btn alt" href="#availability">Check Availability</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>Worldbuilding / Narrative</h2>
-        <p>Setting development, lore systems, and narrative architecture for games, fiction, and immersive projects.</p>
-        <div class="links">
-          <a class="btn" href="worldbuilding.html">Worldbuilding Page</a>
-          <a class="btn alt" href="#contact-lanes">Inquire</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>Creative Consulting</h2>
-        <p>Narrative design, worldbuilding, concept development, and project support.</p>
-        <div class="links">
-          <a class="btn" href="creative-consulting.html">Consulting Page</a>
-          <a class="btn alt" href="#contact-lanes">Inquire</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>Twitch / Content Collabs</h2>
-        <p>Streaming, gaming collabs, and creator partnership inquiries.</p>
-        <div class="links">
-          <a class="btn" href="watch.html">Watch Links</a>
-          <a class="btn alt" href="https://twitch.tv/thats_soo_buttons" target="_blank" rel="noopener noreferrer">Open Twitch</a>
-          <a class="btn alt" href="#contact-lanes">Inquire</a>
-        </div>
-      </article>
-    </section>
-
-    <section class="grid" id="availability" aria-label="Availability" style="margin-top:14px;">
-      <article class="card">
-        <h2>Availability Overview</h2>
-        <p>Central schedule for petsitting and drop-ins, including blackout windows and slot guidance.</p>
-        <div class="links">
-          <a class="btn" href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" rel="noopener noreferrer">Open Live Rover Calendar</a>
-          <a class="btn alt" href="pets-contact.html">Request Dates</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>Overnight / House Sitting Blackout</h2>
-        <p>Current unavailable windows:</p>
-        <p>Jul 30-Aug 2, Aug 3-9, Aug 20-24, Oct 28-Nov 3, Nov 20-28 (2026).</p>
-      </article>
-
-      <article class="card">
-        <h2>Drop-In Time Slots</h2>
-        <p>Up to 2 clients per slot, 1 hour each to allow travel between homes.</p>
-        <p>Morning: 8:00-10:30, Midday: 12:00-2:00, Evening: 5:00-7:00.</p>
-      </article>
-
-      <article class="card">
-        <h2>Editing / Production Blocks</h2>
-        <p>Protected windows for photo editing can affect daytime drop-in availability.</p>
-        <p>Ask for nearest open window if your ideal time is unavailable.</p>
-      </article>
-    </section>
-
-    <section class="grid" id="contact-lanes" aria-label="Contact lanes" style="margin-top:14px;">
-      <article class="card">
-        <h2>Hire Inquiries</h2>
-        <p>For housesitting, photography, and creative consulting.</p>
-        <div class="links">
-          <a class="btn" href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>Twitch / Gaming Inquiries</h2>
-        <p>For stream partnerships, gaming requests, and creator collaborations.</p>
-        <div class="links">
-          <a class="btn" href="mailto:contact@thatssoobuttons.com">contact@thatssoobuttons.com</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>OTFN Inquiries</h2>
-        <p>For volunteer positions, fundraising help, and general OTFN information.</p>
-        <div class="links">
-          <a class="btn" href="mailto:contact@ontheflynetwork.com">contact@ontheflynetwork.com</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2>Support</h2>
-        <p>Choose whichever support lane is easiest for you.</p>
-        <div class="links">
-          <a class="btn alt" href="https://cash.app/$888buttons" target="_blank" rel="noopener noreferrer">Cash App</a>
-          <a class="btn alt" href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Ko-fi</a>
-          <a class="btn alt" href="https://buymeacoffee.com/tessdevillier" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a>
+          <a class="btn social-btn" href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noopener noreferrer" aria-label="Open Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm11.5 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+            Instagram
+          </a>
+          <a class="btn social-btn" href="https://www.tiktok.com/@thatssoobuttons" target="_blank" rel="noopener noreferrer" aria-label="Open TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14 3h3.2c.2 1.4 1 2.5 2.3 3.1.8.4 1.7.6 2.5.7v3.3c-1.9-.1-3.8-.8-5.4-1.9v6.1c0 3.5-2.8 6.3-6.3 6.3S4 17.8 4 14.3 6.8 8 10.3 8c.4 0 .9 0 1.3.1v3.4c-.4-.2-.8-.2-1.3-.2-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V3z"/></svg>
+            TikTok
+          </a>
+          <a class="btn social-btn" href="https://discord.gg/cYKqwP5nYj" target="_blank" rel="noopener noreferrer" aria-label="Open Discord">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.3 4.4A17.7 17.7 0 0 0 15.9 3l-.2.4c-.2.5-.4 1-.5 1.5a16.4 16.4 0 0 0-6.4 0 12 12 0 0 0-.6-1.5L8 3A17.8 17.8 0 0 0 3.7 4.4C.9 8.5.1 12.6.5 16.6a18 18 0 0 0 5.4 2.8l.4-.7c.3-.5.5-1 .7-1.5a11.4 11.4 0 0 1-1.8-.9l.4-.3A12.8 12.8 0 0 0 18.4 16l.4.3a11.4 11.4 0 0 1-1.8.9c.2.5.4 1 .7 1.5l.4.7a18 18 0 0 0 5.4-2.8c.5-4.7-.8-8.7-3.2-12.2ZM8.8 14.2c-1.2 0-2.1-1.1-2.1-2.4 0-1.4 1-2.5 2.1-2.5 1.2 0 2.2 1.1 2.1 2.5 0 1.3-.9 2.4-2.1 2.4Zm6.4 0c-1.2 0-2.1-1.1-2.1-2.4 0-1.4 1-2.5 2.1-2.5 1.2 0 2.2 1.1 2.1 2.5 0 1.3-.9 2.4-2.1 2.4Z"/></svg>
+            Discord
+          </a>
         </div>
       </article>
     </section>
+
+    <h2 class="section-title" id="services-availability">Services + Availability</h2>
+    <div class="service-switcher" role="tablist" aria-label="Service buttons">
+      <button class="service-tab active" type="button" role="tab" aria-selected="true" data-service-target="service-pets">Pet Care</button>
+      <button class="service-tab" type="button" role="tab" aria-selected="false" data-service-target="service-photo">Photography</button>
+      <button class="service-tab" type="button" role="tab" aria-selected="false" data-service-target="service-world">Worldbuilding</button>
+      <button class="service-tab" type="button" role="tab" aria-selected="false" data-service-target="service-consult">Consulting</button>
+    </div>
+
+    <article class="card service-panel active" id="service-pets" role="tabpanel">
+      <h2>Pet Care + House Sitting</h2>
+      <p>Overnight sits, drop-ins, and home care with dedicated time blocks.</p>
+      <ul class="card-list">
+        <li><strong>Current Blackout Windows (No Overnight Availability):</strong> Jul 30-Aug 2, Aug 3-Aug 9, Aug 20-Aug 24, Oct 28-Nov 3, Nov 20-Nov 28 (2026).</li>
+        <li><strong>Daily Drop-In Windows:</strong> Morning 8:00 AM-10:30 AM, Midday 12:00 PM-2:00 PM, Evening 5:00 PM-7:00 PM.</li>
+      </ul>
+      <p class="micro-note">Max 2 clients per slot to allow for travel time. Protected media production windows may affect daytime drop-ins.</p>
+      <div class="links">
+        <a class="btn" href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" rel="noopener noreferrer">Book via Rover Profile</a>
+        <a class="btn" href="#how-to-inquire">Request Dates Directly</a>
+      </div>
+    </article>
+
+    <article class="card service-panel" id="service-photo" role="tabpanel">
+      <h2>Photography Packages</h2>
+      <p>Mini Shoots, Natural Light sessions, and Cinematic Storytelling experiences. Review full package options, add-ons, and creative terms before booking.</p>
+      <p class="micro-note">Availability is managed by project scope.</p>
+      <div class="links">
+        <a class="btn" href="photography/index.html">View Photography Page</a>
+        <a class="btn" href="#how-to-inquire">Inquire About a Shoot</a>
+      </div>
+    </article>
+
+    <article class="card service-panel" id="service-world" role="tabpanel">
+      <h2>Worldbuilding + Narrative Design</h2>
+      <p>Expansive lore, custom dialogue, quest design, and environmental system architecture (weather, politics, ethics). Best for deeper build-outs requiring substantial, hands-on design.</p>
+      <div class="links">
+        <a class="btn" href="worldbuilding.html">View Portfolio + Rates</a>
+        <a class="btn" href="#how-to-inquire">Inquire About a Project</a>
+      </div>
+    </article>
+
+    <article class="card service-panel" id="service-consult" role="tabpanel">
+      <h2>Creative Consulting</h2>
+      <p>Lighter, collaborative brainstorming sessions where I act as your thinking partner. Optional retainer support available.</p>
+      <div class="links">
+        <a class="btn" href="creative-consulting.html">View Consulting Page</a>
+        <a class="btn" href="#how-to-inquire">Inquire About a Session</a>
+      </div>
+    </article>
+
+    <section id="availability" aria-label="Availability notes">
+      <article class="card">
+        <details>
+          <summary class="notes-toggle">NOTES</summary>
+          <ul class="notes-list">
+            <li>Availability windows are updated as projects confirm, so requested dates are always finalized by direct reply.</li>
+            <li>If timing is tight, include your preferred window plus a backup option so I can place you faster.</li>
+            <li>Partial bartering may be available on larger jobs, but paid compensation is still required.</li>
+          </ul>
+        </details>
+      </article>
+    </section>
+
+    <h2 class="section-title" id="support">Support</h2>
+    <article class="card">
+      <p>Choose whichever support lane is easiest for you.</p>
+      <div class="links">
+        <a class="btn" href="https://www.twitch.tv/subs/thats_soo_buttons" target="_blank" rel="noopener noreferrer">Twitch Sub (Free w/ Prime)</a>
+        <a class="btn" href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Ko-fi</a>
+        <a class="btn" href="https://cash.app/$888buttons" target="_blank" rel="noopener noreferrer">Cash App</a>
+        <a class="btn" href="https://buymeacoffee.com/tessdevillier" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a>
+      </div>
+    </article>
 
     <div class="footer-links" aria-label="Quick links">
       <a href="#">Back to top</a>
       <a href="index.html#professional">Home</a>
-      <a href="#availability">Availability</a>
       <a href="#contact-lanes">Contact Lanes</a>
     </div>
   </main>
+  <a class="otfn-floater" id="otfn-floater" href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer" aria-label="Find out more at On The Fly Network">
+    <span id="otfn-floater-text">Are You Creative?</span>
+  </a>
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll('.service-tab');
+      var panels = document.querySelectorAll('.service-panel');
+      if (!tabs.length || !panels.length) return;
+
+      function activate(targetId) {
+        tabs.forEach(function (tab) {
+          var isActive = tab.getAttribute('data-service-target') === targetId;
+          tab.classList.toggle('active', isActive);
+          tab.setAttribute('aria-selected', String(isActive));
+        });
+        panels.forEach(function (panel) {
+          panel.classList.toggle('active', panel.id === targetId);
+        });
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          activate(tab.getAttribute('data-service-target'));
+        });
+      });
+
+      var quickSelect = document.getElementById('quick-select');
+      if (quickSelect) {
+        quickSelect.addEventListener('change', function () {
+          if (!quickSelect.value) return;
+          var target = document.getElementById(quickSelect.value);
+          if (!target) return;
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+
+      var floater = document.getElementById('otfn-floater');
+      var floaterText = document.getElementById('otfn-floater-text');
+      if (floaterText) {
+        var messages = [
+          'Are You Creative?',
+          'Looking for Community?',
+          'Are You Neurospicy?',
+          'Chronically Ill?',
+          'Do you just want to get paid to exist?',
+          'FIND out More'
+        ];
+        var msgIndex = 0;
+        setInterval(function () {
+          msgIndex = (msgIndex + 1) % messages.length;
+          floaterText.textContent = messages[msgIndex];
+        }, 2500);
+      }
+
+      if (floater) {
+        var lastY = window.scrollY || 0;
+        var ticking = false;
+
+        function updateFloaterVisibility() {
+          ticking = false;
+          if (window.innerWidth > 640) {
+            floater.classList.remove('is-hidden');
+            lastY = window.scrollY || 0;
+            return;
+          }
+
+          var currentY = window.scrollY || 0;
+          var delta = currentY - lastY;
+          var nearBottom = currentY + window.innerHeight >= document.documentElement.scrollHeight - 24;
+
+          if (nearBottom || currentY < 20 || delta < -6) {
+            floater.classList.remove('is-hidden');
+          } else if (delta > 6) {
+            floater.classList.add('is-hidden');
+          }
+
+          lastY = currentY;
+        }
+
+        window.addEventListener('scroll', function () {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(updateFloaterVisibility);
+        }, { passive: true });
+
+        window.addEventListener('resize', updateFloaterVisibility);
+        updateFloaterVisibility();
+      }
+    })();
+  </script>
 </body>
 </html>

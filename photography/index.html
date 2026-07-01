@@ -9,13 +9,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
 
         :root {
-            --bg: #0b1018;
-            --card: #121a27;
-            --ink: #eff4ff;
-            --muted: #aab5c9;
-            --line: #263248;
-            --accent: #f2bf64;
-            --accent-2: #77c9ff;
+            --bg: #c0ccdb;
+            --card: #d5dde7;
+            --ink: #1f2f43;
+            --muted: #415771;
+            --line: #8fa2ba;
+            --accent: #1f2f43;
+            --accent-2: #314a67;
             --left: 50%;
         }
 
@@ -27,8 +27,8 @@
             color: var(--ink);
             font-family: 'Montserrat', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             background:
-                radial-gradient(circle at 8% 10%, rgba(119, 201, 255, 0.16), transparent 26%),
-                radial-gradient(circle at 86% 5%, rgba(242, 191, 100, 0.18), transparent 24%),
+                radial-gradient(circle at 8% 10%, rgba(246, 248, 251, 0.32), transparent 26%),
+                radial-gradient(circle at 86% 5%, rgba(127, 147, 170, 0.28), transparent 24%),
                 var(--bg);
         }
 
@@ -53,7 +53,7 @@
         }
 
         .hero {
-            background: linear-gradient(160deg, rgba(18,26,39,0.97), rgba(13,19,29,0.96));
+            background: linear-gradient(160deg, rgba(213,221,231,0.97), rgba(186,198,213,0.96));
             border: 1px solid var(--line);
             border-radius: 16px;
             padding: 26px;
@@ -66,7 +66,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(120deg, rgba(119,201,255,0.08), transparent 48%, rgba(242,191,100,0.09));
+            background: linear-gradient(120deg, rgba(246,248,251,0.22), transparent 48%, rgba(127,147,170,0.15));
             pointer-events: none;
         }
 
@@ -118,12 +118,12 @@
             border: 1px solid transparent;
         }
 
-        .btn.primary { background: var(--accent); color: #1a2333; }
-        .btn.secondary { color: var(--accent-2); border-color: #35506e; }
+        .btn.primary { background: var(--accent); color: #f6f8fb; }
+        .btn.secondary { color: var(--accent-2); border-color: #6f86a3; }
 
         .section {
             margin-top: 22px;
-            background: linear-gradient(170deg, rgba(18,26,39,0.95), rgba(12,17,26,0.95));
+            background: linear-gradient(170deg, rgba(213,221,231,0.96), rgba(186,198,213,0.95));
             border: 1px solid var(--line);
             border-radius: 16px;
             padding: 20px;
@@ -135,7 +135,7 @@
             width: 100%;
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid #2f3d58;
+            border: 1px solid #7f93aa;
             box-shadow: 0 12px 30px rgba(0,0,0,0.28);
             min-height: 360px;
         }
@@ -174,7 +174,7 @@
 
         .show-panel.active {
             flex: 1.35;
-            box-shadow: inset 0 0 0 2px rgba(242,191,100,0.65);
+            box-shadow: inset 0 0 0 2px rgba(31,47,67,0.42);
         }
 
         .show-copy {
@@ -192,28 +192,28 @@
 
         .show-copy p {
             margin: 0;
-            color: #d8deeb;
+            color: #2a3d56;
             font-size: 0.96rem;
             line-height: 1.45;
         }
 
         .panel-natural {
-            color: #131927;
+            color: #1f2f43;
             background-image: url('../professionalindex.jpg');
-            background-color: #f5f7fb;
+            background-color: #d5dde7;
         }
 
         .panel-natural::before {
-            background: linear-gradient(180deg, rgba(255,255,255,0.20) 0%, rgba(245,247,251,0.84) 82%);
+            background: linear-gradient(180deg, rgba(246,248,251,0.26) 0%, rgba(213,221,231,0.84) 82%);
         }
 
         .panel-natural .show-copy h3 {
-            color: #1a2333;
+            color: #1f2f43;
             text-shadow: none;
         }
 
         .panel-natural .show-copy p {
-            color: #2b374e;
+            color: #2a3d56;
         }
 
         .panel-mini {
@@ -266,10 +266,10 @@
 
         .package-card {
             margin-top: 14px;
-            border: 1px solid #2f3d58;
+            border: 1px solid #7f93aa;
             border-radius: 14px;
             padding: 0;
-            background: #0d131e;
+            background: #c9d4e2;
         }
 
         .package {
@@ -320,8 +320,8 @@
         .addon-box {
             margin-top: 14px;
             padding: 16px;
-            background: #0f1623;
-            border: 1px solid #2f3d58;
+            background: #c9d4e2;
+            border: 1px solid #7f93aa;
             border-radius: 12px;
         }
 
@@ -340,8 +340,8 @@
         .shot {
             border-radius: 12px;
             overflow: hidden;
-            border: 1px solid #2d3a54;
-            background: #0f1623;
+            border: 1px solid #7f93aa;
+            background: #c9d4e2;
             min-height: 160px;
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
@@ -372,9 +372,40 @@
         }
 
         .footer-links a {
-            color: var(--accent);
+            color: #1f2f43;
             text-decoration: none;
             font-weight: 700;
+        }
+
+        .inquiry-floater {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            z-index: 30;
+            text-decoration: none;
+            color: #f6f8fb;
+            background: linear-gradient(160deg, #1f2f43, #314a67);
+            border: 1px solid #6f86a3;
+            border-radius: 12px;
+            padding: 10px 12px;
+            min-width: 210px;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.3);
+        }
+
+        .inquiry-floater strong {
+            display: block;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .inquiry-floater span {
+            display: block;
+            margin-top: 4px;
+            font-weight: 800;
+            line-height: 1.15;
+            min-height: 34px;
         }
 
         @media (max-width: 940px) {
@@ -399,13 +430,20 @@
             .show-panel {
                 min-height: 210px;
             }
+
+            .inquiry-floater {
+                left: 12px;
+                right: 12px;
+                bottom: 12px;
+                min-width: 0;
+            }
         }
     </style>
 </head>
 <body>
     <main class="wrap" role="main">
         <div class="topbar">
-            <a class="link" href="../index.html">Back To Home</a>
+            <a class="link" href="../index.html#professional">Back To Home</a>
             <span class="muted">Tess Does Stuff</span>
         </div>
 
@@ -526,6 +564,10 @@
                 <figure class="shot" data-gallery="natural"><img src="../dm_assets/_1420432.jpg" alt="Natural light selected work image 2"></figure>
                 <figure class="shot" data-gallery="natural"><img src="../dm_assets/P1300376.jpg" alt="Natural light selected work image 3"></figure>
                 <figure class="shot" data-gallery="natural"><img src="../dm_assets/P1430442-2.jpg" alt="Natural light selected work image 4"></figure>
+                <figure class="shot" data-gallery="mini"><img src="../dm_assets/P1430077.jpg" alt="Mini shoot selected work image 1"></figure>
+                <figure class="shot" data-gallery="mini"><img src="../dm_assets/P1370249.jpg" alt="Mini shoot selected work image 2"></figure>
+                <figure class="shot" data-gallery="mini"><img src="../dm_assets/P1240132.jpg" alt="Mini shoot selected work image 3"></figure>
+                <figure class="shot" data-gallery="mini"><img src="../dm_assets/_1420292-2.jpg" alt="Mini shoot selected work image 4"></figure>
                 <figure class="shot" data-gallery="cinematic"><img src="../dm_assets/P1380637.jpg" alt="Cinematic experience selected work image 1"></figure>
                 <figure class="shot" data-gallery="cinematic"><img src="../dm_assets/P1210891.jpg" alt="Cinematic experience selected work image 2"></figure>
                 <figure class="shot" data-gallery="cinematic"><img src="../dm_assets/P1200568-2.jpg" alt="Cinematic experience selected work image 3"></figure>
@@ -563,6 +605,11 @@
         </div>
     </main>
 
+    <a class="inquiry-floater" href="../hire.html#contact-lanes" aria-label="Open inquiry links">
+        <strong>Inquire</strong>
+        <span id="inquiry-floater-text">Book Your Photo Session</span>
+    </a>
+
     <script>
         (function () {
             var chooser = document.querySelectorAll('[data-package]');
@@ -584,8 +631,7 @@
 
                 galleryShots.forEach(function (shot) {
                     var shotMode = shot.getAttribute('data-gallery');
-                    var visibleMode = mode === 'mini' ? 'natural' : mode;
-                    shot.classList.toggle('hidden', shotMode !== visibleMode);
+                    shot.classList.toggle('hidden', shotMode !== mode);
                 });
 
                 if (galleryModeLabel) {
@@ -607,6 +653,20 @@
             });
 
             setActivePackage('natural');
+
+            var floaterText = document.getElementById('inquiry-floater-text');
+            if (floaterText) {
+                var messages = [
+                    'Book Your Photo Session',
+                    'Ask About Packages',
+                    'Inquire About Availability'
+                ];
+                var index = 0;
+                setInterval(function () {
+                    index = (index + 1) % messages.length;
+                    floaterText.textContent = messages[index];
+                }, 2600);
+            }
         })();
     </script>
 </body>

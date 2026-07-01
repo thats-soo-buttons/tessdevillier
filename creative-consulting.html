@@ -7,13 +7,13 @@
   <title>Creative Consulting | Tess Devillier</title>
   <style>
     :root {
-      --bg: #1b171b;
-      --card: #231d23;
-      --ink: #efe6d8;
-      --muted: #9a7a84;
-      --line: #3f333b;
-      --accent: #64735f;
-      --accent-2: #4e1a2a;
+      --bg: #263242;
+      --card: #3c495b;
+      --ink: #f5f7fa;
+      --muted: #c3cedd;
+      --line: #5f7289;
+      --accent: #f5f7fa;
+      --accent-2: #d5deea;
     }
     * { box-sizing: border-box; }
     body {
@@ -22,8 +22,8 @@
       color: var(--ink);
       font-family: 'Montserrat', Arial, sans-serif;
       background:
-        radial-gradient(circle at 84% 4%, rgba(100,115,95,0.2), transparent 28%),
-        radial-gradient(circle at 12% 8%, rgba(78,26,42,0.22), transparent 26%),
+        radial-gradient(circle at 84% 4%, rgba(213, 222, 234, 0.20), transparent 28%),
+        radial-gradient(circle at 12% 8%, rgba(127, 147, 170, 0.22), transparent 26%),
         var(--bg);
     }
     .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 16px 46px; }
@@ -33,24 +33,55 @@
     .sub { margin: 8px 0 18px; color: var(--muted); max-width: 860px; }
     .section {
       margin-top: 14px;
-      background: linear-gradient(160deg, var(--card), #2b212a);
+      background: linear-gradient(160deg, var(--card), #2b394b);
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 18px;
       box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.34);
     }
     h2 { margin: 0 0 8px; font-size: 1.25rem; }
+    .section-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid #7388a3;
+      background: #314153;
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: 700 1.03rem/1.2 'Montserrat', Arial, sans-serif;
+      cursor: pointer;
+      text-align: left;
+    }
+    .section-toggle-mark {
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    .section-body {
+      margin-top: 12px;
+    }
+    .section.collapsed .section-body {
+      display: none;
+    }
     .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .card { background: #2b2230; border: 1px solid #5b4a60; border-radius: 12px; padding: 14px; }
+    .card { background: #344559; border: 1px solid #7388a3; border-radius: 12px; padding: 14px; }
     .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
     .card p { margin: 0; color: var(--muted); line-height: 1.45; }
     .price {
       display: inline-block;
       margin-top: 8px;
       border-radius: 999px;
-      background: rgba(78,26,42,0.22);
-      border: 1px solid rgba(154,122,132,0.45);
-      color: #efe6d8;
+      background: rgba(213, 222, 234, 0.14);
+      border: 1px solid rgba(213, 222, 234, 0.42);
+      color: #f5f7fa;
       padding: 4px 10px;
       font-size: 0.86rem;
       font-weight: 700;
@@ -66,14 +97,14 @@
       font-weight: 700;
       border: 1px solid transparent;
       background: var(--accent);
-      color: #efe6d8;
+      color: #263242;
     }
     .btn.alt {
       background: transparent;
-      color: #f2dfc8;
-      border-color: #8f6f78;
-      box-shadow: 0 0 0 1px rgba(242, 223, 200, 0.18), 0 0 10px rgba(242, 223, 200, 0.2);
-      text-shadow: 0 0 6px rgba(242, 223, 200, 0.35);
+      color: var(--accent-2);
+      border-color: #8ea2bc;
+      box-shadow: none;
+      text-shadow: none;
     }
     .footer-links {
       margin-top: 20px;
@@ -82,7 +113,43 @@
       gap: 14px;
       flex-wrap: wrap;
     }
-    .footer-links a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    .footer-links a { color: var(--accent-2); text-decoration: none; font-weight: 700; }
+    .inquiry-floater {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 30;
+      text-decoration: none;
+      color: #263242;
+      background: linear-gradient(160deg, #f5f7fa, #d5deea);
+      border: 1px solid #8ea2bc;
+      border-radius: 12px;
+      padding: 10px 12px;
+      min-width: 210px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
+    }
+    .inquiry-floater strong {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.92;
+    }
+    .inquiry-floater span {
+      display: block;
+      margin-top: 4px;
+      font-weight: 800;
+      line-height: 1.15;
+      min-height: 34px;
+    }
+    @media (max-width: 700px) {
+      .inquiry-floater {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        min-width: 0;
+      }
+    }
     @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -95,6 +162,7 @@
 
     <h1>Creative Consulting</h1>
     <p class="sub">Strategic and creative support for founders, creators, and teams who need clearer direction, stronger messaging, and faster decision-making.</p>
+    <p class="sub">This is the guidance lane: focused sessions where I support your thinking, with optional retainer continuity.</p>
 
     <section class="section" aria-label="Consulting support types">
       <h2>What I Help With</h2>
@@ -187,10 +255,62 @@
       <a href="#">Back to top</a>
       <a href="index.html#professional">Home</a>
       <a href="hire.html">Book or Inquire</a>
+      <a href="portfolio.html">Portfolio</a>
       <a href="contact.html">Contact</a>
       <a href="availability.html">Availability</a>
       <a href="worldbuilding.html">Worldbuilding</a>
     </div>
   </main>
+  <a class="inquiry-floater" href="hire.html#contact-lanes" aria-label="Open inquiry links">
+    <strong>Inquire</strong>
+    <span id="inquiry-floater-text">Book Your Strategy Session</span>
+  </a>
+  <script>
+    (function () {
+      var sections = document.querySelectorAll('.section');
+      sections.forEach(function (section) {
+        var heading = section.querySelector('h2');
+        if (!heading) return;
+
+        var title = heading.textContent.trim();
+        var body = document.createElement('div');
+        body.className = 'section-body';
+        while (heading.nextSibling) {
+          body.appendChild(heading.nextSibling);
+        }
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'section-toggle';
+        button.setAttribute('aria-expanded', 'true');
+        button.innerHTML = '<span>' + title + '</span><span class="section-toggle-mark">-</span>';
+
+        heading.textContent = '';
+        heading.appendChild(button);
+        section.appendChild(body);
+
+        button.addEventListener('click', function () {
+          var collapsed = section.classList.toggle('collapsed');
+          button.setAttribute('aria-expanded', String(!collapsed));
+          var mark = button.querySelector('.section-toggle-mark');
+          if (mark) mark.textContent = collapsed ? '+' : '-';
+        });
+      });
+
+      var floaterText = document.getElementById('inquiry-floater-text');
+      if (floaterText) {
+        var messages = [
+          'Book Your Strategy Session',
+          'Inquire About Consulting',
+          'Let Us Map Your Next Move'
+        ];
+        var index = 0;
+        setInterval(function () {
+          index = (index + 1) % messages.length;
+          floaterText.textContent = messages[index];
+        }, 2600);
+      }
+    })();
+  </script>
 </body>
 </html>

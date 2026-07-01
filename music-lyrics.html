@@ -7,13 +7,13 @@
   <title>Music + Lyrics | Tess Devillier</title>
   <style>
     :root {
-      --bg: #1b171b;
-      --card: #231d23;
-      --ink: #efe6d8;
-      --muted: #9a7a84;
-      --line: #3f333b;
-      --accent: #64735f;
-      --accent-2: #4e1a2a;
+      --bg: #352a22;
+      --card: #4a3b2f;
+      --ink: #f8f1e3;
+      --muted: #d2c0ab;
+      --line: #6f5847;
+      --accent: #ffab6e;
+      --accent-2: #f0dfbf;
     }
     * { box-sizing: border-box; }
     body {
@@ -22,8 +22,8 @@
       color: var(--ink);
       font-family: 'Montserrat', Arial, sans-serif;
       background:
-        radial-gradient(circle at 14% 7%, rgba(100,115,95,0.18), transparent 26%),
-        radial-gradient(circle at 86% 3%, rgba(78,26,42,0.22), transparent 30%),
+        radial-gradient(circle at 14% 7%, rgba(255, 171, 110, 0.24), transparent 26%),
+        radial-gradient(circle at 86% 3%, rgba(240, 223, 191, 0.20), transparent 30%),
         var(--bg);
     }
     .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 16px 46px; }
@@ -33,16 +33,47 @@
     .sub { margin: 8px 0 16px; color: var(--muted); max-width: 860px; }
     .section {
       margin-top: 14px;
-      background: linear-gradient(160deg, var(--card), #2a212a);
+      background: linear-gradient(160deg, var(--card), #2f251d);
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 18px;
       box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.34);
     }
     h2 { margin: 0 0 8px; font-size: 1.2rem; }
+    .section-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid #7c6550;
+      background: #554435;
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: 700 1.03rem/1.2 'Montserrat', Arial, sans-serif;
+      cursor: pointer;
+      text-align: left;
+    }
+    .section-toggle-mark {
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    .section-body {
+      margin-top: 12px;
+    }
+    .section.collapsed .section-body {
+      display: none;
+    }
     .muted { color: var(--muted); }
     .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .card { background: #2b2330; border: 1px solid #5e4b62; border-radius: 12px; padding: 14px; }
+    .card { background: #554435; border: 1px solid #7c6550; border-radius: 12px; padding: 14px; }
     .card h3 { margin: 0 0 8px; font-size: 1.02rem; }
     .btn {
       display: inline-block;
@@ -52,13 +83,13 @@
       font-weight: 700;
       border: 1px solid transparent;
       background: var(--accent);
-      color: #efe6d8;
+      color: #2f251d;
       margin-top: 10px;
     }
     .btn.alt {
       background: transparent;
       color: var(--accent-2);
-      border-color: #5f4a55;
+      border-color: #8a7058;
     }
     audio {
       width: 100%;
@@ -67,11 +98,11 @@
     }
     .embed-wrap {
       margin-top: 10px;
-      border: 1px solid #5e4b62;
+      border: 1px solid #7c6550;
       border-radius: 12px;
       overflow: hidden;
       min-height: 280px;
-      background: #241d28;
+      background: #433529;
     }
     .embed-wrap iframe {
       width: 100%;
@@ -86,8 +117,42 @@
       flex-wrap: wrap;
     }
     .footer-links a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    .inquiry-floater {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 30;
+      text-decoration: none;
+      color: #2f251d;
+      background: linear-gradient(160deg, #ffbf8a, #ffab6e);
+      border: 1px solid #8a7058;
+      border-radius: 12px;
+      padding: 10px 12px;
+      min-width: 210px;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.34);
+    }
+    .inquiry-floater strong {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+    .inquiry-floater span {
+      display: block;
+      margin-top: 4px;
+      font-weight: 800;
+      line-height: 1.15;
+      min-height: 34px;
+    }
     @media (max-width: 860px) {
       .grid { grid-template-columns: 1fr; }
+      .inquiry-floater {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        min-width: 0;
+      }
     }
   </style>
 </head>
@@ -100,7 +165,7 @@
 
     <h1>Music + Lyrics</h1>
     <p class="sub">My brain has enough worldbuilding ideas to fuel three novels and a spin-off, but not always enough hours to write them cover to cover. So when a scene, character, or weird little universe shows up, I turn it into a song or a writing prompt so the idea does not go to waste.</p>
-    <p class="sub">To hear more lyric concepts and story ideas, explore the whimsical side. If you are interested in taking on lyrics, please contact me at <a href="mailto:Contact@TessDevillier.com" style="color:#fff; font-weight:700;">Contact@TessDevillier.com</a>.</p>
+    <p class="sub">To hear more lyric concepts and story ideas, explore the whimsical side. If you are interested in taking on lyrics, please contact me at <a href="mailto:contact@tessdevillier.com" style="color:var(--accent); font-weight:700;">contact@tessdevillier.com</a>.</p>
 
     <section class="section" aria-label="Music demos">
       <h2>Demo Tracks</h2>
@@ -129,7 +194,7 @@
       <h2>Lyrics + Writing Hub</h2>
       <p class="muted">You can find lyric drops, drafts, and community comments.</p>
       <a class="btn" id="tumblrLink" href="#" target="_blank" rel="noopener noreferrer">Open Lyrics Posts on Tumblr</a>
-      <a class="btn alt" style="color: var(--ink);" href="mailto:Contact@TessDevillier.com?subject=Music%20and%20Lyrics%20Inquiry">Work With Me</a>
+      <a class="btn alt" style="color: var(--ink);" href="mailto:contact@tessdevillier.com?subject=Music%20and%20Lyrics%20Inquiry">Work With Me</a>
     </section>
 
     <div class="footer-links" aria-label="Quick links">
@@ -141,6 +206,44 @@
       <a href="watch.html">Watch</a>
     </div>
   </main>
+  <a class="inquiry-floater" href="hire.html#contact-lanes" aria-label="Open inquiry links">
+    <strong>Inquire</strong>
+    <span id="inquiry-floater-text">Pitch A Music Or Lyric Project</span>
+  </a>
+
+  <script>
+    (function () {
+      var sections = document.querySelectorAll('.section');
+      sections.forEach(function (section) {
+        var heading = section.querySelector('h2');
+        if (!heading) return;
+
+        var title = heading.textContent.trim();
+        var body = document.createElement('div');
+        body.className = 'section-body';
+        while (heading.nextSibling) {
+          body.appendChild(heading.nextSibling);
+        }
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'section-toggle';
+        button.setAttribute('aria-expanded', 'true');
+        button.innerHTML = '<span>' + title + '</span><span class="section-toggle-mark">-</span>';
+
+        heading.textContent = '';
+        heading.appendChild(button);
+        section.appendChild(body);
+
+        button.addEventListener('click', function () {
+          var collapsed = section.classList.toggle('collapsed');
+          button.setAttribute('aria-expanded', String(!collapsed));
+          var mark = button.querySelector('.section-toggle-mark');
+          if (mark) mark.textContent = collapsed ? '+' : '-';
+        });
+      });
+    })();
+  </script>
 
   <script>
     (function () {
@@ -160,6 +263,23 @@
       }
 
       link.setAttribute('href', tumblrUrl);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var floaterText = document.getElementById('inquiry-floater-text');
+      if (!floaterText) return;
+      var messages = [
+        'Pitch A Music Or Lyric Project',
+        'Ask About Custom Lyrics',
+        'Book A Creative Audio Session'
+      ];
+      var index = 0;
+      setInterval(function () {
+        index = (index + 1) % messages.length;
+        floaterText.textContent = messages[index];
+      }, 2600);
     })();
   </script>
 </body>

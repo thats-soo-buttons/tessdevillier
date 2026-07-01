@@ -7,13 +7,13 @@
   <title>Worldbuilding / Narrative | Tess Devillier</title>
   <style>
     :root {
-      --bg: #1b171b;
-      --card: #231d23;
-      --ink: #efe6d8;
-      --muted: #9a7a84;
-      --line: #3f333b;
-      --accent: #64735f;
-      --accent-2: #4e1a2a;
+      --bg: #7f93aa;
+      --card: #9aaabd;
+      --ink: #1f2f43;
+      --muted: #314961;
+      --line: #6f86a3;
+      --accent: #1f2f43;
+      --accent-2: #2f4863;
     }
     * { box-sizing: border-box; }
     body {
@@ -22,8 +22,8 @@
       color: var(--ink);
       font-family: 'Montserrat', Arial, sans-serif;
       background:
-        radial-gradient(circle at 15% 6%, rgba(100,115,95,0.2), transparent 28%),
-        radial-gradient(circle at 88% 2%, rgba(78,26,42,0.24), transparent 26%),
+        radial-gradient(circle at 15% 6%, rgba(246, 248, 251, 0.28), transparent 28%),
+        radial-gradient(circle at 88% 2%, rgba(127, 147, 170, 0.24), transparent 26%),
         var(--bg);
     }
     .wrap { max-width: 1040px; margin: 0 auto; padding: 28px 16px 46px; }
@@ -31,26 +31,63 @@
     .top a { color: var(--muted); text-decoration: none; font-weight: 700; }
     h1 { margin: 0; font-size: clamp(1.9rem, 4.2vw, 3rem); letter-spacing: 0.03em; }
     .sub { margin: 8px 0 18px; color: var(--muted); max-width: 840px; }
+    .scope-list {
+      margin: -4px 0 14px 20px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .scope-list li { margin-bottom: 6px; }
     .section {
       margin-top: 14px;
-      background: linear-gradient(160deg, var(--card), #2b212a);
+      background: linear-gradient(160deg, var(--card), #8799af);
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 18px;
       box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.34);
     }
     h2 { margin: 0 0 8px; font-size: 1.25rem; }
+    .section-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid #7f93aa;
+      background: #a7b5c6;
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: 700 1.03rem/1.2 'Montserrat', Arial, sans-serif;
+      cursor: pointer;
+      text-align: left;
+    }
+    .section-toggle-mark {
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    .section-body {
+      margin-top: 12px;
+    }
+    .section.collapsed .section-body {
+      display: none;
+    }
     .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .card { background: #2a222d; border: 1px solid #5a4b5f; border-radius: 12px; padding: 14px; }
+    .card { background: #aab8c8; border: 1px solid #7f93aa; border-radius: 12px; padding: 14px; }
     .card h3 { margin: 0 0 8px; font-size: 1.05rem; }
     .card p { margin: 0; color: var(--muted); line-height: 1.45; }
     .price {
       display: inline-block;
       margin-top: 8px;
       border-radius: 999px;
-      background: rgba(239,230,216,0.14);
-      border: 1px solid rgba(239,230,216,0.45);
-      color: #f6ede0;
+      background: rgba(31, 47, 67, 0.12);
+      border: 1px solid rgba(31, 47, 67, 0.32);
+      color: #1f2f43;
       padding: 4px 10px;
       font-size: 0.86rem;
       font-weight: 700;
@@ -66,13 +103,13 @@
       padding: 9px 13px;
       font-weight: 700;
       border: 1px solid transparent;
-      background: var(--accent-2);
-      color: #efe6d8;
+      background: var(--accent);
+      color: #f5f7fa;
     }
     .btn.alt {
       background: transparent;
-      color: var(--accent);
-      border-color: #5f4a55;
+      color: var(--accent-2);
+      border-color: #6f86a3;
     }
     .footer-links {
       margin-top: 20px;
@@ -82,6 +119,42 @@
       flex-wrap: wrap;
     }
     .footer-links a { color: var(--accent-2); text-decoration: none; font-weight: 700; }
+    .inquiry-floater {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 30;
+      text-decoration: none;
+      color: #f5f7fa;
+      background: linear-gradient(160deg, #1f2f43, #2f4863);
+      border: 1px solid #6f86a3;
+      border-radius: 12px;
+      padding: 10px 12px;
+      min-width: 200px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
+    }
+    .inquiry-floater strong {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+    .inquiry-floater span {
+      display: block;
+      margin-top: 4px;
+      font-weight: 800;
+      line-height: 1.15;
+      min-height: 34px;
+    }
+    @media (max-width: 700px) {
+      .inquiry-floater {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        min-width: 0;
+      }
+    }
     @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
@@ -94,6 +167,14 @@
 
     <h1>Worldbuilding / Narrative</h1>
     <p class="sub">Lore systems, narrative arcs, faction design, and setting development for creators building worlds with depth and cohesion.</p>
+    <p class="sub">This is the deeper-build lane: I handle a larger share of the hands-on world and narrative creation work.</p>
+    <ul class="scope-list" aria-label="Worldbuilding and narrative examples">
+      <li>Examples include (not limited to):</li>
+      <li>Dialogue systems: voice, tone, and character-specific speech patterns.</li>
+      <li>Quest structure: objective flow, stakes, branching outcomes, and payoff timing.</li>
+      <li>Environmental systems: weather, politics, ethics, culture rules, and consequence loops.</li>
+      <li>Narrative continuity: timeline logic, canon tracking, revision-safe lore updates, and more as needed for your project.</li>
+    </ul>
 
     <section class="section" aria-label="What I build">
       <h2>What I Build</h2>
@@ -160,10 +241,62 @@
       <a href="#">Back to top</a>
       <a href="index.html#professional">Home</a>
       <a href="hire.html">Book or Inquire</a>
+      <a href="portfolio.html">Portfolio</a>
       <a href="contact.html">Contact</a>
       <a href="availability.html">Availability</a>
       <a href="creative-consulting.html">Creative Consulting</a>
     </div>
   </main>
+  <a class="inquiry-floater" href="hire.html#contact-lanes" aria-label="Open inquiry links">
+    <strong>Inquire</strong>
+    <span id="inquiry-floater-text">Start Your Worldbuilding Inquiry</span>
+  </a>
+  <script>
+    (function () {
+      var sections = document.querySelectorAll('.section');
+      sections.forEach(function (section) {
+        var heading = section.querySelector('h2');
+        if (!heading) return;
+
+        var title = heading.textContent.trim();
+        var body = document.createElement('div');
+        body.className = 'section-body';
+        while (heading.nextSibling) {
+          body.appendChild(heading.nextSibling);
+        }
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'section-toggle';
+        button.setAttribute('aria-expanded', 'true');
+        button.innerHTML = '<span>' + title + '</span><span class="section-toggle-mark">-</span>';
+
+        heading.textContent = '';
+        heading.appendChild(button);
+        section.appendChild(body);
+
+        button.addEventListener('click', function () {
+          var collapsed = section.classList.toggle('collapsed');
+          button.setAttribute('aria-expanded', String(!collapsed));
+          var mark = button.querySelector('.section-toggle-mark');
+          if (mark) mark.textContent = collapsed ? '+' : '-';
+        });
+      });
+
+      var floaterText = document.getElementById('inquiry-floater-text');
+      if (floaterText) {
+        var messages = [
+          'Start Your Worldbuilding Inquiry',
+          'Book A Creative Planning Call',
+          'Tell Me About Your Project'
+        ];
+        var index = 0;
+        setInterval(function () {
+          index = (index + 1) % messages.length;
+          floaterText.textContent = messages[index];
+        }, 2600);
+      }
+    })();
+  </script>
 </body>
 </html>

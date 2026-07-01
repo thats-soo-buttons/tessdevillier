@@ -7,12 +7,13 @@
   <title>Podcasts | Tess Devillier</title>
   <style>
     :root {
-      --bg: #1b171b;
-      --card: #231d23;
-      --ink: #efe6d8;
-      --muted: #9a7a84;
-      --accent: #64735f;
-      --line: #3f333b;
+      --bg: #1e1245;
+      --card: #3a2b74;
+      --ink: #f8f1e3;
+      --muted: #cbc2e8;
+      --accent: #f0dfbf;
+      --accent-2: #66e7ff;
+      --line: #5f4ca3;
     }
     * { box-sizing: border-box; }
     body {
@@ -21,8 +22,8 @@
       color: var(--ink);
       font-family: 'Montserrat', Arial, sans-serif;
       background:
-        radial-gradient(circle at 80% 5%, rgba(100, 115, 95, 0.2), transparent 30%),
-        radial-gradient(circle at 18% 6%, rgba(78, 26, 42, 0.22), transparent 30%),
+        radial-gradient(circle at 80% 5%, rgba(102, 231, 255, 0.22), transparent 30%),
+        radial-gradient(circle at 18% 6%, rgba(255, 88, 199, 0.2), transparent 30%),
         var(--bg);
     }
     .wrap { max-width: 980px; margin: 0 auto; padding: 30px 16px 44px; }
@@ -30,16 +31,47 @@
     .top a { color: var(--muted); text-decoration: none; font-weight: 700; }
     h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
     .sub { margin: 0 0 22px; color: var(--muted); }
-    .card {
-      background: var(--card);
+    .section {
+      background: linear-gradient(160deg, var(--card), #281c5b);
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 18px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.26);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
-    .card h2 { margin: 0 0 8px; font-size: 1.2rem; }
-    .card p { margin: 0 0 12px; color: var(--muted); line-height: 1.5; }
-    .card ul { margin: 0 0 12px 18px; color: var(--muted); }
+    .section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.34);
+    }
+    .section h2 { margin: 0 0 8px; font-size: 1.2rem; }
+    .section p { margin: 0 0 12px; color: var(--muted); line-height: 1.5; }
+    .section ul { margin: 0 0 12px 18px; color: var(--muted); }
+    .section-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border: 1px solid #6f5ab8;
+      background: #443584;
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: 700 1.03rem/1.2 'Montserrat', Arial, sans-serif;
+      cursor: pointer;
+      text-align: left;
+    }
+    .section-toggle-mark {
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+    .section-body {
+      margin-top: 12px;
+    }
+    .section.collapsed .section-body {
+      display: none;
+    }
     .embed {
       margin: 10px 0 12px;
       border: 0;
@@ -55,13 +87,13 @@
       border-radius: 8px;
       padding: 9px 12px;
       background: var(--accent);
-      color: #232942;
+      color: #23184f;
       border: 1px solid transparent;
     }
     .btn.alt {
       background: transparent;
-      color: #8ed9ff;
-      border-color: #3b5574;
+      color: var(--accent-2);
+      border-color: #66e7ff;
     }
     .footer-links {
       margin-top: 20px;
@@ -71,6 +103,43 @@
       flex-wrap: wrap;
     }
     .footer-links a { color: var(--accent); text-decoration: none; font-weight: 700; }
+    .inquiry-floater {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 30;
+      text-decoration: none;
+      color: #eef6ff;
+      background: linear-gradient(155deg, #392f71, #22164f);
+      border: 1px solid #66e7ff;
+      border-radius: 12px;
+      padding: 10px 12px;
+      min-width: 210px;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.34);
+    }
+    .inquiry-floater strong {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      color: #66e7ff;
+    }
+    .inquiry-floater span {
+      display: block;
+      margin-top: 4px;
+      font-weight: 800;
+      line-height: 1.15;
+      min-height: 34px;
+    }
+    @media (max-width: 860px) {
+      .inquiry-floater {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        min-width: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -83,7 +152,7 @@
     <h1>Podcasts</h1>
     <p class="sub">Dedicated podcast home for Wayward Bound and upcoming audio projects.</p>
 
-    <section class="card" aria-label="Podcast content">
+    <section class="section" aria-label="Podcast content">
       <h2>Wayward Bound</h2>
       <p>Start with Episode 1 below, or open the full show on Spotify.</p>
       <iframe
@@ -106,7 +175,7 @@
       </ul>
       <div class="actions">
         <a class="btn" href="https://open.spotify.com/show/0mz0DiRh7S63kTxVLsDBAF" target="_blank" rel="noopener noreferrer">Open Wayward Bound on Spotify</a>
-        <a class="btn alt" href="mailto:contact@thatssoobuttons.com?subject=Podcast%20Inquiry">Podcast Inquiry</a>
+        <a class="btn alt" href="mailto:contact@tessdevillier.com?subject=Podcast%20Inquiry">Podcast Inquiry</a>
       </div>
     </section>
 
@@ -120,5 +189,56 @@
       <a href="music-lyrics.html">Music + Lyrics</a>
     </div>
   </main>
+  <a class="inquiry-floater" href="hire.html#contact-lanes" aria-label="Open inquiry links">
+    <strong>Inquire</strong>
+    <span id="inquiry-floater-text">Pitch A Podcast Collaboration</span>
+  </a>
+  <script>
+    (function () {
+      var sections = document.querySelectorAll('.section');
+      sections.forEach(function (section) {
+        var heading = section.querySelector('h2');
+        if (!heading) return;
+
+        var title = heading.textContent.trim();
+        var body = document.createElement('div');
+        body.className = 'section-body';
+        while (heading.nextSibling) {
+          body.appendChild(heading.nextSibling);
+        }
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'section-toggle';
+        button.setAttribute('aria-expanded', 'true');
+        button.innerHTML = '<span>' + title + '</span><span class="section-toggle-mark">-</span>';
+
+        heading.textContent = '';
+        heading.appendChild(button);
+        section.appendChild(body);
+
+        button.addEventListener('click', function () {
+          var collapsed = section.classList.toggle('collapsed');
+          button.setAttribute('aria-expanded', String(!collapsed));
+          var mark = button.querySelector('.section-toggle-mark');
+          if (mark) mark.textContent = collapsed ? '+' : '-';
+        });
+      });
+
+      var floaterText = document.getElementById('inquiry-floater-text');
+      if (floaterText) {
+        var messages = [
+          'Pitch A Podcast Collaboration',
+          'Book A Guest Or Host Slot',
+          'Ask About Audio Production'
+        ];
+        var index = 0;
+        setInterval(function () {
+          index = (index + 1) % messages.length;
+          floaterText.textContent = messages[index];
+        }, 2600);
+      }
+    })();
+  </script>
 </body>
 </html>
