@@ -37,18 +37,18 @@
           "src": "dm_audio_playlist/Red Lining Demise.mp3"
         },
         {
-          "name": "rawpiano1 cover.mp3",
-          "src": "dm_audio_playlist/rawpiano1 cover.mp3"
-        },
-        {
           "name": "Just Stop (In This Chaos).mp3",
           "src": "dm_audio_playlist/Just Stop (In This Chaos).mp3"
         }
       ]
     },
     {
-      "name": "Piano Edits",
+      "name": "Instrumental",
       "tracks": [
+        {
+          "name": "rawpiano1 cover.mp3",
+          "src": "dm_audio_playlist/rawpiano1 cover.mp3"
+        },
         {
           "name": "noedits_rawpiano2.mp3",
           "src": "dm_audio_playlist/noedits_rawpiano2.mp3"
