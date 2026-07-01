@@ -937,6 +937,61 @@
         .choice { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; overflow: hidden; }
         .choice:hover { flex: 1.4; }
 
+        .mobile-index-shell {
+            display: none;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 14px 12px 22px;
+        }
+
+        .mobile-index-title {
+            margin: 0 0 8px;
+            font-size: 1.2rem;
+            letter-spacing: 0.04em;
+            color: #f4e6da;
+            text-transform: uppercase;
+            text-align: center;
+            font-family: var(--font-display);
+        }
+
+        .mobile-index-sub {
+            margin: 0 0 12px;
+            text-align: center;
+            color: #d9d4ca;
+            font-size: 0.92rem;
+            line-height: 1.38;
+        }
+
+        .mobile-index-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .mobile-index-card {
+            display: block;
+            text-decoration: none;
+            color: #f4e6da;
+            background: rgba(8, 10, 16, 0.6);
+            border: 1px solid rgba(244, 230, 218, 0.24);
+            border-radius: 12px;
+            padding: 11px 12px;
+        }
+
+        .mobile-index-card strong {
+            display: block;
+            font-size: 0.98rem;
+            margin-bottom: 3px;
+            letter-spacing: 0.04em;
+        }
+
+        .mobile-index-card span {
+            display: block;
+            color: #cec9bf;
+            font-size: 0.85rem;
+            line-height: 1.35;
+        }
+
         #whimsy-desktop {
             display: none !important;
         }
@@ -2000,6 +2055,41 @@
         <div id="panel-label-4" class="label">Creative Consulting<br><span style="font-size:1.05rem; font-weight:600; color:#cfcfcf;">Explore consulting</span></div>
     </div>
   </div>
+
+  <section class="mobile-index-shell" aria-label="Mobile main navigation">
+      <h2 class="mobile-index-title">Mobile Index</h2>
+      <p class="mobile-index-sub">Clean mobile routing for services, support, and quick contact.</p>
+      <div class="mobile-index-grid">
+          <a class="mobile-index-card" href="hire.html#contact-lanes">
+              <strong>Hire / Contact</strong>
+              <span>Start inquiries fast with one clear contact lane.</span>
+          </a>
+          <a class="mobile-index-card" href="services.html">
+              <strong>Services Hub</strong>
+              <span>Pets, photography, worldbuilding, and consulting.</span>
+          </a>
+          <a class="mobile-index-card" href="professional.html">
+              <strong>Professional Overview</strong>
+              <span>Your core offerings in a simple professional format.</span>
+          </a>
+          <a class="mobile-index-card" href="watch.html">
+              <strong>Watch + Listen</strong>
+              <span>Twitch, lyrics, podcasts, and creative world drops.</span>
+          </a>
+          <a class="mobile-index-card" href="connect.html">
+              <strong>Connect</strong>
+              <span>Instagram, TikTok, Discord, and direct channels.</span>
+          </a>
+          <a class="mobile-index-card" href="support.html">
+              <strong>Support</strong>
+              <span>Prime sub, Ko-fi, referrals, and mission support.</span>
+          </a>
+          <a class="mobile-index-card" href="whimsical.html">
+              <strong>Enter The Matrix</strong>
+              <span>Launch the whimsical desktop experience.</span>
+          </a>
+      </div>
+  </section>
 </main>
 
 <footer style="position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.95rem; opacity: 0.95; color: #fff; z-index: 50; background: rgba(8,10,16,0.42); backdrop-filter: blur(6px); padding: 8px 12px; border-radius: 12px; width: min(980px, calc(100vw - 24px));" role="contentinfo">
@@ -2248,9 +2338,7 @@
             }
 
             .split-container {
-                height: auto !important;
-                min-height: 100dvh !important;
-                flex-direction: column !important;
+                display: none !important;
             }
 
             main {
@@ -2258,8 +2346,11 @@
             }
 
             .header-container {
-                position: static !important;
-                padding-top: 18px !important;
+                display: none !important;
+            }
+
+            .mobile-index-shell {
+                display: block;
             }
 
             footer {
