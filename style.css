@@ -55,7 +55,6 @@ body {
     border: 1px solid var(--border);
 }
 
-/* Coherence layer: helps mixed image sources feel unified when used in cards and galleries. */
 img {
     filter: saturate(0.88) contrast(1.08) brightness(0.93);
 }
