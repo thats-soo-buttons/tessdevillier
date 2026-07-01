@@ -47,32 +47,57 @@
     <div id="lyrics-container"><p class="loading">Loading lyrics...</p></div>
 </div>
 <script>
+function escHtml(value) {
+    return String(value == null ? '' : value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
 async function loadLyrics() {
     const container = document.getElementById('lyrics-container');
     try {
         const res = await fetch('data/lyrics.json');
-        const lyrics = await res.json();
-        container.innerHTML = lyrics.map((l, i) => `
+        const raw = await res.json();
+        const lyrics = Array.isArray(raw) ? raw : [];
+        container.innerHTML = lyrics.map((l, i) => {
+            const title = escHtml(l.title || 'Untitled');
+            const preview = escHtml(l.preview || '');
+            const full = escHtml(l.full || '').replace(/\n/g, '<br>');
+            const status = escHtml(l.status || 'open');
+            const collabNote = escHtml(l.collab_note || '');
+            const tags = Array.isArray(l.tags) ? l.tags : [];
+            const tagsHtml = tags.map((tag) => {
+                const safeTag = escHtml(tag);
+                const low = String(tag || '').toLowerCase();
+                const isCollab = low === 'seeking collaborator' || low === 'demo';
+                return `<span class="tag ${isCollab ? 'collab' : ''}">${safeTag}</span>`;
+            }).join('');
+
+            return `
             <div class="lyric-card">
                 <div class="lyric-header" onclick="toggle(${i})" aria-expanded="false" id="header-${i}">
                     <div class="lyric-header-left">
-                        <h2>${l.title}</h2>
-                        <div class="preview">${l.preview}</div>
+                        <h2>${title}</h2>
+                        <div class="preview">${preview}</div>
                         <div class="lyric-tags">
-                            ${l.tags.map(t => `<span class="tag ${t==='seeking collaborator'||t==='demo'?'collab':''}">${t}</span>`).join('')}
+                            ${tagsHtml}
                         </div>
                     </div>
-                    <span class="expand-icon" id="icon-${i}">â–¼</span>
+                    <span class="expand-icon" id="icon-${i}">&#9662;</span>
                 </div>
                 <div class="lyric-body" id="body-${i}">
-                    <div class="lyric-text">${l.full.replace(/\n/g,'<br>')}</div>
+                    <div class="lyric-text">${full}</div>
                     ${l.collab_note ? `<div class="collab-box">
-                        <p><strong>Seeking collaborator:</strong> ${l.collab_note}</p>
-                        <p>Status: <span class="status-badge">${l.status||'open'}</span></p>
+                        <p><strong>Seeking collaborator:</strong> ${collabNote}</p>
+                        <p>Status: <span class="status-badge">${status}</span></p>
                         <p>Contact: <a href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a></p>
                     </div>` : ''}
                 </div>
-            </div>`).join('');
+            </div>`;
+        }).join('');
     } catch(e) { container.innerHTML = '<p style="color:#888;text-align:center;">Lyrics coming soon.</p>'; }
 }
 function toggle(i) {
