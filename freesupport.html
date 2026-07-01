@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="How to support Tess for free using Amazon Prime Twitch sub, including account setup and monthly resub instructions.">
-    <title>Free Support Guide | Tess Devillier</title>
+    <meta name="description" content="FREE OPTIONS: Twitch Prime sub steps plus referral, social, Discord, and community support actions.">
+    <title>FREE OPTIONS | Tess Devillier</title>
     <style>
         :root {
-            --bg: #1b171b;
-            --card: #231d23;
-            --ink: #efe6d8;
-            --muted: #9a7a84;
-            --accent: #64735f;
-            --line: #3f333b;
-            --ok: #8fa7cf;
+            --bg: #f6f2e8;
+            --card: #fffdf9;
+            --ink: #1f2328;
+            --muted: #3f4a56;
+            --accent: #0b6e4f;
+            --line: #d7cec1;
+            --ok: #0e7490;
+            --accent-ink: #ffffff;
         }
 
         * {
@@ -26,9 +27,10 @@
             font-family: 'Montserrat', Arial, sans-serif;
             color: var(--ink);
             background:
-                radial-gradient(circle at 85% 5%, rgba(100, 115, 95, 0.2), transparent 28%),
-                radial-gradient(circle at 16% 6%, rgba(78, 26, 42, 0.22), transparent 30%),
+                radial-gradient(circle at 85% 5%, rgba(11, 110, 79, 0.12), transparent 30%),
+                radial-gradient(circle at 16% 6%, rgba(14, 116, 144, 0.1), transparent 32%),
                 var(--bg);
+            line-height: 1.6;
         }
 
         .wrap {
@@ -47,8 +49,8 @@
         }
 
         .top a {
-            color: var(--muted);
-            text-decoration: none;
+            color: #0c4a6e;
+            text-decoration: underline;
             font-weight: 600;
         }
 
@@ -61,14 +63,14 @@
         .sub {
             margin: 0 0 20px;
             color: var(--muted);
-            line-height: 1.5;
+            line-height: 1.6;
             max-width: 880px;
         }
 
         .note {
             border-left: 4px solid var(--ok);
-            background: rgba(139, 228, 198, 0.12);
-            color: #d9fff1;
+            background: #ebf8ff;
+            color: #0f172a;
             border-radius: 10px;
             padding: 12px 14px;
             margin-bottom: 16px;
@@ -81,6 +83,24 @@
             gap: 12px;
         }
 
+        .prime-box {
+            margin-top: 8px;
+            margin-bottom: 14px;
+            padding: 16px;
+            border: 2px solid #b8ab95;
+            border-radius: 14px;
+            background: linear-gradient(180deg, #f8f3e6 0%, #f3ede0 100%);
+            box-shadow: 0 6px 20px rgba(31, 35, 40, 0.08);
+        }
+
+        .prime-box h2 {
+            margin: 0 0 12px;
+            font-size: clamp(1.08rem, 2.2vw, 1.34rem);
+            letter-spacing: 0.03em;
+            color: #0f3d2e;
+            text-transform: uppercase;
+        }
+
         .card {
             background: var(--card);
             border: 1px solid var(--line);
@@ -91,15 +111,15 @@
         .card h2 {
             margin: 0 0 10px;
             font-size: 1.14rem;
-            color: var(--accent);
+            color: #0f3d2e;
         }
 
         .card ol,
         .card ul {
             margin: 0;
             padding-left: 18px;
-            color: var(--muted);
-            line-height: 1.5;
+            color: #1f2937;
+            line-height: 1.6;
         }
 
         .card li + li {
@@ -116,19 +136,42 @@
 
         .full h2 {
             margin: 0 0 10px;
-            color: var(--accent);
+            color: #0f3d2e;
             font-size: 1.14rem;
+        }
+
+        .full ul {
+            margin: 0;
+            padding-left: 18px;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        .keyword-list {
+            margin-top: 10px;
+        }
+
+        .keyword-list li {
+            margin-top: 4px;
+        }
+
+        .full a {
+            color: #0c4a6e;
+            font-weight: 700;
+            text-decoration: underline;
         }
 
         .channel-link {
             display: inline-block;
             margin-top: 10px;
+            margin-right: 8px;
             text-decoration: none;
             font-weight: 700;
-            color: #1d2940;
-            background: var(--accent);
+            color: #0f3d2e;
+            background: #f6f2e8;
             border-radius: 8px;
             padding: 10px 12px;
+            border: 1px solid #b8ab95;
         }
 
         .footer-links {
@@ -140,8 +183,8 @@
         }
 
         .footer-links a {
-            color: var(--accent);
-            text-decoration: none;
+            color: #0c4a6e;
+            text-decoration: underline;
             font-weight: 700;
         }
 
@@ -163,60 +206,96 @@
             <a href="support.html">Back To Support</a>
         </div>
 
-        <h1>Free Support Guide</h1>
-        <p class="sub">
-            You can support me without paying extra out of pocket by using your included monthly Twitch sub from Amazon Prime.
-            I still get paid, and you do not get an extra charge.
-        </p>
+        <h1>FREE OPTIONS</h1>
+        <p class="sub">You can support this community even if you cannot spend money right now. These options help keep streams, workshops, resources, and community projects going.</p>
+        <p class="sub"><b>Biggest no-cost support:</b> Use your monthly free Twitch sub if you have Amazon Prime.</p>
 
         <div class="note">
-            Quick truth: Prime sub is not auto-renewed. You have to come back each month and re-subscribe manually.
+            <b>Important:</b> Prime sub is not auto-renewed. You must resubscribe manually each month.
         </div>
 
-        <section class="grid" aria-label="Prime Support Steps">
-            <article class="card">
-                <h2>1. If You Do Not Have Twitch Yet</h2>
-                <ol>
-                    <li>Go to Twitch and click Sign Up.</li>
-                    <li>Create your account with email or phone.</li>
-                    <li>Verify your account when Twitch sends confirmation.</li>
-                </ol>
-            </article>
+        <section class="prime-box" aria-label="Subscribe for free with Amazon Prime">
+            <h2>SUBSCRIBE FOR FREE WITH AMAZON PRIME</h2>
+            <section class="grid" aria-label="Prime Support Steps">
+                <article class="card">
+                    <h2>1A. If You Do Not Have Twitch Yet</h2>
+                    <ol>
+                        <li>Go to Twitch and click Sign Up.</li>
+                        <li>Create account with email or phone.</li>
+                        <li>Verify account via confirmation prompt.</li>
+                    </ol>
+                </article>
 
-            <article class="card">
-                <h2>2. Link Twitch to Amazon Prime</h2>
-                <ol>
-                    <li>Log in to your Amazon Prime account.</li>
-                    <li>Go to Prime Gaming and sign in with your Twitch account.</li>
-                    <li>Follow prompts to connect the two accounts.</li>
-                    <li>Confirm Prime benefits show up in Twitch subscription options.</li>
-                </ol>
-            </article>
+                <article class="card">
+                    <h2>1B. Link Twitch to Amazon Prime</h2>
+                    <ol>
+                        <li>Log in to Amazon Prime account.</li>
+                        <li>Go to Prime Gaming and sign in with Twitch account.</li>
+                        <li>Follow prompts to connect accounts.</li>
+                        <li>Confirm Prime benefits appear in Twitch subscription options.</li>
+                    </ol>
+                </article>
 
-            <article class="card">
-                <h2>3. Use Your Free Monthly Sub</h2>
-                <ol>
-                    <li>Open my Twitch page.</li>
-                    <li>Click the Subscribe button.</li>
-                    <li>Choose the free Prime subscription option.</li>
-                    <li>Complete confirmation.</li>
-                </ol>
-            </article>
+                <article class="card">
+                    <h2>1C. Use Your Free Monthly Sub</h2>
+                    <ol>
+                        <li>Open Twitch channel page.</li>
+                        <li>Click Subscribe.</li>
+                        <li>Choose free Prime subscription option.</li>
+                        <li>Complete confirmation.</li>
+                    </ol>
+                </article>
 
-            <article class="card">
-                <h2>4. Come Back Every Month</h2>
-                <ul>
-                    <li>Your Prime sub expires each month.</li>
-                    <li>It does not auto-renew like paid recurring subs.</li>
-                    <li>Re-sub once a month to keep support active at no extra cost.</li>
-                </ul>
-            </article>
+                <article class="card">
+                    <h2>1D. Come Back Every Month</h2>
+                    <ul>
+                        <li>Prime sub expires monthly.</li>
+                        <li>It does not auto-renew like paid recurring subs.</li>
+                        <li>Resubscribe monthly to keep support active at no extra cost.</li>
+                    </ul>
+                </article>
+            </section>
         </section>
 
-        <section class="full" aria-label="Twitch channel link">
-            <h2>Go Directly To My Twitch</h2>
-            <p class="muted">Use this link to get to my page quickly, then hit Subscribe and choose the Prime option.</p>
-            <a class="channel-link" href="https://twitch.tv/thats_soo_buttons" target="_blank" rel="noopener noreferrer">Open twitch.tv/thats_soo_buttons</a>
+        <section class="full" aria-label="Other free options">
+            <h2>2. Other FREE OPTIONS</h2>
+            <ul class="muted">
+                <li><b>Word-of-mouth for pet + house sitting:</b> if you know anyone looking for trusted pet or house sitting, send them my way, even if they are not in Baton Rouge.</li>
+                <li><b>Referral support for neurodivergent and chronically ill creatives:</b> if you know neurospicy or chronically ill folks who want paid work that works with real-life bad days, connect them with me.</li>
+                <li><b>Mission-critical professional referrals:</b> if you know people experienced in nonprofit law, grant writing, or fundraising, please connect them to <a href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer">On The Fly Network</a>.</li>
+                <li><b>Boost social engagement:</b> share, like, comment, follow, save, and favorite posts across social platforms so the work reaches more people.</li>
+                <li><b>If you post about me, OTF Network, or my content:</b> use one or all of these tags: #thatssoobuttons #otfnetwork #tessdoesstuff</li>
+                <li><b>Help build the Discord community:</b> interact regularly, welcome new people, join conversations, and help make the community bigger, stronger, and more supportive.</li>
+                <li><b>Volunteer creative skills:</b> help with workshop ideas, resource docs, printable materials, and activity sheets for the community.</li>
+            </ul>
+        </section>
+
+        <section class="full" aria-label="Why this matters">
+            <h2>3. Why This Matters</h2>
+            <p class="muted">Just $5/month helps prevent burnout and keeps this work going.</p>
+            <p class="muted">If money is tight, word of mouth still makes a real impact by helping the right people find me.</p>
+            <p class="muted">Engaging in Discord, sharing posts, and volunteering all help grow a community ready to support real system change. I have been building this for years, and now it is time to do it together.</p>
+            <ul class="keyword-list muted" aria-label="Support keywords">
+                <li><b>Keywords:</b> 24/7 pet sitting, overnight pet care, consistent pet care</li>
+                <li><b>Keywords:</b> Baton Rouge pet sitter, trusted house sitting, high-needs pets</li>
+                <li><b>Keywords:</b> free support options, Twitch Prime sub, Amazon Prime subscription</li>
+                <li><b>Keywords:</b> word-of-mouth referrals, Discord community support, social media engagement</li>
+                <li><b>Keywords:</b> nonprofit support, grant writing referrals, On The Fly Network</li>
+                <li><b>Tags:</b> #thatssoobuttons #otfnetwork #tessdoesstuff</li>
+            </ul>
+        </section>
+
+        <section class="full" aria-label="Quick links">
+            <h2>Quick Links</h2>
+            <p class="muted">Use these to jump straight to the most helpful spots.</p>
+            <a class="channel-link" href="https://www.twitch.tv/subs/thats_soo_buttons" target="_blank" rel="noopener noreferrer">Twitch Sub Page (Free w/ Prime)</a>
+            <a class="channel-link" href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener noreferrer">Discord Community</a>
+            <a class="channel-link" href="https://www.tumblr.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Tumblr</a>
+            <a class="channel-link" href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a class="channel-link" href="https://www.tiktok.com/@thatssoobuttons" target="_blank" rel="noopener noreferrer">TikTok</a>
+            <p class="muted"><b>Want to Support with $:</b></p>
+            <a class="channel-link" href="https://cash.app/$888buttons" target="_blank" rel="noopener noreferrer">Cash App</a>
+            <a class="channel-link" href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Ko-fi</a>
         </section>
 
         <div class="footer-links" aria-label="Quick links">
