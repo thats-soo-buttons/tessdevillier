@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -109,6 +109,35 @@
       min-height: 420px;
       border: 0;
     }
+    .lyrics-box {
+      margin-top: 14px;
+      border: 1px solid #7c6550;
+      border-radius: 12px;
+      padding: 14px 16px;
+      background: #2a2019;
+      scroll-margin-top: 20px;
+    }
+    .lyrics-box.hidden {
+      display: none;
+    }
+    .lyrics-box h3 {
+      margin: 0 0 8px;
+      color: var(--accent-2);
+      font-size: 1rem;
+    }
+    .lyrics-box .lyrics-status {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .lyrics-box pre {
+      margin: 0;
+      white-space: pre-wrap;
+      color: #f4ead8;
+      line-height: 1.8;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 0.95rem;
+    }
     .footer-links {
       margin-top: 20px;
       display: flex;
@@ -166,35 +195,44 @@
     <h1>Music + Lyrics</h1>
     <p class="sub">My brain has enough worldbuilding ideas to fuel three novels and a spin-off, but not always enough hours to write them cover to cover. So when a scene, character, or weird little universe shows up, I turn it into a song or a writing prompt so the idea does not go to waste.</p>
     <p class="sub">To hear more lyric concepts and story ideas, explore the whimsical side. If you are interested in taking on lyrics, please contact me at <a href="mailto:contact@tessdevillier.com" style="color:var(--accent); font-weight:700;">contact@tessdevillier.com</a>.</p>
+    <div class="mini-link-row" style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px;align-items:center;">
+      <span style="font-size:0.86rem;color:var(--muted);font-weight:700;letter-spacing:0.03em;">FIND MORE:</span>
+      <a class="btn alt" style="margin-top:0;color: var(--ink); padding: 7px 10px; font-size: 0.86rem;" id="tumblrLink" href="https://www.tumblr.com/thatssoobuttons/tagged/lyrics" target="_blank" rel="noopener noreferrer">Tumblr</a>
+      <a class="btn alt" style="margin-top:0;color: var(--ink); padding: 7px 10px; font-size: 0.86rem;" href="hire.html#social-media">Social Media</a>
+      <a class="btn alt" style="margin-top:0;color: var(--ink); padding: 7px 10px; font-size: 0.86rem;" href="https://discord.gg/5erCGVcFxP" target="_blank" rel="noopener noreferrer">Discord</a>
+    </div>
+    <p class="sub" style="margin-top: 0;">If the songs or lyrics hit, even $1 or a free Prime sub helps keep the demos, lyric drops, and creative pages moving.</p>
 
     <section class="section" aria-label="Music demos">
       <h2>Demo Tracks</h2>
       <p class="muted">These are on-site demos so they always work without relying on social platforms.</p>
       <div class="grid">
-        <article class="card">
+        <article class="card demo-track">
           <h3>Why Can't We Hear Them</h3>
           <audio controls preload="none" src="dm_audio_web/Why Can't We Hear Them.mp3"></audio>
         </article>
-        <article class="card">
+        <article class="card demo-track">
           <h3>The Day The World Went Quiet</h3>
           <audio controls preload="none" src="dm_audio_web/The Day The World Went Quiet.mp3"></audio>
         </article>
-        <article class="card">
+        <article class="card demo-track">
           <h3>Red Lining Demise</h3>
           <audio controls preload="none" src="dm_audio_web/Red Lining Demise.mp3"></audio>
         </article>
-        <article class="card">
+        <article class="card demo-track">
           <h3>Just Stop (In This Chaos)</h3>
           <audio controls preload="none" src="dm_audio_web/Just Stop (In This Chaos).mp3"></audio>
         </article>
       </div>
     </section>
 
-    <section class="section" aria-label="Lyrics and tumblr hub">
-      <h2>Lyrics + Writing Hub</h2>
-      <p class="muted">You can find lyric drops, drafts, and community comments.</p>
-      <a class="btn" id="tumblrLink" href="https://www.tumblr.com/thatssoobuttons/tagged/lyrics" target="_blank" rel="noopener noreferrer">Open Lyrics Posts on Tumblr</a>
-      <a class="btn alt" style="color: var(--ink);" href="mailto:contact@tessdevillier.com?subject=Music%20and%20Lyrics%20Inquiry">Work With Me</a>
+    <section class="section" aria-label="Lyrics">
+      <h2>Lyrics</h2>
+      <div class="lyrics-box hidden" id="lyricsBox" aria-live="polite">
+        <h3 id="lyricsTitle">Choose a demo track</h3>
+        <p class="lyrics-status" id="lyricsStatus">Hit play on a song to load its lyrics here.</p>
+        <pre id="lyricsText">No track selected.</pre>
+      </div>
     </section>
 
     <div class="footer-links" aria-label="Quick links">
@@ -245,6 +283,67 @@
 
   <script>
     (function () {
+      var audioCards = Array.prototype.slice.call(document.querySelectorAll('.demo-track'));
+      var lyricsBox = document.getElementById('lyricsBox');
+      var lyricsTitle = document.getElementById('lyricsTitle');
+      var lyricsStatus = document.getElementById('lyricsStatus');
+      var lyricsText = document.getElementById('lyricsText');
+
+      if (!audioCards.length || !lyricsBox || !lyricsTitle || !lyricsStatus || !lyricsText) return;
+
+      var lyricsByTrack = {
+        "Why Can't We Hear Them": '[Verse 1]\nYou say\n“Can you hear me?”\nFrom across this quiet room\nI catch every shake in your voice\nEvery tiny truth\nBut out by the rusted fence\nBranches bend and bow\nThin limbs spin in the evening air\nLike they\'re putting on a show\n\n[Chorus]\nWhy can we hear each other\nBut not the trees when they all spin round?\nWhy can we hear our own small thunder\nBut not the crows or cans dragging on the ground?\nAll this life just outside the window frame\nWhy can\'t we hear them\nSaying our names?\n\n[Verse 2]\nNeighbor kids jump the curb\nChalk dust on their hands\nThey shout rules for a made-up game\nI don\'t understand\nMetal clinks where the crows\nKick at silver in the grass\nSomeone\'s laughing in the alleyway\nThen it fades so fast\n\n[Chorus]\nWhy can we hear each other\nEvery crack\nEvery quiet doubt\nBut not the trees when they lean together\nTrading secrets we can\'t figure out?\nAll this sound just beyond our little flame\nWhy can\'t we hear them\nSaying our names?\n\n[Bridge]\nMaybe we tuned our ears\nTo words and worries\nDeadlines\nWarnings\nPhones that ring\nWhile the world keeps humming\nIn another language\nToo wild\nToo strange\nFor us to sing (oh)\n\n[Chorus]\nWhy can we hear each other\nLike we\'re made of ringing glass\nBut miss the crow cans rolling\nDown the driveway as the storms all pass?\nIf they\'re out there\nCalling through the open air\nWhy can\'t we hear them\nOr don\'t we dare?\n\n[Outro]\nYou ask me again\nSoft as the ceiling fan\nI say\n“Maybe they\'re still talking\nWe just forgot how to understand”\n\nLyrics by That\'s Soo Buttons > © 2026 Tess Alexandra Devillier',
+        'The Day The World Went Quiet': '[Verse 1]\nWind in the grass\nShirts on the line\nSmall leaves spin\nOn the laundry wire\nCrows sketch arrows\nAcross the sky\nBlack wings open\nBut the air stays dry\n\n[Chorus]\nAnd there is nothing\nNothing in my ears\nJust my own breathing\nMy old\nStubborn heartbeat\nThe world keeps moving\nLike it always did\nBut there is nothing\nNothing in between\n\n[Verse 2]\nDog\'s mouth open\nTongue out\nRunning\nI see him bark\nLike a silent movie\nTruck rolls past\nOn the gravel road\nDust cloud rises\nBut it doesn\'t roll through me\n\n[Chorus]\nAnd there is nothing\nNothing in my ears\nJust my own breathing\nMy old\nStubborn heartbeat\nThe world keeps moving\nLike it always did\nBut there is nothing\nNothing in between\n\n[Bridge]\nThe trees still dance\nIn their secret rhythm\nI read their sway\nLike a foreign script\nMouth forms “hello”\nTo the neighbor waving\nTheir laugh folds up\nBefore it can exist\n\n[Chorus]\nAnd there is nothing\nNothing in my ears\nJust my own breathing\nMy old\nStubborn heartbeat\nThe wind keeps blowing\nCrows keep cutting clean\nBut I am standing\nAlone in the in-between\n\nLyrics by That\'s Soo Buttons > © 2026 Tess Alexandra Devillier',
+        'Red Lining Demise': 'my body\nmy light\nmy screams\nmy life\n\nmy body\nyour knife\nmy love\nyour right\n\nyou think you own me\ncontrol me\nbecause I don\'t bite\n\nyou think you\'re clever\nand never\ngoing to lose an eye\n\nwell energy \nmy love\nbuilds up\nin my pipes\nand you haven\'t\neven tried\nturning the relief valve\nthis time\n\nmy heat\nyour cold\nmy truth\nyour lie\nnow watch\nas the\nengines\ngo dry.\n\nThe pressure is rising\nI\'m cutting the ties\nWatch the red lining\nMeet your demise.\n\nMy body.\nMy life.\nYou should have\nUsed a bigger knife.\n\nLyrics by That\'s Soo Buttons > © 2026 Tess Alexandra Devillier',
+        'Just Stop (In This Chaos)': '[Verse 1]\nCrowded room, too close\nToo many mouths in my face\nEvery sharp, bright word\nClatters across my plate\nStatic in my chest\nSearching for one clean edge\n\n[Chorus]\nJust stop.\nJust stop.\nBreathe...\nJust stop.\nJust stop.\nBreathe...\n\n[Verse 2]\nNoise fades back, then climbs\nStill ringing through these walls\nYour name hangs loud and long\nEchoing down my halls\nI stand my ground here\nBut my hands still start to shake\n\n[Chorus]\nJust stop.\nJust stop.\nBreathe...\nJust stop.\nJust stop.\nBreathe...\n\n[Bridge]\nLet the room go thin\nLet the pressure melt\nOne slow breath drawn in\nOne slow breath you felt\n\n[Chorus]\nJust stop.\nJust stop.\nBreathe...\nJust stop.\nJust stop.\nBreathe...\n\nLyrics by That\'s Soo Buttons > © 2026 Tess Alexandra Devillier'
+      };
+
+      function showLyrics(trackTitle) {
+        var lyrics = lyricsByTrack[trackTitle] || '';
+        lyricsBox.classList.remove('hidden');
+        lyricsTitle.textContent = trackTitle;
+        if (lyrics) {
+          lyricsStatus.textContent = 'Lyrics for this demo track:';
+          lyricsText.textContent = lyrics;
+        } else {
+          lyricsStatus.textContent = 'Lyrics for this demo have not been added yet.';
+          lyricsText.textContent = 'The player is ready to show lyrics for ' + trackTitle + ' as soon as they are added to the site.';
+        }
+
+        window.requestAnimationFrame(function () {
+          lyricsBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+
+      function pauseOtherTracks(activeAudio) {
+        audioCards.forEach(function (card) {
+          var audio = card.querySelector('audio');
+          if (!audio || audio === activeAudio) return;
+          audio.pause();
+        });
+      }
+
+      audioCards.forEach(function (card) {
+        var title = card.querySelector('h3');
+        var audio = card.querySelector('audio');
+        if (!title || !audio) return;
+
+        var trackTitle = title.textContent.trim();
+
+        audio.addEventListener('play', function () {
+          pauseOtherTracks(audio);
+          showLyrics(trackTitle);
+        });
+
+        audio.addEventListener('ended', function () {
+          lyricsStatus.textContent = 'Playback finished for ' + trackTitle + '.';
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
       // Tagged Tumblr feed target (lyrics only)
       var tumblrUrl = 'https://www.tumblr.com/thatssoobuttons/tagged/lyrics';
 
@@ -280,5 +379,99 @@
       }, 2600);
     })();
   </script>
+<script>
+  (function () {
+    var floaters = Array.prototype.slice.call(document.querySelectorAll('.inquiry-floater, .promo-floater, .otfn-floater'));
+    if (!floaters.length) return;
+
+    function getDismissKey(floater, index) {
+      var token = floater.id ? floater.id : ('floater-' + index);
+      return 'dismissed:' + window.location.pathname + ':' + token;
+    }
+
+    function updateMobileSpacing() {
+      var hasVisibleFloater = floaters.some(function (floater) {
+        return floater.style.display !== 'none';
+      });
+      document.documentElement.style.overflowY = 'auto';
+      document.body.style.overflowY = 'auto';
+      if (window.innerWidth <= 900 && hasVisibleFloater) {
+        document.body.style.paddingBottom = '140px';
+      } else {
+        document.body.style.paddingBottom = '';
+      }
+    }
+
+    floaters.forEach(function (floater, index) {
+      floater.style.position = 'fixed';
+      floater.style.overflow = 'visible';
+      var key = getDismissKey(floater, index);
+
+      if (window.localStorage.getItem(key) === '1') {
+        floater.style.display = 'none';
+        return;
+      }
+
+      if (!floater.querySelector('.floater-dismiss')) {
+        var close = document.createElement('span');
+        close.className = 'floater-dismiss';
+        close.setAttribute('role', 'button');
+        close.setAttribute('aria-label', 'Close floating inquiry button');
+        close.tabIndex = 0;
+        close.textContent = 'x';
+        close.style.position = 'absolute';
+        close.style.top = '-10px';
+        close.style.right = '-10px';
+        close.style.width = '22px';
+        close.style.height = '22px';
+        close.style.borderRadius = '999px';
+        close.style.border = '1px solid #777';
+        close.style.background = '#ffffff';
+        close.style.color = '#111';
+        close.style.display = 'flex';
+        close.style.alignItems = 'center';
+        close.style.justifyContent = 'center';
+        close.style.fontSize = '12px';
+        close.style.fontWeight = '700';
+        close.style.cursor = 'pointer';
+        close.style.lineHeight = '1';
+        close.style.zIndex = '3';
+
+        function dismiss(event) {
+          event.preventDefault();
+          event.stopPropagation();
+          floater.style.display = 'none';
+          window.localStorage.setItem(key, '1');
+          updateMobileSpacing();
+        }
+
+        close.addEventListener('click', dismiss);
+        close.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ') dismiss(event);
+        });
+        floater.appendChild(close);
+      }
+    });
+
+    window.addEventListener('resize', updateMobileSpacing);
+    updateMobileSpacing();
+  })();
+</script>
+<script>
+  (function () {
+    try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    } catch (_) {}
+
+    if (!window.location.hash) {
+      window.addEventListener('pageshow', function () {
+        window.scrollTo(0, 0);
+      }, { once: true });
+    }
+  })();
+</script>
 </body>
 </html>
+

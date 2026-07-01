@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -62,7 +62,7 @@ async function loadLyrics() {
                             ${l.tags.map(t => `<span class="tag ${t==='seeking collaborator'||t==='demo'?'collab':''}">${t}</span>`).join('')}
                         </div>
                     </div>
-                    <span class="expand-icon" id="icon-${i}">▼</span>
+                    <span class="expand-icon" id="icon-${i}">â–¼</span>
                 </div>
                 <div class="lyric-body" id="body-${i}">
                     <div class="lyric-text">${l.full.replace(/\n/g,'<br>')}</div>
@@ -83,5 +83,21 @@ function toggle(i) {
 }
 loadLyrics();
 </script>
+<script>
+  (function () {
+    try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    } catch (_) {}
+
+    if (!window.location.hash) {
+      window.addEventListener('pageshow', function () {
+        window.scrollTo(0, 0);
+      }, { once: true });
+    }
+  })();
+</script>
 </body>
 </html>
+

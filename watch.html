@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -116,5 +116,21 @@
             <a href="pets.html">Pet Services</a>
         </div>
     </main>
+<script>
+  (function () {
+    try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    } catch (_) {}
+
+    if (!window.location.hash) {
+      window.addEventListener('pageshow', function () {
+        window.scrollTo(0, 0);
+      }, { once: true });
+    }
+  })();
+</script>
 </body>
 </html>
+

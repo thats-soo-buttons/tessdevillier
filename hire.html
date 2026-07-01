@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -414,7 +414,7 @@
         </div>
       </article>
 
-      <article class="card">
+      <article class="card" id="social-media">
         <h2>Social + Community Channels</h2>
         <p>If social is easier, DM through your preferred platform. Discord inquiry routing is available through the inquiry lane.</p>
         <div class="links social-links">
@@ -441,6 +441,23 @@
       <button class="service-tab" type="button" role="tab" aria-selected="false" data-service-target="service-world">Worldbuilding</button>
       <button class="service-tab" type="button" role="tab" aria-selected="false" data-service-target="service-consult">Consulting</button>
     </div>
+
+    <article class="card" aria-label="Quick pricing snapshot">
+      <h2>Quick Pricing Snapshot</h2>
+      <ul class="card-list">
+        <li><strong>Pet Care:</strong> Drop-ins from $25/hour; overnight from $75/night standard ($50 new-client base).</li>
+        <li><strong>Photography:</strong> Mini shoots $100; Natural Light sessions starting at $250; Cinematic sessions starting at $480.</li>
+        <li><strong>Worldbuilding:</strong> Free consultation; Quick Lore Check-In $25/30 min; Lore Sprint starting at $250; Narrative Build starting at $450.</li>
+        <li><strong>Consulting:</strong> Free 15-minute consultation by phone, Zoom, or Discord; $60 follow-up (30 min); $120 strategy call (60 min); advisory from $380/month.</li>
+      </ul>
+      <p class="micro-note">Final quotes can change by scope, travel, timing, and add-ons. Use service pages for full details and examples.</p>
+      <div class="links">
+        <a class="btn" href="pets.html">Pet Rates</a>
+        <a class="btn" href="photography/index.html">Photography Rates</a>
+        <a class="btn" href="worldbuilding.html">Worldbuilding Rates</a>
+        <a class="btn" href="creative-consulting.html">Consulting Rates</a>
+      </div>
+    </article>
 
     <article class="card service-panel active" id="service-pets" role="tabpanel">
       <h2>Pet Care + House Sitting</h2>
@@ -620,5 +637,99 @@
       }
     })();
   </script>
+<script>
+  (function () {
+    var floaters = Array.prototype.slice.call(document.querySelectorAll('.inquiry-floater, .promo-floater, .otfn-floater'));
+    if (!floaters.length) return;
+
+    function getDismissKey(floater, index) {
+      var token = floater.id ? floater.id : ('floater-' + index);
+      return 'dismissed:' + window.location.pathname + ':' + token;
+    }
+
+    function updateMobileSpacing() {
+      var hasVisibleFloater = floaters.some(function (floater) {
+        return floater.style.display !== 'none';
+      });
+      document.documentElement.style.overflowY = 'auto';
+      document.body.style.overflowY = 'auto';
+      if (window.innerWidth <= 900 && hasVisibleFloater) {
+        document.body.style.paddingBottom = '140px';
+      } else {
+        document.body.style.paddingBottom = '';
+      }
+    }
+
+    floaters.forEach(function (floater, index) {
+      floater.style.position = 'fixed';
+      floater.style.overflow = 'visible';
+      var key = getDismissKey(floater, index);
+
+      if (window.localStorage.getItem(key) === '1') {
+        floater.style.display = 'none';
+        return;
+      }
+
+      if (!floater.querySelector('.floater-dismiss')) {
+        var close = document.createElement('span');
+        close.className = 'floater-dismiss';
+        close.setAttribute('role', 'button');
+        close.setAttribute('aria-label', 'Close floating inquiry button');
+        close.tabIndex = 0;
+        close.textContent = 'x';
+        close.style.position = 'absolute';
+        close.style.top = '-10px';
+        close.style.right = '-10px';
+        close.style.width = '22px';
+        close.style.height = '22px';
+        close.style.borderRadius = '999px';
+        close.style.border = '1px solid #777';
+        close.style.background = '#ffffff';
+        close.style.color = '#111';
+        close.style.display = 'flex';
+        close.style.alignItems = 'center';
+        close.style.justifyContent = 'center';
+        close.style.fontSize = '12px';
+        close.style.fontWeight = '700';
+        close.style.cursor = 'pointer';
+        close.style.lineHeight = '1';
+        close.style.zIndex = '3';
+
+        function dismiss(event) {
+          event.preventDefault();
+          event.stopPropagation();
+          floater.style.display = 'none';
+          window.localStorage.setItem(key, '1');
+          updateMobileSpacing();
+        }
+
+        close.addEventListener('click', dismiss);
+        close.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ') dismiss(event);
+        });
+        floater.appendChild(close);
+      }
+    });
+
+    window.addEventListener('resize', updateMobileSpacing);
+    updateMobileSpacing();
+  })();
+</script>
+<script>
+  (function () {
+    try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    } catch (_) {}
+
+    if (!window.location.hash) {
+      window.addEventListener('pageshow', function () {
+        window.scrollTo(0, 0);
+      }, { once: true });
+    }
+  })();
+</script>
 </body>
 </html>
+

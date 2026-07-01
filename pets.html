@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -702,7 +702,7 @@
                         <div class="eyebrow">Tess Devillier</div>
                         <h1>TESS DOES<br>HOUSESITTING</h1>
                         <p class="intro">
-                            Your pet’s favorite staycation. Cozy, dependable care while you’re away, at work,
+                            Your pet's favorite staycation. Cozy, dependable care while you're away, at work,
                             or just needing an extra hand.
                         </p>
                         <div class="actions">
@@ -964,11 +964,11 @@
                 </article>
                 <article class="card">
                     <h3>Why are your rates higher than average?</h3>
-                    <p>This is my full-time job, not side income. You’re paying for dedicated in-home care, more consistent attention, and the peace of mind that your pets and home are being looked after while you’re away.</p>
+                    <p>This is my full-time job, not side income. You're paying for dedicated in-home care, more consistent attention, and the peace of mind that your pets and home are being looked after while you're away.</p>
                 </article>
                 <article class="card">
                     <h3>How do payments work?</h3>
-                    <p>Cash, Zelle, Cash App, or Rover. A 50% deposit is due up front for direct bookings, and the remaining balance is due at completion. Rover pricing may be higher because of Rover’s fee.</p>
+                    <p>Cash, Zelle, Cash App, or Rover. A 50% deposit is due up front for direct bookings, and the remaining balance is due at completion. Rover pricing may be higher because of Rover's fee.</p>
                 </article>
             </div>
         </section>
@@ -983,7 +983,7 @@
                 </article>
                 <article class="card">
                     <h3>Have We Worked Together?</h3>
-                    <p>If I’ve taken care of your pets, please leave a review on Rover.</p>
+                    <p>If I've taken care of your pets, please leave a review on Rover.</p>
                     <p><a href="https://www.rover.com/members/tess-d-your-pets-new-best-friend/" target="_blank" rel="noopener noreferrer">Leave a Rover review</a></p>
                 </article>
             </div>
@@ -1290,5 +1290,99 @@
             }
         })();
     </script>
+<script>
+    (function () {
+        var floaters = Array.prototype.slice.call(document.querySelectorAll('.inquiry-floater, .promo-floater, .otfn-floater'));
+        if (!floaters.length) return;
+
+        function getDismissKey(floater, index) {
+            var token = floater.id ? floater.id : ('floater-' + index);
+            return 'dismissed:' + window.location.pathname + ':' + token;
+        }
+
+        function updateMobileSpacing() {
+            var hasVisibleFloater = floaters.some(function (floater) {
+                return floater.style.display !== 'none';
+            });
+            document.documentElement.style.overflowY = 'auto';
+            document.body.style.overflowY = 'auto';
+            if (window.innerWidth <= 900 && hasVisibleFloater) {
+                document.body.style.paddingBottom = '140px';
+            } else {
+                document.body.style.paddingBottom = '';
+            }
+        }
+
+        floaters.forEach(function (floater, index) {
+            floater.style.position = 'fixed';
+            floater.style.overflow = 'visible';
+            var key = getDismissKey(floater, index);
+
+            if (window.localStorage.getItem(key) === '1') {
+                floater.style.display = 'none';
+                return;
+            }
+
+            if (!floater.querySelector('.floater-dismiss')) {
+                var close = document.createElement('span');
+                close.className = 'floater-dismiss';
+                close.setAttribute('role', 'button');
+                close.setAttribute('aria-label', 'Close floating inquiry button');
+                close.tabIndex = 0;
+                close.textContent = 'x';
+                close.style.position = 'absolute';
+                close.style.top = '-10px';
+                close.style.right = '-10px';
+                close.style.width = '22px';
+                close.style.height = '22px';
+                close.style.borderRadius = '999px';
+                close.style.border = '1px solid #777';
+                close.style.background = '#ffffff';
+                close.style.color = '#111';
+                close.style.display = 'flex';
+                close.style.alignItems = 'center';
+                close.style.justifyContent = 'center';
+                close.style.fontSize = '12px';
+                close.style.fontWeight = '700';
+                close.style.cursor = 'pointer';
+                close.style.lineHeight = '1';
+                close.style.zIndex = '3';
+
+                function dismiss(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    floater.style.display = 'none';
+                    window.localStorage.setItem(key, '1');
+                    updateMobileSpacing();
+                }
+
+                close.addEventListener('click', dismiss);
+                close.addEventListener('keydown', function (event) {
+                    if (event.key === 'Enter' || event.key === ' ') dismiss(event);
+                });
+                floater.appendChild(close);
+            }
+        });
+
+        window.addEventListener('resize', updateMobileSpacing);
+        updateMobileSpacing();
+    })();
+</script>
+<script>
+  (function () {
+    try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    } catch (_) {}
+
+    if (!window.location.hash) {
+      window.addEventListener('pageshow', function () {
+        window.scrollTo(0, 0);
+      }, { once: true });
+    }
+  })();
+</script>
 </body>
 </html>
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -232,6 +232,26 @@
       <h2>Engagement Options</h2>
       <div class="grid">
         <article class="card">
+          <h3>Free Consultation</h3>
+          <p>15-minute free phone, Zoom, or Discord call to talk through the fit and the best starting lane.</p>
+          <div class="price">Free / 15 min</div>
+          <ul>
+            <li>Quick fit check</li>
+            <li>Clarify scope and starting direction</li>
+            <li>Best for first-time inquiries</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Quick Lore Check-In</h3>
+          <p>Short 30-minute consult for a lighter worldbuilding question, direction check, or naming pass.</p>
+          <div class="price">$25 / 30 min</div>
+          <ul>
+            <li>Quick fit check</li>
+            <li>Targeted lore or direction feedback</li>
+            <li>Good for early-stage projects</li>
+          </ul>
+        </article>
+        <article class="card">
           <h3>Lore Sprint (Starter)</h3>
           <p>Fast kickoff package for early-stage projects that need a clear world identity.</p>
           <div class="price">Starting at $250</div>
@@ -261,6 +281,7 @@
         <li>Step 2: I propose scope, timeline, and deliverables.</li>
         <li>Step 3: We collaborate in focused checkpoints until final handoff.</li>
       </ul>
+      <p class="sub" style="margin: 12px 0 0;">If this page helps you build bigger worlds, you can support the work with $1, a free Prime sub, or a share while I keep making this and the rest of the site.</p>
       <div class="actions">
         <a class="btn" href="hire.html#contact-lanes">Start A Worldbuilding Inquiry</a>
         <a class="btn alt" href="mailto:contact@tessdevillier.com?subject=Worldbuilding%20Narrative%20Inquiry">Email Directly</a>
@@ -271,8 +292,8 @@
       <h2>Landscape + Atmosphere References</h2>
       <p class="sub" style="margin: 0;">A few visual textures I use when shaping setting tone, location mood, and environmental storytelling language.</p>
       <div class="photo-strip">
-        <figure class="photo-shot"><img src="dm_assets/_1420346-2.jpg" alt="Rainy curb and puddle texture reference"></figure>
-        <figure class="photo-shot"><img src="dm_assets/P1390662.jpg" alt="Mushroom macro texture reference"></figure>
+        <figure class="photo-shot"><img src="dm_assets/P1430576.jpg" alt="Landscape reference with atmospheric texture"></figure>
+        <figure class="photo-shot"><img src="dm_assets/P1380568.jpg" alt="Landscape reference with atmospheric texture"></figure>
         <figure class="photo-shot"><img src="dm_assets/_1270704.jpg" alt="Teal architectural doorway detail reference"></figure>
         <figure class="photo-shot"><img src="dm_assets/P1380637.jpg" alt="Moody interior window light reference"></figure>
       </div>
@@ -338,5 +359,99 @@
       }
     })();
   </script>
+<script>
+  (function () {
+    var floaters = Array.prototype.slice.call(document.querySelectorAll('.inquiry-floater, .promo-floater, .otfn-floater'));
+    if (!floaters.length) return;
+
+    function getDismissKey(floater, index) {
+      var token = floater.id ? floater.id : ('floater-' + index);
+      return 'dismissed:' + window.location.pathname + ':' + token;
+    }
+
+    function updateMobileSpacing() {
+      var hasVisibleFloater = floaters.some(function (floater) {
+        return floater.style.display !== 'none';
+      });
+      document.documentElement.style.overflowY = 'auto';
+      document.body.style.overflowY = 'auto';
+      if (window.innerWidth <= 900 && hasVisibleFloater) {
+        document.body.style.paddingBottom = '140px';
+      } else {
+        document.body.style.paddingBottom = '';
+      }
+    }
+
+    floaters.forEach(function (floater, index) {
+      floater.style.position = 'fixed';
+      floater.style.overflow = 'visible';
+      var key = getDismissKey(floater, index);
+
+      if (window.localStorage.getItem(key) === '1') {
+        floater.style.display = 'none';
+        return;
+      }
+
+      if (!floater.querySelector('.floater-dismiss')) {
+        var close = document.createElement('span');
+        close.className = 'floater-dismiss';
+        close.setAttribute('role', 'button');
+        close.setAttribute('aria-label', 'Close floating inquiry button');
+        close.tabIndex = 0;
+        close.textContent = 'x';
+        close.style.position = 'absolute';
+        close.style.top = '-10px';
+        close.style.right = '-10px';
+        close.style.width = '22px';
+        close.style.height = '22px';
+        close.style.borderRadius = '999px';
+        close.style.border = '1px solid #777';
+        close.style.background = '#ffffff';
+        close.style.color = '#111';
+        close.style.display = 'flex';
+        close.style.alignItems = 'center';
+        close.style.justifyContent = 'center';
+        close.style.fontSize = '12px';
+        close.style.fontWeight = '700';
+        close.style.cursor = 'pointer';
+        close.style.lineHeight = '1';
+        close.style.zIndex = '3';
+
+        function dismiss(event) {
+          event.preventDefault();
+          event.stopPropagation();
+          floater.style.display = 'none';
+          window.localStorage.setItem(key, '1');
+          updateMobileSpacing();
+        }
+
+        close.addEventListener('click', dismiss);
+        close.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ') dismiss(event);
+        });
+        floater.appendChild(close);
+      }
+    });
+
+    window.addEventListener('resize', updateMobileSpacing);
+    updateMobileSpacing();
+  })();
+</script>
+<script>
+  (function () {
+    try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    } catch (_) {}
+
+    if (!window.location.hash) {
+      window.addEventListener('pageshow', function () {
+        window.scrollTo(0, 0);
+      }, { once: true });
+    }
+  })();
+</script>
 </body>
 </html>
+

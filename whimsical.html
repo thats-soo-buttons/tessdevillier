@@ -1010,7 +1010,12 @@
                 <p>Desktop mode is heavy on small screens. Lite mode keeps quick access to your most used pages.</p>
                 <div class="mobile-lite-links" aria-label="Lite mobile quick links">
                   <a class="mobile-lite-link" href="hire.html#contact-lanes">Book / Inquire</a>
-                  <a class="mobile-lite-link" href="phosphornet-availability.html">Phosphornet Booking Board</a>
+                  <a class="mobile-lite-link" href="phosphornet-availability.html">Availability</a>
+                  <a class="mobile-lite-link" href="phosphornet-pets.html">Pet Services</a>
+                  <a class="mobile-lite-link" href="phosphornet-photography.html">Photography</a>
+                  <a class="mobile-lite-link" href="phosphornet-consulting.html">Creative Consulting</a>
+                  <a class="mobile-lite-link" href="phosphornet-worldbuilding.html">Worldbuilding</a>
+                  <a class="mobile-lite-link" href="phosphornet-freesupport.html">Free Support</a>
                   <a class="mobile-lite-link" href="whimsical.html">Reload Whimsical</a>
                   <a class="mobile-lite-link" href="index.html#professional">Main Site</a>
                   <a class="mobile-lite-link" href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener noreferrer">Discord Community</a>
@@ -1778,6 +1783,14 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
       var browserHistory = ['https://duckduckgo.com'];
       var historyIndex = 0;
       var recentStorageKey = 'tessBrowserRecentPages';
+      var phosphornetPages = {
+        'phosphornet-availability.html': 'Availability',
+        'phosphornet-pets.html': 'Pet Services',
+        'phosphornet-photography.html': 'Photography',
+        'phosphornet-consulting.html': 'Creative Consulting',
+        'phosphornet-worldbuilding.html': 'Worldbuilding',
+        'phosphornet-freesupport.html': 'Free Support'
+      };
       var photosWindow = document.getElementById('win-photos');
       var photoAlbumGrid = document.getElementById('photoAlbumGrid');
       var photoAlbumStatus = document.getElementById('photoAlbumStatus');
@@ -1934,6 +1947,9 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         if (!link) return;
 
         var href = link.getAttribute('href') || '';
+        if ((link.getAttribute('target') || '').toLowerCase() === '_blank') {
+          return;
+        }
         if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
           return;
         }
@@ -1974,21 +1990,21 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
 
       function setStoredRecentPages(items) {
         try {
-          window.localStorage.setItem(recentStorageKey, JSON.stringify(items));
+          var normalized = (items || []).filter(function (entry) {
+            return entry && isPhosphornetPage(entry.url);
+          }).map(function (entry) {
+            return { url: entry.url, label: labelForRecentPage(entry.url) };
+          }).slice(0, 8);
+          window.localStorage.setItem(recentStorageKey, JSON.stringify(normalized));
         } catch (_) {}
       }
 
       function labelForRecentPage(url) {
-        if (!url) return 'Page';
-        if (/phosphornet-availability\.html/i.test(url)) return 'Availability';
-        if (/phosphornet-pets\.html/i.test(url)) return 'Pet Services';
-        if (/phosphornet-photography\.html/i.test(url)) return 'Photography';
-        if (/phosphornet-consulting\.html/i.test(url)) return 'Creative Consulting';
-        if (/phosphornet-worldbuilding\.html/i.test(url)) return 'Worldbuilding';
-        if (/phosphornet-freesupport\.html/i.test(url)) return 'Free Support';
-        if (/hire\.html/i.test(url)) return 'Hire Tess';
-        if (/whimsical\.html/i.test(url)) return 'Whimsical Desktop';
-        return url.replace(/^.*\//, '').replace(/\.html.*/i, '') || 'Page';
+        return phosphornetPages[url] || '';
+      }
+
+      function isPhosphornetPage(url) {
+        return !!labelForRecentPage(url);
       }
 
       function renderRecentDropdown() {
@@ -1997,7 +2013,7 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
         var merged = [];
 
         function addRecent(url) {
-          if (!url) return;
+          if (!isPhosphornetPage(url)) return;
           var label = labelForRecentPage(url);
           if (merged.some(function (entry) {
             return entry.url === url || entry.label.toLowerCase() === label.toLowerCase();
@@ -2009,24 +2025,19 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
           if (entry && entry.url) addRecent(entry.url);
         });
 
-        [
-          'phosphornet-availability.html',
-          'phosphornet-pets.html',
-          'phosphornet-photography.html',
-          'phosphornet-consulting.html',
-          'phosphornet-worldbuilding.html',
-          'phosphornet-freesupport.html'
-        ].forEach(addRecent);
+        Object.keys(phosphornetPages).forEach(addRecent);
 
         browserRecent.innerHTML = '<option value="">Choose a recent page...</option>' + merged.map(function (entry) {
           return '<option value="' + entry.url.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '">' + entry.label.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</option>';
         }).join('');
+
+        setStoredRecentPages(merged);
       }
 
       function recordRecentPage(url) {
-        if (!url) return;
+        if (!isPhosphornetPage(url)) return;
         var current = getStoredRecentPages();
-        current = current.filter(function (entry) { return entry && entry.url !== url; });
+        current = current.filter(function (entry) { return entry && isPhosphornetPage(entry.url) && entry.url !== url; });
         current.unshift({ url: url, label: labelForRecentPage(url) });
         current = current.slice(0, 8);
         setStoredRecentPages(current);
@@ -2171,10 +2182,10 @@ Explore the folders, launch apps, and ping me if you want to collaborate.</div>
               'Have music and want it on the Jukebox? Contact me. RelayIM / Email App available soon, but for now ' +
               '<a href="mailto:contact@tessdevillier.com" style="color:#111;text-decoration:underline;">contact@tessdevillier.com</a> ' +
               'or <a href="https://discord.gg/8aBHWSBepH" target="_blank" rel="noopener noreferrer" style="color:#111;text-decoration:underline;">join the Discord</a>.';
-          } else if (/^mixed\s*demos$/i.test(active.name)) {
+          } else if (/^lyric\s*demos$/i.test(active.name)) {
             playlistNotice.innerHTML =
-              'MIXED DEMOS // LYRICS + PIANO: TESS DEVILLIER<br>' +
-              'SOME TRACKS USE SUNO-ASSISTED PRODUCTION // DEMO PREVIEW ONLY<br>' +
+              'LYRIC DEMOS // WRITTEN + PERFORMED BY TESS DEVILLIER<br>' +
+              'DEMO PREVIEW ONLY // CONCEPT TRACKS<br>' +
               'OPEN TO COLLAB // ARTISTS + PRODUCERS WELCOME';
           } else if (/^instrumental$/i.test(active.name)) {
             playlistNotice.innerHTML =

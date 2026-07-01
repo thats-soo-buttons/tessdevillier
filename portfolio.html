@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -515,7 +515,7 @@
       <div class="secret-hint" id="secret-hint">Whimsical mode leaks in...</div>
       <h1>Portfolio</h1>
       <p>
-        You’ve read about the services and projects. Here is the evidence.
+        You've read about the services and projects. Here is the evidence.
       </p>
     </section>
 
@@ -849,5 +849,21 @@
     wireMenuInteractions();
     wireSecretEgg();
   </script>
+<script>
+  (function () {
+    try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    } catch (_) {}
+
+    if (!window.location.hash) {
+      window.addEventListener('pageshow', function () {
+        window.scrollTo(0, 0);
+      }, { once: true });
+    }
+  })();
+</script>
 </body>
 </html>
+
