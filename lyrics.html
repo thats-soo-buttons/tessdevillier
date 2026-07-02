@@ -3,133 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lyrics | Tess Devillier</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Lyric Writing | Tess Devillier</title>
     <style>
-        body { background: #0a0a0a; color: #f5f5f5; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
-        .page-wrap { max-width: 800px; margin: 0 auto; padding: 48px 20px 80px; }
-        .back-link { color: #ffd700; text-decoration: none; font-size: .9em; letter-spacing: 1px; display: inline-block; margin-bottom: 32px; }
-        .back-link:hover { text-decoration: underline; }
-        h1 { font-family: 'Cinzel', serif; color: #ffd700; font-size: 2.4rem; letter-spacing: 4px; text-align: center; margin-bottom: 8px; }
-        .tagline { text-align: center; color: #888; margin-bottom: 48px; font-size: .95em; letter-spacing: 1px; }
-        .collab-note { background: #1a1200; border: 1px solid #ffd70044; border-radius: 12px; padding: 16px 20px; margin-bottom: 36px; color: #cfcfcf; font-size: .92em; line-height: 1.7; }
-        .collab-note strong { color: #ffd700; }
-        .lyric-card { background: #111; border: 1.5px solid #222; border-radius: 16px; margin-bottom: 20px; overflow: hidden; transition: border-color .2s; }
-        .lyric-card:hover { border-color: #ffd70066; }
-        .lyric-header { padding: 22px 26px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-        .lyric-header-left h2 { font-family: 'Cinzel', serif; color: #ffd700; font-size: 1.2rem; margin: 0 0 6px 0; }
-        .lyric-header-left .preview { color: #888; font-size: .9em; font-style: italic; }
-        .lyric-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-        .tag { background: #1a1a1a; border: 1px solid #333; color: #cfcfcf; font-size: .75em; padding: 3px 10px; border-radius: 20px; }
-        .tag.collab { border-color: #ffd70066; color: #ffd700; background: #1a1200; }
-        .expand-icon { color: #ffd700; font-size: 1.4em; flex-shrink: 0; transition: transform .3s; }
-        .lyric-body { display: none; padding: 0 26px 26px; border-top: 1px solid #1a1a1a; }
-        .lyric-body.open { display: block; }
-        .lyric-text { white-space: pre-wrap; color: #e0e0e0; line-height: 2; font-size: .97em; margin: 20px 0; font-family: 'Montserrat', sans-serif; }
-        .collab-box { background: #0d0d0d; border: 1px solid #ffd70033; border-radius: 10px; padding: 14px 18px; margin-top: 12px; }
-        .collab-box p { color: #cfcfcf; font-size: .88em; margin: 0 0 8px 0; }
-        .collab-box strong { color: #ffd700; }
-        .collab-box a { color: #ffd700; }
-        .status-badge { display: inline-block; background: #ffd700; color: #111; font-size: .72em; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; }
-        .loading { text-align: center; color: #555; padding: 60px 0; }
-        @media (max-width: 600px) { h1 { font-size: 1.7rem; } .lyric-header { padding: 16px 18px; } }
+        :root {
+            --bg: #000000;
+            --panel: #081808;
+            --panel-2: #0f2a0f;
+            --line: #26b326;
+            --text: #70ff70;
+            --soft: #9cd89c;
+            --link: #7fdfff;
+            --title: #d9ff7f;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(25, 90, 25, 0.12) 0 10%, transparent 11%),
+                radial-gradient(circle at 80% 60%, rgba(15, 70, 15, 0.14) 0 8%, transparent 9%),
+                var(--bg);
+            color: var(--text);
+            font-family: "Verdana", "Tahoma", sans-serif;
+            line-height: 1.45;
+        }
+
+        a {
+            color: var(--link);
+        }
+
+        a:hover {
+            color: #ffffff;
+        }
+
+        .layout {
+            width: min(900px, 96vw);
+            margin: 14px auto 28px;
+            border: 2px solid var(--line);
+            background: var(--panel);
+            box-shadow: 0 0 0 2px #022202 inset;
+        }
+
+        .titlebar {
+            background: linear-gradient(90deg, #103c10, #1c611c);
+            border-bottom: 2px solid var(--line);
+            padding: 8px 12px;
+            font-family: "Courier New", monospace;
+            color: var(--title);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .marquee-strip {
+            border-bottom: 1px dashed #2f8f2f;
+            background: #061406;
+            padding: 4px 0;
+            color: var(--soft);
+            font-size: 13px;
+        }
+
+        .nav {
+            padding: 10px 12px;
+            border-bottom: 1px solid #1f5c1f;
+            background: #071107;
+            font-size: 13px;
+        }
+
+        .nav span {
+            color: #4e9b4e;
+            padding: 0 5px;
+        }
+
+        .panel {
+            margin: 12px;
+            border: 1px solid var(--line);
+            background: var(--panel-2);
+            padding: 10px;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--title);
+            font-family: "Times New Roman", serif;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+        }
+
+        .sub {
+            margin: 6px 0 0;
+            color: var(--soft);
+            font-size: 13px;
+        }
+
+        .tumblr-cta {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 3px 8px;
+            border: 1px dashed #7fdfff;
+            background: #0a1a22;
+            color: #7fdfff;
+            text-decoration: none;
+            font-family: "Courier New", monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 12px;
+        }
+
+        .tumblr-cta:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        .alert {
+            margin: 12px;
+            padding: 10px;
+            border: 1px dashed #3cb13c;
+            background: #0a1c0a;
+            color: #b7efb7;
+            font-size: 13px;
+        }
+
+        .starter {
+            margin: 12px;
+            border: 1px solid #58a858;
+            background: #0a1a0a;
+            padding: 10px;
+            font-size: 13px;
+            color: #c6f3c6;
+        }
+
+        .starter h2 {
+            margin: 0 0 8px;
+            font-size: 1.05rem;
+            color: #dfff9f;
+            font-family: "Times New Roman", serif;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .starter p {
+            margin: 0 0 8px;
+        }
+
+        .starter ul {
+            margin: 0 0 10px 18px;
+            padding: 0;
+        }
+
+        .starter li {
+            margin-bottom: 4px;
+        }
+
+        .starter .mail-link {
+            display: inline-block;
+            margin-top: 6px;
+            border: 1px solid #58a858;
+            background: #0f290f;
+            padding: 6px 10px;
+            text-decoration: none;
+            font-family: "Courier New", monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .song {
+            margin: 12px;
+            border: 1px solid var(--line);
+            background: #0a180a;
+        }
+
+        .song-head {
+            padding: 10px;
+            background: #0d220d;
+            border-bottom: 1px solid #256e25;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .song-head:hover {
+            background: #103010;
+        }
+
+        .song-title {
+            margin: 0;
+            font-family: "Times New Roman", serif;
+            color: #d8ff94;
+            font-size: 1.2rem;
+        }
+
+        .song-preview {
+            margin: 3px 0 0;
+            color: var(--soft);
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        .open-state {
+            font-family: "Courier New", monospace;
+            font-size: 12px;
+            color: #8fe28f;
+            white-space: nowrap;
+        }
+
+        .song-body {
+            display: none;
+            padding: 12px;
+        }
+
+        .song-body.open {
+            display: block;
+        }
+
+        .song-tags {
+            margin-bottom: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .song-tag {
+            border: 1px solid #356e35;
+            padding: 2px 7px;
+            font-size: 11px;
+            color: #b9f3b9;
+            background: #0d220d;
+            text-transform: uppercase;
+        }
+
+        .song-tag.collab {
+            border-color: #8bc34a;
+            color: #e6ffad;
+        }
+
+        .lyrics {
+            margin: 0;
+            padding: 10px;
+            border: 1px dashed #2a7a2a;
+            background: #071207;
+            color: #d6ffd6;
+            white-space: pre-wrap;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .collab {
+            margin-top: 10px;
+            border: 1px solid #5ea65e;
+            background: #0b1e0b;
+            padding: 8px;
+            font-size: 13px;
+            color: #beefbe;
+        }
+
+        .footer {
+            margin: 16px 12px 12px;
+            border-top: 1px dashed #2f7a2f;
+            padding-top: 10px;
+            color: #84cf84;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        @media (max-width: 640px) {
+            .song-head {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .open-state {
+                white-space: normal;
+            }
+        }
     </style>
 </head>
-<body>
-<div class="page-wrap">
-    <a href="index.html#professional" class="back-link">← back</a>
-    <h1>LYRICS</h1>
-    <p class="tagline">Original songwriting · All demos seeking collaborators</p>
-    <div class="collab-note">
-        <strong>A note on the demos:</strong> The audio demos on this site were produced with AI tools (Suno) purely to demonstrate melody and concept. They are <strong>not final recordings</strong>. I'm actively seeking vocalists, producers, and musicians to collaborate on proper recorded versions. If anything catches your ear, reach out.
+<body bgcolor="#000000" text="#70ff70" link="#7fdfff" vlink="#b3eaff" alink="#ffffff">
+    <div class="layout">
+        <div class="titlebar">PhosphorNet Archive // Lyric Writing Portfolio</div>
+        <div class="marquee-strip">
+            <marquee behavior="scroll" direction="left" scrollamount="4">Original lyric drafts and collaborator call-outs. Updated frequently.</marquee>
+        </div>
+
+        <div class="nav">
+            <a href="phosphornet-browser.html">Back to PhosphorNet Directory</a><span>|</span>
+            <a href="portfolio.html">Portfolio Hub</a><span>|</span>
+            <a href="index.html#professional">Main Site</a>
+        </div>
+
+        <div class="panel">
+            <h1>Lyric Writing</h1>
+            <p class="sub">Find More on Tumblr <a class="tumblr-cta" href="https://www.tumblr.com/thatssoobuttons/tagged/lyrics" target="_blank" rel="noopener noreferrer">Click Here</a></p>
+        </div>
+
+        <div class="alert">
+            <strong>A note to musicians, singers, and producers:</strong> If you would like to use any of these lyrics, contact me and we can work out an arrangement that is fair for everyone.
+        </div>
+
+        <div class="starter">
+            <h2>Start Here: Simple Lyric Use Terms</h2>
+            <p>If you want to use a lyric, email me first so we can agree on terms. I am open to beginner-friendly collaborations.</p>
+            <ul>
+                <li>Credit required: "Lyrics by Tess Devillier"</li>
+                <li>No release until we both agree in writing</li>
+                <li>We will decide together: one-time fee, split, or license</li>
+                <li>I am open to indie artists, singers, producers, and bands</li>
+            </ul>
+            <p>When you contact me, include: song title, style/genre, where you plan to release it, and your timeline.</p>
+            <a class="mail-link" href="mailto:contact@tessdevillier.com?subject=Lyric%20Use%20Request&body=Hi%20Tess%2C%0A%0AI%20would%20like%20to%20use%20your%20lyrics.%0A%0ALyric%20title%3A%0AArtist%20name%3A%0AStyle%2Fgenre%3A%0APlanned%20release%20platforms%3A%0ATimeline%3A%0A%0AThanks!">Send Lyric Use Request</a>
+        </div>
+
+        <div id="lyrics-container" class="panel">Loading lyric archive...</div>
+
+        <div class="footer">
+            <div>Guestbook coming soon // Contact: <a href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a></div>
+            <div>Visitor counter: 00095</div>
+        </div>
     </div>
-    <div id="lyrics-container"><p class="loading">Loading lyrics...</p></div>
-</div>
-<script>
-function escHtml(value) {
-    return String(value == null ? '' : value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-}
 
-async function loadLyrics() {
-    const container = document.getElementById('lyrics-container');
-    try {
-        const res = await fetch('data/lyrics.json');
-        const raw = await res.json();
-        const lyrics = Array.isArray(raw) ? raw : [];
-        container.innerHTML = lyrics.map((l, i) => {
-            const title = escHtml(l.title || 'Untitled');
-            const preview = escHtml(l.preview || '');
-            const full = escHtml(l.full || '').replace(/\n/g, '<br>');
-            const status = escHtml(l.status || 'open');
-            const collabNote = escHtml(l.collab_note || '');
-            const tags = Array.isArray(l.tags) ? l.tags : [];
-            const tagsHtml = tags.map((tag) => {
-                const safeTag = escHtml(tag);
-                const low = String(tag || '').toLowerCase();
-                const isCollab = low === 'seeking collaborator' || low === 'demo';
-                return `<span class="tag ${isCollab ? 'collab' : ''}">${safeTag}</span>`;
-            }).join('');
+    <script>
+        function escHtml(value) {
+            return String(value == null ? '' : value)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
 
-            return `
-            <div class="lyric-card">
-                <div class="lyric-header" data-lyric-index="${i}" aria-expanded="false" id="header-${i}">
-                    <div class="lyric-header-left">
-                        <h2>${title}</h2>
-                        <div class="preview">${preview}</div>
-                        <div class="lyric-tags">
-                            ${tagsHtml}
-                        </div>
-                    </div>
-                    <span class="expand-icon" id="icon-${i}">&#9662;</span>
-                </div>
-                <div class="lyric-body" id="body-${i}">
-                    <div class="lyric-text">${full}</div>
-                    ${l.collab_note ? `<div class="collab-box">
-                        <p><strong>Seeking collaborator:</strong> ${collabNote}</p>
-                        <p>Status: <span class="status-badge">${status}</span></p>
-                        <p>Contact: <a href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a></p>
-                    </div>` : ''}
-                </div>
-            </div>`;
-        }).join('');
+        function toggle(index) {
+            var body = document.getElementById('song-body-' + index);
+            var state = document.getElementById('song-state-' + index);
+            if (!body || !state) return;
+            var isOpen = body.classList.toggle('open');
+            state.textContent = isOpen ? '[-] open' : '[+] closed';
+        }
 
-        container.querySelectorAll('.lyric-header[data-lyric-index]').forEach(function (header) {
-            header.addEventListener('click', function () {
-                var idx = Number(header.getAttribute('data-lyric-index'));
-                if (!Number.isNaN(idx)) toggle(idx);
-            });
-        });
-    } catch(e) { container.innerHTML = '<p style="color:#888;text-align:center;">Lyrics coming soon.</p>'; }
-}
-function toggle(i) {
-    const body = document.getElementById('body-'+i);
-    const icon = document.getElementById('icon-'+i);
-    const open = body.classList.toggle('open');
-    icon.style.transform = open ? 'rotate(180deg)' : '';
-}
-loadLyrics();
-</script>
-<script>
-  (function () {
-    try {
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-      }
-    } catch (_) {}
+        async function loadLyrics() {
+            var container = document.getElementById('lyrics-container');
+            try {
+                var res = await fetch('data/lyrics.json');
+                var raw = await res.json();
+                var lyrics = Array.isArray(raw) ? raw : [];
 
-    if (!window.location.hash) {
-      window.addEventListener('pageshow', function () {
-        window.scrollTo(0, 0);
-      }, { once: true });
-    }
-  })();
-</script>
+                if (!lyrics.length) {
+                    container.innerHTML = 'No lyric entries yet. Check back soon.';
+                    return;
+                }
+
+                container.className = '';
+                container.innerHTML = lyrics.map(function (item, i) {
+                    var title = escHtml(item.title || 'Untitled');
+                    var preview = escHtml(item.preview || 'No preview line available.');
+                    var full = escHtml(item.full || 'Lyrics not uploaded yet.');
+                    var collabNote = escHtml(item.collab_note || '');
+                    var status = escHtml(item.status || 'open');
+                    var tags = Array.isArray(item.tags) ? item.tags : [];
+
+                    var tagsHtml = tags.map(function (tag) {
+                        var safe = escHtml(tag);
+                        var low = String(tag || '').toLowerCase();
+                        var extra = (low === 'seeking collaborator' || low === 'demo') ? ' collab' : '';
+                        return '<span class="song-tag' + extra + '">' + safe + '</span>';
+                    }).join('');
+
+                    var collabHtml = collabNote
+                        ? '<div class="collab"><strong>Collaborator Note:</strong> ' + collabNote + '<br><strong>Status:</strong> ' + status + '</div>'
+                        : '';
+
+                    return '' +
+                        '<div class="song">' +
+                            '<div class="song-head" data-index="' + i + '">' +
+                                '<div>' +
+                                    '<h2 class="song-title">' + title + '</h2>' +
+                                    '<p class="song-preview">' + preview + '</p>' +
+                                '</div>' +
+                                '<div class="open-state" id="song-state-' + i + '">[+] closed</div>' +
+                            '</div>' +
+                            '<div class="song-body" id="song-body-' + i + '">' +
+                                '<div class="song-tags">' + tagsHtml + '</div>' +
+                                '<pre class="lyrics">' + full + '</pre>' +
+                                collabHtml +
+                            '</div>' +
+                        '</div>';
+                }).join('');
+
+                container.querySelectorAll('.song-head[data-index]').forEach(function (head) {
+                    head.addEventListener('click', function () {
+                        var index = Number(head.getAttribute('data-index'));
+                        if (!Number.isNaN(index)) {
+                            toggle(index);
+                        }
+                    });
+                });
+            } catch (e) {
+                container.innerHTML = 'Archive offline at the moment. Please refresh in a bit.';
+            }
+        }
+
+        loadLyrics();
+    </script>
 </body>
 </html>
-

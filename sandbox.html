@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Creative worlds sandbox by Tess Devillier featuring XYZthians and TIGIDB universe threads.">
-  <title>Creative Worlds Sandbox | Tess Devillier</title>
+  <meta name="description" content="The Sandbox by Tess Devillier: ZYTHIANS, TIGIDB, and more. Narrative architecture, myth systems, and screenplay-ready world design.">
+  <title>The Sandbox | Tess Devillier</title>
   <style>
     :root {
       --bg: #0c0a18;
@@ -25,6 +25,12 @@
         radial-gradient(circle at 14% 10%, rgba(96, 228, 255, 0.2), transparent 30%),
         radial-gradient(circle at 88% 8%, rgba(224, 129, 255, 0.18), transparent 28%),
         var(--bg);
+      background-size: 120% 120%, 130% 130%, auto;
+      animation: bgDrift 18s ease-in-out infinite alternate;
+    }
+    @keyframes bgDrift {
+      from { background-position: 0% 0%, 100% 0%, 0 0; }
+      to { background-position: 12% 14%, 86% 8%, 0 0; }
     }
     .wrap { max-width: 980px; margin: 0 auto; padding: 30px 16px 48px; }
     .top {
@@ -40,110 +46,158 @@
     .top a { color: var(--accent); text-decoration: none; font-weight: 700; }
     .top a:hover { text-decoration: underline; }
     h1 { margin: 0; font-size: clamp(1.9rem, 4.2vw, 2.8rem); letter-spacing: 0.03em; }
-    .sub { margin: 10px 0 18px; color: var(--muted); max-width: 820px; line-height: 1.45; }
-    .coming-soon-wrap {
-      min-height: calc(100vh - 120px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 24px 0 8px;
-    }
-    .coming-soon {
+    .hero {
       position: relative;
-      display: inline-block;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-size: clamp(2.6rem, 8vw, 6rem);
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #d69cff;
-      text-shadow:
-        0 0 10px rgba(228, 129, 255, 0.55),
-        0 0 24px rgba(171, 89, 255, 0.38),
-        0 0 42px rgba(96, 228, 255, 0.18);
-      filter: drop-shadow(0 0 18px rgba(193, 118, 255, 0.35));
-      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, #f1ccff 34%, #9e65ff 58%, #6d39da 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      padding: 22px 18px;
+      background: linear-gradient(160deg, rgba(37, 31, 61, 0.96), rgba(23, 20, 45, 0.94));
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+      margin-bottom: 14px;
     }
-    .coming-soon::after {
+    .hero::before {
       content: '';
       position: absolute;
-      inset: -14px -22px;
-      background: linear-gradient(135deg, transparent 34%, rgba(255,255,255,0.12) 46%, rgba(163, 92, 255, 0.36) 52%, transparent 66%);
-      transform: rotate(-7deg);
-      filter: blur(8px);
-      z-index: -1;
-      border-radius: 18px;
-      opacity: 0.9;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(105deg, transparent 12%, rgba(96, 228, 255, 0.14) 42%, transparent 74%);
+      transform: translateX(-48%);
+      animation: heroSweep 5.5s ease-in-out infinite;
     }
-    .coming-soon-sub {
-      margin: 14px 0 0;
-      color: rgba(238, 245, 255, 0.72);
-      font-size: 0.94rem;
-      letter-spacing: 0.06em;
+    @keyframes heroSweep {
+      from { transform: translateX(-58%); }
+      to { transform: translateX(66%); }
+    }
+    .hero-kicker {
+      margin: 0;
+      color: var(--accent);
       text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      font-weight: 800;
     }
-    .note {
-      margin: 0 0 16px;
-      border: 1px solid rgba(96, 228, 255, 0.28);
-      border-radius: 10px;
-      padding: 10px 12px;
-      background: rgba(96, 228, 255, 0.08);
-      color: #dff8ff;
+    .hero-title {
+      margin: 8px 0 6px;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 16px rgba(96, 228, 255, 0.3);
+    }
+    .hero-subline {
+      margin: 0;
       font-size: 0.95rem;
-    }
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0 0 14px;
-    }
-    .chip {
-      border: 1px solid #5e537e;
-      background: rgba(37, 31, 61, 0.9);
-      color: var(--muted);
-      border-radius: 999px;
-      padding: 6px 10px;
+      color: #d3ddf3;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
       font-weight: 700;
-      cursor: pointer;
     }
-    .chip.active {
-      border-color: var(--accent);
-      color: var(--ink);
-      box-shadow: 0 0 0 2px rgba(96, 228, 255, 0.2);
+    .hero-tagline {
+      margin: 13px 0 8px;
+      color: #f2ddff;
+      font-size: clamp(1.04rem, 2vw, 1.26rem);
+      font-style: italic;
     }
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .card {
+    .hero-copy {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 860px;
+    }
+    .section {
+      margin-top: 12px;
       background: linear-gradient(160deg, var(--panel), #17142d);
       border: 1px solid var(--line);
       border-radius: 13px;
       padding: 16px;
       box-shadow: 0 12px 22px rgba(0, 0, 0, 0.28);
-      cursor: pointer;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
     }
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: #5f94c0;
-      box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35);
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .card.active {
-      border-color: var(--accent-2);
-      box-shadow: 0 16px 30px rgba(224, 129, 255, 0.2);
+    .section h2 {
+      margin: 0 0 6px;
+      color: var(--accent);
+      font-size: 1.22rem;
     }
-    .card h2 { margin: 0 0 8px; color: var(--accent); font-size: 1.08rem; }
-    .card p { margin: 0; color: var(--muted); line-height: 1.45; }
-    .card .detail {
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px dashed rgba(96, 228, 255, 0.2);
-      display: none;
+    .section p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
     }
-    .card.active .detail {
-      display: block;
+    .section-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      border: 1px solid rgba(96, 228, 255, 0.35);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+      color: #d7f6ff;
+      background: rgba(96, 228, 255, 0.08);
+    }
+    .pull-quote {
+      margin: 12px 0 0;
+      border-left: 3px solid rgba(224, 129, 255, 0.65);
+      background: rgba(224, 129, 255, 0.08);
+      padding: 10px 12px;
+      color: #eedaff;
+      font-style: italic;
+    }
+    .columns {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .mini-card {
+      border: 1px solid rgba(96, 228, 255, 0.2);
+      border-radius: 10px;
+      padding: 11px;
+      background: rgba(13, 12, 27, 0.66);
+    }
+    .mini-card h3 {
+      margin: 0 0 7px;
+      color: #d8efff;
+      font-size: 0.98rem;
+    }
+    .mini-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .scene {
+      margin-top: 12px;
+      border: 1px dashed rgba(224, 129, 255, 0.44);
+      border-radius: 10px;
+      padding: 12px;
+      background: rgba(13, 10, 24, 0.74);
+    }
+    .scene h3 {
+      margin: 0 0 6px;
+      color: #f0d5ff;
+      font-size: 1rem;
+    }
+    .scene p {
+      margin: 0 0 8px;
+      color: #c5d2ea;
+      font-size: 0.95rem;
+    }
+    blockquote {
+      margin: 0;
+      padding-left: 12px;
+      border-left: 2px solid rgba(96, 228, 255, 0.5);
+      color: #eaf2ff;
+      font-size: 0.94rem;
+      line-height: 1.55;
+      white-space: pre-line;
     }
     .actions { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
     .footer-links {
@@ -203,8 +257,283 @@
       min-height: 34px;
       line-height: 1.15;
     }
+    .spotlight-wrap {
+      min-height: 66vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px 10px 12px;
+    }
+    .spotlight {
+      position: relative;
+      max-width: 860px;
+      width: 100%;
+      border: 1px solid rgba(96, 228, 255, 0.32);
+      border-radius: 18px;
+      background: radial-gradient(circle at 50% -25%, rgba(96, 228, 255, 0.32), transparent 42%), linear-gradient(165deg, rgba(37, 31, 61, 0.95), rgba(16, 14, 33, 0.95));
+      box-shadow: 0 22px 42px rgba(0, 0, 0, 0.42);
+      padding: 28px 20px;
+      overflow: hidden;
+    }
+    .spotlight::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.18) 48%, transparent 66%);
+      transform: translateX(-65%);
+      animation: spotlightSweep 5.8s ease-in-out infinite;
+    }
+    @keyframes spotlightSweep {
+      from { transform: translateX(-70%); }
+      to { transform: translateX(75%); }
+    }
+    .spotlight .kicker {
+      margin: 0;
+      color: #9fdfff;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+    .spotlight h1 {
+      margin: 10px 0 8px;
+      font-size: clamp(2.4rem, 9vw, 5.8rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #e8f8ff;
+      text-shadow: 0 0 16px rgba(96, 228, 255, 0.35), 0 0 34px rgba(224, 129, 255, 0.24);
+    }
+    .spotlight-sub {
+      margin: 0;
+      color: rgba(238, 245, 255, 0.78);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.94rem;
+    }
+    .spotlight-tagline {
+      margin: 10px 0 0;
+      color: #f4ddff;
+      font-style: italic;
+      font-size: 1.04rem;
+    }
+    .spotlight-copy {
+      margin: 8px auto 0;
+      max-width: 780px;
+      color: #c6d3ec;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+    .blueprint-collapse {
+      margin: 12px auto 0;
+      max-width: 780px;
+      border: 1px solid rgba(96, 228, 255, 0.34);
+      border-radius: 10px;
+      background: rgba(14, 12, 27, 0.65);
+      text-align: left;
+      overflow: hidden;
+    }
+    .blueprint-collapse summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #dff6ff;
+      background: rgba(96, 228, 255, 0.12);
+    }
+    .blueprint-collapse summary::after {
+      content: '▾';
+      color: #9fe6ff;
+      font-size: 0.95rem;
+      line-height: 1;
+    }
+    .blueprint-collapse[open] summary::after {
+      content: '−';
+      font-size: 1.1rem;
+    }
+    .blueprint-collapse summary::-webkit-details-marker {
+      display: none;
+    }
+    .blueprint-collapse-body {
+      padding: 12px;
+      color: #d2dcf4;
+      line-height: 1.55;
+    }
+    .blueprint-collapse-body p {
+      margin: 0 0 10px;
+    }
+    .blueprint-collapse-body p:last-child {
+      margin-bottom: 0;
+    }
+    .gallery {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .world-card {
+      border: 1px solid rgba(96, 228, 255, 0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(15, 12, 27, 0.8);
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.3);
+      transition: transform 0.22s ease, border-color 0.22s ease;
+    }
+    .world-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(224, 129, 255, 0.72);
+    }
+    .world-card button {
+      border: 0;
+      background: transparent;
+      color: inherit;
+      width: 100%;
+      text-align: left;
+      padding: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+    .world-card img {
+      width: 100%;
+      height: 138px;
+      object-fit: cover;
+      display: block;
+    }
+    .world-meta {
+      padding: 10px;
+    }
+    .world-meta h2 {
+      margin: 0;
+      font-size: 1rem;
+      color: #d8f0ff;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .world-meta p {
+      margin: 7px 0 0;
+      color: #c0cce4;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .world-drawer {
+      margin-top: 14px;
+      text-align: left;
+      border: 1px solid rgba(96, 228, 255, 0.35);
+      border-radius: 14px;
+      background: linear-gradient(165deg, rgba(34, 28, 54, 0.96), rgba(19, 16, 33, 0.96));
+      box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35);
+      display: none;
+      animation: drawerRise 0.28s ease-out;
+    }
+    .world-drawer.open {
+      display: block;
+    }
+    @keyframes drawerRise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .world-drawer-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(96, 228, 255, 0.2);
+    }
+    .world-drawer-head h3 {
+      margin: 0;
+      color: #a7e9ff;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.98rem;
+    }
+    .world-drawer-close {
+      border: 1px solid rgba(96, 228, 255, 0.5);
+      border-radius: 999px;
+      background: rgba(96, 228, 255, 0.14);
+      color: #dff8ff;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .world-drawer-body {
+      padding: 14px;
+      color: #d2dcf4;
+      line-height: 1.58;
+    }
+    .world-drawer-body h4 {
+      margin: 0 0 8px;
+      color: #dff3ff;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.93rem;
+    }
+    .world-drawer-body p {
+      margin: 0 0 10px;
+      color: #d2dcf4;
+    }
+    .world-drawer-body ul {
+      margin: 0 0 12px;
+      padding-left: 18px;
+    }
+    .world-drawer-body blockquote {
+      margin: 0 0 12px;
+      border-left: 2px solid rgba(96, 228, 255, 0.5);
+      padding-left: 10px;
+      color: #e7f2ff;
+      white-space: pre-line;
+    }
+    .world-drawer-alert {
+      margin: 0 0 12px;
+      border: 1px dashed rgba(224, 129, 255, 0.66);
+      border-radius: 10px;
+      background: rgba(224, 129, 255, 0.12);
+      padding: 10px;
+      color: #f3ddff;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .world-drawer-alert a {
+      color: #9fe6ff;
+      margin-left: 8px;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(159, 230, 255, 0.6);
+    }
+    .world-drawer-alert a:hover {
+      color: #ffffff;
+      border-bottom-color: #ffffff;
+    }
+    .world-drawer-cta {
+      display: inline-block;
+      text-decoration: none;
+      border: 1px solid rgba(96, 228, 255, 0.45);
+      border-radius: 10px;
+      padding: 8px 12px;
+      color: #dff8ff;
+      background: rgba(96, 228, 255, 0.12);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.86rem;
+    }
+    .world-drawer-cta:hover {
+      color: #ffffff;
+      border-color: #ffffff;
+    }
+    @media (max-width: 1080px) {
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 860px) {
-      .grid { grid-template-columns: 1fr; }
+      .columns { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
       .inquiry-floater {
         left: 12px;
         right: 12px;
@@ -218,22 +547,93 @@
   <main class="wrap" role="main">
     <div class="top">
       <a class="top-left" href="index.html#professional">Back To Home</a>
-      <span class="top-center" style="color:var(--muted);">Creative Worlds</span>
+      <span class="top-center" style="color:var(--muted);">THE SANDBOX</span>
       <span class="top-right" style="color:var(--muted);">Tess Does Stuff</span>
     </div>
 
-    <div class="coming-soon-wrap">
-      <div>
-        <div class="coming-soon">COMING SOON</div>
-        <p class="coming-soon-sub">Creative worlds are under construction</p>
+    <section class="spotlight-wrap" aria-label="Sandbox intro spotlight">
+      <div class="spotlight">
+        <p class="kicker">Introducing</p>
+        <h1>THE SANDBOX</h1>
+        <p class="spotlight-sub">Creative Worlds Are Under Construction</p>
+        <p class="spotlight-copy">A digital compendium of narrative architecture, living mythologies, and system blueprints.</p>
+
+        <details class="blueprint-collapse">
+          <summary>THE BLUEPRINT</summary>
+          <div class="blueprint-collapse-body">
+            <p><strong>CV COMING SOON</strong></p>
+            <p><strong>The Philosophy</strong></p>
+            <blockquote>Every world has a pulse; I just find its rhythm.</blockquote>
+            <p>Translating a vision into a narrative that provokes a visceral reaction. Idea harvesting begins with a single spark, a scientific law, a fleeting image, or a What If, then dissecting it until the real story emerges.</p>
+            <p><strong>Core Competencies and Narrative Diagnostics</strong></p>
+            <ul>
+              <li><strong>System Architecture and Lore:</strong> LitRPG, progression fantasy, sci-fi, and dark academia aesthetics.</li>
+              <li><strong>Narrative Diagnostics:</strong> Power scaling, magic systems, character arc optimization, and pacing repair.</li>
+              <li><strong>AI and Technical Integration:</strong> AI-assisted co-creation, frontend web design, and digital compendium management.</li>
+            </ul>
+          </div>
+        </details>
+
+        <div class="gallery" aria-label="Sandbox worlds gallery">
+          <article class="world-card">
+            <button type="button" data-world="xyzthians" aria-label="Open XYZTHIANS details">
+              <img src="simulationindex.jpg" alt="XYZTHIANS world preview">
+              <div class="world-meta">
+                <h2>XYZTHIANS</h2>
+                <p>Modern myth, divine conflict, and survival-guide lore mechanics.</p>
+              </div>
+            </button>
+          </article>
+
+          <article class="world-card">
+            <button type="button" data-world="tigidb" aria-label="Open TIGIDB details">
+              <img src="professionalindex.jpg" alt="TIGIDB system preview">
+              <div class="world-meta">
+                <h2>TIGIDB</h2>
+                <p>Intergalactic database logic for timelines, systems, and progression.</p>
+              </div>
+            </button>
+          </article>
+
+          <article class="world-card">
+            <button type="button" data-world="more" aria-label="Open More projects details">
+              <img src="TenebraeumCalling.png" alt="Additional sandbox projects preview">
+              <div class="world-meta">
+                <h2>NARRATIVE DESIGN</h2>
+                <p>Dialogue studies, pacing beats, and emotional pressure architecture.</p>
+              </div>
+            </button>
+          </article>
+
+          <article class="world-card">
+            <button type="button" data-world="excerpts" aria-label="Open Excerpts details">
+              <img src="helixotopeexample.jpg" alt="Writing excerpts preview">
+              <div class="world-meta">
+                <h2>EXCERPTS</h2>
+                <p>A dedicated lane for short pieces, fragments, and opening pages.</p>
+              </div>
+            </button>
+          </article>
+        </div>
+
+        <section class="world-drawer" id="world-drawer" aria-live="polite" aria-label="Selected world details">
+          <div class="world-drawer-head">
+            <h3 id="world-drawer-title">World Details</h3>
+            <button class="world-drawer-close" id="world-drawer-close" aria-label="Close details">x</button>
+          </div>
+          <div class="world-drawer-body" id="world-drawer-body"></div>
+        </section>
       </div>
-    </div>
+    </section>
 
     <div class="footer-links" aria-label="Sandbox footer links">
+      <a href="portfolio.html">Portfolio</a>
       <a href="index.html#professional">Home</a>
+      <a href="music-lyrics.html">Music and Lyrics</a>
       <a href="allinoneplace.html">All In One Place</a>
     </div>
   </main>
+
   <a class="inquiry-floater" href="hire.html#contact-lanes" aria-label="Open inquiry links">
     <strong>Inquire</strong>
     <span id="inquiry-floater-text">Build A Creative World Together</span>
@@ -244,8 +644,8 @@
       var floaterText = document.getElementById('inquiry-floater-text');
       if (floaterText) {
         var messages = [
-          'Creative Worlds Coming Soon',
-          'Ask About The Sandbox',
+          'Introducing The Sandbox',
+          'Click A World To Explore',
           'Build A Creative World Together'
         ];
         var index = 0;
@@ -254,6 +654,74 @@
           floaterText.textContent = messages[index];
         }, 2600);
       }
+
+      var drawer = document.getElementById('world-drawer');
+      var drawerTitle = document.getElementById('world-drawer-title');
+      var drawerBody = document.getElementById('world-drawer-body');
+      var drawerClose = document.getElementById('world-drawer-close');
+
+      var worldData = {
+        xyzthians: {
+          title: 'XYZTHIANS',
+          html: '<h4>Living Mythologies</h4>' +
+            '<p><strong>XYZTHIANS: Gods for Modern Problems</strong></p>' +
+            '<p>A multi-media mythology project deconstructing the birth of modern gods from mass hysteria and emotional pressure.</p>' +
+            '<ul><li><strong>The Lore:</strong> The Xyzthians were forged from the residual energy of the American Civil War, born from the overwhelming need for peace and the heavy burden of potential. Each Weaver embodies a fundamental duality.</li><li><strong>The Format:</strong> Lore delivered through an Everything and the Kitchen Sink Survival Guide, embedding world-building into DIY water purification recipes and hidden narratives.</li></ul>' +
+            '<blockquote>Have you been paying attention? What happens when someone really looks at the world and starts asking where all that energy goes? The prayers sent into the void. The fear swallowed. The hope clung to. In Xyzthians, it does not disappear. It becomes.</blockquote>' +
+            '<p>A mythology forged from the dualities we live: lore you can read, hear, play, and build on. The more you engage, the more real it becomes.</p>' +
+            '<p class="world-drawer-alert">LOOKING FOR SKETCH ARTIST FOR THE SURVIVAL GUIDE <a href="mailto:contact@tessdevillier.com?subject=Sketch%20Artist%20for%20Xyzthians%20Survival%20Guide">CONTACT</a></p>' +
+            '<p><a class="world-drawer-cta" href="https://everythingandthekitchensink.xyz" target="_blank" rel="noopener noreferrer">Explore The Lore</a></p>'
+        },
+        tigidb: {
+          title: 'TIGIDB',
+          html: '<h4>System Architecture</h4>' +
+            '<p><em>Focusing on the technical structures that bring ideas to life.</em></p>' +
+            '<p><strong>TIGIDB (The Intergalactic Informational Database)</strong></p>' +
+            '<p>From a Game Master head to a Tangible Multiverse Engine. TIGIDB is an expansive digital system designed to track lore, magic systems, cross-dimensional timelines, and character progression for the Wayward Bound universe.</p>' +
+            '<ul><li><strong>The Dynamic Character Sheet:</strong> A system that updates based on acquired characteristics across sectors.</li><li><strong>The Insanity Factor:</strong> If a player ventures to a planet where insanity is a factor, that trait is permanently added to their sheet, influencing all other abilities.</li><li><strong>Birthplace Logic:</strong> The system calculates how origin traits clash with the unique environments of newly discovered planets.</li></ul>'
+        },
+        more: {
+          title: 'NARRATIVE DESIGN',
+          html: '<h4>Narrative Design and Dialogue Snapshots</h4>' +
+            '<p><em>This section acts as a direct display of how different emotional beats, pacing, and character voices are handled on the fly.</em></p>' +
+            '<p><strong>Mechanics in Action</strong></p>' +
+            '<p>Structuring immersive narrative arcs, managing character progression, and fine-tuning emotional beats to ensure engaging high-stakes experiences.</p>' +
+            '<p><strong>Dialogue Study: The Clinical and The Dangerous</strong></p>' +
+            '<blockquote>LOGAN: Where do you think your trash ends up? You have probably put it in the garden... maybe a landfill. Because I have been finding parts there for a month. And you know you took me from the landfill.\nASHTON: Are you kidding me? Do you want us to get caught?\nLOGAN: It is good, though. To know where they came from. I take them and make them into art...\nLOIS: Prove it. Lying, we cut your throat on the spot.</blockquote>' +
+            '<p><strong>Dialogue Study: Divine Tension</strong></p>' +
+            '<blockquote>GODDESS ALIXI: What about this one?\nGUARDIAN PRIKETT: Is your mission to sleep with this human?\nGODDESS ALIXI: Well, someone is jealous.</blockquote>'
+        },
+        excerpts: {
+          title: 'EXCERPTS',
+          html: '<h4>Written Works and Screenplay Adaptations</h4>' +
+            '<p><strong>THE CADENCE OF HIS HEARTBEAT</strong></p>' +
+            '<p><em>A blend of high-society tension and subtle supernatural lineage (managing the politics of vampire and werewolf turf wars).</em></p>' +
+            '<p><strong>Opening Excerpt:</strong></p>' +
+            '<blockquote>Everyone has their identifiers. There are the lines that stretch and swirl across the skin, unique as a map to a hidden kingdom. There is the cadence of a person movement, the specific gait between footsteps, the way the earth either yields to or resists the weight of a heel. Even the slant of a pen on parchment tells a story.\n\nBut there is another one.\n\nHow one knocks. For instance, the way a hand meets the grain of a Petrified Ironwood door, choosing the wood resistance over the heavy, ornate door knocker that typically graces an estate this old. It is the rhythm, the strength, the hesitation. People have tells, and it is my job to understand them.</blockquote>'
+        }
+      };
+
+      function openDrawer(key) {
+        var item = worldData[key];
+        if (!item || !drawer || !drawerTitle || !drawerBody) return;
+        drawerTitle.textContent = item.title;
+        drawerBody.innerHTML = item.html;
+        drawer.classList.add('open');
+        drawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function closeDrawer() {
+        if (!drawer) return;
+        drawer.classList.remove('open');
+      }
+
+      Array.prototype.slice.call(document.querySelectorAll('button[data-world]')).forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          openDrawer(btn.getAttribute('data-world'));
+        });
+      });
+
+      if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
     })();
   </script>
 <script>
