@@ -719,6 +719,50 @@
 </script>
 <script>
   (function () {
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.service-tab'));
+    if (!panels.length) return;
+
+    // Shared with Connect panel hover set.
+    var hoverTracks = [
+      'dm_audio_playlist/noedits_rawpiano1.mp3',
+      'dm_audio_web/track1.mp3',
+      'dm_audio_playlist/noedits_rawpiano2.mp3',
+      'dm_audio_web/track2.mp3'
+    ];
+
+    var unlocked = false;
+    var lastPlayAt = 0;
+    var minGapMs = 320;
+
+    function unlockAudio() {
+      unlocked = true;
+    }
+
+    function playHover(index) {
+      var now = Date.now();
+      if (!unlocked || now - lastPlayAt < minGapMs) return;
+      lastPlayAt = now;
+
+      var audio = new Audio(hoverTracks[index % hoverTracks.length]);
+      audio.volume = 0.2;
+      audio.play().catch(function () {});
+    }
+
+    document.addEventListener('pointerdown', unlockAudio, { once: true });
+    document.addEventListener('keydown', unlockAudio, { once: true });
+
+    panels.forEach(function (panel, index) {
+      panel.addEventListener('mouseenter', function () {
+        playHover(index);
+      });
+      panel.addEventListener('focusin', function () {
+        playHover(index);
+      });
+    });
+  })();
+</script>
+<script>
+  (function () {
     try {
       if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';

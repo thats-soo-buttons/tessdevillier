@@ -129,6 +129,50 @@
     }
   })();
 </script>
+<script>
+    (function () {
+        var panelSelector = '.grid .card';
+        var panels = Array.prototype.slice.call(document.querySelectorAll(panelSelector));
+        if (!panels.length) return;
+
+        var hoverTracks = [
+            'dm_audio_web/Why Can\'t We Hear Them.mp3',
+            'dm_audio_web/The Day The World Went Quiet.mp3',
+            'dm_audio_web/Red Lining Demise.mp3',
+            'dm_audio_web/Just Stop (In This Chaos).mp3'
+        ];
+
+        var unlocked = false;
+        var lastPlayAt = 0;
+        var minGapMs = 320;
+
+        function unlockAudio() {
+            unlocked = true;
+        }
+
+        function playHover(index) {
+            var now = Date.now();
+            if (!unlocked || now - lastPlayAt < minGapMs) return;
+            lastPlayAt = now;
+
+            var audio = new Audio(hoverTracks[index % hoverTracks.length]);
+            audio.volume = 0.22;
+            audio.play().catch(function () {});
+        }
+
+        document.addEventListener('pointerdown', unlockAudio, { once: true });
+        document.addEventListener('keydown', unlockAudio, { once: true });
+
+        panels.forEach(function (panel, index) {
+            panel.addEventListener('mouseenter', function () {
+                playHover(index);
+            });
+            panel.addEventListener('focusin', function () {
+                playHover(index);
+            });
+        });
+    })();
+</script>
 </body>
 </html>
 
