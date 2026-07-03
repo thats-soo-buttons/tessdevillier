@@ -1876,6 +1876,10 @@
                 const config = modeData[mode];
                 if (!config) return;
                 activeMode = mode;
+                window.__currentMode = mode;
+                if (typeof window.setModeTracks === 'function') {
+                    window.setModeTracks(mode);
+                }
                 const openInNewPage = window.matchMedia('(max-width: 700px)').matches;
 
                 if (modeBlurbTitle) modeBlurbTitle.textContent = config.title;
@@ -2446,9 +2450,9 @@
 </footer>
 
 <!-- Use local fallback audio files from sibling `dm_audio` folder to avoid Drive/CORS issues -->
-<audio id="music-clean" src="dm_audio_web/track1.mp3" loop preload="none"></audio>
-<audio id="music-8bit" src="dm_audio_web/track2.mp3" loop preload="none"></audio>
-<audio id="music-buttons" src="dm_audio_web/lofi-buttons.mp3" loop preload="none"></audio>
+<audio id="music-clean" src="dm_audio_playlist/noedits_rawpiano1.mp3" loop preload="none"></audio>
+<audio id="music-8bit" src="dm_audio_playlist/noedits_rawpiano2.mp3" loop preload="none"></audio>
+<audio id="music-buttons" src="dm_audio_web/track1.mp3" loop preload="none"></audio>
 <audio id="music-other" src="dm_audio_web/dreams-in-slow-motion-chill-lofi.mp3" loop preload="none"></audio>
 
 <script>
@@ -2572,6 +2576,53 @@
     var bit8Track = document.getElementById('music-8bit');
     var buttonsTrack = document.getElementById('music-buttons');
     var otherTrack = document.getElementById('music-other');
+    var slotTracks = [cleanTrack, buttonsTrack, bit8Track, otherTrack];
+
+    var modeTrackMap = {
+        hire: [
+            'dm_audio_playlist/noedits_rawpiano1.mp3',
+            'dm_audio_web/track1.mp3',
+            'dm_audio_playlist/noedits_rawpiano2.mp3',
+            'dm_audio_web/track2.mp3'
+        ],
+        connect: [
+            'dm_audio_playlist/noedits_rawpiano1.mp3',
+            'dm_audio_web/track1.mp3',
+            'dm_audio_playlist/noedits_rawpiano2.mp3',
+            'dm_audio_web/track2.mp3'
+        ],
+        watch: [
+            'dm_audio_web/Why Can\'t We Hear Them.mp3',
+            'dm_audio_web/The Day The World Went Quiet.mp3',
+            'dm_audio_web/Red Lining Demise.mp3',
+            'dm_audio_web/Just Stop (In This Chaos).mp3'
+        ],
+        support: [
+            'dm_audio_web/Why Can\'t We Hear Them.mp3',
+            'dm_audio_web/The Day The World Went Quiet.mp3',
+            'dm_audio_web/Red Lining Demise.mp3',
+            'dm_audio_web/Just Stop (In This Chaos).mp3'
+        ]
+    };
+
+    window.setModeTracks = function setModeTracks(mode) {
+        var list = modeTrackMap[mode] || modeTrackMap.hire;
+        slotTracks.forEach(function (track, i) {
+            var nextSrc = list[i];
+            if (!nextSrc || track.getAttribute('src') === nextSrc) return;
+            var wasPlaying = !track.paused;
+            var t = track.currentTime || 0;
+            track.pause();
+            track.setAttribute('src', nextSrc);
+            track.load();
+            track.currentTime = 0;
+            if (wasPlaying && audioStarted && !isMobile()) {
+                track.currentTime = t;
+            }
+        });
+    };
+
+    window.setModeTracks(window.__currentMode || 'hire');
 
     function isMobile() {
         return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
