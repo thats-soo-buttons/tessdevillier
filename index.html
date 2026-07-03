@@ -1488,10 +1488,10 @@
                 <span class="matrix-invite" aria-hidden="true"><span class="matrix-arrow">↑</span><span id="matrix-invite-text">I wonder what this does?</span></span>
             </div>
             <div id="audio-controls">
-                <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Pause</button>
+                <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Play</button>
                 <label style="color:#ffd700;font-size:0.95em;">
                     Volume
-                    <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.4" style="vertical-align:middle;">
+                    <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.18" style="vertical-align:middle;">
                 </label>
             </div>
         </header>
@@ -2456,127 +2456,46 @@
 <audio id="music-other" src="dm_audio_web/dreams-in-slow-motion-chill-lofi.mp3" loop preload="none"></audio>
 
 <script>
-            // Audio Controls UI
-            function setAllVolumes(vol) {
-                cleanTrack.volume = vol;
-                bit8Track.volume = vol;
-                buttonsTrack.volume = vol;
-                otherTrack.volume = vol;
-            }
-
-
-    var playPauseBtn = document.getElementById('audio-playpause');
-    var volumeSlider = document.getElementById('audio-volume');
-    var isPaused = false;
-
-    function updatePlayPauseButton() {
-        // If any track is playing, show Pause, else Play
-        if (!cleanTrack.paused || !bit8Track.paused || !buttonsTrack.paused || !otherTrack.paused) {
-            playPauseBtn.textContent = 'Pause';
-            isPaused = false;
-        } else {
-            playPauseBtn.textContent = 'Play';
-            isPaused = true;
-        }
-    }
-
-    playPauseBtn.addEventListener('click', function() {
-        if (isPaused) {
-            cleanTrack.play();
-            bit8Track.play();
-            buttonsTrack.play();
-            otherTrack.play();
-        } else {
-            cleanTrack.pause();
-            bit8Track.pause();
-            buttonsTrack.pause();
-            otherTrack.pause();
-        }
-        setTimeout(updatePlayPauseButton, 100); // update after state change
-    });
-
-    volumeSlider.addEventListener('input', function() {
-        setAllVolumes(parseFloat(volumeSlider.value));
-    });
-
-            // Keep slider in sync with fadeTrack
-            function fadeTrack(track, target) {
-                if (track.fadeInterval) clearInterval(track.fadeInterval);
-                    // ...existing code...
-                track.fadeInterval = setInterval(function() {
-                    var step = 0.05;
-                    if (Math.abs(track.volume - target) < step) {
-                        track.volume = target;
-                        clearInterval(track.fadeInterval);
-                        if (track === cleanTrack) volumeSlider.value = target;
-                    } else {
-                        track.volume += (track.volume < target ? step : -step);
-                        if (track === cleanTrack) volumeSlider.value = track.volume;
-                    }
-                }, 30);
-            }
-        // Audio Controls UI
-        function setAllVolumes(vol) {
-            cleanTrack.volume = vol;
-            bit8Track.volume = vol;
-            buttonsTrack.volume = vol;
-            otherTrack.volume = vol;
-        }
-
-        var playPauseBtn = document.getElementById('audio-playpause');
-                                // ...existing code...
-        var volumeSlider = document.getElementById('audio-volume');
-        var isPaused = false;
-
-        playPauseBtn.addEventListener('click', function() {
-                        // ...existing code...
-            if (isPaused) {
-                cleanTrack.play();
-                bit8Track.play();
-                buttonsTrack.play();
-                otherTrack.play();
-                playPauseBtn.textContent = 'Pause';
-                isPaused = false;
-            } else {
-                cleanTrack.pause();
-                bit8Track.pause();
-                buttonsTrack.pause();
-                otherTrack.pause();
-                playPauseBtn.textContent = 'Play';
-                isPaused = true;
-            }
-        });
-
-        volumeSlider.addEventListener('input', function() {
-            setAllVolumes(parseFloat(volumeSlider.value));
-        });
-
-        // Keep slider in sync with fadeTrack
-        function fadeTrack(track, target) {
-            if (track.fadeInterval) clearInterval(track.fadeInterval);
-            track.fadeInterval = setInterval(function() {
-                var step = 0.05;
-                if (Math.abs(track.volume - target) < step) {
-                    track.volume = target;
-                    clearInterval(track.fadeInterval);
-                    if (track === cleanTrack) volumeSlider.value = target;
-                } else {
-                    // Stop all music immediately when switching to whimsical
-                    if (typeof cleanTrack !== 'undefined') cleanTrack.pause();
-                    if (typeof bit8Track !== 'undefined') bit8Track.pause();
-                    if (typeof buttonsTrack !== 'undefined') buttonsTrack.pause();
-                    if (typeof otherTrack !== 'undefined') otherTrack.pause();
-                    track.volume += (track.volume < target ? step : -step);
-                    if (track === cleanTrack) volumeSlider.value = track.volume;
-                }
-            }, 30);
-        }
     var audioStarted = false;
     var cleanTrack = document.getElementById('music-clean');
     var bit8Track = document.getElementById('music-8bit');
     var buttonsTrack = document.getElementById('music-buttons');
     var otherTrack = document.getElementById('music-other');
     var slotTracks = [cleanTrack, buttonsTrack, bit8Track, otherTrack];
+    var playPauseBtn = document.getElementById('audio-playpause');
+    var volumeSlider = document.getElementById('audio-volume');
+    var currentSide = 'prof';
+    var currentVolume = parseFloat(volumeSlider.value || '0.18');
+
+    function isMobile() {
+        return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    }
+
+    function anyTrackPlaying() {
+        return slotTracks.some(function (track) {
+            return !track.paused;
+        });
+    }
+
+    function updatePlayPauseButton() {
+        playPauseBtn.textContent = anyTrackPlaying() ? 'Pause' : 'Play';
+    }
+
+    function pauseAll() {
+        slotTracks.forEach(function (track) {
+            track.pause();
+            track.volume = 0;
+        });
+        updatePlayPauseButton();
+    }
+
+    function activeTrackForSide(side) {
+        if (side === 'prof') return cleanTrack;
+        if (side === 'buttons') return buttonsTrack;
+        if (side === 'otf') return bit8Track;
+        if (side === 'other') return otherTrack;
+        return null;
+    }
 
     var modeTrackMap = {
         hire: [
@@ -2607,158 +2526,119 @@
 
     window.setModeTracks = function setModeTracks(mode) {
         var list = modeTrackMap[mode] || modeTrackMap.hire;
+        var wasPlaying = anyTrackPlaying();
+        pauseAll();
         slotTracks.forEach(function (track, i) {
             var nextSrc = list[i];
             if (!nextSrc || track.getAttribute('src') === nextSrc) return;
-            var wasPlaying = !track.paused;
-            var t = track.currentTime || 0;
-            track.pause();
             track.setAttribute('src', nextSrc);
             track.load();
-            track.currentTime = 0;
-            if (wasPlaying && audioStarted && !isMobile()) {
-                track.currentTime = t;
-            }
         });
+        if (audioStarted && wasPlaying && !isMobile()) {
+            window.setTrack(currentSide);
+        }
     };
 
-    window.setModeTracks(window.__currentMode || 'hire');
+    window.sideFromX = function sideFromX(x) {
+        var quarter = window.innerWidth / 4;
+        if (x < quarter) return 'prof';
+        if (x < quarter * 2) return 'buttons';
+        if (x < quarter * 3) return 'otf';
+        return 'other';
+    };
 
-    function isMobile() {
-        return /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-    }
+    window.setTrack = function setTrack(side) {
+        if (!audioStarted) return;
+        currentSide = side;
+        if (isMobile()) return;
+
+        var activeTrack = activeTrackForSide(side);
+        var syncTime = cleanTrack.currentTime || 0;
+
+        pauseAll();
+        if (!activeTrack) return;
+
+        slotTracks.forEach(function (track) {
+            track.currentTime = syncTime;
+        });
+
+        activeTrack.volume = currentVolume;
+        activeTrack.play().catch(function () {});
+        updatePlayPauseButton();
+    };
 
     async function unlockAudio() {
         if (audioStarted) return;
         audioStarted = true;
-        document.getElementById('music-unlock').style.display = 'none';
 
-        // Start muted to satisfy browser autoplay rules
-        cleanTrack.volume = 0;
-        bit8Track.volume = 0;
-        buttonsTrack.volume = 0;
-        otherTrack.volume = 0;
+        var unlockOverlay = document.getElementById('music-unlock');
+        if (unlockOverlay) unlockOverlay.style.display = 'none';
 
         try {
             if (isMobile()) {
-                // Only play the default track on mobile
+                cleanTrack.volume = currentVolume;
                 await cleanTrack.play();
-                cleanTrack.volume = 0.4;
             } else {
-                // Warm all tracks after unlock so hover switching feels immediate.
-                cleanTrack.load();
-                bit8Track.load();
-                buttonsTrack.load();
-                otherTrack.load();
-                await Promise.all([cleanTrack.play(), bit8Track.play(), buttonsTrack.play(), otherTrack.play()]);
-                // Force Sync
-                bit8Track.currentTime = cleanTrack.currentTime;
-                buttonsTrack.currentTime = cleanTrack.currentTime;
-                otherTrack.currentTime = cleanTrack.currentTime;
-                cleanTrack.volume = 0.4;
-                // On unlock, set track based on current mouse position
-                if (typeof sideFromX === 'function') {
-                    let x = (window.event && window.event.clientX) ? window.event.clientX : (window.innerWidth / 2);
-                    setTrack(sideFromX(x));
-                }
+                slotTracks.forEach(function (track) {
+                    track.load();
+                });
+                window.setTrack(window.sideFromX(window.innerWidth / 2));
             }
         } catch (err) {
-            console.error("Audio Initialization Failure:", err);
+            console.error('Audio Initialization Failure:', err);
         }
+        updatePlayPauseButton();
     }
 
-    function setTrack(side) {
-        if (!audioStarted) return;
-        if (isMobile()) return; // On mobile, do not switch tracks
-        // Sync all tracks to the same currentTime as cleanTrack
-        let syncTime = cleanTrack.currentTime;
-        bit8Track.currentTime = syncTime;
-        buttonsTrack.currentTime = syncTime;
-        otherTrack.currentTime = syncTime;
-        // Pause all tracks and set volume to 0
-        cleanTrack.pause();
-        bit8Track.pause();
-        buttonsTrack.pause();
-        otherTrack.pause();
-        cleanTrack.volume = 0;
-        bit8Track.volume = 0;
-        buttonsTrack.volume = 0;
-        otherTrack.volume = 0;
-        // Play and set volume for the selected track
-        if (side === 'prof') {
-            cleanTrack.volume = 0.7;
-            cleanTrack.play();
-        } else if (side === 'buttons') {
-            buttonsTrack.volume = 0.7;
-            buttonsTrack.play();
-        } else if (side === 'otf') {
-            bit8Track.volume = 0.7;
-            bit8Track.play();
-        } else if (side === 'other') {
-            otherTrack.volume = 0.7;
-            otherTrack.play();
+    playPauseBtn.addEventListener('click', function () {
+        if (!audioStarted) {
+            unlockAudio();
+            return;
         }
-    }
 
-    function fadeTrack(track, target) {
-        if (track.fadeInterval) clearInterval(track.fadeInterval);
-        
-        track.fadeInterval = setInterval(function() {
-            var step = 0.05; 
-            if (Math.abs(track.volume - target) < step) {
-                track.volume = target;
-                clearInterval(track.fadeInterval);
-            } else {
-                track.volume += (track.volume < target ? step : -step);
-            }
-        }, 30);
-    }
-
-    // Automatically switch tracks based on cursor X position (left = professional, right = whimsical)
-    (function() {
-        let lastSide = null;
-        function sideFromX(x) {
-            const quarter = window.innerWidth / 4;
-            if (x < quarter) return 'prof';
-            if (x < quarter * 2) return 'buttons';
-            if (x < quarter * 3) return 'otf';
-            return 'other';
+        if (anyTrackPlaying()) {
+            pauseAll();
+        } else if (isMobile()) {
+            cleanTrack.volume = currentVolume;
+            cleanTrack.play().catch(function () {});
+            updatePlayPauseButton();
+        } else {
+            window.setTrack(currentSide || window.sideFromX(window.innerWidth / 2));
         }
-        if (!isMobile()) {
-            document.addEventListener('mousemove', (e) => {
-                if (!audioStarted) return;
-                // Only run if professional section is visible
-                const professionalContent = document.querySelector('.split-container');
-                const whimsyContent = document.getElementById('whimsy-desktop');
-                if (!professionalContent || professionalContent.style.display === 'none') return;
-                if (whimsyContent && whimsyContent.style.display === 'flex') return;
-                // Only trigger if mouse is over a .choice column
-                if (!e.target.closest('.choice')) return;
-                const side = sideFromX(e.clientX);
-                setTrack(side);
-                lastSide = side;
-            });
-            // When leaving the window, reset to neutral
-            window.addEventListener('mouseout', (e) => {
-                if (!e.relatedTarget && audioStarted) { setTrack('none'); lastSide = null; }
-            });
-        }
-        // On mobile, do not switch tracks on touchmove
+    });
 
-        // Pause all audio when page loses focus (tab/window switch)
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                cleanTrack.pause();
-                bit8Track.pause();
-                buttonsTrack.pause();
-                otherTrack.pause();
-                isPaused = true;
-                playPauseBtn.textContent = 'Play';
-            } else if (audioStarted) {
-                // Optionally resume only the correct track, but for now, keep paused until user interacts again
+    volumeSlider.addEventListener('input', function () {
+        currentVolume = parseFloat(volumeSlider.value || '0.18');
+        var activeTrack = activeTrackForSide(currentSide);
+        if (activeTrack && !activeTrack.paused) {
+            activeTrack.volume = currentVolume;
+        }
+    });
+
+    if (!isMobile()) {
+        document.addEventListener('mousemove', function (e) {
+            if (!audioStarted) return;
+            var professionalContent = document.querySelector('.split-container');
+            var whimsyContent = document.getElementById('whimsy-desktop');
+            if (!professionalContent || professionalContent.style.display === 'none') return;
+            if (whimsyContent && whimsyContent.style.display === 'flex') return;
+            if (!e.target.closest('.choice')) return;
+            var side = window.sideFromX(e.clientX);
+            if (side !== currentSide) {
+                window.setTrack(side);
             }
         });
-    })();
+    }
+
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+            pauseAll();
+        }
+    });
+
+    window.setModeTracks(window.__currentMode || 'hire');
+    window.unlockAudio = unlockAudio;
+    updatePlayPauseButton();
 </script>
 <!-- Contact Modal -->
 <div id="contactModal" style="display:none;position:fixed;z-index:10020;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;">
