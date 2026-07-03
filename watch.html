@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Watch and listen: ThatsSooButtons, music and lyrics, podcasts, and creative worlds.">
+    <meta name="description" content="Watch and listen: ThatsSooButtons, The Listening Room, The Library, and The Sandbox.">
     <title>Watch | Tess Devillier</title>
     <style>
         :root {
@@ -34,7 +34,8 @@
         .top { margin-bottom: 20px; }
         .top a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
         h1 { margin: 0 0 8px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
-        .sub { margin: 0 0 22px; color: var(--muted); }
+        .sub { margin: 0 0 8px; color: var(--muted); font-weight: 600; }
+        .quote { margin: 0 0 22px; color: var(--muted); font-style: italic; line-height: 1.6; font-size: 0.95rem; }
         .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
         .card {
             background: var(--card);
@@ -76,8 +77,9 @@
 <body>
     <main id="top" class="wrap" role="main">
         <div class="top"><a href="index.html#professional">Back To Home</a></div>
-        <h1>Watch</h1>
-        <p class="sub">Watch and listen across streaming, music, podcast work, and creative universe previews.</p>
+        <h1>Watch, Listen, Explore</h1>
+        <p class="sub">My Lyrics, My Words, My Worlds</p>
+        <p class="quote" id="rotatingQuote">"Where Curiosity Leads, Stories Follow"</p>
 
         <section class="grid" aria-label="Watch Links">
             <article class="card">
@@ -87,24 +89,20 @@
             </article>
 
             <article class="card">
-                <h2>Music and Lyrics</h2>
-                <p>Songs, lyric work, and audio-focused creative releases.</p>
-                <a class="btn" href="music-lyrics.html">Open Music + Lyrics</a>
+                <h2>The Listening Room</h2>
+                <p>Lyrics, Music, Podcasts</p>
+                <a class="btn" href="thelisteningroom.html">Enter</a>
             </article>
 
             <article class="card">
-                <h2>Podcasts</h2>
-                <p>Current and upcoming podcast projects.</p>
-                <ul>
-                    <li>Wayward Bound (TTRPG podcast) - Spotify</li>
-                    <li>More podcasts coming soon</li>
-                </ul>
-                <a class="btn" href="podcasts.html">Open Podcasts Page</a>
+                <h2>The Library</h2>
+                <p>Narrative Design</p>
+                <a class="btn" href="thelibrary.html">Enter</a>
             </article>
 
             <article class="card">
-                <h2>Creative Worlds</h2>
-                <p>Explore previews from XYZthians and Sandbox.</p>
+                <h2>The Sandbox</h2>
+                <p>Experimental Storytelling & Interactive Worlds</p>
                 <a class="btn" href="sandbox.html">Explore Worlds</a>
             </article>
         </section>

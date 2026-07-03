@@ -7,125 +7,422 @@
     <title>Support | Tess Devillier</title>
     <style>
         :root {
-            --bg: #f3fbf8;
-            --card: #d9f0e8;
-            --ink: #24556a;
-            --muted: #4d7f92;
-            --accent: #2fa9c6;
-            --line: #99d2c4;
+            --soft-peach: #f4e6da;
+            --soft-peach-hover: #fff1e8;
+            --outline-brown: #5a3d2a;
+            --mode-support: #4b8ba0;
         }
-        * { box-sizing: border-box; }
+
+        * {
+            box-sizing: border-box;
+        }
+
         a:focus-visible, button:focus-visible {
-            outline: 2px solid #24556a;
+            outline: 2px solid var(--outline-brown);
             outline-offset: 2px;
         }
+
         body {
             margin: 0;
             min-height: 100vh;
-            color: var(--ink);
             font-family: 'Montserrat', Arial, sans-serif;
+            color: #1f2328;
             background:
-                radial-gradient(circle at 82% 8%, rgba(47, 169, 198, 0.2), transparent 34%),
-                radial-gradient(circle at 16% 10%, rgba(115, 210, 190, 0.2), transparent 34%),
-                var(--bg);
+                radial-gradient(circle at 82% 8%, rgba(47, 169, 198, 0.15), transparent 34%),
+                radial-gradient(circle at 16% 10%, rgba(115, 210, 190, 0.15), transparent 34%),
+                #f3fbf8;
+            line-height: 1.6;
         }
-        .wrap { max-width: 980px; margin: 0 auto; padding: 30px 16px 44px; }
-        .top a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
-        h1 { margin: 20px 0 8px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
-        .sub { margin: 0 0 20px; color: var(--muted); }
-        .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 28px 16px 44px;
+        }
+
+        .top {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .top a {
+            color: #3f4a56;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: #24556a;
+            line-height: 1.1;
+        }
+
+        .sub {
+            margin: 0 0 20px;
+            color: #4d7f92;
+            line-height: 1.6;
+            max-width: 880px;
+        }
+
+        .note {
+            border-left: 4px solid #0e7490;
+            background: #ebf8ff;
+            color: #0f172a;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            line-height: 1.45;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
         .card {
-            background: var(--card);
-            border: 1px solid var(--line);
+            background: #d9f0e8;
+            border: 1px solid #99d2c4;
             border-radius: 12px;
             padding: 14px;
         }
-        .card h2 { margin: 0 0 8px; font-size: 1.08rem; }
-        .card ul { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.5; }
-        .card li + li { margin-top: 6px; }
-        .card a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; font-weight: 700; }
-        .footer-links {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
+
+        .card h2 {
+            margin: 0 0 8px;
+            font-size: 1.08rem;
+            color: #24556a;
         }
-        .footer-links a {
-            color: var(--accent);
+
+        .card ul, .card ol {
+            margin: 0;
+            padding-left: 18px;
+            color: #4d7f92;
+            line-height: 1.5;
+        }
+
+        .card li + li {
+            margin-top: 6px;
+        }
+
+        .card a {
+            color: #2fa9c6;
             text-decoration: underline;
             text-underline-offset: 2px;
             font-weight: 700;
         }
-        @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+        details {
+            margin-bottom: 16px;
+            background: #d9f0e8;
+            border: 1px solid #99d2c4;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        details summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: #24556a;
+            font-size: 1.08rem;
+            user-select: none;
+        }
+
+        details summary:hover {
+            color: #2fa9c6;
+        }
+
+        details[open] summary {
+            color: #2fa9c6;
+            margin-bottom: 12px;
+        }
+
+        details > *:not(summary) {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .prime-box {
+            background: linear-gradient(180deg, #f8f3e6 0%, #f3ede0 100%);
+            border: 2px solid #b8ab95;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 20px rgba(31, 35, 40, 0.08);
+        }
+
+        .prime-box h2 {
+            margin: 0 0 16px;
+            font-size: clamp(1.08rem, 2.2vw, 1.34rem);
+            letter-spacing: 0.03em;
+            color: #0f3d2e;
+            text-transform: uppercase;
+        }
+
+        .full {
+            background: #fffdf9;
+            border: 1px solid #d7cec1;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 20px;
+        }
+
+        .full h2 {
+            margin: 0 0 10px;
+            color: #24556a;
+            font-size: 1.14rem;
+        }
+
+        .full ul {
+            margin: 0;
+            padding-left: 18px;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        .full li + li {
+            margin-top: 8px;
+        }
+
+        .full a {
+            color: #2fa9c6;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .channel-link {
+            display: inline-block;
+            margin-top: 10px;
+            margin-right: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            color: #0f3d2e;
+            background: #f6f2e8;
+            border-radius: 8px;
+            padding: 10px 12px;
+            border: 1px solid #b8ab95;
+            transition: all 0.2s ease;
+        }
+
+        .channel-link:hover {
+            background: #ede4d3;
+            border-color: #9d8b78;
+        }
+
+        .footer-links {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #2fa9c6;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        .muted {
+            color: #3f4a56;
+        }
+
+        @media (max-width: 880px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <main id="top" class="wrap" role="main">
-        <div class="top"><a href="index.html#professional">Back To Home</a></div>
+        <div class="top">
+            <a href="index.html#professional">Back To Home</a>
+        </div>
+
         <h1>Support</h1>
-        <p class="sub">Choose what is easiest. Financial support, referrals, and free engagement all help.</p>
+        <p class="sub">Choose what works for you. Financial support, referrals, and free engagement all help keep this work going.</p>
 
-        <section class="grid" aria-label="Support Options">
-            <article class="card">
-                <h2>Support Financially</h2>
-                <ul>
-                    <li><a href="https://cash.app/$888buttons" target="_blank" rel="noopener noreferrer">Cash App</a></li>
-                    <li><a href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Ko-fi</a></li>
-                </ul>
-            </article>
+        <!-- FINANCIAL SUPPORT -->
+        <section aria-label="Support Options">
+            <h2 style="color: #24556a; margin-bottom: 12px;">Ways to Support</h2>
+            
+            <details open>
+                <summary>💰 Support Financially</summary>
+                <div class="card" style="margin-top: 12px; border: none; background: transparent; padding: 0;">
+                    <ul>
+                        <li><a href="https://cash.app/$888buttons" target="_blank" rel="noopener noreferrer">Cash App</a></li>
+                        <li><a href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Ko-fi</a></li>
+                    </ul>
+                </div>
+            </details>
 
-            <article class="card">
-                <h2>Support For Free</h2>
-                <ul>
-                    <li>Use your monthly Amazon Prime Twitch sub at no extra cost.</li>
-                    <li><a href="freesupport.html">Read the full Prime + Twitch setup guide</a>.</li>
-                    <li>Share, save, and comment on social posts.</li>
-                    <li>Follow on <a href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Instagram</a> and <a href="https://www.tiktok.com/@thatssoobuttons" target="_blank" rel="noopener noreferrer">TikTok</a>.</li>
-                </ul>
-            </article>
+            <!-- FREE SUPPORT -->
+            <details>
+                <summary>🎁 Support For Free (w/ Amazon Prime Twitch Sub)</summary>
+                <div style="margin-top: 12px;">
+                    <p class="note" style="margin-bottom: 12px;">
+                        <b>Important:</b> Prime sub is not auto-renewed. You must resubscribe manually each month.
+                    </p>
 
-            <article class="card">
-                <h2>Referral Support</h2>
-                <ul>
-                    <li>Send pet-sitting referrals my way.</li>
-                    <li>Share my website with people looking for creative support.</li>
-                    <li><a href="mailto:contact@tessdevillier.com">Email referrals directly</a>.</li>
-                </ul>
-            </article>
+                    <div class="grid">
+                        <div class="card">
+                            <h2>1A. If You Don't Have Twitch Yet</h2>
+                            <ol>
+                                <li>Go to Twitch and click Sign Up.</li>
+                                <li>Create account with email or phone.</li>
+                                <li>Verify account via confirmation prompt.</li>
+                            </ol>
+                        </div>
 
-            <article class="card">
-                <h2>OTFN Mission Support</h2>
-                <ul>
-                    <li>Support a creative network focused on living-wage opportunities for neurodivergent and chronically ill community members.</li>
-                    <li><a href="mailto:contact@ontheflynetwork.com">Volunteer and fundraising inquiries</a>.</li>
-                    <li><a href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer">Visit On The Fly Network</a>.</li>
-                </ul>
-            </article>
+                        <div class="card">
+                            <h2>1B. Link Twitch to Amazon Prime</h2>
+                            <ol>
+                                <li>Log in to Amazon Prime account.</li>
+                                <li>Go to Prime Gaming and sign in with Twitch account.</li>
+                                <li>Follow prompts to connect accounts.</li>
+                                <li>Confirm Prime benefits appear in Twitch subscription options.</li>
+                            </ol>
+                        </div>
+
+                        <div class="card">
+                            <h2>1C. Use Your Free Monthly Sub</h2>
+                            <ol>
+                                <li>Open Twitch channel page.</li>
+                                <li>Click Subscribe.</li>
+                                <li>Choose free Prime subscription option.</li>
+                                <li>Complete confirmation.</li>
+                            </ol>
+                        </div>
+
+                        <div class="card">
+                            <h2>1D. Come Back Every Month</h2>
+                            <ul>
+                                <li>Prime sub expires monthly.</li>
+                                <li>It does not auto-renew like paid recurring subs.</li>
+                                <li>Resubscribe monthly to keep support active at no extra cost.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="full" style="margin-top: 12px;">
+                        <h2>2. Other FREE OPTIONS</h2>
+                        <ul class="muted">
+                            <li><b>Word-of-mouth for pet + house sitting:</b> if you know anyone looking for trusted pet or house sitting, send them my way, even if they are not in Baton Rouge.</li>
+                            <li><b>Referral support for neurodivergent and chronically ill creatives:</b> if you know neurospicy or chronically ill folks who want paid work that works with real-life bad days, connect them with me.</li>
+                            <li><b>Mission-critical professional referrals:</b> if you know people experienced in nonprofit law, grant writing, or fundraising, please connect them to <a href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer">On The Fly Network</a>.</li>
+                            <li><b>Boost social engagement:</b> share, like, comment, follow, save, and favorite posts across social platforms so the work reaches more people.</li>
+                            <li><b>If you post about me, OTF Network, or my content:</b> use one or all of these tags: #thatssoobuttons #otfnetwork #tessdoesstuff</li>
+                            <li><b>Help build the Discord community:</b> interact regularly, welcome new people, join conversations, and help make the community bigger, stronger, and more supportive.</li>
+                            <li><b>Volunteer creative skills:</b> help with workshop ideas, resource docs, printable materials, and activity sheets for the community.</li>
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <!-- REFERRAL SUPPORT -->
+            <details>
+                <summary>🤝 Support Through Referrals</summary>
+                <div class="card" style="margin-top: 12px; border: none; background: transparent; padding: 0;">
+                    <ul>
+                        <li>Send pet-sitting referrals my way.</li>
+                        <li>Share my website with people looking for creative support.</li>
+                        <li><a href="mailto:contact@tessdevillier.com">Email referrals directly</a>.</li>
+                        <li>Connect neurodivergent and chronically ill creatives seeking flexible paid work.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- OTFN MISSION -->
+            <details>
+                <summary>🌐 Support the OTFN Mission</summary>
+                <div class="card" style="margin-top: 12px; border: none; background: transparent; padding: 0;">
+                    <ul>
+                        <li>Support a creative network focused on living-wage opportunities for neurodivergent and chronically ill community members.</li>
+                        <li><a href="mailto:contact@ontheflynetwork.com">Volunteer and fundraising inquiries</a>.</li>
+                        <li><a href="https://ontheflynetwork.com" target="_blank" rel="noopener noreferrer">Visit On The Fly Network</a>.</li>
+                    </ul>
+                </div>
+            </details>
         </section>
 
-        <div class="footer-links" aria-label="Quick links">
+        <!-- WHY IT MATTERS -->
+        <section class="full">
+            <h2>Why This Matters</h2>
+            <p class="muted">Just $5/month helps prevent burnout and keeps this work going.</p>
+            <p class="muted">If money is tight, word of mouth still makes a real impact by helping the right people find me.</p>
+            <p class="muted">Engaging in Discord, sharing posts, and volunteering all help grow a community ready to support real system change. I have been building this for years, and now it is time to do it together.</p>
+            
+            <h3 style="color: #24556a; text-align: center; margin-top: 20px;">Keywords</h3>
+            <p class="muted" style="text-align: center; line-height: 1.8;">
+                24/7 pet sitting • overnight pet care • consistent pet care • Baton Rouge pet sitter • trusted house sitting • high-needs pets • free support options • Twitch Prime sub • Amazon Prime subscription • word-of-mouth referrals • Discord community support • social media engagement • nonprofit support • grant writing referrals • On The Fly Network
+            </p>
+            
+            <p class="muted" style="text-align: center; margin-top: 16px;"><b>Tags:</b> #thatssoobuttons • #otfnetwork • #tessdoesstuff</p>
+        </section>
+
+        <!-- QUICK LINKS -->
+        <section class="full">
+            <h2>Quick Links</h2>
+            <p class="muted">Use these to jump straight to the most helpful spots.</p>
+            <div>
+                <a class="channel-link" href="https://www.twitch.tv/subs/thats_soo_buttons" target="_blank" rel="noopener noreferrer">Twitch Sub Page (Free w/ Prime)</a>
+                <a class="channel-link" href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener noreferrer">Discord Community</a>
+                <a class="channel-link" href="https://www.tumblr.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Tumblr</a>
+                <a class="channel-link" href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a class="channel-link" href="https://www.tiktok.com/@thatssoobuttons" target="_blank" rel="noopener noreferrer">TikTok</a>
+            </div>
+            <p class="muted" style="margin-top: 16px;"><b>Support with $:</b></p>
+            <div>
+                <a class="channel-link" href="https://cash.app/$888buttons" target="_blank" rel="noopener noreferrer">Cash App</a>
+                <a class="channel-link" href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Ko-fi</a>
+            </div>
+        </section>
+
+        <div class="footer-links" aria-label="Quick navigation">
             <a href="#top">Back to top</a>
             <a href="index.html#professional">Home</a>
             <a href="hire.html">Book or Inquire</a>
             <a href="pets.html">Pet Services</a>
         </div>
     </main>
-<script>
-  (function () {
-    try {
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-      }
-    } catch (_) {}
 
-    if (!window.location.hash) {
-      window.addEventListener('pageshow', function () {
-        window.scrollTo(0, 0);
-      }, { once: true });
-    }
-  })();
-</script>
+    <script>
+        (function () {
+            try {
+                if ('scrollRestoration' in history) {
+                    history.scrollRestoration = 'manual';
+                }
+            } catch (_) {}
+
+            if (!window.location.hash) {
+                window.addEventListener('pageshow', function () {
+                    window.scrollTo(0, 0);
+                }, { once: true });
+            }
+
+            // Open correct section if linked via hash
+            if (window.location.hash === '#free') {
+                const freeSection = document.querySelector('details:nth-of-type(2)');
+                if (freeSection) freeSection.open = true;
+            }
+        })();
+    </script>
 </body>
 </html>
 

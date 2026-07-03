@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="One-page recap of Tess Devillier's website, projects, services, and creative work.">
-  <title>All In One Place | Tess Devillier</title>
+  <meta name="description" content="Quick Reference: Everything on one page. Fast access to Tess Devillier's website, projects, services, and creative work.">
+  <title>Quick Reference | Tess Devillier</title>
   <style>
     :root {
       --bg: #111722;
@@ -58,6 +58,7 @@
       padding: 22px;
       box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
       margin-bottom: 14px;
+      position: relative;
     }
 
     h1 {
@@ -96,6 +97,8 @@
       min-width: min(100%, 340px);
       font: inherit;
     }
+
+
 
     details.section {
       margin-top: 12px;
@@ -290,6 +293,8 @@
         grid-template-columns: 1fr;
       }
 
+
+
     }
   </style>
 </head>
@@ -300,9 +305,9 @@
       <span style="color: var(--muted); font-size: 0.92rem;">Tess Does Stuff</span>
     </div>
 
-    <section class="hero" aria-label="All in one place intro">
-      <h1>All In One Place</h1>
-      <p class="sub">Everything in one place: click links in Main Index or Services Index and the page loads directly in the Full Page Viewer below.</p>
+    <section class="hero" aria-label="Quick Reference intro">
+      <h1>Quick Reference</h1>
+      <p class="sub">Everything on one page for quick access. Use the links below to load any page directly, or explore the full site from home.</p>
       <div class="toolbar">
         <label for="quickFind">Quick Find</label>
         <select id="quickFind">
@@ -346,10 +351,6 @@
             </ul>
           </article>
           <article class="tile">
-            <span class="kicker">Growth</span>
-            <h3>Social Media &amp; More</h3>
-            <ul class="link-list growth-columns">
-              <li>
                 <a href="connect.html">Connect Page</a>
                 <ul class="sub-links">
                   <li><a href="https://www.instagram.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Instagram</a></li>
@@ -483,19 +484,7 @@
       bindViewerLinks('index-links');
       bindViewerLinks('services-index');
     })();
-  </script>
-<script>
-  (function () {
-    try {
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-      }
-    } catch (_) {}
 
-    if (!window.location.hash) {
-      window.addEventListener('pageshow', function () {
-        window.scrollTo(0, 0);
-      }, { once: true });
     }
   })();
 </script>

@@ -1,0 +1,1193 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Listening Room by Tess Devillier: music demos, lyrics, and podcast projects.">
+  <title>The Listening Room | Tess Devillier</title>
+  <style>
+    :root {
+      --bg: #0d0b0f;
+      --card: #1a1620;
+      --ink: #e8dcc8;
+      --muted: #a89880;
+      --accent: #d4a574;
+      --accent-warm: #f4a460;
+      --line: rgba(212, 165, 116, 0.25);
+      --light-glow: rgba(244, 164, 96, 0.2);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: 'Montserrat', Arial, sans-serif;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(212, 165, 116, 0.08), transparent 40%),
+        radial-gradient(circle at 80% 30%, rgba(244, 164, 96, 0.06), transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(139, 90, 43, 0.08), transparent 50%),
+        linear-gradient(135deg, #0d0b0f 0%, #15121a 50%, #0f0d11 100%);
+      background-attachment: fixed;
+      box-shadow: inset 0 0 180px rgba(0, 0, 0, 0.4), inset 0 0 80px rgba(212, 165, 116, 0.08);
+      position: relative;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(244, 164, 96, 0.03), transparent 30%),
+        radial-gradient(circle at 70% 60%, rgba(212, 165, 116, 0.03), transparent 35%);
+      animation: moodyGlow 12s ease-in-out infinite;
+      z-index: 0;
+    }
+    
+    @keyframes moodyGlow {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+    @keyframes bgDrift {
+      from { background-position: 0% 0%, 100% 0%, 0 0; }
+      to { background-position: 12% 14%, 86% 8%, 0 0; }
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 28px 16px 46px; position: relative; z-index: 1; }
+    .wrap > h1 {
+      position: relative;
+      background: linear-gradient(160deg, rgba(212, 165, 116, 0.15), rgba(244, 164, 96, 0.08));
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent-warm);
+      padding: 24px 18px;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(244, 164, 96, 0.15), 0 8px 24px rgba(0, 0, 0, 0.4);
+      overflow: hidden;
+    }
+    .wrap > h1::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(105deg, transparent 12%, rgba(244, 164, 96, 0.15) 42%, transparent 74%);
+      transform: translateX(-48%);
+      animation: heroSweep 5.5s ease-in-out infinite;
+    }
+    @keyframes heroSweep {
+      from { transform: translateX(-58%); }
+      to { transform: translateX(66%); }
+    }
+    .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .top a { color: var(--muted); text-decoration: none; font-weight: 700; }
+    h1 { margin: 0; font-size: clamp(1.9rem, 4.2vw, 3rem); letter-spacing: 0.03em; text-shadow: 0 0 20px rgba(244, 164, 96, 0.3); position: relative; z-index: 1; color: var(--accent-warm); }
+    .sub { margin: 8px 0 16px; color: var(--muted); max-width: 860px; line-height: 1.6; }
+    .section {
+      margin-top: 14px;
+      background: linear-gradient(160deg, rgba(26, 22, 32, 0.9), rgba(20, 16, 26, 0.95));
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 0 25px rgba(244, 164, 96, 0.1), 0 8px 24px rgba(0, 0, 0, 0.5);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      position: relative;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: sectionFadeIn 0.6s ease-out forwards;
+    }
+    @keyframes sectionFadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section:nth-child(4) { animation-delay: 0.1s; }
+    .section:nth-child(5) { animation-delay: 0.2s; }
+    .section:nth-child(6) { animation-delay: 0.3s; }
+    .section:nth-child(7) { animation-delay: 0.4s; }
+    .section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 35px rgba(244, 164, 96, 0.15), 0 12px 32px rgba(0, 0, 0, 0.6);
+      border-color: rgba(244, 164, 96, 0.4);
+    }
+
+    section[aria-label="Music demos"] {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin-top: 0;
+    }
+
+    section[aria-label="Music demos"] h2 {
+      display: none;
+    }
+
+    section[aria-label="Music demos"] .muted {
+      display: none;
+    }
+    h2 { margin: 0 0 8px; font-size: 1.2rem; color: var(--accent-warm); text-shadow: 0 0 12px rgba(244, 164, 96, 0.25); font-weight: 800; }
+    .section-toggle {
+      display: none;
+    }
+    .section-toggle-mark {
+      display: none;
+    }
+    .section-body {
+      margin-top: 12px;
+    }
+
+    /* ORIGINAL LYRICS HEADER - NOT USED */
+
+    .lyrics-header-title {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #f9c99f;
+      text-shadow: 0 0 30px rgba(244, 164, 96, 0.6), 0 0 15px rgba(244, 164, 96, 0.4);
+      font-weight: 900;
+      opacity: 1;
+    }
+
+    .podcast-header-mini {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 20px 16px;
+      background: linear-gradient(160deg, rgba(26, 22, 32, 0.98), rgba(15, 12, 20, 0.99));
+      box-shadow: 0 0 20px rgba(244, 164, 96, 0.15), 0 6px 14px rgba(0, 0, 0, 0.4);
+      margin: 0 auto 22px;
+      text-align: center;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .podcast-header-mini::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(105deg, transparent 12%, rgba(244, 164, 96, 0.08) 42%, transparent 74%);
+      transform: translateX(-48%);
+      animation: heroSweep 5.5s ease-in-out infinite;
+      opacity: 0.5;
+    }
+
+    .podcast-header-mini-title {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      font-size: 1.02rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #ffe6cb;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 0 18px rgba(244, 164, 96, 0.55);
+      font-weight: 900;
+    }
+
+    .podcast-header-mini-subtitle {
+      position: relative;
+      z-index: 2;
+      margin: 8px 0 0;
+      font-size: 0.9rem;
+      color: #d8c8b2;
+      letter-spacing: 0.03em;
+      font-style: italic;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+    }
+
+ 
+    }
+    .section.collapsed .section-body {
+      display: none;
+    }
+    .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card { background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(244, 164, 96, 0.06)); border: 1px solid var(--line); border-radius: 12px; padding: 14px; box-shadow: 0 0 15px rgba(244, 164, 96, 0.08), 0 4px 12px rgba(0, 0, 0, 0.3); transition: all 0.22s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(244, 164, 96, 0.15), 0 6px 16px rgba(0, 0, 0, 0.4); border-color: rgba(244, 164, 96, 0.5); }
+
+    /* HIGHTOP LOUNGE VIBES */
+    .hightops-container {
+      position: relative;
+      width: 100%;
+      min-height: auto;
+      margin: 40px 0;
+      perspective: 1000px;
+      height: 1100px;
+    }
+
+    .hightop {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(212, 165, 116, 0.12), rgba(244, 164, 96, 0.08));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 0 20px rgba(244, 164, 96, 0.12), 0 8px 24px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      width: 220px;
+      min-height: 280px;
+    }
+
+    .hightop:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 0 35px rgba(244, 164, 96, 0.25), 0 12px 32px rgba(0, 0, 0, 0.6);
+      border-color: rgba(244, 164, 96, 0.6);
+    }
+
+    .hightop-lamp {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 16px;
+      background: radial-gradient(circle at 35% 35%, rgba(244, 164, 96, 0.6), rgba(212, 165, 116, 0.3));
+      border-radius: 50%;
+      box-shadow: 
+        0 0 30px rgba(244, 164, 96, 0.4),
+        0 0 60px rgba(244, 164, 96, 0.2) inset;
+      animation: lampGlow 3s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .hightop:nth-child(1) .hightop-lamp { animation-delay: 0s; }
+    .hightop:nth-child(2) .hightop-lamp { animation-delay: 0.5s; }
+    .hightop:nth-child(3) .hightop-lamp { animation-delay: 1s; }
+    .hightop:nth-child(4) .hightop-lamp { animation-delay: 1.5s; }
+
+    @keyframes lampGlow {
+      0%, 100% { box-shadow: 
+        0 0 30px rgba(244, 164, 96, 0.4),
+        0 0 60px rgba(244, 164, 96, 0.2) inset; 
+      }
+      50% { box-shadow: 
+        0 0 40px rgba(244, 164, 96, 0.5),
+        0 0 80px rgba(244, 164, 96, 0.3) inset; 
+      }
+    }
+
+    .hightop h3 {
+      margin: 0 0 12px;
+      font-size: 1.4rem;
+      color: #ffd1a4;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7), 0 0 14px rgba(244, 164, 96, 0.4);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .hightop-vibe {
+      font-size: 0.9rem;
+      color: #d8c8b2;
+      margin-bottom: 12px;
+      font-style: italic;
+      opacity: 1;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+    }
+
+    .hightop audio {
+      width: 100%;
+      margin-top: 12px;
+      border-radius: 8px;
+    }
+
+    /* Specific positioning for hightops */
+    .hightop:nth-child(1) {
+      left: 5%;
+      top: 520px;
+      transform: rotate(-3deg);
+    }
+
+    .hightop:nth-child(1):hover {
+      transform: rotate(-3deg) translateY(-8px) scale(1.05);
+    }
+
+    .hightop:nth-child(2) {
+      right: 5%;
+      top: 60px;
+      transform: rotate(4deg);
+    }
+
+    .hightop:nth-child(2):hover {
+      transform: rotate(4deg) translateY(-8px) scale(1.05);
+    }
+
+    .hightop:nth-child(3) {
+      left: 5%;
+      top: 60px;
+      transform: rotate(-2deg);
+    }
+
+    .hightop:nth-child(3):hover {
+      transform: rotate(-2deg) translateY(-8px) scale(1.05);
+    }
+
+    .hightop:nth-child(4) {
+      right: 5%;
+      top: 520px;
+      transform: rotate(3deg);
+    }
+
+    .hightop:nth-child(4):hover {
+      transform: rotate(3deg) translateY(-8px) scale(1.05);
+    }
+
+    .lyrics-wave-title {
+      position: absolute;
+      left: 50%;
+      top: 920px;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      font-size: clamp(1.25rem, 2.8vw, 1.8rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #ffe6cb;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 0 18px rgba(244, 164, 96, 0.5);
+      pointer-events: none;
+      z-index: 11;
+    }
+
+    .lyrics-wave-title span {
+      display: inline-block;
+    }
+
+    .lyrics-wave-title span:nth-child(odd) {
+      transform: translateY(-6px) rotate(-1deg);
+    }
+
+    .lyrics-wave-title span:nth-child(even) {
+      transform: translateY(5px) rotate(1deg);
+    }
+
+    .lyrics-wave-title .space {
+      width: 18px;
+      transform: none;
+    }
+
+    /* CENTER LYRICS CARD WITH FLIP */
+    .lyrics-center {
+      position: absolute;
+      left: 50%;
+      top: 250px;
+      transform: translateX(-50%);
+      width: 340px;
+      height: auto;
+      perspective: 1000px;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lyrics-flip {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform-style: preserve-3d;
+    }
+
+    .lyrics-center:hover .lyrics-flip,
+    .lyrics-center.flipped .lyrics-flip {
+      transform: rotateY(180deg);
+    }
+
+    .lyrics-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      border: 1.5px solid var(--line);
+      box-shadow: 0 0 35px rgba(244, 164, 96, 0.2), 0 16px 40px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .lyrics-center:hover .lyrics-face {
+      box-shadow: 0 0 50px rgba(244, 164, 96, 0.3), 0 20px 48px rgba(0, 0, 0, 0.7);
+      border-color: rgba(244, 164, 96, 0.5);
+    }
+
+    .lyrics-face.front {
+      background: linear-gradient(135deg, rgba(212, 165, 116, 0.15), rgba(244, 164, 96, 0.1));
+    }
+
+    .lyrics-face.front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85) saturate(1.1);
+    }
+
+    .lyrics-face.back {
+      background: linear-gradient(135deg, rgba(212, 165, 116, 0.12), rgba(244, 164, 96, 0.08));
+      transform: rotateY(180deg);
+      padding: 28px;
+      text-align: center;
+      overflow-y: auto;
+    }
+
+    .lyrics-face.back h3 {
+      margin: 0 0 10px;
+      font-size: 1.4rem;
+      color: var(--accent-warm);
+      text-shadow: 0 0 10px rgba(244, 164, 96, 0.3);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .lyrics-face.back .lyrics-status {
+      margin: 0 0 14px;
+      color: #dbcab3;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .lyrics-face.back pre {
+      margin: 0;
+      white-space: pre-wrap;
+      color: var(--ink);
+      line-height: 1.6;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      max-height: 320px;
+      width: 100%;
+      text-align: left;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .lyrics-center.hidden {
+      display: none;
+    }
+
+    .flip-hint {
+      position: static;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: #d9c8b0;
+      opacity: 0.92;
+      transition: opacity 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: center;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    .lyrics-center:hover .flip-hint {
+      opacity: 1;
+    }
+
+    .flip-credit {
+      position: static;
+      margin-top: 4px;
+      font-size: 0.7rem;
+      color: #cfbba1;
+      opacity: 0.86;
+      transition: opacity 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      text-align: center;
+      font-style: italic;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    .lyrics-center:hover .flip-credit {
+      opacity: 0.8;
+    }
+
+    /* PODCAST CIRCULAR CARDS */
+    .podcast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px 0;
+      place-items: center;
+    }
+
+    .podcast-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212, 165, 116, 0.15), rgba(244, 164, 96, 0.1));
+      border: 2px solid var(--line);
+      box-shadow: 0 0 30px rgba(244, 164, 96, 0.15), 0 8px 24px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .podcast-circle::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 35% 35%, rgba(244, 164, 96, 0.2), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 50%;
+    }
+
+    .podcast-circle:hover {
+      transform: translateY(-8px) scale(1.08);
+      box-shadow: 0 0 45px rgba(244, 164, 96, 0.25), 0 12px 32px rgba(0, 0, 0, 0.6);
+      border-color: rgba(244, 164, 96, 0.6);
+    }
+
+    .podcast-circle:hover::before {
+      opacity: 1;
+    }
+
+    .podcast-circle-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .podcast-number {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--accent-warm);
+      text-shadow: 0 0 15px rgba(244, 164, 96, 0.3);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .podcast-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      .podcast-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding: 16px 0;
+      }
+
+      .podcast-circle {
+        width: 140px;
+        height: 140px;
+      }
+
+      .podcast-number {
+        font-size: 2rem;
+      }
+
+      .podcast-label {
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hightops-container {
+        height: 1400px;
+        min-height: auto;
+      }
+
+      .lyrics-center {
+        width: 300px;
+        height: auto;
+        top: 200px;
+      }
+
+      .lyrics-center h3 {
+        font-size: 1.2rem;
+      }
+
+      .hightop {
+        width: 180px;
+        padding: 18px;
+      }
+
+      .hightop h3 {
+        font-size: 1.1rem;
+      }
+
+      .hightop:nth-child(1) {
+        left: 8%;
+        top: 500px;
+      }
+
+      .hightop:nth-child(2) {
+        right: 8%;
+        top: 60px;
+      }
+
+      .hightop:nth-child(3) {
+        left: 8%;
+        top: 60px;
+      }
+
+      .hightop:nth-child(4) {
+        right: 8%;
+        top: 500px;
+      }
+
+      .lyrics-wave-title {
+        top: 900px;
+        font-size: clamp(1.1rem, 3vw, 1.5rem);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hightops-container {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        position: relative;
+      }
+
+      .lyrics-center {
+        position: relative !important;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+        width: 100%;
+        max-width: 300px;
+        min-height: auto;
+        order: -1;
+      }
+
+      .hightop {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .hightop:hover {
+        transform: scale(1.02) !important;
+      }
+
+      .lyrics-wave-title {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        margin-top: 8px;
+        order: 2;
+        justify-content: center;
+        font-size: clamp(1rem, 7.4vw, 1.3rem);
+      }
+
+      .lyrics-wave-title .space {
+        width: 10px;
+      }
+    }
+    .card h3 { margin: 0 0 8px; font-size: 1.02rem; color: var(--accent-warm); }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 9px 13px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+      color: #0d0b0f;
+      margin-top: 10px;
+      box-shadow: 0 0 15px rgba(244, 164, 96, 0.3), 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: all 0.22s ease;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(244, 164, 96, 0.4), 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+    .btn.alt {
+      background: transparent;
+      color: var(--accent-warm);
+      border-color: var(--line);
+    }
+    audio {
+      width: 100%;
+      margin-top: 8px;
+      border-radius: 8px;
+    }
+    .embed {
+      margin: 10px 0 12px;
+      border: 0;
+      width: 100%;
+      height: 352px;
+      border-radius: 12px;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .embed-wrap {
+      margin-top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 280px;
+      background: linear-gradient(135deg, rgba(212, 165, 116, 0.08), rgba(244, 164, 96, 0.04));
+      box-shadow: 0 0 15px rgba(244, 164, 96, 0.08), 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+    .embed-wrap iframe {
+      width: 100%;
+      min-height: 420px;
+      border: 0;
+    }
+    .footer-links {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .footer-links a { color: var(--accent-warm); text-decoration: none; font-weight: 700; transition: opacity 0.22s ease; }
+    .footer-links a:hover { opacity: 0.8; text-decoration: underline; }
+    .inquiry-floater {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 30;
+      text-decoration: none;
+      color: #0d0b0f;
+      background: linear-gradient(155deg, var(--accent), var(--accent-warm));
+      border: 1px solid rgba(244, 164, 96, 0.6);
+      border-radius: 12px;
+      padding: 10px 12px;
+      min-width: 210px;
+      box-shadow: 0 0 30px rgba(244, 164, 96, 0.3), 0 0 15px rgba(244, 164, 96, 0.2), 0 8px 24px rgba(0, 0, 0, 0.5);
+      transition: all 0.22s ease;
+    }
+    .inquiry-floater:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 40px rgba(244, 164, 96, 0.4), 0 0 20px rgba(244, 164, 96, 0.3), 0 12px 32px rgba(0, 0, 0, 0.6);
+    }
+    .inquiry-floater strong {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.95;
+      color: #0d0b0f;
+    }
+    .inquiry-floater span {
+      display: block;
+      margin-top: 4px;
+      font-weight: 800;
+      line-height: 1.15;
+      min-height: 34px;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+      .inquiry-floater {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main id="top" class="wrap" role="main">
+    <div class="top">
+      <a href="index.html#professional">Back To Home</a>
+      <span class="muted">Tess Does Stuff</span>
+    </div>
+
+    <h1>The Listening Room</h1>
+    <p class="sub">I have lots of thoughts that aren't written into books, but instead are used for ttrpgs and lyric writing. ENJOY!</p>
+    <p class="sub">To hear more lyric concepts and story ideas, explore the whimsical side. If you are interested in taking on lyrics, please contact me at <a href="mailto:contact@tessdevillier.com" style="color:var(--accent-warm); font-weight:700;">contact@tessdevillier.com</a>.</p>
+    <div class="mini-link-row" style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px;align-items:center;">
+      <span style="font-size:0.86rem;color:var(--muted);font-weight:700;letter-spacing:0.03em;">FIND MORE:</span>
+      <a class="btn alt" style="margin-top:0;color: var(--ink); padding: 7px 10px; font-size: 0.86rem;" id="tumblrLink" href="https://www.tumblr.com/thatssoobuttons/tagged/lyrics" target="_blank" rel="noopener noreferrer">Tumblr</a>
+      <a class="btn alt" style="margin-top:0;color: var(--ink); padding: 7px 10px; font-size: 0.86rem;" href="hire.html#social-media">Social Media</a>
+      <a class="btn alt" style="margin-top:0;color: var(--ink); padding: 7px 10px; font-size: 0.86rem;" href="https://discord.gg/5erCGVcFxP" target="_blank" rel="noopener noreferrer">Discord</a>
+    </div>
+    <p class="sub" style="margin-top: 0; color:var(--accent-warm); font-weight:800; letter-spacing:0.04em; text-transform:uppercase;">CONSIDER BUYING ME A COFFEE TO KEEP THE LYRICS COMING <span style="display:inline-block; margin:0 6px; font-size:1.08em; font-style:italic; transform:rotate(8deg);">↝</span> <a href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer" style="color:var(--accent-warm); font-weight:900; text-decoration:underline; text-underline-offset:3px;">CLICK HERE</a></p>
+
+    <section class="section" aria-label="Music demos">
+      <div class="hightops-container">
+        <article class="hightop demo-track">
+          <div class="hightop-lamp"></div>
+          <h3>Why Can't We Hear Them</h3>
+          <p class="hightop-vibe">A haunting mystery</p>
+          <audio controls preload="none" src="dm_audio_web/Why Can't We Hear Them.mp3"></audio>
+        </article>
+        <article class="hightop demo-track">
+          <div class="hightop-lamp"></div>
+          <h3>The Day The World Went Quiet</h3>
+          <p class="hightop-vibe">Silence speaks volumes</p>
+          <audio controls preload="none" src="dm_audio_web/The Day The World Went Quiet.mp3"></audio>
+        </article>
+        <div class="lyrics-center" id="lyricsBox" aria-live="polite">
+          <div class="lyrics-flip">
+            <div class="lyrics-face front">
+              <img id="lyricsFrontImage" src="dm_assets/P1230654-Edit-2.jpg" alt="Album art">
+            </div>
+            <div class="lyrics-face back">
+              <h3 id="lyricsTitle">Now Playing</h3>
+              <p class="lyrics-status" id="lyricsStatus">Play a song to see lyrics</p>
+              <pre id="lyricsText"></pre>
+            </div>
+          </div>
+          <div class="flip-hint">click to flip</div>
+          <div class="flip-credit">(images/lyrics by Tess)</div>
+        </div>
+        <article class="hightop demo-track">
+          <div class="hightop-lamp"></div>
+          <h3>Red Lining Demise</h3>
+          <p class="hightop-vibe">Crossing the line</p>
+          <audio controls preload="none" src="dm_audio_web/Red Lining Demise.mp3"></audio>
+        </article>
+        <article class="hightop demo-track">
+          <div class="hightop-lamp"></div>
+          <h3>Just Stop (In This Chaos)</h3>
+          <p class="hightop-vibe">Find your center</p>
+          <audio controls preload="none" src="dm_audio_web/Just Stop (In This Chaos).mp3"></audio>
+        </article>
+        <div class="lyrics-wave-title" aria-hidden="true">
+          <span>O</span><span>R</span><span>I</span><span>G</span><span>I</span><span>N</span><span>A</span><span>L</span><span class="space"></span><span>L</span><span>Y</span><span>R</span><span>I</span><span>C</span><span>S</span>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section" aria-label="Podcast content">
+      <h2>Podcasts</h2>
+      <div class="podcast-header-mini">
+        <h3 class="podcast-header-mini-title">Wayward Bound</h3>
+        <p class="podcast-header-mini-subtitle">A multiverse TTRPG podcast</p>
+      </div>
+      
+      <div class="podcast-grid">
+        <a href="https://open.spotify.com/episode/09Dkbxy9AQdrB3rRP0ML8n?si=91c14eea95cd480e" target="_blank" rel="noopener noreferrer" class="podcast-circle">
+          <div class="podcast-circle-content">
+            <span class="podcast-number">01</span>
+            <span class="podcast-label">Episode</span>
+          </div>
+        </a>
+        <a href="https://open.spotify.com/episode/2Fkm7pSebkUP4EIzaxSWzm?si=dc32f3ac5bd048e0" target="_blank" rel="noopener noreferrer" class="podcast-circle">
+          <div class="podcast-circle-content">
+            <span class="podcast-number">02</span>
+            <span class="podcast-label">Episode</span>
+          </div>
+        </a>
+        <a href="https://open.spotify.com/episode/3WxYWPX1esWEA8AVDIAPFc?si=2baff76db9ef4153" target="_blank" rel="noopener noreferrer" class="podcast-circle">
+          <div class="podcast-circle-content">
+            <span class="podcast-number">03</span>
+            <span class="podcast-label">Episode</span>
+          </div>
+        </a>
+        <a href="https://open.spotify.com/episode/086nyArWuNkuqNCOfxZldm?si=34c3741df4244079" target="_blank" rel="noopener noreferrer" class="podcast-circle">
+          <div class="podcast-circle-content">
+            <span class="podcast-number">04</span>
+            <span class="podcast-label">Episode</span>
+          </div>
+        </a>
+      </div>
+      
+      <div class="actions" style="margin-top: 24px;">
+        <a class="btn" href="https://open.spotify.com/show/0mz0DiRh7S63kTxVLsDBAF" target="_blank" rel="noopener noreferrer">Open Wayward Bound on Spotify</a>
+        <a class="btn alt" href="mailto:contact@tessdevillier.com?subject=Podcast%20Inquiry">Podcast Inquiry</a>
+      </div>
+    </section>
+
+    <div class="footer-links" aria-label="Quick links">
+      <a href="#top">Back to top</a>
+      <a href="index.html#professional">Home</a>
+      <a href="hire.html">Book or Inquire</a>
+      <a href="watch.html">Watch</a>
+    </div>
+  </main>
+  <a class="inquiry-floater" href="hire.html#contact-lanes" aria-label="Open inquiry links">
+    <strong>Inquire</strong>
+    <span id="inquiry-floater-text">Pitch A Music Or Lyric Project</span>
+  </a>
+
+  <script>
+    (function () {
+      var sections = document.querySelectorAll('.section');
+      sections.forEach(function (section) {
+        var heading = section.querySelector('h2');
+        if (!heading) return;
+
+        var title = heading.textContent.trim();
+        var body = document.createElement('div');
+        body.className = 'section-body';
+        while (heading.nextSibling) {
+          body.appendChild(heading.nextSibling);
+        }
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'section-toggle';
+        button.setAttribute('aria-expanded', 'true');
+        button.innerHTML = '<span>' + title + '</span><span class="section-toggle-mark">-</span>';
+
+        heading.textContent = '';
+        heading.appendChild(button);
+        section.appendChild(body);
+
+        button.addEventListener('click', function () {
+          var collapsed = section.classList.toggle('collapsed');
+          button.setAttribute('aria-expanded', String(!collapsed));
+          var mark = button.querySelector('.section-toggle-mark');
+          if (mark) mark.textContent = collapsed ? '+' : '-';
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var audioCards = Array.prototype.slice.call(document.querySelectorAll('.demo-track'));
+      var lyricsBox = document.getElementById('lyricsBox');
+      var lyricsTitle = document.getElementById('lyricsTitle');
+      var lyricsStatus = document.getElementById('lyricsStatus');
+      var lyricsText = document.getElementById('lyricsText');
+
+      if (!audioCards.length || !lyricsBox || !lyricsTitle || !lyricsStatus || !lyricsText) return;
+
+      var lyricsByTrack = {
+        "Why Can't We Hear Them": '[Verse 1]\nYou say\n“Can you hear me?”\nFrom across this quiet room\nI catch every shake in your voice\nEvery tiny truth\nBut out by the rusted fence\nBranches bend and bow\nThin limbs spin in the evening air\nLike they\'re putting on a show\n\n[Chorus]\nWhy can we hear each other\nBut not the trees when they all spin round?\nWhy can we hear our own small thunder\nBut not the crows or cans dragging on the ground?\nAll this life just outside the window frame\nWhy can\'t we hear them\nSaying our names?\n\n[Verse 2]\nNeighbor kids jump the curb\nChalk dust on their hands\nThey shout rules for a made-up game\nI don\'t understand\nMetal clinks where the crows\nKick at silver in the grass\nSomeone\'s laughing in the alleyway\nThen it fades so fast\n\n[Chorus]\nWhy can we hear each other\nEvery crack\nEvery quiet doubt\nBut not the trees when they lean together\nTrading secrets we can\'t figure out?\nAll this sound just beyond our little flame\nWhy can\'t we hear them\nSaying our names?\n\n[Bridge]\nMaybe we tuned our ears\nTo words and worries\nDeadlines\nWarnings\nPhones that ring\nWhile the world keeps humming\nIn another language\nToo wild\nToo strange\nFor us to sing (oh)\n\n[Chorus]\nWhy can we hear each other\nLike we\'re made of ringing glass\nBut miss the crow cans rolling\nDown the driveway as the storms all pass?\nIf they\'re out there\nCalling through the open air\nWhy can\'t we hear them\nOr don\'t we dare?\n\n[Outro]\nYou ask me again\nSoft as the ceiling fan\nI say\n“Maybe they\'re still talking\nWe just forgot how to understand”\n\nLyrics by That\'s Soo Buttons > © 2026 Tess Alexandra Devillier',
+        'The Day The World Went Quiet': '[Verse 1]\nWind in the grass\nShirts on the line\nSmall leaves spin\nOn the laundry wire\nCrows sketch arrows\nAcross the sky\nBlack wings open\nBut the air stays dry\n\n[Chorus]\nAnd there is nothing\nNothing in my ears\nJust my own breathing\nMy old\nStubborn heartbeat\nThe world keeps moving\nLike it always did\nBut there is nothing\nNothing in between\n\n[Verse 2]\nDog\'s mouth open\nTongue out\nRunning\nI see him bark\nLike a silent movie\nTruck rolls past\nOn the gravel road\nDust cloud rises\nBut it doesn\'t roll through me\n\n[Chorus]\nAnd there is nothing\nNothing in my ears\nJust my own breathing\nMy old\nStubborn heartbeat\nThe world keeps moving\nLike it always did\nBut there is nothing\nNothing in between\n\n[Bridge]\nThe trees still dance\nIn their secret rhythm\nI read their sway\nLike a foreign script\nMouth forms “hello”\nTo the neighbor waving\nTheir laugh folds up\nBefore it can exist\n\n[Chorus]\nAnd there is nothing\nNothing in my ears\nJust my own breathing\nMy old\nStubborn heartbeat\nThe wind keeps blowing\nCrows keep cutting clean\nBut I am standing\nAlone in the in-between\n\nLyrics by That\'s Soo Buttons > © 2026 Tess Alexandra Devillier',
+        'Red Lining Demise': 'my body\nmy light\nmy screams\nmy life\n\nmy body\nyour knife\nmy love\nyour right\n\nyou think you own me\ncontrol me\nbecause I don\'t bite\n\nyou think you\'re clever\nand never\ngoing to lose an eye\n\nwell energy \nmy love\nbuilds up\nin my pipes\nand you haven\'t\neven tried\nturning the relief valve\nthis time\n\nmy heat\nyour cold\nmy truth\nyour lie\nnow watch\nas the\nengines\ngo dry.\n\nThe pressure is rising\nI\'m cutting the ties\nWatch the red lining\nMeet your demise.\n\nMy body.\nMy life.\nYou should have\nUsed a bigger knife.\n\nLyrics by That\'s Soo Buttons > © 2026 Tess Alexandra Devillier',
+        'Just Stop (In This Chaos)': '[Verse 1]\nCrowded room, too close\nToo many mouths in my face\nEvery sharp, bright word\nClatters across my plate\nStatic in my chest\nSearching for one clean edge\n\n[Chorus]\nJust stop.\nJust stop.\nBreathe...\nJust stop.\nJust stop.\nBreathe...\n\n[Verse 2]\nNoise fades back, then climbs\nStill ringing through these walls\nYour name hangs loud and long\nEchoing down my halls\nI stand my ground here\nBut my hands still start to shake\n\n[Chorus]\nJust stop.\nJust stop.\nBreathe...\nJust stop.\nJust stop.\nBreathe...\n\n[Bridge]\nLet the room go thin\nLet the pressure melt\nOne slow breath drawn in\nOne slow breath you felt\n\n[Chorus]\nJust stop.\nJust stop.\nBreathe...\nJust stop.\nJust stop.\nBreathe...\n\nLyrics by That\'s Soo Buttons > © 2026 Tess Alexandra Devillier'
+      };
+
+      function showLyrics(trackTitle) {
+        var lyrics = lyricsByTrack[trackTitle] || '';
+        lyricsBox.classList.remove('hidden');
+        lyricsBox.classList.add('flipped');
+        lyricsTitle.textContent = trackTitle;
+        if (lyrics) {
+          lyricsStatus.textContent = 'Lyrics for this demo track:';
+          lyricsText.textContent = lyrics;
+        } else {
+          lyricsStatus.textContent = 'Lyrics for this demo have not been added yet.';
+          lyricsText.textContent = 'The player is ready to show lyrics for ' + trackTitle + ' as soon as they are added to the site.';
+        }
+
+        window.requestAnimationFrame(function () {
+          lyricsBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+
+      function pauseOtherTracks(activeAudio) {
+        audioCards.forEach(function (card) {
+          var audio = card.querySelector('audio');
+          if (!audio || audio === activeAudio) return;
+          audio.pause();
+        });
+      }
+
+      audioCards.forEach(function (card) {
+        var title = card.querySelector('h3');
+        var audio = card.querySelector('audio');
+        if (!title || !audio) return;
+
+        var trackTitle = title.textContent.trim();
+
+        audio.addEventListener('play', function () {
+          pauseOtherTracks(audio);
+          showLyrics(trackTitle);
+        });
+
+        audio.addEventListener('ended', function () {
+          lyricsStatus.textContent = 'Playback finished for ' + trackTitle + '.';
+        });
+      });
+
+      // Add flip toggle to lyrics card
+      var cardImages = [
+        'dm_assets/P1230654-Edit-2.jpg',
+        'dm_assets/P1200714.JPG',
+        'dm_assets/_1270709.jpg',
+        'dm_assets/P1200602.jpg',
+        'dm_assets/P1220503-3.jpg',
+        'dm_assets/P1230610-2.jpg'
+      ];
+      
+      var currentImageIndex = 0;
+      var lyricsFrontImage = document.getElementById('lyricsFrontImage');
+      
+      function getRandomImage() {
+        var newIndex;
+        do {
+          newIndex = Math.floor(Math.random() * cardImages.length);
+        } while (newIndex === currentImageIndex && cardImages.length > 1);
+        currentImageIndex = newIndex;
+        return cardImages[newIndex];
+      }
+      
+      lyricsBox.addEventListener('click', function (e) {
+        e.stopPropagation();
+        lyricsBox.classList.toggle('flipped');
+        
+        // If flipping back to front (removing flipped class), change the image
+        if (!lyricsBox.classList.contains('flipped')) {
+          lyricsFrontImage.src = getRandomImage();
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      // Tagged Tumblr feed target (lyrics only)
+      var tumblrUrl = 'https://www.tumblr.com/thatssoobuttons/tagged/lyrics';
+
+      var link = document.getElementById('tumblrLink');
+
+      if (!link) return;
+
+      if (!tumblrUrl) {
+        link.textContent = 'Add Tumblr Link (Coming Soon)';
+        link.setAttribute('href', 'mailto:contact@tessdevillier.com?subject=Add%20Tumblr%20Link%20to%20Music%20Page');
+        link.removeAttribute('target');
+        link.removeAttribute('rel');
+        return;
+      }
+
+      link.setAttribute('href', tumblrUrl);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var floaterText = document.getElementById('inquiry-floater-text');
+      if (!floaterText) return;
+      var messages = [
+        'Pitch A Music Or Lyric Project',
+        'Ask About Custom Lyrics',
+        'Book A Creative Audio Session'
+      ];
+      var index = 0;
+      setInterval(function () {
+        index = (index + 1) % messages.length;
+        floaterText.textContent = messages[index];
+      }, 2600);
+    })();
+  </script>
+<script>
+  (function () {
+    var floaters = Array.prototype.slice.call(document.querySelectorAll('.inquiry-floater, .promo-floater, .otfn-floater'));
+    if (!floaters.length) return;
+
+    function getDismissKey(floater, index) {
+      var token = floater.id ? floater.id : ('floater-' + index);
+      return 'dismissed:' + window.location.pathname + ':' + token;
+    }
+
+    function updateMobileSpacing() {
+      var hasVisibleFloater = floaters.some(function (floater) {
+        return floater.style.display !== 'none';
+      });
+      document.documentElement.style.overflowY = 'auto';
+      document.body.style.overflowY = 'auto';
+      if (window.innerWidth <= 900 && hasVisibleFloater) {
+        document.body.style.paddingBottom = '140px';
+      } else {
+        document.body.style.paddingBottom = '';
+      }
+    }
+
+    floaters.forEach(function (floater, index) {
+      floater.style.position = 'fixed';
+      floater.style.overflow = 'visible';
+      var key = getDismissKey(floater, index);
+
+      if (window.localStorage.getItem(key) === '1') {
+        floater.style.display = 'none';
+        return;
+      }
+
+      if (!floater.querySelector('.floater-dismiss')) {
+        var close = document.createElement('span');
+        close.className = 'floater-dismiss';
+        close.setAttribute('role', 'button');
+        close.setAttribute('aria-label', 'Close floating inquiry button');
+        close.tabIndex = 0;
+        close.textContent = 'x';
+        close.style.position = 'absolute';
+        close.style.top = '-10px';
+        close.style.right = '-10px';
+        close.style.width = '22px';
+        close.style.height = '22px';
+        close.style.borderRadius = '999px';
+        close.style.border = '1px solid #777';
+        close.style.background = '#ffffff';
+        close.style.color = '#111';
+        close.style.display = 'flex';
+        close.style.alignItems = 'center';
+        close.style.justifyContent = 'center';
+        close.style.fontSize = '12px';
+        close.style.fontWeight = '700';
+        close.style.cursor = 'pointer';
+        close.style.lineHeight = '1';
+        close.style.zIndex = '3';
+
+        function dismiss(event) {
+          event.preventDefault();
+          event.stopPropagation();
+          floater.style.display = 'none';
+          window.localStorage.setItem(key, '1');
+          updateMobileSpacing();
+        }
+
+        close.addEventListener('click', dismiss);
+        close.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ') dismiss(event);
+        });
+        floater.appendChild(close);
+      }
+    });
+
+    window.addEventListener('resize', updateMobileSpacing);
+    updateMobileSpacing();
+  })();
+</script>
+<script>
+  (function () {
+    try {
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+    } catch (_) {}
+
+    if (!window.location.hash) {
+      window.addEventListener('pageshow', function () {
+        window.scrollTo(0, 0);
+      }, { once: true });
+    }
+  })();
+</script>
+</body>
+</html>
+
