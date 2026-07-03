@@ -836,9 +836,10 @@
             bottom: 14px;
             z-index: 60;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-direction: row;
+            align-items: flex-end;
             gap: 8px;
+            pointer-events: auto;
         }
 
         #mode-toggle {
@@ -887,11 +888,15 @@
             text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
             white-space: nowrap;
             opacity: 0.92;
+            display: inline-flex;
+            align-items: center;
+            transform: translateX(20px) translateY(-1px) rotate(-9deg);
+            transform-origin: left center;
         }
 
         .matrix-invite .matrix-arrow {
             display: inline-block;
-            transform: none;
+            transform: rotate(26deg);
             transform-origin: center;
             margin-right: 4px;
         }
@@ -908,6 +913,7 @@
             justify-content: center;
             align-items: center;
             gap: 12px;
+            pointer-events: auto;
         }
 
         #music-unlock p,
@@ -1491,19 +1497,19 @@
                 <div class="mode-blurb-quote" id="mode-blurb-quote">"Why hire me? I'm the common denominator, you are hiring my energy and reliability."</div>
             </div>
             <div id="footer-control-dock">
-                <div id="mode-toggle" style="margin: 0; pointer-events:auto;">
-                    <div class="matrix-primary-row">
-                        <button id="btn-professional" type="button" style="display:none;background:rgba(40,40,40,0.55); border:2px solid #ffd700; color:#ffd700; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Professional</button>
-                        <button id="btn-whimsical" type="button" style="cursor:pointer; transition:all 0.2s; outline:none;">Enter The Matrix</button>
-                    </div>
-                    <span class="matrix-invite" aria-hidden="true"><span class="matrix-arrow">↑</span><span id="matrix-invite-text">I wonder what this does?</span></span>
-                </div>
                 <div id="audio-controls">
                     <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Play</button>
                     <label style="color:#ffd700;font-size:0.95em;">
                         Volume
                         <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.18" style="vertical-align:middle;">
                     </label>
+                </div>
+                <div id="mode-toggle" style="margin: 0; pointer-events:auto;">
+                    <div class="matrix-primary-row">
+                        <button id="btn-professional" type="button" style="display:none;background:rgba(40,40,40,0.55); border:2px solid #ffd700; color:#ffd700; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Professional</button>
+                        <button id="btn-whimsical" type="button" style="cursor:pointer; transition:all 0.2s; outline:none;">Enter The Matrix</button>
+                    </div>
+                    <span class="matrix-invite" aria-hidden="true"><span class="matrix-arrow">↗</span><span id="matrix-invite-text">I wonder what this does?</span></span>
                 </div>
             </div>
         </header>
