@@ -830,11 +830,22 @@
             50% { transform: translateY(-1px); }
         }
 
-        #mode-toggle {
+        #footer-control-dock {
             position: fixed !important;
-            right: 16px;
-            bottom: 92px;
-            z-index: 240;
+            right: 12px;
+            bottom: 14px;
+            z-index: 60;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #mode-toggle {
+            position: static !important;
+            left: auto;
+            transform: none;
+            z-index: 1;
             background: rgba(8, 10, 16, 0.56);
             border: 1px solid rgba(244, 230, 218, 0.22);
             border-radius: 12px;
@@ -849,8 +860,8 @@
         .matrix-primary-row {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            flex-wrap: wrap;
+            justify-content: center;
+            flex-wrap: nowrap;
             gap: 10px;
         }
 
@@ -887,7 +898,7 @@
 
         #audio-controls {
             position: static !important;
-            z-index: 2;
+            z-index: 1;
             background: rgba(8, 10, 16, 0.56);
             border: 1px solid rgba(244, 230, 218, 0.22);
             border-radius: 12px;
@@ -1479,19 +1490,21 @@
                 <div class="mode-blurb-text" id="mode-blurb-text">Reliable, creative, and a little chaotic in the best way. Baton Rouge and remote.</div>
                 <div class="mode-blurb-quote" id="mode-blurb-quote">"Why hire me? I'm the common denominator, you are hiring my energy and reliability."</div>
             </div>
-            <div id="mode-toggle" style="margin: 18px 0 0 0; pointer-events:auto;">
-                <div class="matrix-primary-row">
-                    <button id="btn-professional" type="button" style="display:none;background:rgba(40,40,40,0.55); border:2px solid #ffd700; color:#ffd700; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Professional</button>
-                    <div id="audio-controls">
-                        <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Play</button>
-                        <label style="color:#ffd700;font-size:0.95em;">
-                            Volume
-                            <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.18" style="vertical-align:middle;">
-                        </label>
+            <div id="footer-control-dock">
+                <div id="mode-toggle" style="margin: 0; pointer-events:auto;">
+                    <div class="matrix-primary-row">
+                        <button id="btn-professional" type="button" style="display:none;background:rgba(40,40,40,0.55); border:2px solid #ffd700; color:#ffd700; font-weight:700; padding:6px 18px; border-radius:18px; cursor:pointer; box-shadow:0 2px 8px #0004; transition:all 0.2s; outline:none;">Professional</button>
+                        <button id="btn-whimsical" type="button" style="cursor:pointer; transition:all 0.2s; outline:none;">Enter The Matrix</button>
                     </div>
-                    <button id="btn-whimsical" type="button" style="cursor:pointer; transition:all 0.2s; outline:none;">Enter The Matrix</button>
+                    <span class="matrix-invite" aria-hidden="true"><span class="matrix-arrow">↑</span><span id="matrix-invite-text">I wonder what this does?</span></span>
                 </div>
-                <span class="matrix-invite" aria-hidden="true"><span class="matrix-arrow">↑</span><span id="matrix-invite-text">I wonder what this does?</span></span>
+                <div id="audio-controls">
+                    <button id="audio-playpause" aria-label="Play/Pause Music" style="background:#222;color:#ffd700;border:none;border-radius:6px;padding:6px 18px;font-size:1em;cursor:pointer;">Play</button>
+                    <label style="color:#ffd700;font-size:0.95em;">
+                        Volume
+                        <input id="audio-volume" type="range" min="0" max="1" step="0.01" value="0.18" style="vertical-align:middle;">
+                    </label>
+                </div>
             </div>
         </header>
 
@@ -2124,7 +2137,7 @@
   </section>
 </main>
 
-<footer style="position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.95rem; opacity: 0.95; color: #fff; z-index: 50; background: rgba(8,10,16,0.42); backdrop-filter: blur(6px); padding: 8px 12px; border-radius: 12px; width: min(980px, calc(100vw - 24px));" role="contentinfo">
+<footer style="position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); text-align: center; font-size: 0.95rem; opacity: 0.95; color: #fff; z-index: 50; background: rgba(8,10,16,0.42); backdrop-filter: blur(6px); padding: 8px 12px; border-radius: 12px; width: fit-content; max-width: calc(100vw - 24px);" role="contentinfo">
     <div style="display: flex; gap: 15px; justify-content: center; font-size: 0.95rem; margin-top: 8px;">
         <!-- FAQ/Fine Print link removed as requested -->
     </div>
