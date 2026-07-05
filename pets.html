@@ -4,7 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pet care services by Tess Devillier: drop-ins, full-day care, and overnight house and pet sitting in Baton Rouge and beyond.">
+    <link rel="canonical" href="https://tessdevillier.com/pets.html">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Tess Devillier">
+    <meta property="og:title" content="Pets & Pet Care | Tess Devillier">
+    <meta property="og:description" content="Book pet care and house sitting with drop-ins, day care, and overnight stays.">
+    <meta property="og:url" content="https://tessdevillier.com/pets.html">
+    <meta property="og:image" content="https://tessdevillier.com/professionalindex.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pets & Pet Care | Tess Devillier">
+    <meta name="twitter:description" content="Book pet care and house sitting with drop-ins, day care, and overnight stays.">
+    <meta name="twitter:image" content="https://tessdevillier.com/professionalindex.jpg">
     <title>Pets & Pet Care | Tess Devillier</title>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Pet and House Sitting",
+            "url": "https://tessdevillier.com/pets.html",
+            "provider": {
+                "@type": "Person",
+                "name": "Tess Devillier"
+            },
+            "areaServed": {
+                "@type": "City",
+                "name": "Baton Rouge"
+            },
+            "serviceType": "Pet care and house sitting"
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -1072,13 +1103,13 @@
             function renderCarousel(items) {
                 if (!carouselTrack || !carouselDots) return;
                 var slides = items && items.length ? items : [
-                    { src: 'dm_assets/house-petsitting-photo.jpg', caption: 'House and pet sitting in action' }
+                    { src: 'dm_assets/house-petsitting-photo.webp', caption: 'House and pet sitting in action' }
                 ];
                 carouselSlides = slides;
                 carouselIndex = 0;
                 carouselTrack.innerHTML = slides.map(function (item, index) {
                     return '<figure class="photo-slide">' +
-                        '<img src="' + escapeHtml(item.src) + '" alt="Pet care photo ' + (index + 1) + '">' +
+                        '<img src="' + escapeHtml(item.src) + '" alt="Pet care photo ' + (index + 1) + '" loading="lazy" decoding="async">' +
                         '<figcaption class="photo-caption">' + escapeHtml(item.caption || ('Pet photo ' + (index + 1))) + '</figcaption>' +
                     '</figure>';
                 }).join('');
