@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Tess Devillier shop is coming soon.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>Shop Coming Soon | Tess Devillier</title>
+  <style>
+    :root {
+      --bg: #f7f3ea;
+      --card: #fffdf8;
+      --ink: #252018;
+      --muted: #675d4d;
+      --line: #d9ccba;
+      --accent: #5b3f7b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 6%, rgba(203, 164, 112, 0.18), transparent 32%),
+        radial-gradient(circle at 90% 3%, rgba(93, 129, 176, 0.16), transparent 30%),
+        var(--bg);
+      display: grid;
+      place-items: center;
+      padding: 18px;
+    }
+    .card {
+      width: min(760px, 100%);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(25, 20, 14, 0.08);
+      text-align: center;
+    }
+    h1 { margin: 0 0 8px; font-size: clamp(2rem, 4vw, 2.8rem); }
+    p { margin: 0 0 10px; color: var(--muted); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 10px; }
+    .btn {
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 700;
+      border: 2px solid transparent;
+    }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn.alt { background: #fff; color: var(--ink); border-color: var(--line); }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <h1>THE SHOP IS COMING SOON</h1>
+    <p>I am currently preparing activity pages, calendars, worksheets, and downloadable extras.</p>
+    <p>Check back soon. Thank you for the support.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://ko-fi.com/thatssoobuttons/shop" target="_blank" rel="noopener noreferrer">Visit Ko-fi Shop</a>
+      <a class="btn alt" href="index.html#professional">Back To Home</a>
+    </div>
+  </main>
+</body>
+</html>

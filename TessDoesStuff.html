@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="One-page summary of Tess Devillier services with pricing, contact info, and portfolio links.">
+	<title>Tess Does Stuff | One-Page Services + Pricing</title>
+	<link rel="icon" href="favicon.svg" type="image/svg+xml">
+	<style>
+		:root {
+			--bg: #f8f5ef;
+			--card: #fffdf9;
+			--ink: #24211a;
+			--muted: #5d5648;
+			--line: #d7cebd;
+			--accent: #476a60;
+			--accent-soft: #ecf2ee;
+		}
+
+		* { box-sizing: border-box; }
+
+		html { scroll-behavior: smooth; }
+
+		body {
+			margin: 0;
+			font-family: Georgia, "Times New Roman", serif;
+			font-size: 19px;
+			line-height: 1.6;
+			color: var(--ink);
+			background:
+				radial-gradient(circle at 10% 8%, #efe6d8, transparent 34%),
+				radial-gradient(circle at 88% 5%, #e4eee7, transparent 30%),
+				var(--bg);
+		}
+
+		.wrap {
+			max-width: 1020px;
+			margin: 0 auto;
+			padding: 16px 14px 38px;
+		}
+
+		.top-nav {
+			position: sticky;
+			top: 0;
+			z-index: 20;
+			background: rgba(248, 245, 239, 0.95);
+			border: 1px solid var(--line);
+			border-radius: 12px;
+			padding: 8px;
+			margin-bottom: 14px;
+		}
+
+		.top-nav ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+		}
+
+		.top-nav a {
+			display: inline-block;
+			text-decoration: none;
+			color: var(--ink);
+			background: #fff;
+			border: 1px solid var(--line);
+			border-radius: 999px;
+			padding: 8px 12px;
+			font-size: 0.92rem;
+		}
+
+		.top-nav a:hover,
+		.top-nav a:focus {
+			outline: none;
+			border-color: var(--accent);
+		}
+
+		.panel {
+			background: var(--card);
+			border: 1px solid var(--line);
+			border-radius: 14px;
+			padding: 18px;
+			margin-bottom: 12px;
+			box-shadow: 0 8px 20px rgba(37, 31, 21, 0.07);
+		}
+
+		h1, h2, h3 {
+			line-height: 1.25;
+			margin-top: 0;
+			font-family: "Palatino Linotype", Palatino, Georgia, serif;
+		}
+
+		h1 {
+			font-size: clamp(2rem, 3.6vw, 2.7rem);
+			margin-bottom: 8px;
+		}
+
+		h2 {
+			font-size: clamp(1.45rem, 2.5vw, 1.9rem);
+			margin-bottom: 10px;
+		}
+
+		h3 {
+			font-size: 1.2rem;
+			margin-bottom: 8px;
+		}
+
+		p { margin-top: 0; }
+
+		.lead {
+			font-size: 1.1rem;
+			color: var(--muted);
+			max-width: 72ch;
+		}
+
+		.highlight {
+			background: var(--accent-soft);
+			border-left: 5px solid var(--accent);
+			padding: 10px 12px;
+			border-radius: 10px;
+			color: #274139;
+			margin-bottom: 10px;
+		}
+
+		.btn-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 9px;
+			margin-top: 8px;
+		}
+
+		.btn {
+			display: inline-block;
+			text-decoration: none;
+			background: var(--accent);
+			color: #fff;
+			border: 2px solid var(--accent);
+			border-radius: 11px;
+			padding: 10px 15px;
+			font-weight: 700;
+		}
+
+		.btn.alt {
+			background: #fff;
+			color: var(--ink);
+			border-color: var(--line);
+		}
+
+		.service {
+			border: 1px solid var(--line);
+			border-radius: 12px;
+			background: #fff;
+			padding: 12px;
+			margin-bottom: 10px;
+		}
+
+		.price-list {
+			margin: 0;
+			padding-left: 20px;
+		}
+
+		.price-list li {
+			margin-bottom: 6px;
+			color: var(--muted);
+		}
+
+		.small {
+			font-size: 0.95rem;
+			color: var(--muted);
+		}
+
+		.contact-grid {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 10px;
+		}
+
+		.contact-item {
+			border: 1px solid var(--line);
+			border-radius: 10px;
+			background: #fff;
+			padding: 10px;
+		}
+
+		.contact-item strong {
+			display: block;
+			margin-bottom: 4px;
+		}
+
+		@media (max-width: 780px) {
+			body { font-size: 18px; }
+			.top-nav { position: static; }
+			.contact-grid { grid-template-columns: 1fr; }
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<nav class="top-nav" aria-label="Page sections">
+			<ul>
+				<li><a href="#home">Home</a></li>
+				<li><a href="#about">About Me</a></li>
+				<li><a href="#services">Services + Pricing</a></li>
+				<li><a href="#portfolio">Portfolio</a></li>
+				<li><a href="#support">Support</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+		</nav>
+
+		<section class="panel" id="home">
+			<h1>Tess Does Stuff</h1>
+			<p class="lead">This page is the simple version of my website: what I offer, what it costs, and how to contact me.</p>
+			<div class="highlight">I am a creative narrative director working on long-term creative projects while doing paid client work with clear communication and clear pricing.</div>
+			<div class="btn-row">
+				<a class="btn" href="#services">See Pricing</a>
+				<a class="btn alt" href="#contact">Contact Me</a>
+			</div>
+		</section>
+
+		<section class="panel" id="about">
+			<h2>About Me</h2>
+			<p>I am based in Baton Rouge. I help people shape stories, visuals, and creative direction in ways that are practical and emotionally clear. I am independent, not a corporate agency, and I care a lot about work that feels human.</p>
+			<p class="small">Services include pet care, photography, worldbuilding, and creative consulting.</p>
+		</section>
+
+		<section class="panel" id="services">
+			<h2>Services + Pricing</h2>
+
+			<article class="service">
+				<h3>Pet Care</h3>
+				<ul class="price-list">
+					<li>Drop-in visits: $25 per 1-hour visit</li>
+					<li>One-day care: $15 per hour (4-hour minimum)</li>
+					<li>Overnight house + pet sitting: starting at $75 per night</li>
+					<li>Holiday surcharge: +$20 per night</li>
+					<li>House + plant sitting (no pets): starting at $60 per night</li>
+				</ul>
+				<div class="btn-row">
+					<a class="btn alt" href="pets.html">Full Pet Care Details</a>
+				</div>
+			</article>
+
+			<article class="service">
+				<h3>Photography</h3>
+				<ul class="price-list">
+					<li>Mini Shoot: $100</li>
+					<li>Natural Light Session: starting at $250</li>
+					<li>Cinematic Experience: starting at $480</li>
+					<li>Teaser reel add-on: +$120</li>
+					<li>Additional edited images: $12 to $15 each, depending on package</li>
+				</ul>
+				<div class="btn-row">
+					<a class="btn alt" href="photography.html">Full Photography Pricing</a>
+				</div>
+			</article>
+
+			<article class="service">
+				<h3>Worldbuilding / Narrative</h3>
+				<ul class="price-list">
+					<li>Free consultation: 15 minutes</li>
+					<li>Quick lore check-in: $25 / 30 minutes</li>
+					<li>Lore sprint (starter): starting at $250</li>
+					<li>Narrative build (standard): starting at $450</li>
+				</ul>
+				<div class="btn-row">
+					<a class="btn alt" href="worldbuilding.html">Full Worldbuilding Details</a>
+				</div>
+			</article>
+
+			<article class="service">
+				<h3>Creative Consulting</h3>
+				<ul class="price-list">
+					<li>Free consultation: 15 minutes</li>
+					<li>Full strategy call: $240 / two 60-minute calls (spread out as needed)</li>
+					<li>Follow-up voice session: $60 / 30 minutes</li>
+					<li>Monthly advisory: starting at $380 per month</li>
+				</ul>
+				<div class="btn-row">
+					<a class="btn alt" href="creative-consulting.html">Full Consulting Details</a>
+				</div>
+			</article>
+
+			<p class="small">Need something custom? Send your timeline and budget range in your message and I can recommend the right lane.</p>
+		</section>
+
+		<section class="panel" id="portfolio">
+			<h2>Portfolio</h2>
+			<p>Main website example:</p>
+			<div class="btn-row">
+				<a class="btn" href="https://tessdevillier.com" target="_blank" rel="noopener noreferrer">Website Design Example</a>
+				<a class="btn alt" href="allinoneplace.html">Project Map</a>
+			</div>
+		</section>
+
+		<section class="panel" id="support">
+			<h2>Support Options</h2>
+			<p>If you want to support the work, here are the main options.</p>
+			<article class="service">
+				<h3>Support Financially</h3>
+				<div class="btn-row">
+					<a class="btn" href="https://cash.app/$888buttons" target="_blank" rel="noopener noreferrer">Cash App</a>
+					<a class="btn alt" href="https://ko-fi.com/thatssoobuttons" target="_blank" rel="noopener noreferrer">Ko-fi</a>
+				</div>
+			</article>
+			<article class="service">
+				<h3>Support For Free</h3>
+				<ul class="price-list">
+					<li>Use your Amazon Prime Twitch sub (free monthly) on the channel.</li>
+					<li>Share posts and projects with people who would care about the work.</li>
+					<li>Join the Discord and help grow the community.</li>
+				</ul>
+			</article>
+			<article class="service">
+				<h3>Referral Support</h3>
+				<ul class="price-list">
+					<li>Refer pet care, photography, consulting, and worldbuilding clients.</li>
+					<li>Recommend this page to people looking for practical creative support.</li>
+				</ul>
+				<div class="btn-row">
+					<a class="btn alt" href="support.html">Open Full Support Page</a>
+					<a class="btn alt" href="https://discord.gg/dC34nguEEC" target="_blank" rel="noopener noreferrer">Join Discord</a>
+				</div>
+			</article>
+		</section>
+
+		<section class="panel" id="contact">
+			<h2>Contact</h2>
+			<div class="contact-grid">
+				<div class="contact-item">
+					<strong>Email</strong>
+					<a href="mailto:contact@tessdevillier.com">contact@tessdevillier.com</a>
+				</div>
+				<div class="contact-item">
+					<strong>Phone / Text</strong>
+					<a href="tel:+12252834458">(225) 283-4458</a>
+				</div>
+			</div>
+			<div class="btn-row">
+				<a class="btn" href="hire.html">Open Full Hire Page</a>
+				<a class="btn alt" href="connect.html">Social + Discord Links</a>
+			</div>
+		</section>
+	</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CV and pitch deck access for Tess Devillier.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>CV + Pitch Decks | Tess Devillier</title>
+  <style>
+    :root { --bg:#dfe8f4; --card:#f5f9ff; --ink:#1d2c3f; --muted:#3b546f; --line:#aebfd5; --accent:#2f5f9b; --accent-2:#1f436f; }
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      font-family:Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(255,255,255,0.55), transparent 38%),
+        radial-gradient(circle at 88% 3%, rgba(121, 164, 214, 0.28), transparent 32%),
+        var(--bg);
+      color:var(--ink);
+      line-height:1.6;
+    }
+    .wrap { max-width:860px; margin:0 auto; padding:20px 14px 30px; }
+    .panel {
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:18px;
+      margin-bottom:12px;
+      box-shadow: 0 10px 24px rgba(31, 67, 111, 0.14);
+    }
+    h1,h2 { margin-top:0; }
+    .btn-row { display:flex; flex-wrap:wrap; gap:9px; margin-top:8px; }
+    .btn {
+      display:inline-block;
+      text-decoration:none;
+      background:linear-gradient(140deg, var(--accent), var(--accent-2));
+      color:#f4f8ff;
+      border:2px solid var(--accent-2);
+      border-radius:10px;
+      padding:9px 14px;
+      font-weight:700;
+    }
+    .btn.alt { background:#eef4fd; color:var(--ink); border-color:var(--line); }
+    .muted { color:var(--muted); }
+    ul { margin:0; padding-left:18px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <section class="panel">
+      <h1>CV + Pitch Decks</h1>
+      <p class="muted">Choose the CV version that fits what you are hiring for.</p>
+      <div class="btn-row">
+        <a class="btn" href="dm_assets/Tess%20Devillier%20-%20Master%20CV%20.pdf" target="_blank" rel="noopener noreferrer">Master CV</a>
+        <a class="btn alt" href="dm_assets/Tess%20Devillier%20-%20Master%20CV%20.pdf" download>Download Master CV</a>
+      </div>
+      <div class="btn-row">
+        <a class="btn" href="dm_assets/Tess%20Devillier%20-%20Pet%20%26%20House%20Sitting%20CV.pdf" target="_blank" rel="noopener noreferrer">Pet + House Sitting CV</a>
+        <a class="btn" href="dm_assets/Tess%20Devillier%20-%20Narrative%20Design%20CV.pdf" target="_blank" rel="noopener noreferrer">Narrative Design CV</a>
+        <a class="btn" href="dm_assets/Tess%20Devillier%20-%20Creative%20Consulting%20CV.pdf" target="_blank" rel="noopener noreferrer">Creative Consulting CV</a>
+        <a class="btn alt" href="Tess-Devillier-CV.txt" target="_blank" rel="noopener noreferrer">Legacy Text CV</a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Pitch Decks</h2>
+      <p class="muted">Deck links can be added here as they are finalized.</p>
+      <ul>
+        <li>Creative Services Deck: coming soon</li>
+        <li>Worldbuilding / Narrative Deck: coming soon</li>
+        <li>OTFN Mission Deck: coming soon</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

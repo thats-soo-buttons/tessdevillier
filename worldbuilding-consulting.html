@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Combined worldbuilding, narrative, and creative consulting services by Tess Devillier.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>Worldbuilding + Consulting | Tess Devillier</title>
+  <style>
+    :root {
+      --bg: #0e1018;
+      --ink: #f3eef6;
+      --muted: #c5bdd2;
+      --line: rgba(229, 217, 244, 0.2);
+      --panel: rgba(20, 23, 36, 0.86);
+      --card: rgba(28, 32, 49, 0.86);
+      --accent: #d48be1;
+      --accent-2: #79b8ff;
+      --accent-3: #69d6be;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(212, 139, 225, 0.25), transparent 30%),
+        radial-gradient(circle at 87% 5%, rgba(121, 184, 255, 0.2), transparent 28%),
+        radial-gradient(circle at 52% 110%, rgba(105, 214, 190, 0.2), transparent 34%),
+        linear-gradient(160deg, #0b0d15 0%, #141929 42%, #101424 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 22px 14px 34px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .top a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      font-weight: 700;
+    }
+
+    .top a:hover { border-bottom-color: var(--muted); }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 12px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.34);
+      backdrop-filter: blur(3px);
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      line-height: 1.24;
+      font-family: "Palatino Linotype", Palatino, Georgia, serif;
+    }
+
+    h1 {
+      font-size: clamp(1.95rem, 3.5vw, 2.8rem);
+      letter-spacing: 0.01em;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+      margin-bottom: 10px;
+      color: #ead9ff;
+    }
+
+    p { margin-top: 0; }
+
+    .lead { color: var(--muted); max-width: 76ch; }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0 2px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      border: 1px solid rgba(229, 217, 244, 0.25);
+      background: rgba(36, 42, 65, 0.72);
+      color: #e8ddf6;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 9px 14px;
+      font-weight: 700;
+      border: 2px solid transparent;
+    }
+
+    .btn.primary {
+      background: linear-gradient(130deg, #d48be1, #9f7dff);
+      color: #1a1222;
+      border-color: #e3baf0;
+    }
+
+    .btn.alt {
+      background: rgba(23, 28, 42, 0.9);
+      color: var(--ink);
+      border-color: rgba(121, 184, 255, 0.45);
+    }
+
+    .mood-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .mood-strip img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(229, 217, 244, 0.2);
+      display: block;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .card {
+      border: 1px solid rgba(229, 217, 244, 0.2);
+      border-radius: 10px;
+      background: var(--card);
+      padding: 12px;
+    }
+
+    .card h3 { margin-bottom: 6px; }
+
+    .card p { color: var(--muted); margin-bottom: 0; }
+
+    .price {
+      font-weight: 700;
+      color: #b9ddff;
+      margin-bottom: 6px;
+      letter-spacing: 0.01em;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    li { margin-bottom: 6px; }
+
+    .split-head {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .lane {
+      border: 1px solid rgba(229, 217, 244, 0.2);
+      border-radius: 10px;
+      padding: 11px;
+      background: rgba(24, 28, 43, 0.82);
+    }
+
+    .lane h3 { margin-bottom: 6px; }
+
+    .lane p { margin: 0; color: var(--muted); }
+
+    .muted { color: var(--muted); }
+
+    @media (max-width: 860px) {
+      .grid, .split-head { grid-template-columns: 1fr; }
+      .mood-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <div class="top">
+      <a href="index.html#professional">Back To Home</a>
+      <span>Tess Does Stuff</span>
+    </div>
+
+    <section class="panel">
+      <h1>Worldbuilding + Creative Consulting</h1>
+      <p class="lead">A combined lane for lore architecture, narrative strategy, and practical execution support. This is where dark fantasy world design meets clear creative planning.</p>
+      <div class="tag-row" aria-label="Service tags">
+        <span class="tag">Dark Romance</span>
+        <span class="tag">Fantasy Systems</span>
+        <span class="tag">Narrative Design</span>
+        <span class="tag">Creative Strategy</span>
+      </div>
+      <div class="btn-row">
+        <a class="btn primary" href="mailto:contact@tessdevillier.com?subject=Worldbuilding%20%2B%20Creative%20Consulting%20Inquiry">Email Inquiry</a>
+      </div>
+      <div class="mood-strip" aria-label="Visual style references">
+        <img src="dm_assets/P1430576.webp" alt="Moody cinematic landscape" loading="lazy" decoding="async">
+        <img src="dm_assets/P1240132.webp" alt="Colorful atmospheric creative direction mood" loading="lazy" decoding="async">
+        <img src="dm_assets/P1380637.webp" alt="Fantasy-leaning shadow and light reference" loading="lazy" decoding="async">
+        <img src="dm_assets/P1260629.webp" alt="Creative concept detail" loading="lazy" decoding="async">
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Two Lanes, One Workflow</h2>
+      <div class="split-head">
+        <article class="lane">
+          <h3>Worldbuilding / Narrative</h3>
+          <p>Lore systems, setting logic, faction dynamics, character pressure, and continuity that can hold weight over time.</p>
+        </article>
+        <article class="lane">
+          <h3>Creative Consulting</h3>
+          <p>Positioning, message clarity, creative direction, and practical systems so your ideas can ship instead of stall.</p>
+        </article>
+      </div>
+      <div class="grid" style="margin-top:10px;">
+        <article class="card"><h3>Setting Foundations</h3><p>Build core rules, tone, and culture anchors that keep your world coherent.</p></article>
+        <article class="card"><h3>Project Direction</h3><p>Clarify offer, audience, and the next realistic steps for your release cycle.</p></article>
+        <article class="card"><h3>Narrative Architecture</h3><p>Map arcs, reveal timing, and branching pressure for stories that actually land.</p></article>
+        <article class="card"><h3>Systems + Workflow</h3><p>Create repeatable structure for writing, production, and decision checkpoints.</p></article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Pricing Snapshot</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="price">Free / 15 min</div>
+          <h3>Consultation</h3>
+          <ul>
+            <li>Fit check and scope guidance</li>
+            <li>Best starting lane recommendation</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="price">$25 / 30 min</div>
+          <h3>Quick Lore Check-In</h3>
+          <ul>
+            <li>Focused narrative or systems feedback</li>
+            <li>Action-focused follow-up notes</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="price">$240 / Two 60 min calls</div>
+          <h3>Strategy Call</h3>
+          <ul>
+            <li>Two 60-minute direction and planning calls</li>
+            <li>Calls can be spread out as needed</li>
+          </ul>
+        </article>
+        <article class="card">
+          <div class="price">Build packages from $250</div>
+          <h3>Lore + Consulting Build Work</h3>
+          <ul>
+            <li>Lore sprint and narrative build packages</li>
+            <li>Custom scoped quote available</li>
+          </ul>
+        </article>
+      </div>
+      <p class="muted" style="margin-top:10px;">Need a hybrid package? Send your project medium, timeline, and budget range for a blended quote.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="hire.html#contact-lanes">Start Inquiry</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
