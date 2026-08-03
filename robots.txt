@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tessdevillier.com/sitemap.xml
+Sitemap: https://original.tessdevillier.com/sitemap.xml

@@ -2,32 +2,32 @@
 <rss version="2.0">
   <channel>
     <title>Tess Devillier Updates</title>
-    <link>https://tessdevillier.com/</link>
+    <link>https://original.tessdevillier.com/</link>
     <description>Portfolio updates, service announcements, and new project releases from Tess Devillier.</description>
     <language>en-us</language>
     <lastBuildDate>Sun, 05 Jul 2026 00:00:00 GMT</lastBuildDate>
 
     <item>
       <title>Services Hub</title>
-      <link>https://tessdevillier.com/services.html</link>
+      <link>https://original.tessdevillier.com/services.html</link>
       <description>Explore pet care, photography, worldbuilding, and creative consulting services.</description>
-      <guid>https://tessdevillier.com/services.html</guid>
+      <guid>https://original.tessdevillier.com/services.html</guid>
       <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
     </item>
 
     <item>
       <title>Hire and Inquiries</title>
-      <link>https://tessdevillier.com/hire.html</link>
+      <link>https://original.tessdevillier.com/hire.html</link>
       <description>Start an inquiry for paid services and project collaboration.</description>
-      <guid>https://tessdevillier.com/hire.html</guid>
+      <guid>https://original.tessdevillier.com/hire.html</guid>
       <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
     </item>
 
     <item>
       <title>Portfolio Overview</title>
-      <link>https://tessdevillier.com/allinoneplace.html</link>
+      <link>https://original.tessdevillier.com/allinoneplace.html</link>
       <description>Review portfolio highlights and current creative projects.</description>
-      <guid>https://tessdevillier.com/allinoneplace.html</guid>
+      <guid>https://original.tessdevillier.com/allinoneplace.html</guid>
       <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
